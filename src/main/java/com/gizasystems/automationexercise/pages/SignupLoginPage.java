@@ -1,6 +1,7 @@
 package com.gizasystems.automationexercise.pages;
 
 import com.shaft.driver.SHAFT;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class SignupLoginPage {
@@ -26,6 +27,7 @@ public class SignupLoginPage {
         driver.browser().navigateToURL(url);
     }
 
+    @Step("New User Sighup with Name: {name} and Email: {email}")
     public SignupLoginPage newUserSignup(String name, String email) {
         driver.element()
                 .type(signupUserName_input, name)
@@ -35,6 +37,7 @@ public class SignupLoginPage {
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+    @Step("Validate on Signup Visibility")
     public SignupLoginPage validateOnSignUpVisibility(String expectedResult) {
         driver.verifyThat().element(signup_div).exists().perform();
         driver.verifyThat().element(signup_h2).text().isEqualTo(expectedResult).perform();

@@ -5,15 +5,23 @@ import com.gizasystems.automationexercise.pages.NavigationBar;
 import com.gizasystems.automationexercise.pages.SignupLoginPage;
 import com.gizasystems.automationexercise.pages.SignupPage;
 import com.shaft.driver.SHAFT;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Epic("Real Project Simulation")
+@Feature("User Management")
+@Story("Register")
 public class RegisterUserTests {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
 
-    @Test
+    @Test(description = "Register User Test")
+    @Description("Given that I register with new user, When I enter valid data, Then I should be registered and logged in the the system")
     public void registerUserTest() {
         new NavigationBar(driver)
                 .clickOnSignupLoginLink();

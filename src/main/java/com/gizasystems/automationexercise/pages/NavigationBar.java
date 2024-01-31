@@ -1,6 +1,7 @@
 package com.gizasystems.automationexercise.pages;
 
 import com.shaft.driver.SHAFT;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class NavigationBar {
@@ -16,6 +17,7 @@ public class NavigationBar {
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+    @Step("click on Signup Login Link")
     public void clickOnSignupLoginLink() {
         driver.element().click(signupLogin_link);
     }

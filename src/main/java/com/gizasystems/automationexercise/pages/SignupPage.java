@@ -1,6 +1,7 @@
 package com.gizasystems.automationexercise.pages;
 
 import com.shaft.driver.SHAFT;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class SignupPage {
@@ -41,6 +42,7 @@ public class SignupPage {
         return this;
     }
 
+    @Step("Enter Account Information")
     public SignupPage enterAccountInformation(String gender, String pass, String userFirstName, String userLastName, String day, String month, String year) {
         driver.element().click(gender_input(gender));
         driver.element().type(password_input, pass);
@@ -54,6 +56,7 @@ public class SignupPage {
         return this;
     }
 
+    @Step("Enter Address Information")
     public SignupPage enterAddressInformation(String userAddressOne, String country, String state, String city, String zipCode, String userMobileNumber) {
         driver.element().type(addressOne_input, userAddressOne);
         driver.element().select(country_select, country);
@@ -66,11 +69,13 @@ public class SignupPage {
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+    @Step("Validate on Account Info Page")
     public SignupPage validateOnAccountInfoPage(String expectedText) {
         driver.assertThat().element(accountInfo_h1).text().isEqualTo(expectedText).perform();
         return this;
     }
 
+    @Step("Validate On Account Created")
     public SignupPage validateOnAccountCreated(String expectedResult) {
         driver.assertThat().element(createAccount_h2).text().isEqualTo(expectedResult).perform();
         return this;

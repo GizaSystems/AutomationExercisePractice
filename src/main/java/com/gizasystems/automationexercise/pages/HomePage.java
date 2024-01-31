@@ -1,6 +1,7 @@
 package com.gizasystems.automationexercise.pages;
 
 import com.shaft.driver.SHAFT;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class HomePage {
@@ -18,12 +19,14 @@ public class HomePage {
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+    @Step("Navigate to Home Page")
     public HomePage navigate() {
         driver.browser().navigateToURL(url);
         return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+    @Step("Validate on Visibility of the Home Page")
     public HomePage validateOnVisibilityOfHomePage() {
         driver.verifyThat().element(featuredItems_div).exists().perform();
         driver.verifyThat().element(recommendedItems_div).exists().perform();
