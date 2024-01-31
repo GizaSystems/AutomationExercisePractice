@@ -30,6 +30,8 @@ public class SignupPage {
     private final By mobileNumber_input = By.id("mobile_number");
     private final By createAccount_button = By.xpath("//button[@data-qa='create-account']");
     private final By createAccount_h2 = By.xpath("//h2[@data-qa='account-created']//b");
+    private final By continueBtn_link = By.xpath("//a[@data-qa='continue-button']");
+
 
     // Constructor
     public SignupPage(SHAFT.GUI.WebDriver driver) {
@@ -65,6 +67,12 @@ public class SignupPage {
         driver.element().type(zipcode_input, zipCode);
         driver.element().type(mobileNumber_input, userMobileNumber);
         driver.element().click(createAccount_button);
+        return this;
+    }
+
+    @Step("Click on Continue Button")
+    public SignupPage clickOnContinueButton() {
+        driver.element().click(continueBtn_link);
         return this;
     }
 

@@ -17,6 +17,7 @@
   "Messages":{
     "Signup": "New User Signup!",
     "AccountInfo": "ENTER ACCOUNT INFORMATION",
-    "AccountCreated": "ACCOUNT CREATED!"
+    "AccountCreated": "ACCOUNT CREATED!",
+    "AccountDeleted": "ACCOUNT DELETED!"
   }
 }
