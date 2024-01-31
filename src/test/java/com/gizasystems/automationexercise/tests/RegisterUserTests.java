@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-@Epic("Real Project Simulation")
+@Epic("Automation Exercise")
 @Feature("User Management")
 @Story("Register")
 public class RegisterUserTests {
