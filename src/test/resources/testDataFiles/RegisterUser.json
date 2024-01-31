@@ -1,0 +1,22 @@
+{
+  "UserName": "Mahmoud",
+  "UserMail": "elsharkawy",
+  "Gender": "Mr",
+  "UserPassword": "p@ssw0rd",
+  "UserFirstName": "Mahmoud",
+  "UserLastName": "ElSharkawy",
+  "UserBirthDay": "4",
+  "UserBirthMonth": "September",
+  "UserBirthYear": "1994",
+  "UserAddress1": "Obour",
+  "UserCountry": "India",
+  "UserState": "Obour",
+  "UserCity": "Obour",
+  "UserZipCode": "10200",
+  "UserMobile": "01111111111",
+  "Messages":{
+    "Signup": "New User Signup!",
+    "AccountInfo": "ENTER ACCOUNT INFORMATION",
+    "AccountCreated": "ACCOUNT CREATED!"
+  }
+}
