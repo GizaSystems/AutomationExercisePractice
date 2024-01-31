@@ -9,6 +9,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -48,6 +49,11 @@ public class RegisterUserTests {
         new HomePage(driver)
                 .navigate()
                 .validateOnVisibilityOfHomePage();
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        driver.quit();
     }
 
 }
