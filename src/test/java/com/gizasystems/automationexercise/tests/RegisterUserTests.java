@@ -1,5 +1,7 @@
 package com.gizasystems.automationexercise.tests;
 
+import com.gizasystems.automationexercise.apis.Apis;
+import com.gizasystems.automationexercise.apis.ApisAccountManagement;
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Description;
@@ -16,6 +18,7 @@ import org.testng.annotations.Test;
 @Story("Register")
 public class RegisterUserTests {
     private SHAFT.GUI.WebDriver driver;
+    private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
 
     @Test(description = "Register User Test - GUI")
@@ -41,7 +44,7 @@ public class RegisterUserTests {
 
     @Test(description = "Register User Test - GUI - Time Stamp")
     @Description("Given that I register with new user, When I enter valid data, And a Time Stamp in the Email, Then I should be registered and logged in the the system, And I don't have to delete the account")
-    public void registerUserTest() {
+    public void registerUserTestGuiTimeStamp() {
         new NavigationBar(driver)
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
@@ -54,6 +57,13 @@ public class RegisterUserTests {
                 .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"));
     }
 
+    @Test(description = "Register User Test - Seams (Delete with APIs)")
+    @Description("Given that I register with new user, When I enter valid data, And delete the user, Then I should be registered successfully to the system, And then be deleted from the system")
+    public void registerUserTestApi() {
+        new ApisAccountManagement(api)
+                .createRegisterUserAccount(testData.getTestData("UserName"),testData.getTestData("UserMail") + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"))
+                .deleteUserAccount(testData.getTestData("UserMail") + "@gizasystems.com", testData.getTestData("UserPassword"));
+    }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
@@ -63,6 +73,7 @@ public class RegisterUserTests {
 
     @BeforeMethod
     public void beforeMethod() {
+        api = new SHAFT.API(Apis.ApisBaseUrl);
         driver = new SHAFT.GUI.WebDriver();
         new HomePage(driver)
                 .navigate()
