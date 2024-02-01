@@ -53,7 +53,7 @@ public class ApisAccountManagement {
         return this;
     }
 
-    @Step("API Create/Register User Account")
+    @Step("API Delete User Account")
     public ApisAccountManagement deleteUserAccount(String email, String pass) {
         List<List<Object>> formData = Arrays.asList(
                 Arrays.asList("email", email),
