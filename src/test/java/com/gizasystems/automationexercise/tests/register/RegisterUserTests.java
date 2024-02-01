@@ -55,13 +55,26 @@ public class RegisterUserTests {
                 .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))
                 .enterAddressInformation(testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserState"), testData.getTestData("UserCity"), testData.getTestData("UserZipCode"), testData.getTestData("UserMobile"))
                 .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"));
+        new NavigationBar(driver)
+                .validateTheLoggedInUser(testData.getTestData("UserName"));
     }
 
     @Test(description = "Register User Test - Seams (Delete with APIs)")
     @Description("Given that I register with new user, When I enter valid data, And delete the user, Then I should be registered successfully to the system, And then be deleted from the system")
     public void registerUserTestApi() {
+        new NavigationBar(driver)
+                .clickOnSignupLoginLink();
+        new SignupLoginPage(driver)
+                .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
+                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail") + System.currentTimeMillis() + "@gizasystems.com");
+        new SignupPage(driver)
+                .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
+                .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))
+                .enterAddressInformation(testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserState"), testData.getTestData("UserCity"), testData.getTestData("UserZipCode"), testData.getTestData("UserMobile"))
+                .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"));
+        new NavigationBar(driver)
+                .validateTheLoggedInUser(testData.getTestData("UserName"));
         new ApisAccountManagement(api)
-                .createRegisterUserAccount(testData.getTestData("UserName"),testData.getTestData("UserMail") + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"))
                 .deleteUserAccount(testData.getTestData("UserMail") + "@gizasystems.com", testData.getTestData("UserPassword"));
     }
 
