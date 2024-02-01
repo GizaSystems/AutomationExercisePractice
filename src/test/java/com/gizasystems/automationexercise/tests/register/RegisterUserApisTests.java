@@ -1,4 +1,4 @@
-package com.gizasystems.automationexercise.tests;
+package com.gizasystems.automationexercise.tests.register;
 
 import com.gizasystems.automationexercise.apis.Apis;
 import com.gizasystems.automationexercise.apis.ApisAccountManagement;
