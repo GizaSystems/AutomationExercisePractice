@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 
 public class CartPage {
     private SHAFT.GUI.WebDriver driver;
+    private final By shoppingCartPageTitle = By.cssSelector("li.active");
     private final By productName = By.xpath("//td[@class='cart_description']//h4");
 
     public CartPage(SHAFT.GUI.WebDriver driver){
@@ -15,6 +16,11 @@ public class CartPage {
 
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+    @Step("Validate Cart Page is Loaded")
+    public CartPage verifyCartPageIsLoaded(){
+        driver.assertThat().element(shoppingCartPageTitle).isVisible().perform();
+        return this;
+    }
     @Step("Validate on Product Added To Cart Page")
     public CartPage verifyProductAddedToCart(String addedProductName){
         driver.assertThat().element(productName).text().contains(addedProductName).perform();
