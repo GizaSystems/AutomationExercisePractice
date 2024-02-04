@@ -21,6 +21,8 @@ public class RegisterUserTests {
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
 
+    private String timeStamp = String.valueOf(System.currentTimeMillis());
+
     @Test(description = "Register User Test - GUI")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered and logged in the the system")
     public void registerUserTestGui() {
@@ -28,7 +30,7 @@ public class RegisterUserTests {
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail") + "@gizasystems.com");
+                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail.Gui") + timeStamp  + "@gizasystems.com");
         new SignupPage(driver)
                 .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
                 .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))
@@ -49,12 +51,13 @@ public class RegisterUserTests {
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail") + System.currentTimeMillis() + "@gizasystems.com");
+                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com");
         new SignupPage(driver)
                 .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
                 .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))
                 .enterAddressInformation(testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserState"), testData.getTestData("UserCity"), testData.getTestData("UserZipCode"), testData.getTestData("UserMobile"))
-                .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"));
+                .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"))
+                .clickOnContinueButton();
         new NavigationBar(driver)
                 .validateTheLoggedInUser(testData.getTestData("UserName"));
     }
@@ -66,16 +69,17 @@ public class RegisterUserTests {
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail") + System.currentTimeMillis() + "@gizasystems.com");
+                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com");
         new SignupPage(driver)
                 .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
                 .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))
                 .enterAddressInformation(testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserState"), testData.getTestData("UserCity"), testData.getTestData("UserZipCode"), testData.getTestData("UserMobile"))
-                .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"));
+                .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"))
+                .clickOnContinueButton();
         new NavigationBar(driver)
                 .validateTheLoggedInUser(testData.getTestData("UserName"));
         new ApisAccountManagement(api)
-                .deleteUserAccount(testData.getTestData("UserMail") + "@gizasystems.com", testData.getTestData("UserPassword"));
+                .deleteUserAccount(testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"));
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
