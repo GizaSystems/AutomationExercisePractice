@@ -19,12 +19,12 @@ public class ViewCategoryProductsTests {
     private SHAFT.TestData.JSON testData;
 
     @Test(description = "View Category Products")
-    @Description("Given that I want to view Woman Category Products, When I click on Woman Category, Then I should be navigated to that category page")
+    @Description("Given that user want to view main Category and subcategory Products, When user click on main Category and select subcategory, Then user should be navigated to that subcategory page")
     public void viewCategoryProductsTestGui() {
         new CategoriesBar(driver).clickOnCategoryLink(testData.getTestData("MainCategory.womanCategory")).clickOnSubCategoryLink(testData.getTestData("MainCategory.womanCategory"), testData.getTestData("SubCategories.womanSubCategory"));
         new HomePage(driver).validateOnVisibilityOfCategoryTitle(testData.getTestData("womanCategoryTitle"));
-        new CategoriesBar(driver).clickOnCategoryLink(testData.getTestData("MainCategory.manCategory")).clickOnSubCategoryLink(testData.getTestData("MainCategory.manCategory"), testData.getTestData("SubCategories.manSubCategory"));
-        new HomePage(driver).validateOnVisibilityOfCategoryTitle(testData.getTestData("manCategoryTitle"));
+        new CategoriesBar(driver).clickOnCategoryLink(testData.getTestData("MainCategory.menCategory")).clickOnSubCategoryLink(testData.getTestData("MainCategory.menCategory"), testData.getTestData("SubCategories.menSubCategory"));
+        new HomePage(driver).validateOnVisibilityOfCategoryTitle(testData.getTestData("menCategoryTitle"));
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
