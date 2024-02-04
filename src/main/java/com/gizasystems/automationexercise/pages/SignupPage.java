@@ -88,4 +88,13 @@ public class SignupPage {
         driver.assertThat().element(createAccount_h2).text().isEqualTo(expectedResult).perform();
         return this;
     }
+
+
+
+
+
+
+
+
+
 }

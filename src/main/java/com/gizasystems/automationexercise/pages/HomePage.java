@@ -12,7 +12,7 @@ public class HomePage {
     // Locators
     private final By featuredItems_div = By.cssSelector("div.features_items");
     private final By recommendedItems_div = By.cssSelector("div.recommended_items");
-
+    private final By productsMenuButton = By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[2]/a");
     // Constructor
     public HomePage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -23,6 +23,14 @@ public class HomePage {
     public HomePage navigate() {
         driver.browser().navigateToURL(url);
         return this;
+    }
+
+
+
+    @Step("Navigate to Product Page")
+    public ProductsPage navigateToProductsPage() {
+        driver.element().click(productsMenuButton);
+        return new ProductsPage(driver);
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
