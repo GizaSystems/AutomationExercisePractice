@@ -28,7 +28,6 @@ public class HomePage {
     @Step("Navigate Recommended Section Tab")
     public HomePage openRecommendedSection(){
         driver.element().hover(recommendedItems_div);
-        isRecommendedSectionVisible();
         return this;
     }
     @Step("Add Recommended Product To Cart")
