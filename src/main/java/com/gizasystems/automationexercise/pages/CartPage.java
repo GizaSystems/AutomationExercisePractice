@@ -5,13 +5,18 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class CartPage {
+    // Variables
     private SHAFT.GUI.WebDriver driver;
+
+    // Locators
     private final By shoppingCartPageTitle = By.cssSelector("li.active");
     private final By productName = By.xpath("//td[@class='cart_description']//h4");
 
+    // Constructor
     public CartPage(SHAFT.GUI.WebDriver driver){
         this.driver = driver;
     }
+
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
 
 
