@@ -1,4 +1,4 @@
-package com.gizasystems.automationexercise.tests.register;
+package com.gizasystems.automationexercise.tests.login;
 import com.gizasystems.automationexercise.apis.Apis;
 import com.gizasystems.automationexercise.apis.ApisAccountManagement;
 import com.shaft.driver.SHAFT;
@@ -27,8 +27,6 @@ public class LoginUserApiTests {
                 .deleteUserAccount(testData.getTestData("UserMail") + "@gizasystems.com", testData.getTestData("UserPassword"))
                 .validateDeleteUser()
                 .validateUserNotFound(testData.getTestData("UserMail") + "@gizasystems.com");
-        ;
-
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
