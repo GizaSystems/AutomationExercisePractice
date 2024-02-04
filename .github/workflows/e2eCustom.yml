@@ -35,7 +35,7 @@ jobs:
       - name: Upload Execution Summary Report as Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Chrome_Linux_Allure
+          name: Chrome_Linux_Summary
           path: "execution-summary/ExecutionSummaryReport_*.html"
       - name: Publish Report
         continue-on-error: true
@@ -81,7 +81,7 @@ jobs:
       - name: Upload Execution Summary Report as Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Firefox_Linux_Allure
+          name: Firefox_Linux_Summary
           path: "execution-summary/ExecutionSummaryReport_*.html"
       - name: Publish Report
         continue-on-error: true
@@ -127,7 +127,7 @@ jobs:
       - name: Upload Execution Summary Report as Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Edge_Windows_Allure
+          name: Edge_Windows_Summary
           path: "execution-summary/ExecutionSummaryReport_*.html"
       - name: Publish Report
         continue-on-error: true
@@ -174,7 +174,7 @@ jobs:
       - name: Upload Execution Summary Report as Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Safari_MacOS_Allure
+          name: Safari_MacOS_Summary
           path: "execution-summary/ExecutionSummaryReport_*.html"
       - name: Publish Report
         continue-on-error: true
