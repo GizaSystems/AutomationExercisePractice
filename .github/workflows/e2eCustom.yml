@@ -46,6 +46,7 @@ jobs:
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
       - name: Publish Test Results
+        continue-on-error: true
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
@@ -87,10 +88,11 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: Tests Report Chrome_Linux
+          name: Tests Report Firefox_Linux
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
       - name: Publish Test Results
+        continue-on-error: true
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
@@ -136,6 +138,7 @@ jobs:
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
       - name: Publish Test Results
+        continue-on-error: true
         uses: EnricoMi/publish-unit-test-result-action/composite@v2
         if: always()
         with:
@@ -182,6 +185,7 @@ jobs:
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
       - name: Publish Test Results
+        continue-on-error: true
         uses: EnricoMi/publish-unit-test-result-action/composite@v2
         if: always()
         with:
