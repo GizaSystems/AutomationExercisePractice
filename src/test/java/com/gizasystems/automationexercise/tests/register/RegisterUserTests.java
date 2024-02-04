@@ -59,6 +59,10 @@ public class RegisterUserTests {
                 .validateTheLoggedInUser(testData.getTestData("UserName"));
     }
 
+
+
+
+
     @Test(description = "Register User Test - Seams (Delete with APIs)")
     @Description("Given that I register with new user, When I enter valid data, And delete the user, Then I should be registered successfully to the system, And then be deleted from the system")
     public void registerUserTestApi() {
