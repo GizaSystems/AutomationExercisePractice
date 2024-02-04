@@ -23,11 +23,13 @@ public class AddRecommendedItemTest {
     public void AddToCartFromRecommendedItems(){
         new HomePage(driver)
                 .navigate()
-                .isRecommendedSectionVisible()
+                .validateOnVisibilityOfHomePage()
                 .openRecommendedSection()
+                .isRecommendedSectionVisible()
                 .addToCart(jsonData.getTestData("productName"))
                 .isProductAddedSuccessfullyToCart(jsonData.getTestData("ProductAddedMessage"))
                 .openCart()
+                .verifyCartPageIsLoaded()
                 .verifyProductAddedToCart(jsonData.getTestData("productName"));
 
     }
