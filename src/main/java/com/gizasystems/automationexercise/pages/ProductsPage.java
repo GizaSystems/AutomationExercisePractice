@@ -14,8 +14,8 @@ public class ProductsPage {
    // private final By productsMenuButton = By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[2]/a");
     private final By searchTextArea =By.xpath("//input[@id='search_product']");
 
-    private final By allProducts =By.xpath("//div/h2[@class='title text-center']");
-    private final By searchedProducts= By.xpath("//div/h2[@class='title text-center']");
+    private final By searchedProducts =By.xpath("//div/h2[@class='title text-center']");
+    private final By allProducts = By.xpath("//div/h2[@class='title text-center']");
 
     private final By searchButton= By.xpath("//button[@id='submit_search']");
 
@@ -42,11 +42,14 @@ public class ProductsPage {
 
     @Step("Verify user is navigated to ALL PRODUCTS page successfully")
     public ProductsPage validateOnallProductPage() {
-        driver.element().assertThat(allProducts).text().isEqualTo("ALL PRODUCT").perform();
+
+        driver.element().assertThat(allProducts).text().isEqualTo("ALL PRODUCTS").perform();
         return this;
     }
     @Step("Verify 'SEARCHED PRODUCTS' is visible")
     public ProductsPage  validateOnsearchedProducts() {
+
+
         driver.element().assertThat(searchedProducts).text().isEqualTo("SEARCHED PRODUCTS").perform();
     return this;
     }
