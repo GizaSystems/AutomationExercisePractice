@@ -1,6 +1,12 @@
 {
   "UserName": "Automation",
-  "UserMail": "Auto",
+  "UserMail": {
+    "Gui": "AutoBot_Gui",
+    "GuiTimeStamp": "AutoBot_GuiTimeStamp",
+    "GuiApi": "AutoBot_GuiApi",
+    "Api": "AutoBot_Api",
+    "ApiTimeStamp": "AutoBot_ApiTimeStamp"
+  },
   "Gender": "Mr",
   "UserPassword": "p@ssw0rd",
   "UserFirstName": "Automation",
@@ -14,7 +20,7 @@
   "UserCity": "Cairo",
   "UserZipCode": "10200",
   "UserMobile": "01111111111",
-  "Messages":{
+  "Messages": {
     "Signup": "New User Signup!",
     "AccountInfo": "ENTER ACCOUNT INFORMATION",
     "AccountCreated": "ACCOUNT CREATED!",
