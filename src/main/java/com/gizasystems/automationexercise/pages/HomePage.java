@@ -3,6 +3,9 @@ package com.gizasystems.automationexercise.pages;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class HomePage {
     // Variables
@@ -27,7 +30,11 @@ public class HomePage {
     }
     @Step("Navigate Recommended Section Tab")
     public HomePage openRecommendedSection(){
-        driver.element().hover(recommendedItems_div);
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver.getDriver();
+        WebElement webElement = driver.getDriver().findElement(recommendedItems_div);
+        javascriptExecutor.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'})",webElement);
+        Actions actions = new Actions(driver.getDriver());
+        actions.pause(2000).moveToElement(webElement).perform();
         return this;
     }
     @Step("Add Recommended Product To Cart")
