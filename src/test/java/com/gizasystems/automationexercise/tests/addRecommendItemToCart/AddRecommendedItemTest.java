@@ -20,7 +20,7 @@ public class AddRecommendedItemTest {
 
     @Test(description = "Add RecommendedProducts To Card ")
     @Description("Given I open Automation Exercise home, When I navigate to Recommended Products, And I add Product to Cart, Then I am able to see the Product added to Cart")
-    public void AddToCartFromRecommendedItems(){
+    public void addToCartFromRecommendedItems(){
         new HomePage(driver)
                 .navigate()
                 .validateOnVisibilityOfHomePage()
@@ -35,7 +35,7 @@ public class AddRecommendedItemTest {
     }
 
     @BeforeClass
-    public void SetUpConfigurations(){
+    public void setUpConfigurations(){
         String dataFileName = "Product.json";
         jsonData = new SHAFT.TestData.JSON(dataFileName);
 
