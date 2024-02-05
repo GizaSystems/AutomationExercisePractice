@@ -39,7 +39,7 @@ public class HomePage {
     }
     @Step("Verify Subscription is on home page")
     public HomePage  VerifySubscriptionInHomePage() {
-        driver.verifyThat().element(subscriptionText).text().isEqualTo("Subscription").perform();
+        driver.element().assertThat(subscriptionText).text().isEqualTo("Subscription").perform();
         return this;
     }
 
