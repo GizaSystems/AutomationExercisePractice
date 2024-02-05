@@ -34,11 +34,11 @@ public class RecommendedSection {
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
     @Step("Add Recommended Product To Cart")
     public RecommendedSection addToCart(String productName){
-        driver.element().click(addProductToCart_a(productName));
+        driver.element().click(addToCartLocator(productName));
         return this;
     }
 
-    private By addProductToCart_a(String productName){
+    private By addToCartLocator(String productName){
         return By.xpath("//div[@class='recommended_items']//child::p[text()='" + productName + "']//parent::div//a");
     }
 
