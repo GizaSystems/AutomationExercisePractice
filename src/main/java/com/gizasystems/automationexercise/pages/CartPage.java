@@ -21,7 +21,7 @@ public class CartPage {
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
     @Step("Open Cart Page")
     public CartPage openCart(){
-        driver.element().click(viewCartBtn);
+        driver.element().clickUsingJavascript(viewCartBtn);
         return this;
     }
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
