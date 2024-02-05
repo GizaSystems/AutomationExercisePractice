@@ -16,7 +16,7 @@ public class HomePage {
         return  By.xpath("//h2[text()='"+ categoryTitle +"']");
     }
 
-    private final By subscriptionText = By.xpath("//*[@id='footer']/div[1]/div/div/div[2]/div/h2");
+    private final By subscriptionText = By.xpath("//*[@id=\"footer\"]/div[1]/div/div/div[2]/div/h2");
     private final By subscriptionEmail = By.xpath("//*[@id=\"susbscribe_email\"]");
     private final By subscribeButton = By.xpath("//*[@id=\"subscribe\"]/i");
     private  final By successMsg = By.xpath("");
