@@ -14,8 +14,8 @@ public class ProductsPage {
    // private final By productsMenuButton = By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[2]/a");
     private final By searchTextArea =By.xpath("//input[@id='search_product']");
 
-    private final By searchedProducts =By.xpath("//div/h2[@class='title text-center']");
-    private final By allProducts = By.xpath("//div/h2[@class='title text-center']");
+   private final By searchedProducts =By.xpath("//h2[text()='Searched Products']");
+    private final By allProducts = By.xpath("//h2[text()='All Products']");
 
     private final By searchButton= By.xpath("//button[@id='submit_search']");
 
@@ -26,12 +26,12 @@ public class ProductsPage {
         return this;
     }
 */
-
-    /*@Step("Click on 'Products' button")
+/*
+    @Step("Click on 'Products' button")
     public void clickOnProductMenuButton() {
         driver.element().click(productsMenuButton);
     }
-    */
+  */
 
     @Step("Enter product name in search input and click search button")
     public ProductsPage searchForProduct() {
@@ -42,11 +42,12 @@ public class ProductsPage {
 
     @Step("Verify user is navigated to ALL PRODUCTS page successfully")
     public ProductsPage validateOnallProductPage() {
+        System.out.println("b2olkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk "+driver.element().getText(allProducts));
 
-        driver.element().assertThat(allProducts).text().isEqualTo("ALL PRODUCTS").perform();
+        driver.assertThat().element(allProducts).text().isEqualTo("ALL PRODUCTS").perform();
         return this;
     }
-    @Step("Verify 'SEARCHED PRODUCTS' is visible")
+   @Step("Verify 'SEARCHED PRODUCTS' is visible")
     public ProductsPage  validateOnsearchedProducts() {
 
 
