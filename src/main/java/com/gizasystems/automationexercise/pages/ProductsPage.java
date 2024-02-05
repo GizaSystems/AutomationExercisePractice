@@ -42,7 +42,7 @@ public class ProductsPage {
 
     @Step("Verify user is navigated to ALL PRODUCTS page successfully")
     public ProductsPage validateOnallProductPage() {
-        System.out.println("b2olkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk "+driver.element().getText(allProducts));
+
 
         driver.assertThat().element(allProducts).text().isEqualTo("ALL PRODUCTS").perform();
         return this;
