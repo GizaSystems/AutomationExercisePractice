@@ -12,6 +12,8 @@ public class HomePage {
     // Locators
     private final By featuredItems_div = By.cssSelector("div.features_items");
     private final By recommendedItems_div = By.cssSelector("div.recommended_items");
+    private final By cartBtn = By.xpath("//a[contains(text(),' Cart') ]");
+
 
     // Constructor
     public HomePage(SHAFT.GUI.WebDriver driver) {
@@ -32,5 +34,11 @@ public class HomePage {
         driver.verifyThat().element(recommendedItems_div).exists().perform();
         return this;
     }
+    @Step("Navigate to Cart Page")
+    public HomePage navigateToCartPage() {
+        driver.element().click(cartBtn);
+        return this;
+    }
+
 
 }
