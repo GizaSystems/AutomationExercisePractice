@@ -12,13 +12,15 @@ public class RecommendedSection {
     private SHAFT.GUI.WebDriver driver;
 
     // Locators
-    private final By productAddedToCartMessage = By.cssSelector("div.modal-content > div > h4");
+    private final By productAddedToCartMessage_div = By.cssSelector("div.modal-content > div > h4");
     private final By recommendedItems_div = By.cssSelector("div.recommended_items");
 
     // Constructor
     public RecommendedSection(SHAFT.GUI.WebDriver driver){
         this.driver = driver;
     }
+
+    //Workaround not to throw moveTargetOutOfBound Exception
     @Step("Navigate Recommended Section Tab")
     public RecommendedSection openRecommendedSection(){
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver.getDriver();
@@ -28,24 +30,28 @@ public class RecommendedSection {
         actions.pause(2000).moveToElement(webElement).perform();
         return this;
     }
+
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
     @Step("Add Recommended Product To Cart")
     public RecommendedSection addToCart(String productName){
-        String productNameValue = "//div[@class='recommended_items']//child::p[text()='" + productName + "']//parent::div//a";
-        driver.element().click(By.xpath(productNameValue));
+        driver.element().click(addProductToCart_a(productName));
         return this;
     }
 
+    private By addProductToCart_a(String productName){
+        return By.xpath("//div[@class='recommended_items']//child::p[text()='" + productName + "']//parent::div//a");
+    }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate on Visibility of Recommended Section")
-    public RecommendedSection isRecommendedSectionVisible(){
+    public RecommendedSection verifyRecommendedSectionVisibility(){
         driver.assertThat().element(recommendedItems_div).isVisible().perform();
         return this;
     }
+
     @Step("Validate on Visibility of Successful Add To Cart Message")
-    public RecommendedSection isProductAddedSuccessfullyToCart(String message){
-        driver.assertThat().element(productAddedToCartMessage).textTrimmed().isEqualTo(message).perform();
+    public RecommendedSection verifyProductAddedToCart(String message){
+        driver.assertThat().element(productAddedToCartMessage_div).textTrimmed().isEqualTo(message).perform();
         return this;
     }
 }
