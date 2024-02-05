@@ -1,6 +1,8 @@
 package com.gizasystems.automationexercise.tests.addRecommendItemToCart;
 
+import com.gizasystems.automationexercise.pages.CartPage;
 import com.gizasystems.automationexercise.pages.HomePage;
+import com.gizasystems.automationexercise.pages.RecommendedSection;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -21,12 +23,12 @@ public class AddRecommendedItemTest {
     @Test(description = "Add RecommendedProducts To Card ")
     @Description("Given I open Automation Exercise home, When I navigate to Recommended Products, And I add Product to Cart, Then I am able to see the Product added to Cart")
     public void addToCartFromRecommendedItems(){
-       new HomePage(driver)
+       new RecommendedSection(driver)
                 .openRecommendedSection()
                 .isRecommendedSectionVisible()
                 .addToCart(jsonData.getTestData("productName"))
-                .isProductAddedSuccessfullyToCart(jsonData.getTestData("ProductAddedMessage"))
-                .openCart()
+                .isProductAddedSuccessfullyToCart(jsonData.getTestData("ProductAddedMessage"));
+       new CartPage(driver).openCart()
                 .verifyCartPageIsLoaded()
                 .verifyProductAddedToCart(jsonData.getTestData("productName"));
 
