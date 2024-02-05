@@ -25,9 +25,9 @@ public class CartPage {
         return this;
     }
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-    @Step("Validate Cart Page is Loaded")
+    @Step("Verify Cart Page is Loaded")
     public CartPage verifyCartPageIsLoaded(){
-        driver.assertThat().element(proceedToCheckoutBtn).isVisible().perform();
+        driver.verifyThat().element(proceedToCheckoutBtn).isVisible().perform();
         return this;
     }
     @Step("Validate on Product Added To Cart Page")

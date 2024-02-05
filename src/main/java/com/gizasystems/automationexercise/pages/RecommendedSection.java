@@ -40,12 +40,12 @@ public class RecommendedSection {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate on Visibility of Recommended Section")
     public RecommendedSection isRecommendedSectionVisible(){
-        driver.verifyThat().element(recommendedItems_div).isVisible().perform();
+        driver.assertThat().element(recommendedItems_div).isVisible().perform();
         return this;
     }
     @Step("Validate on Visibility of Successful Add To Cart Message")
     public RecommendedSection isProductAddedSuccessfullyToCart(String message){
-        driver.verifyThat().element(productAddedToCartMessage).textTrimmed().isEqualTo(message).perform();
+        driver.assertThat().element(productAddedToCartMessage).textTrimmed().isEqualTo(message).perform();
         return this;
     }
 }
