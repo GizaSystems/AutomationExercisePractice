@@ -3,6 +3,7 @@ package com.gizasystems.automationexercise.pages;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 
 public class ProductsPage {
     private SHAFT.GUI.WebDriver driver;
@@ -42,14 +43,13 @@ public class ProductsPage {
 
     @Step("Verify user is navigated to ALL PRODUCTS page successfully")
     public ProductsPage validateOnallProductPage() {
-
-
+        Actions actions = new Actions(driver.getDriver());
+        actions.pause(1000).doubleClick().perform();
         driver.assertThat().element(allProducts).text().isEqualTo("ALL PRODUCTS").perform();
         return this;
     }
    @Step("Verify 'SEARCHED PRODUCTS' is visible")
     public ProductsPage  validateOnsearchedProducts() {
-
 
         driver.element().assertThat(searchedProducts).text().isEqualTo("SEARCHED PRODUCTS").perform();
     return this;
