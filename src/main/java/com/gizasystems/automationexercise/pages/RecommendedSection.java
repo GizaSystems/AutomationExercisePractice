@@ -3,6 +3,9 @@ package com.gizasystems.automationexercise.pages;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class RecommendedSection {
     // Variables
@@ -10,14 +13,21 @@ public class RecommendedSection {
 
     // Locators
     private final By productAddedToCartMessage = By.cssSelector("div.modal-content > div > h4");
-    private final By viewCartBtn = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
     private final By recommendedItems_div = By.cssSelector("div.recommended_items");
 
     // Constructor
     public RecommendedSection(SHAFT.GUI.WebDriver driver){
         this.driver = driver;
     }
-
+    @Step("Navigate Recommended Section Tab")
+    public RecommendedSection openRecommendedSection(){
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver.getDriver();
+        WebElement webElement = driver.getDriver().findElement(recommendedItems_div);
+        javascriptExecutor.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'})",webElement);
+        Actions actions = new Actions(driver.getDriver());
+        actions.pause(2000).moveToElement(webElement).perform();
+        return this;
+    }
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
     @Step("Add Recommended Product To Cart")
     public RecommendedSection addToCart(String productName){
@@ -25,11 +35,7 @@ public class RecommendedSection {
         driver.element().click(By.xpath(productNameValue));
         return this;
     }
-    @Step("Open Cart Page")
-    public CartPage openCart(){
-        driver.element().click(viewCartBtn);
-        return new CartPage(driver);
-    }
+
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate on Visibility of Recommended Section")
