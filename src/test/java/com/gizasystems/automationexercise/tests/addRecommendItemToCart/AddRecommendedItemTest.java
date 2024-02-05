@@ -25,20 +25,18 @@ public class AddRecommendedItemTest {
     public void addToCartFromRecommendedItems(){
        new RecommendedSection(driver)
                 .openRecommendedSection()
-                .isRecommendedSectionVisible()
+                .verifyRecommendedSectionVisibility()
                 .addToCart(jsonData.getTestData("productName"))
-                .isProductAddedSuccessfullyToCart(jsonData.getTestData("ProductAddedMessage"));
+                .verifyProductAddedToCart(jsonData.getTestData("ProductAddedMessage"));
        new CartPage(driver)
                 .openCart()
                 .verifyCartPageIsLoaded()
                 .verifyProductAddedToCart(jsonData.getTestData("productName"));
-
     }
 
     @BeforeClass
     public void setUpConfigurations(){
-        String dataFileName = "Product.json";
-        jsonData = new SHAFT.TestData.JSON(dataFileName);
+        jsonData = new SHAFT.TestData.JSON("Product.json");
 
     }
 
@@ -49,6 +47,7 @@ public class AddRecommendedItemTest {
                 .navigate()
                 .validateOnVisibilityOfHomePage();
     }
+
     @AfterMethod
     public void tearDown(){
         if(driver != null){

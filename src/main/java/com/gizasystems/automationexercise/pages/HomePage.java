@@ -3,9 +3,6 @@ package com.gizasystems.automationexercise.pages;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 public class HomePage {
     // Variables
@@ -15,6 +12,7 @@ public class HomePage {
     // Locators
     private final By featuredItems_div = By.cssSelector("div.features_items");
     private final By recommendedItems_div = By.cssSelector("div.recommended_items");
+
     // Constructor
     public HomePage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -34,6 +32,5 @@ public class HomePage {
         driver.verifyThat().element(recommendedItems_div).exists().perform();
         return this;
     }
-
 
 }
