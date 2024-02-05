@@ -29,7 +29,7 @@ public class HomePage {
 
     @Step("Navigate to Product Page")
     public ProductsPage navigateToProductsPage() {
-        driver.element().click(productsMenuButton);
+        driver.element().clickUsingJavascript(productsMenuButton);
         return new ProductsPage(driver);
     }
 
