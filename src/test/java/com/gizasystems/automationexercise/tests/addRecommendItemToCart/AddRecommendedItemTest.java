@@ -28,7 +28,8 @@ public class AddRecommendedItemTest {
                 .isRecommendedSectionVisible()
                 .addToCart(jsonData.getTestData("productName"))
                 .isProductAddedSuccessfullyToCart(jsonData.getTestData("ProductAddedMessage"));
-       new CartPage(driver).openCart()
+       new CartPage(driver)
+                .openCart()
                 .verifyCartPageIsLoaded()
                 .verifyProductAddedToCart(jsonData.getTestData("productName"));
 

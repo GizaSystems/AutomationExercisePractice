@@ -9,7 +9,7 @@ public class CartPage {
     private SHAFT.GUI.WebDriver driver;
 
     // Locators
-    private final By shoppingCartPageTitle = By.cssSelector("li.active");
+    private final By proceedToCheckoutBtn = By.cssSelector(".btn.btn-default.check_out");
     private final By productName = By.xpath("//td[@class='cart_description']//h4");
     private final By viewCartBtn = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
 
@@ -27,7 +27,7 @@ public class CartPage {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate Cart Page is Loaded")
     public CartPage verifyCartPageIsLoaded(){
-        driver.assertThat().element(shoppingCartPageTitle).isVisible().perform();
+        driver.assertThat().element(proceedToCheckoutBtn).isVisible().perform();
         return this;
     }
     @Step("Validate on Product Added To Cart Page")
