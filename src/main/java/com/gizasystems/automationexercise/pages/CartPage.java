@@ -11,6 +11,7 @@ public class CartPage {
     // Locators
     private final By shoppingCartPageTitle = By.cssSelector("li.active");
     private final By productName = By.xpath("//td[@class='cart_description']//h4");
+    private final By viewCartBtn = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
 
     // Constructor
     public CartPage(SHAFT.GUI.WebDriver driver){
@@ -18,8 +19,11 @@ public class CartPage {
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
-
-
+    @Step("Open Cart Page")
+    public CartPage openCart(){
+        driver.element().click(viewCartBtn);
+        return this;
+    }
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate Cart Page is Loaded")
     public CartPage verifyCartPageIsLoaded(){
