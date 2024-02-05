@@ -26,7 +26,7 @@ public class RecommendedSection {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver.getDriver();
         WebElement webElement = driver.getDriver().findElement(recommendedItems_div);
         javascriptExecutor.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'}); " +
-                "setTimeout(function(){}, 1000);",webElement);
+                "setTimeout(function(){}, 2000);",webElement);
         driver.element().hover(recommendedItems_div);
         return this;
     }
