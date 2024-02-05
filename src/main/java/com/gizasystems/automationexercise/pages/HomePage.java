@@ -13,7 +13,7 @@ public class HomePage {
     private final By featuredItems_div = By.cssSelector("div.features_items");
     private final By recommendedItems_div = By.cssSelector("div.recommended_items");
 
-    private final By subscriptionText = By.xpath("//*[@id=\"footer\"]/div[1]/div/div/div[2]/div/h2");
+    private final By subscriptionText = By.xpath("//div[@class=\"single-widget\"]//h2");
     private final By subscriptionEmail = By.xpath("//*[@id=\"susbscribe_email\"]");
     private final By subscribeButton = By.xpath("//*[@id=\"subscribe\"]/i");
     private  final By successMsg = By.xpath("");
