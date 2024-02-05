@@ -4,10 +4,7 @@ import com.gizasystems.automationexercise.apis.Apis;
 import com.gizasystems.automationexercise.apis.ApisAccountManagement;
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -23,6 +20,7 @@ public class RegisterUserTests {
 
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
+    @Issue("16")
     @Test(description = "Register User Test - GUI")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered and logged in the the system")
     public void registerUserTestGui() {
