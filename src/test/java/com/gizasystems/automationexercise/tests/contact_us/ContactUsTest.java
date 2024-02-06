@@ -1,4 +1,4 @@
-package contac_us;
+package com.gizasystems.automationexercise.tests.contact_us;
 
 import com.gizasystems.automationexercise.pages.ContactUsPage;
 import com.gizasystems.automationexercise.pages.HomePage;
