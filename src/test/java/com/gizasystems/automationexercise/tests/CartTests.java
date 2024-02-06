@@ -24,7 +24,7 @@ public class CartTests {
     @Test(description = "Subscription By email")
     @Description("Given that I Want to subscribe, When I enter valid Email, Then I should be Subscribed ")
     public void subscriptionCartPage() {
-        new HomePage(driver).navigateToCartPage();
+        new NavigationBar(driver).navigateToCartPage();
         new CartPage(driver).validateOnVisibilityOfSubscriptionText()
                 .enterSubscriptionEmail(testUserData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com")
                 .clickOnSubscribeButton()
