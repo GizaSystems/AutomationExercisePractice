@@ -18,8 +18,8 @@ public class LoginWithCorrectEmailAndPasswordTest {
     private SHAFT.API api;
     private SHAFT.TestData.JSON registerTestData;
     private SHAFT.TestData.JSON loginTestData;
-
     private String timeStamp = String.valueOf(System.currentTimeMillis());
+
     @Test(description = "Login With Correct Email and Password Test - Register and Delete user with APIs ")
     @Description("Given that I am a registered user, When I enter correct email, And Correct Password , And I Clicked on Login button And I clicked on delete user, Then I should be Logged in successfully to the system, And user be deleted from the system")
     public void LoginWithCorrectEmailAndPassword() {
