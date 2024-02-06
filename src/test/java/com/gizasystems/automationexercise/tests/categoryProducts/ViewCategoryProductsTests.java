@@ -2,10 +2,7 @@ package com.gizasystems.automationexercise.tests.categoryProducts;
 
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -18,6 +15,7 @@ public class ViewCategoryProductsTests {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
 
+    @Issue("16")
     @Test(description = "View Category Products")
     @Description("Given that user want to view main Category and subcategory Products, When user click on main Category and select subcategory, Then user should be navigated to that subcategory page")
     public void viewCategoryProductsTestGui() {
