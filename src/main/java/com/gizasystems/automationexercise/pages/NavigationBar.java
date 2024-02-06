@@ -1,5 +1,6 @@
 package com.gizasystems.automationexercise.pages;
 
+import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -12,6 +13,8 @@ public class NavigationBar {
     private final By signupLogin_link = By.cssSelector("a[href='/login']");
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
+    private final By products_link = By.cssSelector("a[href='/products']");
+
 
     // Constructor
     public NavigationBar(SHAFT.GUI.WebDriver driver) {
@@ -28,6 +31,13 @@ public class NavigationBar {
     @Step("Click on Delete Account Link")
     public NavigationBar clickOnDeleteAccountLink() {
         driver.element().click(delete_link);
+        return this;
+    }
+
+    @Step("Click on Products Page Link")
+    public NavigationBar clickOnProductsPageLink() {
+        driver.element().click(products_link);
+        GoogleAlert.dismissAlert(driver);
         return this;
     }
 
