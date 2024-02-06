@@ -45,11 +45,13 @@ public class RegisterUserTests {
     @Test(description = "Register User with existing Email - GUI")
     @Description("Given that I register with new user, When I enter Existing Email , Then I should not be registered and Error message appeared ")
     public void registerUserWithExistingEmailGui() {
+        new ApisAccountManagement(api)
+                .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"));
         new NavigationBar(driver)
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.ExistingEmail"))
+                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com")
                 .validateOnErrorMessageVisibilityOfExistingEmail();
     }
 
