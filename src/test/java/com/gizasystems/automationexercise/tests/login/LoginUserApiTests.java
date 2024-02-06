@@ -17,6 +17,7 @@ public class LoginUserApiTests {
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
     private String userEmail;
+
     @Test(description = "Login User Test - API - Time Stamp")
     @Description("Given that I am a registered user, When I click in Signup/Login button, And I entered valid email and valid password, And I clicked on Login button, Then I should be logged in successfully to the system")
     public void loginUserTestApi() {
