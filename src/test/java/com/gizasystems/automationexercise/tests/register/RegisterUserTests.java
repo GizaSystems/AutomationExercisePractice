@@ -42,6 +42,17 @@ public class RegisterUserTests {
                 .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"));
     }
 
+    @Test(description = "Register User with existing Email - GUI")
+    @Description("Given that I register with new user, When I enter Existing Email , Then I should not be registered and Error message appeared ")
+    public void registerUserWithExistingEmailGui() {
+        new NavigationBar(driver)
+                .clickOnSignupLoginLink();
+        new SignupLoginPage(driver)
+                .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
+                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.ExistingEmail"))
+                .validateOnErrorMessageVisibilityOfExistingEmail();
+    }
+
     @Test(description = "Register User Test - GUI - Time Stamp")
     @Description("Given that I register with new user, When I enter valid data, And a Time Stamp in the Email, Then I should be registered and logged in the the system, And I don't have to delete the account")
     public void registerUserTestGuiTimeStamp() {
