@@ -17,7 +17,7 @@ public class ApisAccountManagement {
 
     // Services
     private static final String createAccount_serviceName = "/createAccount";
-    private static final String LoginToAccount_serviceName= "/verifyLogin";
+    private static final String loginToAccount_serviceName= "/verifyLogin";
     private static final String deleteAccount_serviceName = "/deleteAccount";
     private static final String getUserDetailByEmail_serviceName = "/getUserDetailByEmail";
 
@@ -59,7 +59,7 @@ public class ApisAccountManagement {
         List<List<Object>> formData = Arrays.asList(
                 Arrays.asList("email", email),
                 Arrays.asList("password", pass));
-        api.post(LoginToAccount_serviceName)
+        api.post(loginToAccount_serviceName)
                 .setParameters(formData, RestActions.ParametersType.FORM)
                 .setContentType(ContentType.URLENC)
                 .setTargetStatusCode(Apis.SUCCESS)
