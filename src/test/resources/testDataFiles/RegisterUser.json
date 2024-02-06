@@ -5,8 +5,7 @@
     "GuiTimeStamp": "AutoBot_GuiTimeStamp",
     "GuiApi": "AutoBot_GuiApi",
     "Api": "AutoBot_Api",
-    "ApiTimeStamp": "AutoBot_ApiTimeStamp",
-    "ExistingEmail": "TEST@123.CM"
+    "ApiTimeStamp": "AutoBot_ApiTimeStamp"
   },
   "Gender": "Mr",
   "UserPassword": "p@ssw0rd",
