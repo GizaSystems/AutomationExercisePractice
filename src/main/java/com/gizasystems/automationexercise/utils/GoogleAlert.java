@@ -13,4 +13,5 @@ public class GoogleAlert {
         driver.element().doubleClick(headerElement_header);
         return new GoogleAlert();
     }
+
 }
