@@ -13,13 +13,13 @@ import org.testng.annotations.Test;
 
 @Epic("Automation Exercise")
 @Feature("Products")
-@Story("Verify ALl Products and Product Details")
+@Story("Verify All Products and Product Details")
 public class VerifyAllProductsAndProductDetailsTest {
 
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
 
-    @Test(description = "Verify ALl Products and Product Details")
+    @Test(description = "Verify The Product and the Details on ProductDetails Page")
     @Description("Given I open Automation Exercise home, When I open Products, And I pick a Product, Then I am able to check the Product Details")
     public void VerifyAllProductsAndProductDetailPage() {
         new NavigationBar(driver)
