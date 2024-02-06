@@ -30,7 +30,7 @@ public class ContactUsPage {
         return this;
     }
 
-    @Step("Enter Address Information")
+    @Step("Enter ContactUs Information")
     public ContactUsPage enterContactUsInformation(String contactNameTxt, String emailTxt , String subjectTxt, String messageTxt) {
         driver.element().type(contact_name, contactNameTxt);
         driver.element().type(email,emailTxt);
@@ -42,7 +42,7 @@ public class ContactUsPage {
 
     @Step("Click on submit Button")
     public ContactUsPage clickOnSubmitButton() {
-        driver.element().click(submitBtn);
+        driver.element().clickUsingJavascript(submitBtn);
         driver.alert().acceptAlert();
         return this;
     }

@@ -34,7 +34,7 @@ public class NavigationBar {
     }
     @Step("Click on ContactUs Account Link")
     public NavigationBar clickOnContactUsLink() {
-        driver.element().click(contactUs_link);
+        driver.element().clickUsingJavascript(contactUs_link);
         return this;
     }
 
