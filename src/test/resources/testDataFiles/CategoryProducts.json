@@ -1,0 +1,13 @@
+{
+  "MainCategory":{
+    "womanCategory": "Women",
+    "menCategory": "Men",
+    "kidsCategory": "Kids"
+  },
+  "SubCategories": {
+    "womanSubCategory": "Dress",
+    "menSubCategory": "Tshirts"
+  },
+  "womanCategoryTitle": "Women - Dress Products",
+  "menCategoryTitle": "Men - Tshirts Products"
+}
