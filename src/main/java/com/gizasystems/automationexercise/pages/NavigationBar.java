@@ -13,6 +13,9 @@ public class NavigationBar {
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
 
+    private final By product_link = By.cssSelector("a[href='/products']");
+
+
     // Constructor
     public NavigationBar(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -35,6 +38,12 @@ public class NavigationBar {
     @Step("Validate the Logged In User")
     public NavigationBar validateTheLoggedInUser(String expectedUser) {
         driver.verifyThat().element(loggedInUser_link).text().isEqualTo("Logged in as " + expectedUser).perform();
+        return this;
+    }
+
+    @Step("Click on Products  Link")
+    public NavigationBar clickOnProductsLink() {
+        driver.element().click(product_link);
         return this;
     }
 }
