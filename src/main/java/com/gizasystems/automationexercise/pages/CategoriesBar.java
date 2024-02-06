@@ -9,12 +9,12 @@ public class CategoriesBar {
     private SHAFT.GUI.WebDriver driver;
 
     // Locators
-    private final By category_div = By.xpath("//div[@class='panel-group category-products']");
-    public By getCategoryLinkLocator(String categoryType){
-        return  By.xpath("//a[@href='#"+categoryType+"']");
+    public By getCategoryLinkLocator(String categoryType) {
+        return By.xpath("//a[@href='#" + categoryType + "']");
     }
-    public By getSubCategoryLinkLocator(String categoryType,String subCategoryType ){
-        return  By.xpath("//div[@id='"+ categoryType +"']//a[contains(text(),'"+ subCategoryType +"')]");
+
+    public By getSubCategoryLinkLocator(String categoryType, String subCategoryType) {
+        return By.xpath("//div[@id='" + categoryType + "']//a[contains(text(),'" + subCategoryType + "')]");
     }
 
     // Constructor
@@ -28,9 +28,11 @@ public class CategoriesBar {
         driver.element().click(getCategoryLinkLocator(categoryType));
         return this;
     }
+
     @Step("click on SubCategory Link")
-    public CategoriesBar clickOnSubCategoryLink(String categoryType,String subCategoryType) {
-        driver.element().click(getSubCategoryLinkLocator(categoryType,subCategoryType));
+    public CategoriesBar clickOnSubCategoryLink(String categoryType, String subCategoryType) {
+        driver.element().click(getSubCategoryLinkLocator(categoryType, subCategoryType));
         return this;
     }
+
 }
