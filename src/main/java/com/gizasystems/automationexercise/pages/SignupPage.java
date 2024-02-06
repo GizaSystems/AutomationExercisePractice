@@ -72,7 +72,9 @@ public class SignupPage {
 
     @Step("Click on Continue Button")
     public SignupPage clickOnContinueButton() {
-        driver.element().click(continueBtn_link);
+//        driver.browser().refreshCurrentPage();
+//        driver.element().click(continueBtn_link);
+        driver.element().clickUsingJavascript(continueBtn_link);
         return this;
     }
 
