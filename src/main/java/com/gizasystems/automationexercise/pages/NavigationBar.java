@@ -13,6 +13,9 @@ public class NavigationBar {
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
 
+    private final By product_link = By.cssSelector("a[href='/products']");
+
+
     // Constructor
     public NavigationBar(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -28,6 +31,12 @@ public class NavigationBar {
     @Step("Click on Delete Account Link")
     public NavigationBar clickOnDeleteAccountLink() {
         driver.element().click(delete_link);
+        return this;
+    }
+
+    @Step("Click on Product  Link")
+    public NavigationBar clickOnProductLink() {
+        driver.element().click(product_link);
         return this;
     }
 
