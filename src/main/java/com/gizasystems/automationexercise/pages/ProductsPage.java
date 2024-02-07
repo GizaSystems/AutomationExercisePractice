@@ -44,6 +44,15 @@ public class ProductsPage {
 
     }
 
+    private By hoverOnProduct(Integer Index) {
+        return By.xpath("(//div[@class=\"single-products\"]//img)[" + Index + "]");
+    }
+
+    private By ClickOnProduct(Integer Index) {
+        return By.xpath("(//a[@data-product-id=\"" + Index + "\"])[" + Index + "]");
+
+    }
+
     //Constructors
 =======
     // Variables
@@ -78,6 +87,17 @@ public class ProductsPage {
     public ProductsPage searchForProduct(String SearchedProduct) {
         driver.element().type(searchTextArea, SearchedProduct);
         driver.element().click(searchButton);
+        return this;
+    }
+    public ProductsPage navigate() {
+        driver.browser().navigateToURL(url);
+        return this;
+    }
+
+    @Step("Add Products to Cart")
+    public ProductsPage addProductsToCart(Integer index, Integer itemID) {
+        driver.element().hover(hoverOnProduct(index));
+        driver.element().click(ClickOnProduct(itemID));
         return this;
     }
 
