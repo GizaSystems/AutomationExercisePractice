@@ -10,6 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 @Epic("Automation Exercise")
 @Feature("Add  Items To Cart")
 @Story("Add  The First Two Items To Cart")
@@ -31,7 +32,7 @@ public class AddProductInCart {
                 .validateOnItemsAddedInCart(testData.getTestData("FirstProduct.productDescription"), testData.getTestData("SecondProduct.productDescription"))
                 .validateOnProductPrices(testData.getTestData("FirstProduct.productPrice"), testData.getTestData("SecondProduct.productPrice"))
                 .validateOnProductQuantity(testData.getTestData("FirstProduct.productQuantity"), testData.getTestData("SecondProduct.productQuantity"))
-               .validateOnTotalPrice(testData.getTestData("FirstProduct.total"), testData.getTestData("SecondProduct.total"));
+                .validateOnTotalPrice(testData.getTestData("FirstProduct.total"), testData.getTestData("SecondProduct.total"));
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
