@@ -28,7 +28,7 @@ public class RegisterUserTests {
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail.Gui") + timeStamp  + "@gizasystems.com");
+                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.Gui") + timeStamp + "@gizasystems.com");
         new SignupPage(driver)
                 .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
                 .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))
@@ -62,7 +62,7 @@ public class RegisterUserTests {
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com");
+                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com");
         new SignupPage(driver)
                 .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
                 .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))
@@ -80,7 +80,7 @@ public class RegisterUserTests {
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com");
+                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com");
         new SignupPage(driver)
                 .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
                 .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))

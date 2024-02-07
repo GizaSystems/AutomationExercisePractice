@@ -16,8 +16,7 @@ import org.testng.annotations.Test;
 @Story("Cart Operations")
 public class CartTests {
     private SHAFT.GUI.WebDriver driver;
-    private SHAFT.TestData.JSON testUserData,testCartData;
-
+    private SHAFT.TestData.JSON testCartData;
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
 
@@ -26,16 +25,17 @@ public class CartTests {
     public void subscriptionCartPage() {
         new NavigationBar(driver).navigateToCartPage();
         new CartPage(driver).validateOnVisibilityOfSubscriptionText()
-                .enterSubscriptionEmail(testUserData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com")
+                .enterSubscriptionEmail(testCartData.getTestData("EmailGuiTimeStamp") + timeStamp + "@gizasystems.com")
                 .clickOnSubscribeButton()
-                .ValidateOnSuccessMessageOfSubscriptionEmail(testCartData.getTestData("successSubscriptionMessage"));
+                .validateOnSuccessMessageOfSubscriptionEmail(testCartData.getTestData("successSubscriptionMessage"));
 
     }
+
     @BeforeClass
     public void beforeClass() {
-        testUserData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/RegisterUser.json");
         testCartData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Cart.json");
     }
+
     @BeforeMethod
     public void beforeMethod() {
         driver = new SHAFT.GUI.WebDriver();
@@ -43,6 +43,7 @@ public class CartTests {
                 .navigate()
                 .validateOnVisibilityOfHomePage();
     }
+
     @AfterMethod
     public void afterMethod() {
         driver.quit();

@@ -12,7 +12,7 @@ public class NavigationBar {
     private final By signupLogin_link = By.cssSelector("a[href='/login']");
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
-    private final By cartBtn = By.xpath("//a[contains(text(),' Cart') ]");
+    private final By cartBtn_button = By.xpath("//a[contains(text(),' Cart') ]");
 
 
     // Constructor
@@ -35,7 +35,7 @@ public class NavigationBar {
 
     @Step("Navigate to Cart Page")
     public NavigationBar navigateToCartPage() {
-        driver.element().click(cartBtn);
+        driver.element().click(cartBtn_button);
         return this;
     }
 
