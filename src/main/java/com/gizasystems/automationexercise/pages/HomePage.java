@@ -12,7 +12,9 @@ public class HomePage {
     // Locators
     private final By featuredItems_div = By.cssSelector("div.features_items");
     private final By recommendedItems_div = By.cssSelector("div.recommended_items");
-
+    public By getCategoryTitleLocator(String categoryTitle ){
+        return  By.xpath("//h2[text()='"+ categoryTitle +"']");
+    }
 
     // Constructor
     public HomePage(SHAFT.GUI.WebDriver driver) {
@@ -34,6 +36,10 @@ public class HomePage {
         return this;
     }
 
-
+    @Step("Validate on Visibility of the Category Title")
+    public HomePage validateOnVisibilityOfCategoryTitle(String categoryTitle) {
+        driver.verifyThat().element(getCategoryTitleLocator(categoryTitle)).exists().perform();
+        return this;
+    }
 
 }
