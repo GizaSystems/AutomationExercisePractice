@@ -13,6 +13,10 @@ public class HomePage {
     private final By featuredItems_div = By.cssSelector("div.features_items");
     private final By recommendedItems_div = By.cssSelector("div.recommended_items");
     private final By productsMenuButton = By.xpath("//li[2]/a/i");
+    public By getCategoryTitleLocator(String categoryTitle ){
+        return  By.xpath("//h2[text()='"+ categoryTitle +"']");
+    }
+
     // Constructor
     public HomePage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -23,14 +27,6 @@ public class HomePage {
     public HomePage navigate() {
         driver.browser().navigateToURL(url);
         return this;
-    }
-
-
-
-    @Step("Navigate to Product Page")
-    public ProductsPage navigateToProductsPage() {
-        driver.element().clickUsingJavascript(productsMenuButton);
-        return new ProductsPage(driver);
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
