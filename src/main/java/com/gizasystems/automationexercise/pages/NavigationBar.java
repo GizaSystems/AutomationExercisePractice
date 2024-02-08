@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 public class NavigationBar {
     // Variables
-    private final SHAFT.GUI.WebDriver driver;
+    private  SHAFT.GUI.WebDriver driver;
 
     // Locators
     private final By signupLogin_link = By.cssSelector("a[href='/login']");

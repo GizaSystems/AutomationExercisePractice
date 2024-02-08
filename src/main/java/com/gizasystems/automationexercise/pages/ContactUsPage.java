@@ -7,18 +7,14 @@ import org.openqa.selenium.By;
 public class ContactUsPage {
 
     private SHAFT.GUI.WebDriver driver;
-    private final By contactUsForm = By.xpath("//div[@class='contact-form']");
 
+    private final By contactUsForm = By.xpath("//div[@class='contact-form']");
     private final By contact_name = By.name("name");
     private final By email = By.name("email");
     private final By subject = By.name("subject");
-
     private final By Message=By.id("message");
-
     private final By submitBtn = By.name("submit");
-
     private final By uploadBtn = By.xpath("//input[@type='file']");
-
     private final By success_msg= By.xpath("//div[@class='status alert alert-success']");
 
 
@@ -31,12 +27,12 @@ public class ContactUsPage {
     }
 
     @Step("Enter ContactUs Information")
-    public ContactUsPage enterContactUsInformation(String contactNameTxt, String emailTxt , String subjectTxt, String messageTxt) {
+    public ContactUsPage enterContactUsInformation(String contactNameTxt, String emailTxt , String subjectTxt, String messageTxt, String filePath) {
         driver.element().type(contact_name, contactNameTxt);
         driver.element().type(email,emailTxt);
         driver.element().type(subject,subjectTxt);
         driver.element().type(Message,messageTxt);
-        driver.element().typeFileLocationForUpload(uploadBtn,"src/test/resources/file.docx");
+        driver.element().typeFileLocationForUpload(uploadBtn,filePath);
         return this;
     }
 

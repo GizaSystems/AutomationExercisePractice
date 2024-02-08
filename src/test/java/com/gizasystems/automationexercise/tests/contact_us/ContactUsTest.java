@@ -23,7 +23,7 @@ public class ContactUsTest {
                 .clickOnContactUsLink();
         new ContactUsPage(driver)
                 .validateOnContactUsPage()
-                .enterContactUsInformation(testData.getTestData("Name"),testData.getTestData("Email"),testData.getTestData("Subject"),testData.getTestData("MessageTxt"))
+                .enterContactUsInformation(testData.getTestData("Name"),testData.getTestData("Email"),testData.getTestData("Subject"),testData.getTestData("MessageTxt"),"src/test/resources/filesTobeUploaded/customerInfo.docx")
                 .clickOnSubmitButton()
                 .validateOnContactInfoSubmitted(testData.getTestData("Messages.SubmittedMsg"));
     }
