@@ -18,25 +18,34 @@ import org.testng.annotations.Test;
 
 public class AddReviewTests {
     private SHAFT.GUI.WebDriver driver;
-    private SHAFT.TestData.JSON productTestData;
-    private final String timeStamp = String.valueOf(System.currentTimeMillis());
+    private SHAFT.TestData.JSON testData,reviewTestData;
+    private String timeStamp = String.valueOf(System.currentTimeMillis());
 
     @Test(description = "Add review on product")
-    public void addReview() {
-        new NavigationBar(driver).clickOnProductsLink();
-        new ProductsPage(driver).validateOnallProductPage().clickOnViewProduct().validateVisibilityOfReviewPage().AddReviewOnProduct(productTestData.getTestData("UserName"), productTestData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com", productTestData.getTestData("ReviewText")).validatethatReviewSuccessAlertIsDisplayed();
+    public void addReview(){
+        new NavigationBar(driver).clickOnProductsLink().handleAd();
+        new ProductsPage(driver).validateOnVisibilityOfProductsPage();
+        new ProductsPage(driver).clickOnViewProduct()
+                .validateVisibilityOfReviewPage()
+                .AddReviewOnProduct(testData.getTestData("UserName"),
+                        testData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com",
+                        reviewTestData.getTestData("ReviewText"))
+                .validatethatReviewSuccessAlertIsDisplayed();
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        productTestData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Product.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/RegisterUser.json");
+        reviewTestData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/ProductsReview.json");
     }
 
     @BeforeMethod
     public void beforeMethod() {
         driver = new SHAFT.GUI.WebDriver();
-        new HomePage(driver).navigate().validateOnVisibilityOfHomePage();
+        new HomePage(driver)
+                .navigate()
+                .validateOnVisibilityOfHomePage();
     }
 
     @AfterMethod
