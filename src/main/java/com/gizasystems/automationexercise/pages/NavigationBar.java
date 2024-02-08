@@ -14,7 +14,6 @@ public class NavigationBar {
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
     private final By cartBtn_button = By.xpath("//a[contains(text(),' Cart') ]");
 
-
     // Constructor
     public NavigationBar(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;

@@ -28,7 +28,6 @@ public class CartTests {
                 .enterSubscriptionEmail(testCartData.getTestData("EmailGuiTimeStamp") + timeStamp + "@gizasystems.com")
                 .clickOnSubscribeButton()
                 .validateOnSuccessMessageOfSubscriptionEmail(testCartData.getTestData("successSubscriptionMessage"));
-
     }
 
     @BeforeClass
@@ -48,5 +47,5 @@ public class CartTests {
     public void afterMethod() {
         driver.quit();
     }
-}
 
+}
