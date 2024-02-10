@@ -11,11 +11,6 @@ public class TestCaseTest {
 
     private SHAFT.GUI.WebDriver driver;
 
-
-
-
-
-
     @Test(description = "Verify test cases page")
 
     public void VerifyTestCasePage() {
@@ -25,10 +20,7 @@ public class TestCaseTest {
 
     }
 
-
-
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
-
 
     @BeforeMethod
     public void beforeMethod() {

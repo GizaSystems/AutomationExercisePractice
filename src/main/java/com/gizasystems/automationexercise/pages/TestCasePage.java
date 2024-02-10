@@ -14,14 +14,12 @@ public class TestCasePage {
     }
 
     private  final By TestCasePageTitle = By.xpath("//h2//b");
+
     @Step
     public TestCasePage AssertTestCasePageLoaded()
     {
         driver.assertThat().element(TestCasePageTitle).textTrimmed().equalsIgnoringCaseSensitivity("Test Cases").perform();
         return this;
     }
-
-
-
 
 }
