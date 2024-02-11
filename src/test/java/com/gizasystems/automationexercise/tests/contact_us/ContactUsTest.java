@@ -27,6 +27,7 @@ public class ContactUsTest {
                 .clickOnSubmitButton()
                 .validateOnContactInfoSubmitted(testData.getTestData("Messages.SubmittedMsg"));
     }
+
     @BeforeMethod
     public void beforeMethod() {
         driver = new SHAFT.GUI.WebDriver();

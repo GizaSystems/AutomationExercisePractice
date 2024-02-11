@@ -8,15 +8,15 @@ public class ContactUsPage {
 
     private SHAFT.GUI.WebDriver driver;
 
+
     private final By contactUsForm = By.xpath("//div[@class='contact-form']");
     private final By contact_name = By.name("name");
     private final By email = By.name("email");
     private final By subject = By.name("subject");
-    private final By Message=By.id("message");
+    private final By message=By.id("message");
     private final By submitBtn = By.name("submit");
     private final By uploadBtn = By.xpath("//input[@type='file']");
     private final By success_msg= By.xpath("//div[@class='status alert alert-success']");
-
 
     public ContactUsPage(SHAFT.GUI.WebDriver driver) {this.driver = driver;}
 
@@ -31,14 +31,14 @@ public class ContactUsPage {
         driver.element().type(contact_name, contactNameTxt);
         driver.element().type(email,emailTxt);
         driver.element().type(subject,subjectTxt);
-        driver.element().type(Message,messageTxt);
         driver.element().typeFileLocationForUpload(uploadBtn,filePath);
+        driver.element().type(message,messageTxt);
         return this;
     }
 
     @Step("Click on submit Button")
     public ContactUsPage clickOnSubmitButton() {
-        driver.element().clickUsingJavascript(submitBtn);
+        driver.element().click(submitBtn);
         driver.alert().acceptAlert();
         return this;
     }
