@@ -38,7 +38,6 @@ public class Verify_Subscription_in_home_page {
     public void VerifySubscriptionInHomePage ()
         {
             driver = new SHAFT.GUI.WebDriver();
-
             new HomePage(driver)
                 .VerifySubscriptionInHomePage()
                 .enterSubscriptionEmail(testUser.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com")
@@ -48,6 +47,4 @@ public class Verify_Subscription_in_home_page {
     public void afterMethod() {
         driver.quit();
     }
-
-
 }

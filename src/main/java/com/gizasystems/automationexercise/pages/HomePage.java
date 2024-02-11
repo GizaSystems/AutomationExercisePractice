@@ -16,10 +16,10 @@ public class HomePage {
         return  By.xpath("//h2[text()='"+ categoryTitle +"']");
     }
 
-    private final By subscriptionText = By.xpath("//div[@class=\"single-widget\"]//h2");
-    private final By subscriptionEmail = By.xpath("//*[@id=\"susbscribe_email\"]");
-    private final By subscribeButton = By.xpath("//*[@id=\"subscribe\"]/i");
-    private  final By successMsg = By.xpath("");
+    private final By subscriptionText = By.className("single-widget");
+    private final By subscriptionEmail = By.id("susbscribe_email");
+    private final By subscribeButton = By.id("subscribe");
+    private  final By successMsg = By.id("success-subscribe");
 
     // Constructor
     public HomePage(SHAFT.GUI.WebDriver driver) {
@@ -42,7 +42,12 @@ public class HomePage {
     }
     @Step("Verify Subscription is on home page")
     public HomePage  VerifySubscriptionInHomePage() {
-        driver.element().assertThat(subscriptionText).text().isEqualTo("Subscription").perform();
+
+        System.out.println("the xpath string is " + subscriptionText);
+
+        //driver.element().assertThat(subscriptionText).text().isEqualTo("Subscription").perform();
+        //driver.assertThat().element(subscriptionText).text().isEqualTo("Subscription").perform();
+        driver.verifyThat().element(subscriptionText).text().isEqualTo("SUBSCRIPTION").perform();
         return this;
     }
 
@@ -51,17 +56,17 @@ public class HomePage {
         driver.element().type(subscriptionEmail,email);
         return this;
     }
+
     @Step("Click on Subscribe Button")
     public HomePage clickOnSubscribeButton() {
         driver.element().click(subscribeButton);
         return this;
     }
-//
-//    @Step("Validate on Success Message of Subscription Email")
-//    public HomePage ValidateOnSuccessMessageOfSubscriptionEmail() {
-//        driver.verifyThat().element(successMsg).text().isEqualTo("You have been successfully subscribed!");
-//        return this;
-//    }
+    @Step("Validate on Success Message of Subscription Email")
+    public HomePage ValidateOnSuccessMessageOfSubscriptionEmail() {
+        driver.verifyThat().element(successMsg).text().isEqualTo("You have been successfully subscribed!");
+        return this;
+    }
 
 
     @Step("Validate on Visibility of the Category Title")
