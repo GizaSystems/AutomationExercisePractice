@@ -32,7 +32,7 @@ public class CartPage {
     private final By secondProductTotal = By.xpath("//p[@class='cart_total_price'][normalize-space()='Rs. 400']");
 
     // Constructor
-    public CartPage(SHAFT.GUI.WebDriver driver){
+    public CartPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
@@ -40,20 +40,20 @@ public class CartPage {
 
     //Clicking using JS as fix for pipeline failure on safari (Click isn't happening even with ClickUsingJS Flag)
     @Step("Open Cart Page")
-    public CartPage openCart(){
+    public CartPage openCart() {
         driver.element().clickUsingJavascript(viewCart_a);
         return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Verify Cart Page is Loaded")
-    public CartPage verifyCartPageIsLoaded(){
+    public CartPage verifyCartPageIsLoaded() {
         driver.verifyThat().element(proceedToCheckout_btn).isVisible().perform();
         return this;
     }
 
     @Step("Validate on Product Added To Cart Page")
-    public CartPage verifyProductAddedToCart(String addedProductName){
+    public CartPage verifyProductAddedToCart(String addedProductName) {
         driver.assertThat().element(productName_h4).text().isEqualTo(addedProductName).perform();
         return this;
     }
