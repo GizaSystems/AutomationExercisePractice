@@ -1,5 +1,6 @@
 package com.gizasystems.automationexercise.pages;
 
+import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -36,6 +37,7 @@ public class NavigationBar {
         driver.element().click(delete_link);
         return this;
     }
+
     @Step("Click on ContactUs Account Link")
     public NavigationBar clickOnContactUsLink() {
         driver.element().clickUsingJavascript(contactUs_link);
@@ -45,13 +47,8 @@ public class NavigationBar {
     @Step("Click on test Case")
     public NavigationBar ClickOnTestCase (){
         driver.element().click(TestCase_link);
-
-
-        Actions action = new Actions(driver.getDriver());
-        action.pause(1000).doubleClick().perform();
-
-      return this;
-
+        GoogleAlert.dismissAlert(driver);
+        return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
@@ -60,6 +57,5 @@ public class NavigationBar {
         driver.verifyThat().element(loggedInUser_link).text().isEqualTo("Logged in as " + expectedUser).perform();
         return this;
     }
-
 
 }
