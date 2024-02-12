@@ -6,12 +6,14 @@ import org.openqa.selenium.By;
 
 public class NavigationBar {
     // Variables
-    private SHAFT.GUI.WebDriver driver;
+    private  SHAFT.GUI.WebDriver driver;
 
     // Locators
     private final By signupLogin_link = By.cssSelector("a[href='/login']");
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
+
+    private final By contactUs_link = By.cssSelector("a[href='/contact_us']");
 
     // Constructor
     public NavigationBar(SHAFT.GUI.WebDriver driver) {
@@ -28,6 +30,11 @@ public class NavigationBar {
     @Step("Click on Delete Account Link")
     public NavigationBar clickOnDeleteAccountLink() {
         driver.element().click(delete_link);
+        return this;
+    }
+    @Step("Click on ContactUs Account Link")
+    public NavigationBar clickOnContactUsLink() {
+        driver.element().clickUsingJavascript(contactUs_link);
         return this;
     }
 
