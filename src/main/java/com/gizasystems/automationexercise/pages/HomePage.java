@@ -13,10 +13,7 @@ public class HomePage {
     private final By featuredItems_div = By.cssSelector("div.features_items");
     private final By recommendedItems_div = By.cssSelector("div.recommended_items");
 
-    private final By subscriptionText = By.className("single-widget");
-    private final By subscriptionEmail = By.id("susbscribe_email");
-    private final By subscribeButton = By.id("subscribe");
-    private  final By successMsg = By.id("success-subscribe");
+
 
     // Constructor
     public HomePage(SHAFT.GUI.WebDriver driver) {
@@ -37,33 +34,4 @@ public class HomePage {
         driver.verifyThat().element(recommendedItems_div).exists().perform();
         return this;
     }
-    @Step("Verify Subscription is on home page")
-    public HomePage  VerifySubscriptionInHomePage() {
-
-        System.out.println("the xpath string is " + subscriptionText);
-
-        //driver.element().assertThat(subscriptionText).text().isEqualTo("Subscription").perform();
-        //driver.assertThat().element(subscriptionText).text().isEqualTo("Subscription").perform();
-        driver.verifyThat().element(subscriptionText).text().isEqualTo("SUBSCRIPTION").perform();
-        return this;
-    }
-
-    @Step("Enter Subscription Email")
-    public HomePage enterSubscriptionEmail(String email) {
-        driver.element().type(subscriptionEmail,email);
-        return this;
-    }
-
-    @Step("Click on Subscribe Button")
-    public HomePage clickOnSubscribeButton() {
-        driver.element().click(subscribeButton);
-        return this;
-    }
-    @Step("Validate on Success Message of Subscription Email")
-    public HomePage ValidateOnSuccessMessageOfSubscriptionEmail() {
-        driver.verifyThat().element(successMsg).text().isEqualTo("You have been successfully subscribed!");
-        return this;
-    }
-
-
 }
