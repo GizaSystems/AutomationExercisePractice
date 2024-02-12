@@ -17,11 +17,9 @@ public class TestCaseTest {
 
         new NavigationBar(driver).ClickOnTestCase();
         new TestCasePage(driver).AssertTestCasePageLoaded();
-
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
-
     @BeforeMethod
     public void beforeMethod() {
 
