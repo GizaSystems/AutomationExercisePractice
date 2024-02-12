@@ -12,6 +12,10 @@ public class CartPage {
     private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
     private final By productName_h4 = By.xpath("//td[@class='cart_description']//h4");
     private final By viewCart_a = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
+    private final By subscriptionTxt_h2 = By.tagName("h2");
+    private final By subscription_input = By.id("susbscribe_email");
+    private final By subscribeBtn_button = By.id("subscribe");
+    private final By successAlert_div = By.xpath("//div[@class='alert-success alert']");
 
     // Constructor
     public CartPage(SHAFT.GUI.WebDriver driver){
@@ -27,6 +31,18 @@ public class CartPage {
         return this;
     }
 
+    @Step("Enter Subscription Email")
+    public CartPage enterSubscriptionEmail(String email) {
+        driver.element().type(subscription_input, email);
+        return this;
+    }
+
+    @Step("Click on Subscribe Button")
+    public CartPage clickOnSubscribeButton() {
+        driver.element().click(subscribeBtn_button);
+        return this;
+    }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Verify Cart Page is Loaded")
     public CartPage verifyCartPageIsLoaded(){
@@ -39,4 +55,17 @@ public class CartPage {
         driver.assertThat().element(productName_h4).text().isEqualTo(addedProductName).perform();
         return this;
     }
+
+    @Step("Validate on Visibility of the subscription Text")
+    public CartPage validateOnVisibilityOfSubscriptionText() {
+        driver.verifyThat().element(subscriptionTxt_h2).text().isEqualTo("SUBSCRIPTION").perform();
+        return this;
+    }
+
+    @Step("Validate on Success Message of Subscription Email")
+    public CartPage validateOnSuccessMessageOfSubscriptionEmail(String expectedText) {
+        driver.verifyThat().element(successAlert_div).text().isEqualTo(expectedText).perform();
+        return this;
+    }
+
 }
