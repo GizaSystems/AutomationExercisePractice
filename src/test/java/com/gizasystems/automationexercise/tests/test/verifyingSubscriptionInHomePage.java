@@ -1,7 +1,7 @@
 package com.gizasystems.automationexercise.tests.test;
 
 
-import com.gizasystems.automationexercise.pages.HomePage;
+import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -17,14 +17,15 @@ import  org.testng.annotations.BeforeClass;
 @Story("Verify Subscription in home page")
 
 
-public class Verify_Subscription_in_home_page {
+public class verifyingSubscriptionInHomePage {
 
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testUser;
     private  String timeStamp = String.valueOf(System.currentTimeMillis());
     @BeforeClass
     public void beforeClass() {
-        testUser = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/RegisterUser.json");
+        testUser = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Footer.json");
+
     }
     @BeforeMethod
     public void beforeMethod() {
@@ -34,17 +35,18 @@ public class Verify_Subscription_in_home_page {
                 .validateOnVisibilityOfHomePage();
     }
 
-    @Test(description = "Verify Sunscription is on Home Page")
+    @Test(description = "Verify Subscription is on Home Page")
     public void VerifySubscriptionInHomePage ()
-        {
-            driver = new SHAFT.GUI.WebDriver();
-            new HomePage(driver)
-                .VerifySubscriptionInHomePage()
+    {
+        new Footer(driver)
+                .VerifySubscriptionText(testUser.getTestData("subText"))
                 .enterSubscriptionEmail(testUser.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com")
-                .clickOnSubscribeButton();
+                .clickOnSubscribeButton()
+                .ValidateOnSuccessMessageOfSubscriptionEmail(testUser.getTestData("successSubscriptionMessage"));
     }
     @AfterMethod
     public void afterMethod() {
+
         driver.quit();
     }
 }
