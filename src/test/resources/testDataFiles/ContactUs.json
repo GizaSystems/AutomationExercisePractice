@@ -1,0 +1,9 @@
+{
+  "Name": "Contact Name",
+  "Email": "name@gmail.com",
+  "Subject": "Ask about how to Register",
+  "MessageTxt": "Hello all I want to ask about something",
+  "Messages": {
+    "SubmittedMsg": "Success! Your details have been submitted successfully."
+  }
+}
