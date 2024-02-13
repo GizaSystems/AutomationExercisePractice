@@ -39,6 +39,7 @@ public class SignupLoginPage {
                 .click(signup_button);
         return this;
     }
+
     @Step("User Login with Correct Email: {email} and Password: {password}")
     public SignupLoginPage registeredUserLogin(String email, String password){
         driver.element()
