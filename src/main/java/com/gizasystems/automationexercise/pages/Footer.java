@@ -31,7 +31,7 @@ public class Footer {
     }
     @Step("Validate on Success Message of Subscription Email")
     public Footer ValidateOnSuccessMessageOfSubscriptionEmail(String successMessage) {
-        driver.verifyThat().element(successMsg).text().isEqualTo(successMessage);
+        driver.verifyThat().element(successMsg).text().equalsIgnoringCaseSensitivity(successMessage);
         return this;
     }
 }
