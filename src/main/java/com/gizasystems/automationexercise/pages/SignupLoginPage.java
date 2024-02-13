@@ -21,6 +21,8 @@ public class SignupLoginPage {
     private final By loginEmail_input = By.xpath("//input[@data-qa='login-email']");
     private final By loginPassword_input= By.xpath("//input[@data-qa='login-password']");
     private final By login_button = By.xpath("//button[@data-qa='login-button']");
+    private final By signupExistingEmail_ErrorMessage = By.xpath("//p[@style='color: red;']");
+
     // Constructor
     public SignupLoginPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -63,4 +65,8 @@ public class SignupLoginPage {
         return this;
     }
 
+@Step("Validate on Existing Email Error Message Visibility")
+    public void validateOnErrorMessageVisibilityOfExistingEmail() {
+        driver.verifyThat().element(signupExistingEmail_ErrorMessage).text().isEqualTo("Email Address already exist!");
+    }
 }

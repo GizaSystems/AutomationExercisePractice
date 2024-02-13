@@ -4,10 +4,7 @@ import com.gizasystems.automationexercise.apis.Apis;
 import com.gizasystems.automationexercise.apis.ApisAccountManagement;
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -23,6 +20,7 @@ public class RegisterUserTests {
 
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
+    @Issue("16")
     @Test(description = "Register User Test - GUI")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered and logged in the the system")
     public void registerUserTestGui() {
@@ -30,7 +28,7 @@ public class RegisterUserTests {
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail.Gui") + timeStamp  + "@gizasystems.com");
+                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.Gui") + timeStamp + "@gizasystems.com");
         new SignupPage(driver)
                 .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
                 .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))
@@ -44,6 +42,19 @@ public class RegisterUserTests {
                 .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"));
     }
 
+    @Test(description = "Register User with existing Email - GUI")
+    @Description("Given that I register with new user, When I enter Existing Email , Then I should not be registered and Error message appeared ")
+    public void registerUserWithExistingEmailGui() {
+        new ApisAccountManagement(api)
+                .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"));
+        new NavigationBar(driver)
+                .clickOnSignupLoginLink();
+        new SignupLoginPage(driver)
+                .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
+                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com")
+                .validateOnErrorMessageVisibilityOfExistingEmail();
+    }
+
     @Test(description = "Register User Test - GUI - Time Stamp")
     @Description("Given that I register with new user, When I enter valid data, And a Time Stamp in the Email, Then I should be registered and logged in the the system, And I don't have to delete the account")
     public void registerUserTestGuiTimeStamp() {
@@ -51,7 +62,7 @@ public class RegisterUserTests {
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com");
+                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com");
         new SignupPage(driver)
                 .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
                 .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))
@@ -69,7 +80,7 @@ public class RegisterUserTests {
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .newUserSignup(testData.getTestData("UserName"),testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com");
+                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com");
         new SignupPage(driver)
                 .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
                 .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))

@@ -17,6 +17,7 @@ public class ApisAccountManagement {
 
     // Services
     private static final String createAccount_serviceName = "/createAccount";
+    private static final String loginToAccount_serviceName= "/verifyLogin";
     private static final String deleteAccount_serviceName = "/deleteAccount";
     private static final String getUserDetailByEmail_serviceName = "/getUserDetailByEmail";
 
@@ -53,6 +54,19 @@ public class ApisAccountManagement {
         return this;
     }
 
+    @Step("API Log Into User Account")
+    public ApisAccountManagement logIntoUserAccount(String email, String pass){
+        List<List<Object>> formData = Arrays.asList(
+                Arrays.asList("email", email),
+                Arrays.asList("password", pass));
+        api.post(loginToAccount_serviceName)
+                .setParameters(formData, RestActions.ParametersType.FORM)
+                .setContentType(ContentType.URLENC)
+                .setTargetStatusCode(Apis.SUCCESS)
+                .perform();
+        return this;
+
+    }
     @Step("API Delete User Account")
     public ApisAccountManagement deleteUserAccount(String email, String pass) {
         List<List<Object>> formData = Arrays.asList(
@@ -86,6 +100,11 @@ public class ApisAccountManagement {
         return this;
     }
 
+@Step("Validate User Login")
+public ApisAccountManagement validateUserLoggedIn() {
+        api.verifyThatResponse().body().contains("User exists!").perform();
+        return this;
+}
     @Step("Validate Account Deleted")
     public ApisAccountManagement validateDeleteUser() {
         api.verifyThatResponse().body().contains("Account deleted!").perform();
