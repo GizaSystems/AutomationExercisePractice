@@ -13,10 +13,10 @@ public class ProductQuantity {
             = By.xpath("(//div[@class='choose']//a)[2]");
 
     private final By verifyDetailsExist
-            = By.xpath("//span/input[@id=\"quantity\"]");
+            = By.xpath("//span/Label");
 
     private final By hoverBtn_button
-            = By.xpath("//span/input[@id=\"quantity\"]");
+            = By.id("quantity");
 
     private final By addToCartbtn_Button
             = By.xpath("//button [@class= \"btn btn-default cart\"]");
