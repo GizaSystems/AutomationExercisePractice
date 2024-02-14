@@ -10,13 +10,9 @@ public class CartPage {
 
     // Locators
     private String url = System.getProperty("baseUrl") + "/view_cart";
-
     private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
     private final By productName_h4 = By.xpath("//td[@class='cart_description']//h4");
-  private final By viewCart_a = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
-  //private final By viewCart_a = By.xpath("//u[normalize-space()='View Cart']");
-  //private final By viewCart_a = By.cssSelector("#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(3) > a");
-
+    private final By viewCart_a = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
     private final By subscriptionTxt_h2 = By.tagName("h2");
     private final By subscription_input = By.id("susbscribe_email");
     private final By subscribeBtn_button = By.id("subscribe");
