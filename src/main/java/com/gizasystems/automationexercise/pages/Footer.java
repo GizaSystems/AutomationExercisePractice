@@ -10,7 +10,6 @@ public class Footer {
     private final By subscriptionEmail = By.id("susbscribe_email");
     private final By subscribeButton = By.id("subscribe");
     private  final By successMsg = By.id("success-subscribe");
-
     public Footer(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }

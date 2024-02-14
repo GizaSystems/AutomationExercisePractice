@@ -19,7 +19,6 @@ public class CartTests {
     private SHAFT.TestData.JSON testCartData;
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
-
     @Test(description = "Subscription By email")
     @Description("Given that I Want to subscribe, When I enter valid Email, Then I should be Subscribed ")
     public void subscriptionCartPage() {
