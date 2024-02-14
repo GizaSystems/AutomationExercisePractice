@@ -46,7 +46,6 @@ public class verifyingSubscriptionInHomePage {
     }
     @AfterMethod
     public void afterMethod() {
-
         driver.quit();
     }
 }
