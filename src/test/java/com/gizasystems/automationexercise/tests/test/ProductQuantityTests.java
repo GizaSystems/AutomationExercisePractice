@@ -16,7 +16,7 @@ public class ProductQuantityTests {
 
     @Test(description = "Verify Product Exact Quantity Added To Cart")
     public void verifyProductQuantity() {
-        new ProductQuantity(driver)
+        new ProductQuantityPage(driver)
                 .clickOnViewProduct()
                 .verifyOnProductDetails()
                 .increaseQuantityInCart()
