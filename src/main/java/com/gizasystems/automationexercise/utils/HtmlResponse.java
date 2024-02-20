@@ -23,21 +23,20 @@ public class HtmlResponse {
      */
     public static String getResponseJSONValue(String jsonPath) {
         String searchPool = "";
+        String jsonResponse = RestActions.getLastResponse().asPrettyString();
+        String jsonObject = jsonResponse.substring(jsonResponse.indexOf("{"), jsonResponse.lastIndexOf("}") + 1);
+        Configuration confOrgJsonProvider = Configuration.builder().jsonProvider(new JsonOrgJsonProvider()).build();
+
         try {
-            String jsonResponse = RestActions.getLastResponse().asPrettyString();
-            String jsonObject = jsonResponse.substring(jsonResponse.indexOf("{"), jsonResponse.lastIndexOf("}") + 1);
-            Configuration confOrgJsonProvider = Configuration.builder().jsonProvider(new JsonOrgJsonProvider()).build();
-            try {
-                if (jsonPath.contains("?")) {
-                    JSONArray jsonValue = JsonPath.compile(jsonPath).read(new JSONObject(jsonObject), confOrgJsonProvider);
-                    searchPool = String.valueOf(jsonValue.get(0));
-                } else {
-                    Object jsonValue = JsonPath.compile(jsonPath).read(new JSONObject(jsonObject), confOrgJsonProvider);
-                    searchPool = String.valueOf(jsonValue);
-                }
-            } catch (JSONException ex) {
-                FailureReporter.fail(ex.getMessage());
+            if (jsonPath.contains("?")) {
+                JSONArray jsonValue = JsonPath.compile(jsonPath).read(new JSONObject(jsonObject), confOrgJsonProvider);
+                searchPool = String.valueOf(jsonValue.get(0));
+            } else {
+                Object jsonValue = JsonPath.compile(jsonPath).read(new JSONObject(jsonObject), confOrgJsonProvider);
+                searchPool = String.valueOf(jsonValue);
             }
+        } catch (JSONException ex) {
+            FailureReporter.fail(ex.getMessage());
 
         } catch (ClassCastException var4) {
             FailureReporter.fail("Incorrect jsonPath \"" + jsonPath + "\"");
