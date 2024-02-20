@@ -48,7 +48,7 @@ public class NavigationBar {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate the Logged In User")
     public NavigationBar validateTheLoggedInUser(String expectedUser) {
-        driver.verifyThat().element(loggedInUser_link).text().isEqualTo("Logged in as " + expectedUser).perform();
+       driver.verifyThat().element(loggedInUser_link).text().isEqualTo("Logged in as " + expectedUser).perform();
         return this;
     }
 }

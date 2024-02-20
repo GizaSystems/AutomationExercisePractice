@@ -6,6 +6,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -48,6 +49,7 @@ public class placeOrderRegisterBeforeCheckout {
                 .enterAddressInformation(testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserState"), testData.getTestData("UserCity"), testData.getTestData("UserZipCode"), testData.getTestData("UserMobile"))
                 .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"))
                 .clickOnContinueButton();
+
         new NavigationBar(driver)
                 .validateTheLoggedInUser(testData.getTestData("UserName"));
         new ProductsPage(driver)

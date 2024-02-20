@@ -3,6 +3,7 @@ package com.gizasystems.automationexercise.pages;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 
 public class SignupPage {
     // Variables
@@ -75,6 +76,9 @@ public class SignupPage {
 //        driver.browser().refreshCurrentPage();
 //        driver.element().click(continueBtn_link);
         driver.element().clickUsingJavascript(continueBtn_link);
+
+        new Actions(driver.getDriver()).pause(1000).doubleClick().perform();
+
         return this;
     }
 
