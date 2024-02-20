@@ -6,6 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 
 public class ProductQuantityPage {
 
+
     // Locators
     private final SHAFT.GUI.WebDriver driver;
 
@@ -34,11 +35,11 @@ public class ProductQuantityPage {
     }
 
     @Step("Increase Quantity in Cart")
-    public ProductQuantityPage increaseQuantityInCart(){
+    public ProductQuantityPage increaseQuantityInCart(String quantity ){
         driver.element()
                 .hover(hoverBtn_button)
                 .click(hoverBtn_button)
-                .type(hoverBtn_button, "4");
+                .type(hoverBtn_button, quantity);
         return this;
     }
 
@@ -49,9 +50,9 @@ public class ProductQuantityPage {
     }
 
     @Step("Verify Product Added to Cart with exact quantity")
-    public ProductQuantityPage verifyExactQuantityAddedToCart(){
+    public ProductQuantityPage verifyExactQuantityAddedToCart(String quantity){
         driver.element().click(viewCartbtn_button);
-        driver.element().assertThat(productAdded).text().isEqualTo("4").perform();
+        driver.element().assertThat(productAdded).text().isEqualTo(quantity).perform();
         return this;
     }
 
