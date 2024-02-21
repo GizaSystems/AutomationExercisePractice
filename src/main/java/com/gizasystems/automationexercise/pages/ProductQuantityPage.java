@@ -20,8 +20,8 @@ public class ProductQuantityPage {
 
     @Step("Click on View Product")
     public ProductQuantityPage clickOnViewProduct() {
-        GoogleAlert.dismissAlert(driver, viewProductbtn_button);
         driver.element().click(viewProductbtn_button);
+        GoogleAlert.dismissAlert(driver, viewProductbtn_button);
         return this;
     }
 
