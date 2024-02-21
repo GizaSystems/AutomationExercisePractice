@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 
 public class ProductsPage {
     private SHAFT.GUI.WebDriver driver;
+
     public ProductsPage (SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
@@ -35,8 +36,8 @@ public class ProductsPage {
   */
 
     @Step("Enter product name in search input and click search button")
-    public ProductsPage searchForProduct() {
-        driver.element().type(searchTextArea, "Men Tshirt");
+    public ProductsPage searchForProduct(String  SearchedProduct) {
+        driver.element().type(searchTextArea, SearchedProduct);
         driver.element().click(searchButton);
         return this;
     }
