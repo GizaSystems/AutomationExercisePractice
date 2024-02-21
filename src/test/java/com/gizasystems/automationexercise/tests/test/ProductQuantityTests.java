@@ -23,6 +23,7 @@ public class ProductQuantityTests {
                 .verifyOnProductDetails()
                 .increaseQuantityInCart(testData.getTestData("DisplayedQuantity"))
                 .addProductToCart()
+                .clickToVerifyExactQuantityAddedToCart()
                 .verifyExactQuantityAddedToCart(testData.getTestData("DisplayedQuantity"));
     }
 
