@@ -21,7 +21,7 @@ public class ProductQuantityPage {
     @Step("Click on View Product")
     public ProductQuantityPage clickOnViewProduct() {
         GoogleAlert.dismissAlert(driver, viewProductbtn_button);
-        driver.element().clickUsingJavascript(viewProductbtn_button);
+        driver.element().click(viewProductbtn_button);
         return this;
     }
 
