@@ -10,7 +10,7 @@
 
     <properties>
         <!-- Make sure you point to the latest release version: https://github.com/ShaftHQ/SHAFT_ENGINE/releases -->
-        <shaft_engine.version>8.1.20240210</shaft_engine.version>
+        <shaft_engine.version>8.1.20240115</shaft_engine.version>
         <aspectjweaver.version>1.9.21</aspectjweaver.version>
         <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
@@ -45,7 +45,7 @@
                 <version>${maven-resources-plugin.version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <outputDirectory>target/classes</outputDirectory>
+                    <outputDirectory>../../../target/classes</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
@@ -105,7 +105,7 @@
             <id>junit</id>
             <activation>
                 <file>
-                    <missing>src/test/resources/META-INF/services/org.testng.ITestNGListener</missing>
+                    <missing>META-INF/services/org.testng.ITestNGListener</missing>
                     <exists>src/test/resources/META-INF/services/org.junit.platform.launcher.LauncherSessionListener</exists>
                 </file>
             </activation>
