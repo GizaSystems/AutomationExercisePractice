@@ -77,7 +77,7 @@ public class SignupPage {
 //        driver.element().click(continueBtn_link);
         driver.element().clickUsingJavascript(continueBtn_link);
 
-        new Actions(driver.getDriver()).pause(1000).doubleClick().perform();
+        new Actions(driver.getDriver()).doubleClick().perform();
 
         return this;
     }
