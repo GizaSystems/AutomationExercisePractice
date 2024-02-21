@@ -8,6 +8,9 @@ public class CartPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
 
+    private String url = System.getProperty("baseUrl") + "/view_cart";
+
+
     // Locators
     private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
     private final By productName_h4 = By.xpath("//td[@class='cart_description']//h4");
@@ -17,8 +20,33 @@ public class CartPage {
     private final By subscribeBtn_button = By.id("subscribe");
     private final By successAlert_div = By.xpath("//div[@class='alert-success alert']");
 
+    private By productName(String name) {
+        return By.xpath("//a[normalize-space()='" + name + "']");
+    }
+
+    private By productPrice(String price) {
+        return By.xpath("//td[@class='cart_price']//p[contains(text(),'" + price + "')]");
+    }
+
+    private By productQuantity(Integer productNumber, String qunatity) {
+        return By.xpath("//tr[@id='product-" + productNumber + "']//button[@class='disabled'][normalize-space()='" + qunatity + "']");
+    }
+
+    private By productTotalPrice(String totalPrice) {
+        return By.xpath("//p[@class='cart_total_price'][normalize-space()='" + totalPrice + "']");
+    }
+
+
     // Constructor
-    public CartPage(SHAFT.GUI.WebDriver driver){
+
+    public CartPage navigate() {
+        driver.browser().navigateToURL(url);
+        return this;
+    }
+
+
+    // Constructor
+    public CartPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
@@ -26,10 +54,11 @@ public class CartPage {
 
     //Clicking using JS as fix for pipeline failure on safari (Click isn't happening even with ClickUsingJS Flag)
     @Step("Open Cart Page")
-    public CartPage openCart(){
+    public CartPage openCart() {
         driver.element().clickUsingJavascript(viewCart_a);
         return this;
     }
+
 
     @Step("Enter Subscription Email")
     public CartPage enterSubscriptionEmail(String email) {
@@ -43,15 +72,16 @@ public class CartPage {
         return this;
     }
 
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Verify Cart Page is Loaded")
-    public CartPage verifyCartPageIsLoaded(){
+    public CartPage verifyCartPageIsLoaded() {
         driver.verifyThat().element(proceedToCheckout_btn).isVisible().perform();
         return this;
     }
 
     @Step("Validate on Product Added To Cart Page")
-    public CartPage verifyProductAddedToCart(String addedProductName){
+    public CartPage verifyProductAddedToCart(String addedProductName) {
         driver.assertThat().element(productName_h4).text().isEqualTo(addedProductName).perform();
         return this;
     }
@@ -67,5 +97,31 @@ public class CartPage {
         driver.verifyThat().element(successAlert_div).text().isEqualTo(expectedText).perform();
         return this;
     }
+
+
+    @Step("Validate both products are added to Cart")
+    public CartPage validateOnItemsAddedInCart(String ItemName) {
+        driver.verifyThat().element(productName(ItemName)).textTrimmed().isEqualTo(ItemName).perform();
+        return this;
+    }
+
+    @Step("Validate on the price of the products")
+    public CartPage validateOnProductPrices(String itemPrice) {
+        driver.verifyThat().element(productPrice(itemPrice)).text().isEqualTo(itemPrice).perform();
+        return this;
+    }
+
+    @Step("Validate on the Quantity of the products")
+    public CartPage validateOnProductQuantity(Integer ID, String itemQuantity) {
+        driver.verifyThat().element(productQuantity(ID, itemQuantity)).textTrimmed().isEqualTo(itemQuantity).perform();
+        return this;
+    }
+
+    @Step("Validate on the Total Price of the Products")
+    public CartPage validateOnTotalPrice(String itemTotalPrice) {
+        driver.verifyThat().element(productTotalPrice(itemTotalPrice)).textTrimmed().isEqualTo(itemTotalPrice).perform();
+        return this;
+    }
+
 
 }

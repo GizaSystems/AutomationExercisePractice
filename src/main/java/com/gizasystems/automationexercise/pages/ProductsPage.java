@@ -11,15 +11,6 @@ public class ProductsPage {
 
     private String url = System.getProperty("baseUrl") + "/products";
 
-    private final By HoverOnItemOne = By.xpath("(//div[@class=\"single-products\"]//img)[1]");
-    private final By ClickOnItemOne = By.xpath("(//a[@data-product-id=\"1\"])[1]");
-
-    private final By HoverOnItemTwo = By.xpath("(//div[@class=\"single-products\"]//img)[2]");
-    private final By ClickOnItemTwo = By.xpath("(//a[@data-product-id=\"2\"])[2]");
-
-    private final By continueButton = By.xpath("(//button[@class=\"btn btn-success close-modal btn-block\"])[1]");
-    private final By viewCartButton = By.xpath("//u[normalize-space()='View Cart']");
-
     public ProductsPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
@@ -29,19 +20,19 @@ public class ProductsPage {
         return this;
     }
 
-    @Step("Add First Product to Cart")
-    public ProductsPage addFirstProductToCart() {
-        driver.element().hover(HoverOnItemOne);
-        driver.element().click(ClickOnItemOne);
-        driver.element().click(continueButton);
-        return this;
+    private By hoverOnProduct(Integer Index) {
+        return By.xpath("(//div[@class=\"single-products\"]//img)[" + Index + "]");
     }
 
-    @Step("Add Second Product to Cart")
-    public ProductsPage addSecondProductToCart() {
-        driver.element().hover(HoverOnItemTwo);
-        driver.element().click(ClickOnItemTwo);
-        driver.element().click(viewCartButton);
+    private By ClickOnProduct(Integer Index) {
+        return By.xpath("(//a[@data-product-id=\"" + Index + "\"])[" + Index + "]");
+
+    }
+
+    @Step("Add  Products to Cart")
+    public ProductsPage addProductsToCart(Integer index, Integer itemID) {
+        driver.element().hover(hoverOnProduct(index));
+        driver.element().click(ClickOnProduct(itemID));
         return this;
     }
 
