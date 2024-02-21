@@ -21,6 +21,7 @@ public class SearchProductsTest {
     private SHAFT.GUI.WebDriver driver;
 
     private SHAFT.TestData.JSON testData;
+
     @BeforeClass
     public void beforeClass() {
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/SearchProduct.json");

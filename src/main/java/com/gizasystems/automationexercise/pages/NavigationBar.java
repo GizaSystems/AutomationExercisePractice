@@ -13,7 +13,7 @@ public class NavigationBar {
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
     private final By cartBtn_button = By.xpath("//a[contains(text(),' Cart') ]");
-    private final By productsMenuButton = By.xpath("//li[2]/a/i");
+    private final By productsMenuButton = By.xpath("(//li/a/i)[2]");
     private final By contactUs_link = By.cssSelector("a[href='/contact_us']");
 
     // Constructor
