@@ -16,9 +16,9 @@ public class TestCasePage {
     private  final By TestCasePageTitle = By.xpath("//h2//b");
 
     @Step
-    public TestCasePage AssertTestCasePageLoaded()
+    public TestCasePage AssertTestCasePageLoaded(String testCasePageTitle)
     {
-        driver.assertThat().element(TestCasePageTitle).textTrimmed().equalsIgnoringCaseSensitivity("Test Cases").perform();
+        driver.assertThat().element(TestCasePageTitle).textTrimmed().equalsIgnoringCaseSensitivity(testCasePageTitle).perform();
         return this;
     }
 
