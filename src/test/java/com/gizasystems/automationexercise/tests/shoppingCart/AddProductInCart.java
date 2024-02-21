@@ -25,20 +25,26 @@ public class AddProductInCart {
                 clickOnProductLink();
         new ProductsPage(driver)
                 .navigate()
-                .addFirstProductToCart()
-                .addSecondProductToCart();
+                .addProductsToCart(1, 1)
+                .addProductsToCart(2, 2);
+
+
         new CartPage(driver)
                 .navigate()
-                .validateOnItemsAddedInCart(testData.getTestData("FirstProduct.productDescription"), testData.getTestData("SecondProduct.productDescription"))
-                .validateOnProductPrices(testData.getTestData("FirstProduct.productPrice"), testData.getTestData("SecondProduct.productPrice"))
-                .validateOnProductQuantity(testData.getTestData("FirstProduct.productQuantity"), testData.getTestData("SecondProduct.productQuantity"))
-                .validateOnTotalPrice(testData.getTestData("FirstProduct.total"), testData.getTestData("SecondProduct.total"));
+                .validateOnItemsAddedInCart(testData.getTestData("FirstProduct.productDescription"))
+                .validateOnItemsAddedInCart(testData.getTestData("SecondProduct.productDescription"))
+                .validateOnProductPrices(testData.getTestData("FirstProduct.productPrice"))
+                .validateOnProductPrices(testData.getTestData("SecondProduct.productPrice"))
+                .validateOnProductQuantity(1, testData.getTestData("FirstProduct.productQuantity"))
+                .validateOnProductQuantity(2, testData.getTestData("SecondProduct.productQuantity"))
+                .validateOnTotalPrice(testData.getTestData("FirstProduct.total"))
+                .validateOnTotalPrice(testData.getTestData("SecondProduct.total"));
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Cart.json");
+        testData = new SHAFT.TestData.JSON("target/classes/testDataFiles/Products.json");
     }
 
     @BeforeMethod
