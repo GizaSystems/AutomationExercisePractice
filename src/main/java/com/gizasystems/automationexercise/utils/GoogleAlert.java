@@ -6,11 +6,22 @@ import org.openqa.selenium.By;
 @SuppressWarnings("InstantiationOfUtilityClass")
 public class GoogleAlert {
 
-    private static final By headerElement_header = By.tagName("header");
-
-    //To Handle Google_Vignette Alerts (double-clicks on the header Element to trigger the action to dismiss the alert)
-    public static GoogleAlert dismissAlert(SHAFT.GUI.WebDriver driver){
-        driver.element().doubleClick(headerElement_header);
+    /**
+     * This method is used to handle GoogleVignette Ads.
+     * Note that you must provide a valid locator for the method to work, Target the element that will trigger the GoogleVignette Ads.
+     *
+     * @param driver
+     * @param locator
+     * @return instance of GoogleAlert for further chaining usage.
+     */
+    public static GoogleAlert dismissAlert(SHAFT.GUI.WebDriver driver, By locator) {
+        driver.browser().refreshCurrentPage();
+        try {
+            driver.element().click(locator);
+        } catch (Throwable throwableVar) {
+            //empty (Expected to be caught in case if the Ad didn't get triggered)
+            //Must be a throwable (Firefox case)
+        }
         return new GoogleAlert();
     }
 
