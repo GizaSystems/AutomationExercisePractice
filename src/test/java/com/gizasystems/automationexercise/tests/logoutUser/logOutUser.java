@@ -38,7 +38,7 @@ public class logOutUser {
         driver = new SHAFT.GUI.WebDriver();
         new HomePage(driver).navigate().validateOnVisibilityOfHomePage();
         new NavigationBar(driver).clickOnSignupLoginLink();
-        new SignupLoginPage(driver).registeredUserLogin(testData.getTestData("UserName"), testData.getTestData("UserPassword"));
+        new SignupLoginPage(driver).registeredUserLogin(testData.getTestData("UserEMail"), testData.getTestData("UserPassWD"));
     }
 
     @AfterMethod

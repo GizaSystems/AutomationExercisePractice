@@ -12,7 +12,7 @@ public class LogoutUser {
 
     //Locators
 
-    private final By Logout_button = By.xpath("a[href='/logout']");
+    private final By Logout_button = By.xpath("//a[contains(text(),\" Logout\")]");
 
     //Constructors
     public LogoutUser(SHAFT.GUI.WebDriver driver) {
