@@ -44,7 +44,7 @@ public class AddProductInCart {
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("target/classes/testDataFiles/Products.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Products.json");
     }
 
 
