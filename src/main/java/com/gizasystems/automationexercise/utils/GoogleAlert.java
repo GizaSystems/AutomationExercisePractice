@@ -11,13 +11,13 @@ public class GoogleAlert {
      * Note that you must provide a valid locator for the method to work, Target the element that will trigger the GoogleVignette Ads.
      *
      * @param driver
-     * @param locator
+     * @param locatorForAlertTriggerElement
      * @return instance of GoogleAlert for further chaining usage.
      */
-    public static GoogleAlert dismissAlert(SHAFT.GUI.WebDriver driver, By locator) {
+    public static GoogleAlert dismissAlert(SHAFT.GUI.WebDriver driver, By locatorForAlertTriggerElement) {
         driver.browser().refreshCurrentPage();
         try {
-            driver.element().click(locator);
+            driver.element().click(locatorForAlertTriggerElement);
         } catch (Throwable throwableVar) {
             //empty (Expected to be caught in case if the Ad didn't get triggered)
             //Must be a throwable (Firefox case)
