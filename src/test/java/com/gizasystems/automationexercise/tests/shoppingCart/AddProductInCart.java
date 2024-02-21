@@ -47,6 +47,8 @@ public class AddProductInCart {
         testData = new SHAFT.TestData.JSON("target/classes/testDataFiles/Products.json");
     }
 
+
+
     @BeforeMethod
     public void beforeMethod() {
         driver = new SHAFT.GUI.WebDriver();
