@@ -12,7 +12,7 @@ public class TestCasePage {
         this.driver= driver;
     }
 
-    private  final By TestCasePageTitle = By.xpath("//h2//b");
+    private  final By TestCasePageTitle = By.cssSelector("h2 > b");
 
     @Step
     public TestCasePage AssertTestCasePageLoaded(String testCasePageTitle)
