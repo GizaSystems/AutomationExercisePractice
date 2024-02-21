@@ -1,5 +1,6 @@
 package com.gizasystems.automationexercise.pages;
 
+import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -13,7 +14,7 @@ public class NavigationBar {
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
     private final By cartBtn_button = By.xpath("//a[contains(text(),' Cart') ]");
-
+    private final By TestCase_link = By.cssSelector("li > a[href='/test_cases']");
     private final By contactUs_link = By.cssSelector("a[href='/contact_us']");
 
     // Constructor
@@ -44,7 +45,12 @@ public class NavigationBar {
         driver.element().click(cartBtn_button);
         return this;
     }
-
+    @Step("Click on test Case")
+    public NavigationBar ClickOnTestCase (){
+        driver.element().click(TestCase_link);
+        GoogleAlert.dismissAlert(driver, TestCase_link);
+        return this;
+    }
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate the Logged In User")
     public NavigationBar validateTheLoggedInUser(String expectedUser) {
