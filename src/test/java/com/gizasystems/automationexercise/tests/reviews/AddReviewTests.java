@@ -3,6 +3,7 @@ package com.gizasystems.automationexercise.tests.reviews;
 import com.gizasystems.automationexercise.pages.HomePage;
 import com.gizasystems.automationexercise.pages.NavigationBar;
 import com.gizasystems.automationexercise.pages.ProductsPage;
+import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -18,26 +19,25 @@ import org.testng.annotations.Test;
 
 public class AddReviewTests {
     private SHAFT.GUI.WebDriver driver;
-    private SHAFT.TestData.JSON testData,reviewTestData;
+    private SHAFT.TestData.JSON productTestData;
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
     @Test(description = "Add review on product")
-    public void addReview(){
-        new NavigationBar(driver).clickOnProductsLink().handleAd();
-        new ProductsPage(driver).validateOnVisibilityOfProductsPage();
-        new ProductsPage(driver).clickOnViewProduct()
+    public void addReview() {
+        new NavigationBar(driver).clickOnProductsLink();
+        new ProductsPage(driver).validateOnVisibilityOfProductsPage()
+                .clickOnViewProduct()
                 .validateVisibilityOfReviewPage()
-                .AddReviewOnProduct(testData.getTestData("UserName"),
-                        testData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com",
-                        reviewTestData.getTestData("ReviewText"))
+                .AddReviewOnProduct(productTestData.getTestData("UserName"),
+                        productTestData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com",
+                        productTestData.getTestData("ReviewText"))
                 .validatethatReviewSuccessAlertIsDisplayed();
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/RegisterUser.json");
-        reviewTestData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/ProductsReview.json");
+        productTestData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Product.json");
     }
 
     @BeforeMethod
