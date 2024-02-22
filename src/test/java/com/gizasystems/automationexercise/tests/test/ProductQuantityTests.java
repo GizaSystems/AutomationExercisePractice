@@ -30,7 +30,7 @@ public class ProductQuantityTests {
 
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Cart.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/CartQuantity.json");
     }
 
     @BeforeMethod
