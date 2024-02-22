@@ -29,7 +29,7 @@ public class ProductsPage {
 
     }
 
-    @Step("Add  Products to Cart")
+    @Step("Add Products to Cart")
     public ProductsPage addProductsToCart(Integer index, Integer itemID) {
         driver.element().hover(hoverOnProduct(index));
         driver.element().click(ClickOnProduct(itemID));

@@ -48,7 +48,6 @@ public class AddProductInCart {
     }
 
 
-
     @BeforeMethod
     public void beforeMethod() {
         driver = new SHAFT.GUI.WebDriver();

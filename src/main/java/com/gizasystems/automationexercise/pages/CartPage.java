@@ -99,7 +99,7 @@ public class CartPage {
     }
 
 
-    @Step("Validate both products are added to Cart")
+    @Step("Validate products are added to Cart")
     public CartPage validateOnItemsAddedInCart(String ItemName) {
         driver.verifyThat().element(productName(ItemName)).textTrimmed().isEqualTo(ItemName).perform();
         return this;
