@@ -1,5 +1,6 @@
 package com.gizasystems.automationexercise.apis;
 
+import com.gizasystems.automationexercise.utils.HtmlResponse;
 import com.shaft.api.RestActions;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
@@ -95,26 +96,38 @@ public class ApisAccountManagement {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate User Created/Registered")
     public ApisAccountManagement validateUserCreatedRegistered() {
-//        api.verifyThatResponse().extractedJsonValue("message").contains(expectedMessage).perform();
-        api.verifyThatResponse().body().contains("User created!").perform();
+//        api.verifyThatResponse().extractedJsonValue("message").isEqualTo("User created!").perform();
+        SHAFT.Validations.assertThat()
+                .object(HtmlResponse.getResponseJSONValue("message"))
+                .isEqualTo("User created!")
+                .perform();
         return this;
     }
 
 @Step("Validate User Login")
 public ApisAccountManagement validateUserLoggedIn() {
-        api.verifyThatResponse().body().contains("User exists!").perform();
+    SHAFT.Validations.assertThat()
+            .object(HtmlResponse.getResponseJSONValue("message"))
+            .isEqualTo("User exists!")
+            .perform();
         return this;
 }
     @Step("Validate Account Deleted")
     public ApisAccountManagement validateDeleteUser() {
-        api.verifyThatResponse().body().contains("Account deleted!").perform();
+        SHAFT.Validations.assertThat()
+                .object(HtmlResponse.getResponseJSONValue("message"))
+                .isEqualTo("Account deleted!")
+                .perform();
         return this;
     }
 
     @Step("Validate User Not Found in the System")
     public ApisAccountManagement validateUserNotFound(String email) {
         getUserDetailByEmail(email);
-        api.verifyThatResponse().body().contains("Account not found with this email, try another email!").perform();
+        SHAFT.Validations.assertThat()
+                .object(HtmlResponse.getResponseJSONValue("message"))
+                .isEqualTo("Account not found with this email, try another email!")
+                .perform();
         return this;
     }
 
