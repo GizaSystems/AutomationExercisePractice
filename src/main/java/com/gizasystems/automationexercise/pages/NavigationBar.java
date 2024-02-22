@@ -15,7 +15,6 @@ public class NavigationBar {
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
     private final By products_link = By.cssSelector("a[href='/products']");
     private final By cartBtn_button = By.xpath("//a[contains(text(),' Cart') ]");
-
     private final By contactUs_link = By.cssSelector("a[href='/contact_us']");
 
     // Constructor
@@ -39,8 +38,8 @@ public class NavigationBar {
     //Migrating to JavaScript click for Safari pipeline failures
     @Step("Click on Products Page Link")
     public NavigationBar clickOnProductsLink() {
-        driver.element().clickUsingJavascript(products_link);
-        GoogleAlert.dismissAlert(driver);
+        driver.element().click(products_link);
+        GoogleAlert.dismissAlert(driver, products_link);
         return this;
     }
     @Step("Click on ContactUs Account Link")

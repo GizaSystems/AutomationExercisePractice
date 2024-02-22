@@ -22,7 +22,7 @@ public class ProductsPage {
     @Step("Pick Product")
     public ProductsPage pickProduct(String productName){
         driver.element().click(viewProduct_link(productName));
-        GoogleAlert.dismissAlert(driver);
+        GoogleAlert.dismissAlert(driver, viewProduct_link(productName));
         return this;
     }
 

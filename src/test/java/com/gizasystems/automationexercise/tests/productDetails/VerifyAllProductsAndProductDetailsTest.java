@@ -34,7 +34,6 @@ public class VerifyAllProductsAndProductDetailsTest {
                         testData.getTestData("productCondition"), testData.getTestData("productBrand"));
     }
 
-
     @BeforeClass
     public void beforeClass() {
         testData = new SHAFT.TestData.JSON("ProductDetails.json");
@@ -52,4 +51,5 @@ public class VerifyAllProductsAndProductDetailsTest {
     public void afterMethod() {
         driver.quit();
     }
+
 }
