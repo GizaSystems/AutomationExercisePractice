@@ -54,12 +54,14 @@ public class NavigationBar {
         driver.element().click(cartBtn_button);
         return this;
     }
+
     @Step("Click on test Case")
     public NavigationBar ClickOnTestCase (){
         driver.element().click(TestCase_link);
         GoogleAlert.dismissAlert(driver, TestCase_link);
         return this;
     }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate the Logged In User")
     public NavigationBar validateTheLoggedInUser(String expectedUser) {
