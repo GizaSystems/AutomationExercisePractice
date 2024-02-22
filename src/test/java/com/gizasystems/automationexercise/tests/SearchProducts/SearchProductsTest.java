@@ -40,10 +40,10 @@ public class SearchProductsTest {
     public void searchProduct() {
 
         new NavigationBar(driver).clickOnProductMenuButton();
-        new ProductsPage(driver).validateOnallProductPage()
+        new ProductsPage(driver).validateOnallProductPage(testData.getTestData("allProductsPage"))
                 .searchForProduct(testData.getTestData("SearchedProduct"))
-                .validateOnsearchedProducts()
-                .validateOnProductsRelatedToSearch();
+                .validateOnsearchedProducts(testData.getTestData("searchedProductPage"))
+                .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"));
 
 
     }

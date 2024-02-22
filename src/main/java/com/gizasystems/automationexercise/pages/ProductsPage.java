@@ -30,21 +30,21 @@ public class ProductsPage {
     }
 
     @Step("Verify user is navigated to ALL PRODUCTS page successfully")
-    public ProductsPage validateOnallProductPage() {
+    public ProductsPage validateOnallProductPage(String allProductsPage) {
         GoogleAlert.dismissAlert(driver, allProducts);
-        driver.assertThat().element(allProducts).text().isEqualTo("ALL PRODUCTS").perform();
+        driver.assertThat().element(allProducts).text().isEqualTo(allProductsPage).perform();
         return this;
     }
 
     @Step("Verify 'SEARCHED PRODUCTS' is visible")
-    public ProductsPage validateOnsearchedProducts() {
-        driver.element().assertThat(searchedProducts).text().isEqualTo("SEARCHED PRODUCTS").perform();
+    public ProductsPage validateOnsearchedProducts(String searchedProductPage) {
+        driver.element().assertThat(searchedProducts).text().isEqualTo(searchedProductPage).perform();
         return this;
     }
 
     @Step("Verify all the products related to search are visible")
-    public ProductsPage validateOnProductsRelatedToSearch() {
-        driver.element().assertThat(searchResult).text().isEqualTo("Men Tshirt").perform();
+    public ProductsPage validateOnProductsRelatedToSearch(String SearchResult) {
+        driver.element().assertThat(searchResult).text().isEqualTo(SearchResult).perform();
         return this;
     }
 
