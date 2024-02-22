@@ -35,13 +35,13 @@ public class NavigationBar {
         return this;
     }
 
-    //Migrating to JavaScript click for Safari pipeline failures
     @Step("Click on Products Page Link")
     public NavigationBar clickOnProductsLink() {
         driver.element().click(products_link);
         GoogleAlert.dismissAlert(driver, products_link);
         return this;
     }
+
     @Step("Click on ContactUs Account Link")
     public NavigationBar clickOnContactUsLink() {
         driver.element().clickUsingJavascript(contactUs_link);
