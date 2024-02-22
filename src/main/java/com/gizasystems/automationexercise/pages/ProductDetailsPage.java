@@ -24,6 +24,14 @@ public class ProductDetailsPage {
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+
+    //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+    @Step("Verify Product Details Page Visibility")
+    public ProductDetailsPage verifyProductDetailsPageVisibility(){
+        driver.assertThat().element(productDetails_div).isVisible().perform();
+        return this;
+    }
+
     @Step("Verify Product Details")
     public ProductDetailsPage verifyProductDetails(String productName, String productCategory, String productPrice, String productAvailability
             , String productionCondition, String productBrand ){
@@ -33,13 +41,6 @@ public class ProductDetailsPage {
         driver.assertThat().element(productAvailability_p).textTrimmed().contains(productAvailability).perform();
         driver.assertThat().element(productCondition_p).textTrimmed().contains(productionCondition).perform();
         driver.assertThat().element(productBrand_p).textTrimmed().contains(productBrand).perform();
-        return this;
-    }
-
-    //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-    @Step("Verify Product Details Page Visibility")
-    public ProductDetailsPage verifyProductDetailsPageVisibility(){
-        driver.assertThat().element(productDetails_div).isVisible().perform();
         return this;
     }
 
