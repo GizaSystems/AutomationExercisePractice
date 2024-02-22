@@ -1,4 +1,5 @@
 package com.gizasystems.automationexercise.tests.test;
+
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Epic;
@@ -23,12 +24,12 @@ public class ProductQuantityTests {
                 .verifyOnProductDetails()
                 .increaseQuantityInCart(testData.getTestData("DisplayedQuantity"))
                 .addProductToCart()
-                .clickToVerifyExactQuantityAddedToCart()
+                .clickOnCart()
                 .verifyExactQuantityAddedToCart(testData.getTestData("DisplayedQuantity"));
     }
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Cart.json");
     }
 
