@@ -7,13 +7,16 @@ import org.openqa.selenium.By;
 
 public class NavigationBar {
     // Variables
-    private SHAFT.GUI.WebDriver driver;
+    private  SHAFT.GUI.WebDriver driver;
 
     // Locators
     private final By signupLogin_link = By.cssSelector("a[href='/login']");
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
     private final By products_link = By.cssSelector("a[href='/products']");
+    private final By cartBtn_button = By.xpath("//a[contains(text(),' Cart') ]");
+
+    private final By contactUs_link = By.cssSelector("a[href='/contact_us']");
 
     // Constructor
     public NavigationBar(SHAFT.GUI.WebDriver driver) {
@@ -38,6 +41,17 @@ public class NavigationBar {
     public NavigationBar clickOnProductsLink() {
         driver.element().clickUsingJavascript(products_link);
         GoogleAlert.dismissAlert(driver);
+        return this;
+    }
+    @Step("Click on ContactUs Account Link")
+    public NavigationBar clickOnContactUsLink() {
+        driver.element().clickUsingJavascript(contactUs_link);
+        return this;
+    }
+
+    @Step("Navigate to Cart Page")
+    public NavigationBar navigateToCartPage() {
+        driver.element().click(cartBtn_button);
         return this;
     }
 

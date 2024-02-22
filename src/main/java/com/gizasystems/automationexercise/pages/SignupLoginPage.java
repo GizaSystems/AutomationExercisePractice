@@ -16,6 +16,12 @@ public class SignupLoginPage {
     private final By signupUserName_input = By.xpath("//input[@data-qa='signup-name']");
     private final By signupEmail_input = By.xpath("//input[@data-qa='signup-email']");
     private final By signup_button = By.xpath("//button[@data-qa='signup-button']");
+    private final By login_div= By.xpath("//div[@class='login-form']");
+    private final By login_h2 = By.xpath("//div[@class='login-form']//h2");
+    private final By loginEmail_input = By.xpath("//input[@data-qa='login-email']");
+    private final By loginPassword_input= By.xpath("//input[@data-qa='login-password']");
+    private final By login_button = By.xpath("//button[@data-qa='login-button']");
+    private final By signupExistingEmail_ErrorMessage = By.xpath("//p[@style='color: red;']");
 
     // Constructor
     public SignupLoginPage(SHAFT.GUI.WebDriver driver) {
@@ -36,6 +42,15 @@ public class SignupLoginPage {
         return this;
     }
 
+    @Step("User Login with Correct Email: {email} and Password: {password}")
+    public SignupLoginPage registeredUserLogin(String email, String password){
+        driver.element()
+                .type(loginEmail_input, email)
+                .type(loginPassword_input, password)
+                .click(login_button);
+        return this;
+    }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate on Signup Visibility")
     public SignupLoginPage validateOnSignUpVisibility(String expectedResult) {
@@ -43,5 +58,15 @@ public class SignupLoginPage {
         driver.verifyThat().element(signup_h2).text().isEqualTo(expectedResult).perform();
         return this;
     }
+    @Step("Validate on Login Visibility")
+    public SignupLoginPage validateOnLoginVisibility(String expectedResult){
+        driver.verifyThat().element(login_div).exists().perform();
+        driver.verifyThat().element(login_h2).text().isEqualTo(expectedResult).perform();
+        return this;
+    }
 
+@Step("Validate on Existing Email Error Message Visibility")
+    public void validateOnErrorMessageVisibilityOfExistingEmail() {
+        driver.verifyThat().element(signupExistingEmail_ErrorMessage).text().isEqualTo("Email Address already exist!");
+    }
 }
