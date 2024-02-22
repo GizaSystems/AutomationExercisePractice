@@ -38,19 +38,13 @@ public class NavigationBar {
         driver.element().click(products);
         return this;
     }
-    @Step("Handle ADS")
-    public NavigationBar handleAd(){
-        Actions actions = new Actions(driver.getDriver());
-        actions.pause(1000).doubleClick().perform();
-        return this;
-    }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate the Logged In User")
     public NavigationBar validateTheLoggedInUser(String expectedUser) {
         driver.verifyThat().element(loggedInUser_link).text().isEqualTo("Logged in as " + expectedUser).perform();
         return this;
     }
-
 
 
 }
