@@ -7,11 +7,10 @@ import org.openqa.selenium.By;
 public class CartPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
-
     // Locators
     private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
     private final By productName_h4 = By.xpath("//td[@class='cart_description']//h4");
-    private final By viewCart_a = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
+    private final By viewCart_a = By.cssSelector("#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(3) > a");
     private final By subscriptionTxt_h2 = By.tagName("h2");
     private final By subscription_input = By.id("susbscribe_email");
     private final By subscribeBtn_button = By.id("subscribe");
@@ -27,7 +26,7 @@ public class CartPage {
     //Clicking using JS as fix for pipeline failure on safari (Click isn't happening even with ClickUsingJS Flag)
     @Step("Open Cart Page")
     public CartPage openCart(){
-        driver.element().clickUsingJavascript(viewCart_a);
+        driver.element().click(viewCart_a);
         return this;
     }
 
@@ -68,4 +67,9 @@ public class CartPage {
         return this;
     }
 
+    @Step ("Click on Proceed to checkout button ")
+    public CartPage proceedToCheckOut () {
+        driver.element().click(proceedToCheckout_btn);
+        return this;
+    }
 }
