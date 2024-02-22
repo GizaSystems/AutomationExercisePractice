@@ -8,7 +8,7 @@ public class CartPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
     // Locators
-    private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
+    private final By ProceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
     private final By productName_h4 = By.xpath("//td[@class='cart_description']//h4");
     private final By viewCart_a = By.cssSelector("#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(3) > a");
     private final By subscriptionTxt_h2 = By.tagName("h2");
@@ -41,11 +41,16 @@ public class CartPage {
         driver.element().click(subscribeBtn_button);
         return this;
     }
+    @Step ("Click on Proceed to checkout button ")
+    public CartPage proceedToCheckOut () {
+        driver.element().click(ProceedToCheckout_btn);
+        return this;
+    }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Verify Cart Page is Loaded")
     public CartPage verifyCartPageIsLoaded(){
-        driver.verifyThat().element(proceedToCheckout_btn).isVisible().perform();
+        driver.verifyThat().element(ProceedToCheckout_btn).isVisible().perform();
         return this;
     }
 
@@ -64,12 +69,6 @@ public class CartPage {
     @Step("Validate on Success Message of Subscription Email")
     public CartPage validateOnSuccessMessageOfSubscriptionEmail(String expectedText) {
         driver.verifyThat().element(successAlert_div).text().isEqualTo(expectedText).perform();
-        return this;
-    }
-
-    @Step ("Click on Proceed to checkout button ")
-    public CartPage proceedToCheckOut () {
-        driver.element().click(proceedToCheckout_btn);
         return this;
     }
 }

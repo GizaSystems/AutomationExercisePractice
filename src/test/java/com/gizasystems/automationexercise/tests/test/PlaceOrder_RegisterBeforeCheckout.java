@@ -69,7 +69,7 @@ public class PlaceOrder_RegisterBeforeCheckout {
                 .VerifySucessMessage(CardData.getTestData("SuccessMessage"))
                 .DelteAccount();
         new DeleteAccountPage(driver)
-                .validateAccountDeleted("ACCOUNT DELETED!");
+                .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"));
     }
     @AfterMethod
     public void afterMethod() {

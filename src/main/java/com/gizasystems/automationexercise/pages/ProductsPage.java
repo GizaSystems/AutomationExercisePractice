@@ -7,8 +7,8 @@ import org.openqa.selenium.By;
 public class ProductsPage {
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/products";
-    private final By continueButton = By.xpath("(//button[@class=\"btn btn-success close-modal btn-block\"])[1]");
-    private final By viewCartButton = By.xpath("//a[normalize-space()='View Cart']");
+    private final By Continue_Btn = By.xpath("(//button[@class=\"btn btn-success close-modal btn-block\"])[1]");
+    private final By ViewCart_Btn = By.xpath("//a[normalize-space()='View Cart']");
     public ProductsPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
@@ -27,11 +27,11 @@ public class ProductsPage {
     public ProductsPage addProductsToCart(Integer index) {
         driver.element().hover(HooverOnProduct(index));
         driver.element().clickUsingJavascript(ClickOnProduct(index));
-        driver.element().click(continueButton);
+        driver.element().click(Continue_Btn);
         return this;
     }
     public  ProductsPage ClickCartButton(){
-        driver.element().click(viewCartButton);
+        driver.element().click(ViewCart_Btn);
         return this;
     }
 }

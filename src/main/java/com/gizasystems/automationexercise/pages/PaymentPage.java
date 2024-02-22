@@ -5,14 +5,14 @@ import org.openqa.selenium.By;
 public class PaymentPage {
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/payment";
-    private final By cardName_input = By.xpath("//div//input[@class=\"form-control\"]");
-    private final By cardNumber_input = By.xpath("//div//input[@class=\"form-control card-number\"]");
-    private final By cvc_input = By.xpath("//div//input[@class=\"form-control card-cvc\"]");
-    private final By cardExpMonth_input = By.xpath("//div//input[@class=\"form-control card-expiry-month\"]");
-    private final By cardExpYear_input = By.xpath("//div//input[@class=\"form-control card-expiry-year\"]");
-    private final By payOrder_Btn = By.xpath("//button[@class=\"form-control btn btn-primary submit-button\"]");
-    private final By orderPlaced_SucessMessage = By.xpath("//p[@style=\"font-size: 20px; font-family: garamond;\"]");
-    private final By delete_Btn = By.cssSelector("a[href='/delete_account']");
+    private final By CardNameInput = By.xpath("//div//input[@class=\"form-control\"]");
+    private final By CardNumberInput = By.xpath("//div//input[@class=\"form-control card-number\"]");
+    private final By CVCInput = By.xpath("//div//input[@class=\"form-control card-cvc\"]");
+    private final By CardExpMonthInput = By.xpath("//div//input[@class=\"form-control card-expiry-month\"]");
+    private final By CardExpYearInput = By.xpath("//div//input[@class=\"form-control card-expiry-year\"]");
+    private final By PayOrder_Btn = By.xpath("//button[@class=\"form-control btn btn-primary submit-button\"]");
+    private final By OrderPlacedSucessMessage = By.xpath("//p[@style=\"font-size: 20px; font-family: garamond;\"]");
+    private final By Delete_Btn = By.cssSelector("a[href='/delete_account']");
 
     public PaymentPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -25,28 +25,28 @@ public class PaymentPage {
 
     @Step("Enter payment details: Name on Card, Card Number, CVC, Expiration date")
     public PaymentPage enterPaymentDetails(String User , String Number , String CVC , String ExpMonth , String ExpYear) {
-        driver.element().type(cardName_input, User);
-        driver.element().type(cardNumber_input, Number);
-        driver.element().type(cvc_input, CVC);
-        driver.element().type(cardExpMonth_input, ExpMonth);
-        driver.element().type(cardExpYear_input, ExpYear);
+        driver.element().type(CardNameInput, User);
+        driver.element().type(CardNumberInput, Number);
+        driver.element().type(CVCInput, CVC);
+        driver.element().type(CardExpMonthInput, ExpMonth);
+        driver.element().type(CardExpYearInput, ExpYear);
         return this;
     }
     @Step("Click 'Pay and Confirm Order' button")
     public PaymentPage clickOnPayOrder() {
-        driver.element().click(payOrder_Btn);
-        return this;
-    }
-
-    @Step("Verify success message 'Your order has been placed successfully!'")
-    public PaymentPage VerifySucessMessage(String Message){
-        driver.verifyThat().element(orderPlaced_SucessMessage).text().isEqualTo(Message).perform();
+        driver.element().click(PayOrder_Btn);
         return this;
     }
 
     @Step("Click 'Delete Account' button")
     public PaymentPage DelteAccount() {
-        driver.element().click(delete_Btn);
+        driver.element().click(Delete_Btn);
+        return this;
+    }
+
+    @Step("Verify success message 'Your order has been placed successfully!'")
+    public PaymentPage VerifySucessMessage(String Message){
+        driver.verifyThat().element(OrderPlacedSucessMessage).text().isEqualTo(Message).perform();
         return this;
     }
 }
