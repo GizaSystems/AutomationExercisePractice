@@ -43,7 +43,7 @@ public class BrandProductsPage {
     }
 
     @Step("Verify that Products are visible")
-    public  BrandProductsPage verifyProductsAreVisible(){
+    public  BrandProductsPage verifyProductsVisible(){
         driver.element().assertThat(productsOfBrand).exists().perform();
         return this;
     }
@@ -61,7 +61,7 @@ public class BrandProductsPage {
     }
 
     @Step("Verify that Products of second Brand are visible")
-    public  BrandProductsPage verifyProductsOfSecondBrandAreVisibl(){
+    public  BrandProductsPage verifyProductsOfSecondBrandVisible(){
         driver.element().assertThat(productsOfsecondBrand).exists().perform();
         return this;
     }

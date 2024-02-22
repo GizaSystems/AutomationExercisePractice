@@ -23,10 +23,10 @@ public class BrandProductsTests {
                 .verifyBrandsVisible()
                 .clickOnBrandName()
                 .verifyBrandPageVisible()
-                .verifyProductsAreVisible()
+                .verifyProductsVisible()
                 .clickOnSecondBrandName()
                 .verifysecondBrandPageVisible()
-                .verifyProductsOfSecondBrandAreVisibl();
+                .verifyProductsOfSecondBrandVisible();
     }
 
     @BeforeMethod
