@@ -1,4 +1,5 @@
 package com.gizasystems.automationexercise.pages;
+
 import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
@@ -43,6 +44,4 @@ public class ProductsPage {
         driver.element().assertThat(searchResult).text().isEqualTo(SearchResult).perform();
         return this;
     }
-
-
 }

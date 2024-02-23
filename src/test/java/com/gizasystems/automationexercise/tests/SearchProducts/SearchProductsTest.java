@@ -43,7 +43,6 @@ public class SearchProductsTest {
                 .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"));
     }
 
-
     @AfterMethod
     public void afterMethod() {
         driver.quit();
