@@ -16,7 +16,7 @@ public class NavigationBar {
     private final By cartBtn_button = By.xpath("//a[contains(text(),' Cart') ]");
     private final By TestCase_link = By.cssSelector("li > a[href='/test_cases']");
     private final By contactUs_link = By.cssSelector("a[href='/contact_us']");
-
+    private final By products_link = By.xpath("//a[text()=' Products' ]");
     // Constructor
     public NavigationBar(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -49,6 +49,13 @@ public class NavigationBar {
     public NavigationBar ClickOnTestCase (){
         driver.element().click(TestCase_link);
         GoogleAlert.dismissAlert(driver, TestCase_link);
+        return this;
+    }
+
+
+    @Step("Navigate to 'Products' button")
+    public NavigationBar  navigateToProductsPage() {
+        driver.element().click(products_link);
         return this;
     }
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
