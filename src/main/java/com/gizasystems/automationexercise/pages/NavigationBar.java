@@ -56,6 +56,7 @@ public class NavigationBar {
     @Step("Navigate to 'Products' button")
     public NavigationBar  navigateToProductsPage() {
         driver.element().click(products_link);
+        GoogleAlert.dismissAlert(driver,products_link);
         return this;
     }
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\

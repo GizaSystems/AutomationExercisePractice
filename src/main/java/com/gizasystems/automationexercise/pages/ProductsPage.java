@@ -14,8 +14,8 @@ public class ProductsPage {
     }
 
     private final By searchTextArea = By.xpath("//input[@id='search_product']");
-    private final By searchedProducts = By.xpath("//h2[@class='title text-center']");
-    private final By allProducts = By.xpath("//h2[@class='title text-center']");
+    private final By searchedProducts = By.xpath("//h2[text()='Searched Products']");
+    private final By allProducts = By.xpath("//h2[text()='All Products']");
     private final By searchButton = By.xpath("//button[@id='submit_search']");
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
 
@@ -27,15 +27,15 @@ public class ProductsPage {
     }
 
     @Step("Verify user is navigated to ALL PRODUCTS page successfully")
-    public ProductsPage validateOnallProductPage(String allProductsPage) {
+    public ProductsPage validateOnallProductPage() {
         GoogleAlert.dismissAlert(driver, allProducts);
-        driver.assertThat().element(allProducts).text().isEqualTo(allProductsPage).perform();
+        driver.assertThat().element(allProducts).isVisible().perform();
         return this;
     }
 
     @Step("Verify 'SEARCHED PRODUCTS' is visible")
-    public ProductsPage validateOnsearchedProducts(String searchedProductPage) {
-        driver.element().assertThat(searchedProducts).text().isEqualTo(searchedProductPage).perform();
+    public ProductsPage validateOnsearchedProducts() {
+        driver.element().assertThat(searchedProducts).isVisible().perform();
         return this;
     }
 

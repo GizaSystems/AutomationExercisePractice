@@ -37,10 +37,10 @@ public class SearchProductsTest {
     public void searchProduct() {
 
         new NavigationBar(driver).navigateToProductsPage();
-        new ProductsPage(driver).validateOnallProductPage(testData.getTestData("allProductsPage"))
-                .searchForProduct(testData.getTestData("SearchedProduct"))
-                .validateOnsearchedProducts(testData.getTestData("searchedProductPage"))
-                .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"));
+        new ProductsPage(driver).validateOnallProductPage()
+                                .searchForProduct(testData.getTestData("SearchedProduct"))
+                                .validateOnsearchedProducts()
+                                .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"));
     }
 
     @AfterMethod
