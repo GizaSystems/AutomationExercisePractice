@@ -46,3 +46,4 @@ build/
 /generate_allure_report.bat
 generatedReport_*.zip
 /allure-report/index.html
+/allure-report/
