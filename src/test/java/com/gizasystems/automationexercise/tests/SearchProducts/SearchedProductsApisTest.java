@@ -1,4 +1,5 @@
 package com.gizasystems.automationexercise.tests.SearchProducts;
+
 import com.gizasystems.automationexercise.apis.Apis;
 import com.gizasystems.automationexercise.apis.ApisSearchProducts;
 import com.shaft.driver.SHAFT;
@@ -8,10 +9,16 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class SearchedProductsApisTest {
-
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
 
+    @Test(description = "Search Product Test - API")
+    @Description("Search for Product Using Api")
+    public void SearchProductApi() {
+        new ApisSearchProducts(api).searchProductApi(testData.getTestData("searchProductFiled"), testData.getTestData("SearchedProduct"))
+                .validateOnCategory(testData.getTestData("category"));
+
+    }
 
     @BeforeClass
     public void beforeClass() {
@@ -21,13 +28,5 @@ public class SearchedProductsApisTest {
     @BeforeMethod
     public void beforeMethod() {
         api = new SHAFT.API(Apis.ApisBaseUrl);
-    }
-
-    @Test(description = "Search Product Test - API")
-    @Description("Search for Product Using Api")
-    public void SearchProductApi() {
-        new ApisSearchProducts(api).searchProductApi(testData.getTestData("searchProductFiled"), testData.getTestData("SearchedProduct"))
-                .validateOnCategory();
-
     }
 }

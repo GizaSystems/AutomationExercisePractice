@@ -19,6 +19,16 @@ public class SearchProductsTest {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
 
+    @Test(description = "Search Product")
+    public void searchProduct() {
+
+        new NavigationBar(driver).clickOnProductsLink();
+        new ProductsPage(driver).validateOnallProductPage()
+                .searchForProduct(testData.getTestData("SearchedProduct"))
+                .validateOnsearchedProducts()
+                .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"));
+    }
+
     @BeforeClass
     public void beforeClass() {
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/SearchProduct.json");
@@ -31,16 +41,6 @@ public class SearchProductsTest {
         new HomePage(driver)
                 .navigate()
                 .validateOnVisibilityOfHomePage();
-    }
-
-    @Test(description = "Search Product")
-    public void searchProduct() {
-
-        new NavigationBar(driver).navigateToProductsPage();
-        new ProductsPage(driver).validateOnallProductPage()
-                                .searchForProduct(testData.getTestData("SearchedProduct"))
-                                .validateOnsearchedProducts()
-                                .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"));
     }
 
     @AfterMethod

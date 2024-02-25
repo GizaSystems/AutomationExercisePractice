@@ -11,34 +11,9 @@ public class ProductsPage {
 
     //Locators
     private final By productsPageTitle_div = By.xpath("//h2[@class='title text-center' and text()='All Products']");
-    private By viewProduct_link(String productName) { return By.xpath("(//p[text()='" + productName + "'])[1]//ancestor::div[@class='product-image-wrapper']//child::a[contains(@href,'/product')]");}
 
-    //Constructors
-    public ProductsPage(SHAFT.GUI.WebDriver driver){
-        this.driver = driver;
-    }
-
-    //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
-    @Step("Pick Product")
-    public ProductsPage pickProduct(String productName){
-        driver.element().click(viewProduct_link(productName));
-        GoogleAlert.dismissAlert(driver, viewProduct_link(productName));
-        return this;
-    }
-
-    //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-    @Step("Validate on Visibility of the Products Page Title")
-    public ProductsPage VerifyProductPageTitleVisibility(){
-        driver.assertThat().element(productsPageTitle_div).isVisible().perform();
-        return this;
-    }
-
-
-public class ProductsPage {
-    private SHAFT.GUI.WebDriver driver;
-
-    public ProductsPage(SHAFT.GUI.WebDriver driver) {
-        this.driver = driver;
+    private By viewProduct_link(String productName) {
+        return By.xpath("(//p[text()='" + productName + "'])[1]//ancestor::div[@class='product-image-wrapper']//child::a[contains(@href,'/product')]");
     }
 
     private final By searchTextArea = By.xpath("//input[@id='search_product']");
@@ -47,10 +22,30 @@ public class ProductsPage {
     private final By searchButton = By.xpath("//button[@id='submit_search']");
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
 
+    //Constructors
+    public ProductsPage(SHAFT.GUI.WebDriver driver) {
+        this.driver = driver;
+    }
+
+    //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+    @Step("Pick Product")
+    public ProductsPage pickProduct(String productName) {
+        driver.element().click(viewProduct_link(productName));
+        GoogleAlert.dismissAlert(driver, viewProduct_link(productName));
+        return this;
+    }
+
     @Step("Enter product name in search input and click search button")
     public ProductsPage searchForProduct(String SearchedProduct) {
         driver.element().type(searchTextArea, SearchedProduct);
         driver.element().click(searchButton);
+        return this;
+    }
+
+    //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+    @Step("Validate on Visibility of the Products Page Title")
+    public ProductsPage VerifyProductPageTitleVisibility() {
+        driver.assertThat().element(productsPageTitle_div).isVisible().perform();
         return this;
     }
 

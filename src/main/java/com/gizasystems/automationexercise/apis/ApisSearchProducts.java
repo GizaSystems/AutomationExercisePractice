@@ -1,10 +1,11 @@
 package com.gizasystems.automationexercise.apis;
 
-import com.gizasystems.automationexercise.utils.HtmlResponse;
+
 import com.shaft.api.RestActions;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,12 +34,9 @@ public class ApisSearchProducts {
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-    public ApisSearchProducts validateOnCategory() {
+    public ApisSearchProducts validateOnCategory(String category) {
         for (int i = 0; i < 10; i++) {
-            String category = HtmlResponse.getResponseJSONValue("products[" + i + "].category.category");
-            SHAFT.Validations.assertThat()
-                    .object(category)
-                    .contains("Top")
+            api.assertThatResponse().extractedJsonValue("products[" + i + "].category.category").contains(category)
                     .perform();
         }
         return this;
