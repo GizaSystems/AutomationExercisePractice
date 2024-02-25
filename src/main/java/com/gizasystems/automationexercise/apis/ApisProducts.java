@@ -3,8 +3,6 @@ package com.gizasystems.automationexercise.apis;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
-import com.shaft.validation.*;
-import io.restassured.response.Response;
 
 public class ApisProducts {
     private SHAFT.API api;
@@ -29,11 +27,11 @@ public class ApisProducts {
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate All products are listed")
-    public ApisProducts validateAllProductsAreListed(String expectedResponseFilePath) {
-        Response actualResponse = api.getResponse();
-        Validations.assertThat().response(actualResponse).matchesSchema(expectedResponseFilePath)
+    public ApisProducts validateAllProductsAreListed(String productName) {
+        api.assertThatResponse()
+                .extractedJsonValueAsList("$..products[?(@.length-1)].name")
+                .isEqualTo(productName)
                 .perform();
-
         return this;
     }
 

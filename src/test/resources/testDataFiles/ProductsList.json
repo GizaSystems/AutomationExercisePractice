@@ -1,17 +1,3 @@
-{"responseCode": 200,
-  "products":
-  [
-    {"id": 1,
-      "name": "Blue Top",
-      "price": "Rs. 500",
-      "brand": "Polo",
-      "category":
-      {
-        "usertype":
-        {
-          "usertype": "Women"
-        },
-        "category": "Tops"}
-    }
-  ]
+{
+  "productName": "GRAPHIC DESIGN MEN T SHIRT - BLUE"
 }

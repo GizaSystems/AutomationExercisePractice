@@ -16,20 +16,21 @@ import org.testng.annotations.Test;
 @Story("Product listing")
 public class ProductsListApiTests {
     private SHAFT.API api;
-    private String testFilePath;
+    private SHAFT.TestData.JSON testData;
 
     @Test(description = "Get all products list - API")
     @Description("Given that I am a guest user And I am at Home Page When I click on Products tab Then all products should be listed ")
     public void getAllProductsListApiTest() {
         new ApisProducts(api)
                 .getAllProductList()
-                .validateAllProductsAreListed(testFilePath);
+                .validateAllProductsAreListed(testData.getTestData("productName"));
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testFilePath = "src/test/resources/testDataFiles/ProductsList.json";
+
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/ProductsList.json");
     }
 
     @BeforeMethod
