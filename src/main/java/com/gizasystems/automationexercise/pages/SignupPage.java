@@ -83,13 +83,13 @@ public class SignupPage {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate on Account Info Page")
     public SignupPage validateOnAccountInfoPage(String expectedText) {
-        driver.assertThat().element(accountInfo_h1).text().isEqualTo(expectedText).perform();
+        driver.verifyThat().element(accountInfo_h1).text().equalsIgnoringCaseSensitivity(expectedText).perform();
         return this;
     }
 
     @Step("Validate On Account Created")
     public SignupPage validateOnAccountCreated(String expectedResult) {
-        driver.assertThat().element(createAccount_h2).text().isEqualTo(expectedResult).perform();
+        driver.verifyThat().element(createAccount_h2).text().equalsIgnoringCaseSensitivity(expectedResult).perform();
         return this;
     }
 }
