@@ -47,27 +47,29 @@ public class SignupPage {
 
     @Step("Enter Account Information")
     public SignupPage enterAccountInformation(String gender, String pass, String userFirstName, String userLastName, String day, String month, String year) {
-        driver.element().click(gender_input(gender));
-        driver.element().type(password_input, pass);
-
-        driver.element().select(days_select, day);
-        driver.element().select(months_select, month);
-        driver.element().select(years_select, year);
-
-        driver.element().type(firstName_input, userFirstName);
-        driver.element().type(lastName_input, userLastName);
+        driver.async().element()
+                .click(gender_input(gender))
+                .type(password_input, pass)
+                .select(days_select, day)
+                .select(months_select, month)
+                .select(years_select, year)
+                .type(firstName_input, userFirstName)
+                .type(lastName_input, userLastName)
+              .synchronize();
         return this;
     }
 
     @Step("Enter Address Information")
     public SignupPage enterAddressInformation(String userAddressOne, String country, String state, String city, String zipCode, String userMobileNumber) {
-        driver.element().type(addressOne_input, userAddressOne);
-        driver.element().select(country_select, country);
-        driver.element().type(state_input, state);
-        driver.element().type(city_input, city);
-        driver.element().type(zipcode_input, zipCode);
-        driver.element().type(mobileNumber_input, userMobileNumber);
-        driver.element().click(createAccount_button);
+        driver.async().element()
+                .type(addressOne_input, userAddressOne)
+                .select(country_select, country)
+                .type(state_input, state)
+                .type(city_input, city)
+                .type(zipcode_input, zipCode)
+                .type(mobileNumber_input, userMobileNumber)
+                .click(createAccount_button)
+              .synchronize();
         return this;
     }
 
