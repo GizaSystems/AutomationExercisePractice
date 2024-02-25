@@ -68,8 +68,8 @@ public class SignupPage {
                 .type(city_input, city)
                 .type(zipcode_input, zipCode)
                 .type(mobileNumber_input, userMobileNumber)
-                .click(createAccount_button)
               .synchronize();
+        driver.element().click(createAccount_button);
         return this;
     }
 
