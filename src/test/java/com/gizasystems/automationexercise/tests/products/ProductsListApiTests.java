@@ -14,14 +14,13 @@ import org.testng.annotations.Test;
 @Epic("Automation Exercise")
 @Feature("Products Management")
 @Story("Product listing")
-public class GetAllProductsListApiTests {
+public class ProductsListApiTests {
     private SHAFT.API api;
     private String testFilePath;
 
     @Test(description = "Get all products list - API")
     @Description("Given that I am a guest user And I am at Home Page When I click on Products tab Then all products should be listed ")
-    public void getAllProductsListApiTest()
-    {
+    public void getAllProductsListApiTest() {
         new ApisProducts(api)
                 .getAllProductList()
                 .validateAllProductsAreListed(testFilePath);

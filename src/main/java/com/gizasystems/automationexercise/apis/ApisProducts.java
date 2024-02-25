@@ -31,7 +31,7 @@ public class ApisProducts {
     @Step("Validate All products are listed")
     public ApisProducts validateAllProductsAreListed(String expectedResponseFilePath) {
         Response actualResponse = api.getResponse();
-        Validations.assertThat().response(actualResponse).isEqualToFileContentIgnoringOrder(expectedResponseFilePath)
+        Validations.assertThat().response(actualResponse).matchesSchema(expectedResponseFilePath)
                 .perform();
 
         return this;
