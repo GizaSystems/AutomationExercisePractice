@@ -7,8 +7,7 @@ import org.openqa.selenium.By;
 
 public class NavigationBar {
     // Variables
-    private  SHAFT.GUI.WebDriver driver;
-
+    private SHAFT.GUI.WebDriver driver;
     // Locators
     private final By signupLogin_link = By.cssSelector("a[href='/login']");
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
@@ -56,7 +55,7 @@ public class NavigationBar {
     }
 
     @Step("Click on test Case")
-    public NavigationBar ClickOnTestCase (){
+    public NavigationBar ClickOnTestCase() {
         driver.element().click(TestCase_link);
         GoogleAlert.dismissAlert(driver, TestCase_link);
         return this;
