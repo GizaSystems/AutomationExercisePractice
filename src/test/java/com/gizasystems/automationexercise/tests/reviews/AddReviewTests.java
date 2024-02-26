@@ -3,7 +3,6 @@ package com.gizasystems.automationexercise.tests.reviews;
 import com.gizasystems.automationexercise.pages.HomePage;
 import com.gizasystems.automationexercise.pages.NavigationBar;
 import com.gizasystems.automationexercise.pages.ProductsPage;
-import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
