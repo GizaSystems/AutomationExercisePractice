@@ -1,7 +1,7 @@
 package com.gizasystems.automationexercise.tests.SearchProducts;
 
 import com.gizasystems.automationexercise.apis.Apis;
-import com.gizasystems.automationexercise.apis.ApisSearchProducts;
+import com.gizasystems.automationexercise.apis.ApisProducts;
 import com.shaft.driver.SHAFT;
 import jdk.jfr.Description;
 import org.testng.annotations.BeforeClass;
@@ -15,7 +15,7 @@ public class SearchedProductsApisTest {
     @Test(description = "Search Product Test - API")
     @Description("Search for Product Using Api")
     public void SearchProductApi() {
-        new ApisSearchProducts(api).searchProductApi(testData.getTestData("searchProductFiled"), testData.getTestData("SearchedProduct"))
+        new ApisProducts(api).searchProductApi(testData.getTestData("searchProductFiled"), testData.getTestData("SearchedProduct"))
                 .validateOnCategory(testData.getTestData("category"));
 
     }
