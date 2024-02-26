@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 public class AddReviewTests {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON productTestData;
-    private String timeStamp = String.valueOf(System.currentTimeMillis());
+    private final String timeStamp = String.valueOf(System.currentTimeMillis());
 
     @Test(description = "Add review on product")
     public void addReview() {
