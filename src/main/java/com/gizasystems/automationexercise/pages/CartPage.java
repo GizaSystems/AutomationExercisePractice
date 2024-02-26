@@ -24,18 +24,17 @@ public class CartPage {
         return By.xpath("//a[normalize-space()='" + name + "']");
     }
 
-    private By productPrice(String price) {
-        return By.xpath("//td[@class='cart_price']//p[contains(text(),'" + price + "')]");
+    private By productPrice(Integer ID) {
+        return By.xpath("//tr[@id=\"product-" + ID + "\"]//td[@class='cart_price']//p");
     }
 
-    private By productQuantity(Integer productNumber, String qunatity) {
-        return By.xpath("//tr[@id='product-" + productNumber + "']//button[@class='disabled'][normalize-space()='" + qunatity + "']");
+    private By productQuantity(Integer ID) {
+        return By.xpath("//tr[@id=\"product-" + ID + "\"]//button[@class='disabled']");
     }
 
-    private By productTotalPrice(String totalPrice) {
-        return By.xpath("//p[@class='cart_total_price'][normalize-space()='" + totalPrice + "']");
+    private By productTotalPrice(Integer ID) {
+        return By.xpath("//tr[@id=\"product-" + ID + "\"]//p[@class='cart_total_price']");
     }
-
 
     // Constructor
 
@@ -44,8 +43,6 @@ public class CartPage {
         return this;
     }
 
-
-    // Constructor
     public CartPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
@@ -59,7 +56,6 @@ public class CartPage {
         return this;
     }
 
-
     @Step("Enter Subscription Email")
     public CartPage enterSubscriptionEmail(String email) {
         driver.element().type(subscription_input, email);
@@ -71,7 +67,6 @@ public class CartPage {
         driver.element().click(subscribeBtn_button);
         return this;
     }
-
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Verify Cart Page is Loaded")
@@ -106,20 +101,20 @@ public class CartPage {
     }
 
     @Step("Validate on the price of the products")
-    public CartPage validateOnProductPrices(String itemPrice) {
-        driver.verifyThat().element(productPrice(itemPrice)).text().isEqualTo(itemPrice).perform();
+    public CartPage validateOnProductPrices(Integer id, String itemPrice) {
+        driver.verifyThat().element(productPrice(id)).text().isEqualTo(itemPrice).perform();
         return this;
     }
 
     @Step("Validate on the Quantity of the products")
     public CartPage validateOnProductQuantity(Integer ID, String itemQuantity) {
-        driver.verifyThat().element(productQuantity(ID, itemQuantity)).textTrimmed().isEqualTo(itemQuantity).perform();
+        driver.verifyThat().element(productQuantity(ID)).textTrimmed().isEqualTo(itemQuantity).perform();
         return this;
     }
 
     @Step("Validate on the Total Price of the Products")
-    public CartPage validateOnTotalPrice(String itemTotalPrice) {
-        driver.verifyThat().element(productTotalPrice(itemTotalPrice)).textTrimmed().isEqualTo(itemTotalPrice).perform();
+    public CartPage validateOnTotalPrice(Integer ID, String itemTotalPrice) {
+        driver.verifyThat().element(productTotalPrice(ID)).textTrimmed().isEqualTo(itemTotalPrice).perform();
         return this;
     }
 

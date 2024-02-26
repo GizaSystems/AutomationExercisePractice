@@ -22,7 +22,7 @@ public class AddProductInCart {
     @Description("Given homepage is open, when the user adds the first product to the cart, continues shopping, adds the second product, and views the cart, then both products along with their accurate prices, quantities, and total price should be displayed.")
     public void addProductsToCart() {
         new NavigationBar(driver).
-                clickOnProductLink();
+                clickOnProductsLink();
         new ProductsPage(driver)
                 .navigate()
                 .addProductsToCart(1, 1)
@@ -33,12 +33,12 @@ public class AddProductInCart {
                 .navigate()
                 .validateOnItemsAddedInCart(testData.getTestData("FirstProduct.productDescription"))
                 .validateOnItemsAddedInCart(testData.getTestData("SecondProduct.productDescription"))
-                .validateOnProductPrices(testData.getTestData("FirstProduct.productPrice"))
-                .validateOnProductPrices(testData.getTestData("SecondProduct.productPrice"))
+                .validateOnProductPrices(1, testData.getTestData("FirstProduct.productPrice"))
+                .validateOnProductPrices(2, testData.getTestData("SecondProduct.productPrice"))
                 .validateOnProductQuantity(1, testData.getTestData("FirstProduct.productQuantity"))
                 .validateOnProductQuantity(2, testData.getTestData("SecondProduct.productQuantity"))
-                .validateOnTotalPrice(testData.getTestData("FirstProduct.total"))
-                .validateOnTotalPrice(testData.getTestData("SecondProduct.total"));
+                .validateOnTotalPrice(1, testData.getTestData("FirstProduct.total"))
+                .validateOnTotalPrice(2, testData.getTestData("SecondProduct.total"));
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\

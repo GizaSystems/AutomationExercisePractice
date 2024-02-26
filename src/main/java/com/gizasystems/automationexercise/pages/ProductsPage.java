@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 public class ProductsPage {
     //Variables
     private SHAFT.GUI.WebDriver driver;
+    private String url = System.getProperty("baseUrl") + "/products";
+
 
     //Locators
     private final By productsPageTitle_div = By.xpath("//h2[@class='title text-center' and text()='All Products']");
@@ -21,6 +23,15 @@ public class ProductsPage {
     private final By allProducts = By.xpath("//h2[text()='All Products']");
     private final By searchButton = By.xpath("//button[@id='submit_search']");
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
+
+    private By hoverOnProduct(Integer Index) {
+        return By.xpath("(//div[@class=\"single-products\"]//img)[" + Index + "]");
+    }
+
+    private By ClickOnProduct(Integer Index) {
+        return By.xpath("(//a[@data-product-id=\"" + Index + "\"])[" + Index + "]");
+
+    }
 
     //Constructors
     public ProductsPage(SHAFT.GUI.WebDriver driver) {
@@ -39,6 +50,17 @@ public class ProductsPage {
     public ProductsPage searchForProduct(String SearchedProduct) {
         driver.element().type(searchTextArea, SearchedProduct);
         driver.element().click(searchButton);
+        return this;
+    }
+    public ProductsPage navigate() {
+        driver.browser().navigateToURL(url);
+        return this;
+    }
+
+    @Step("Add Products to Cart")
+    public ProductsPage addProductsToCart(Integer index, Integer itemID) {
+        driver.element().hover(hoverOnProduct(index));
+        driver.element().click(ClickOnProduct(itemID));
         return this;
     }
 

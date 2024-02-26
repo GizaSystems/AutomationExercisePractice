@@ -17,6 +17,7 @@ public class NavigationBar {
     private final By TestCase_link = By.cssSelector("li > a[href='/test_cases']");
     private final By contactUs_link = By.cssSelector("a[href='/contact_us']");
 
+
     // Constructor
     public NavigationBar(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
