@@ -19,19 +19,15 @@ public class CartPage {
     private final By subscription_input = By.id("susbscribe_email");
     private final By subscribeBtn_button = By.id("subscribe");
     private final By successAlert_div = By.xpath("//div[@class='alert-success alert']");
-
     private By productName(String name) {
         return By.xpath("//a[normalize-space()='" + name + "']");
     }
-
     private By productPrice(Integer ID) {
         return By.xpath("//tr[@id=\"product-" + ID + "\"]//td[@class='cart_price']//p");
     }
-
     private By productQuantity(Integer ID) {
         return By.xpath("//tr[@id=\"product-" + ID + "\"]//button[@class='disabled']");
     }
-
     private By productTotalPrice(Integer ID) {
         return By.xpath("//tr[@id=\"product-" + ID + "\"]//p[@class='cart_total_price']");
     }
