@@ -95,26 +95,25 @@ public class ApisAccountManagement {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate User Created/Registered")
     public ApisAccountManagement validateUserCreatedRegistered() {
-//        api.verifyThatResponse().extractedJsonValue("message").contains(expectedMessage).perform();
-        api.verifyThatResponse().body().contains("User created!").perform();
+        api.verifyThatResponse().extractedJsonValue("message").isEqualTo("User created!").perform();
         return this;
     }
 
 @Step("Validate User Login")
 public ApisAccountManagement validateUserLoggedIn() {
-        api.verifyThatResponse().body().contains("User exists!").perform();
+    api.verifyThatResponse().extractedJsonValue("message").isEqualTo("User exists!").perform();
         return this;
 }
     @Step("Validate Account Deleted")
     public ApisAccountManagement validateDeleteUser() {
-        api.verifyThatResponse().body().contains("Account deleted!").perform();
+        api.verifyThatResponse().extractedJsonValue("message").isEqualTo("Account deleted!").perform();
         return this;
     }
 
     @Step("Validate User Not Found in the System")
     public ApisAccountManagement validateUserNotFound(String email) {
         getUserDetailByEmail(email);
-        api.verifyThatResponse().body().contains("Account not found with this email, try another email!").perform();
+        api.verifyThatResponse().extractedJsonValue("message").isEqualTo("Account not found with this email, try another email!").perform();
         return this;
     }
 
