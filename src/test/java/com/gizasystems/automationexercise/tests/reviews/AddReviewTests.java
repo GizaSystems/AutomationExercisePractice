@@ -24,13 +24,7 @@ public class AddReviewTests {
     @Test(description = "Add review on product")
     public void addReview() {
         new NavigationBar(driver).clickOnProductsLink();
-        new ProductsPage(driver).validateOnVisibilityOfProductsPage()
-                .clickOnViewProduct()
-                .validateVisibilityOfReviewPage()
-                .AddReviewOnProduct(productTestData.getTestData("UserName"),
-                        productTestData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com",
-                        productTestData.getTestData("ReviewText"))
-                .validatethatReviewSuccessAlertIsDisplayed();
+        new ProductsPage(driver).validateOnVisibilityOfProductsPage().clickOnViewProduct().validateVisibilityOfReviewPage().AddReviewOnProduct(productTestData.getTestData("UserName"), productTestData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com", productTestData.getTestData("ReviewText")).validatethatReviewSuccessAlertIsDisplayed();
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
@@ -42,9 +36,7 @@ public class AddReviewTests {
     @BeforeMethod
     public void beforeMethod() {
         driver = new SHAFT.GUI.WebDriver();
-        new HomePage(driver)
-                .navigate()
-                .validateOnVisibilityOfHomePage();
+        new HomePage(driver).navigate().validateOnVisibilityOfHomePage();
     }
 
     @AfterMethod
