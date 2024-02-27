@@ -29,7 +29,7 @@ public class ApisProducts {
     @Step("Validate All products are listed")
     public ApisProducts validateAllProductsAreListed(String productName) {
         api.assertThatResponse()
-                .extractedJsonValueAsList("$..products[?(@.length-1)].name")
+                .extractedJsonValue("$.products[(@.length-1)].name")
                 .isEqualTo(productName)
                 .perform();
         return this;
