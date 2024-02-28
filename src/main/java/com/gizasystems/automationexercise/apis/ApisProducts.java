@@ -45,7 +45,7 @@ public class ApisProducts {
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
 
-    @Step("Validate All products are listed")
+    @Step("Validate the last product name is equal to: {productName} ")
     public ApisProducts validateLastProductName(String productName) {
         api.assertThatResponse()
                 .extractedJsonValue("$.products[(@.length-1)].name")
