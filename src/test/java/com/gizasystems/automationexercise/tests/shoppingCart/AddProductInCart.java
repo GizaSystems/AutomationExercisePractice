@@ -25,20 +25,20 @@ public class AddProductInCart {
                 clickOnProductsLink();
         new ProductsPage(driver)
                 .navigate()
-                .addProductsToCart(1, 1)
-                .addProductsToCart(2, 2);
+                .addProductsToCart(testData.getTestData("FirstProduct.productDescription"))
+                .addProductsToCart(testData.getTestData("SecondProduct.productDescription"));
 
 
         new CartPage(driver)
                 .navigate()
                 .validateOnItemsAddedInCart(testData.getTestData("FirstProduct.productDescription"))
                 .validateOnItemsAddedInCart(testData.getTestData("SecondProduct.productDescription"))
-                .validateOnProductPrices(1, testData.getTestData("FirstProduct.productPrice"))
-                .validateOnProductPrices(2, testData.getTestData("SecondProduct.productPrice"))
-                .validateOnProductQuantity(1, testData.getTestData("FirstProduct.productQuantity"))
-                .validateOnProductQuantity(2, testData.getTestData("SecondProduct.productQuantity"))
-                .validateOnTotalPrice(1, testData.getTestData("FirstProduct.total"))
-                .validateOnTotalPrice(2, testData.getTestData("SecondProduct.total"));
+                .validateOnProductPrices(testData.getTestData("FirstProduct.productDescription"), testData.getTestData("FirstProduct.productPrice"))
+                .validateOnProductPrices(testData.getTestData("SecondProduct.productDescription"), testData.getTestData("SecondProduct.productPrice"))
+                .validateOnProductQuantity(testData.getTestData("FirstProduct.productDescription"), testData.getTestData("FirstProduct.productQuantity"))
+                .validateOnProductQuantity(testData.getTestData("SecondProduct.productDescription"), testData.getTestData("SecondProduct.productQuantity"))
+                .validateOnTotalPrice(testData.getTestData("FirstProduct.productDescription"), testData.getTestData("FirstProduct.total"))
+                .validateOnTotalPrice(testData.getTestData("SecondProduct.productDescription"), testData.getTestData("SecondProduct.total"));
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
