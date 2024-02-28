@@ -23,7 +23,7 @@ public class ProductsListApiTests {
     public void getAllProductsListApiTest() {
         new ApisProducts(api)
                 .getAllProductList()
-                .validateAllProductsAreListed(testData.getTestData("productName"));
+                .validateLastProductName(testData.getTestData("productName"));
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
