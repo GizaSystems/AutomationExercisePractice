@@ -29,7 +29,7 @@ public class LogoutUserTest {
 
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/LoginUser.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/LogoutTestData.json");
     }
 
     @BeforeMethod

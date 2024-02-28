@@ -8,7 +8,6 @@ public class LogoutUser {
 
     //Variables
     private SHAFT.GUI.WebDriver driver;
-    private final String url = System.getProperty("baseUrl");
 
     //Locators
 
