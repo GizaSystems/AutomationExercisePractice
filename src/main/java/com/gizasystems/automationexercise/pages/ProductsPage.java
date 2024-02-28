@@ -24,12 +24,12 @@ public class ProductsPage {
     private final By searchButton = By.xpath("//button[@id='submit_search']");
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
 
-    private By hoverOnProduct(Integer Index) {
-        return By.xpath("(//div[@class=\"single-products\"]//img)[" + Index + "]");
+    private By hoverOnProduct(String itemName) {
+        return By.xpath("//div[@class='productinfo text-center']//child::p[text()='" + itemName + "']");
     }
 
-    private By ClickOnProduct(Integer Index) {
-        return By.xpath("(//a[@data-product-id=\"" + Index + "\"])[" + Index + "]");
+    private By ClickOnProduct(String itemName) {
+        return By.xpath("//div[@class='overlay-content']//p[text()='" + itemName + "']//following-sibling::a[text()='Add to cart']");
 
     }
 
@@ -52,15 +52,16 @@ public class ProductsPage {
         driver.element().click(searchButton);
         return this;
     }
+
     public ProductsPage navigate() {
         driver.browser().navigateToURL(url);
         return this;
     }
 
     @Step("Add Products to Cart")
-    public ProductsPage addProductsToCart(Integer index, Integer itemID) {
-        driver.element().hover(hoverOnProduct(index));
-        driver.element().click(ClickOnProduct(itemID));
+    public ProductsPage addProductsToCart(String ProductName) {
+        driver.element().hover(hoverOnProduct(ProductName));
+        driver.element().click(ClickOnProduct(ProductName));
         return this;
     }
 

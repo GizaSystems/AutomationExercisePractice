@@ -19,17 +19,21 @@ public class CartPage {
     private final By subscription_input = By.id("susbscribe_email");
     private final By subscribeBtn_button = By.id("subscribe");
     private final By successAlert_div = By.xpath("//div[@class='alert-success alert']");
-    private By productName(String name) {
-        return By.xpath("//a[normalize-space()='" + name + "']");
+
+    private By productName(String itemName) {
+        return By.xpath("//a[normalize-space()='" + itemName + "']");
     }
-    private By productPrice(Integer ID) {
-        return By.xpath("//tr[@id=\"product-" + ID + "\"]//td[@class='cart_price']//p");
+
+    private By productPrice(String itemName) {
+        return By.xpath("//a[text()='" + itemName + "']//ancestor::td[@class='cart_description']//following-sibling::td[@class='cart_price']//p");
     }
-    private By productQuantity(Integer ID) {
-        return By.xpath("//tr[@id=\"product-" + ID + "\"]//button[@class='disabled']");
+
+    private By productQuantity(String itemName) {
+        return By.xpath("//a[text()='" + itemName + "']//ancestor::td[@class='cart_description']//following-sibling::td[@class='cart_quantity']//button[@class='disabled']");
     }
-    private By productTotalPrice(Integer ID) {
-        return By.xpath("//tr[@id=\"product-" + ID + "\"]//p[@class='cart_total_price']");
+
+    private By productTotalPrice(String itemName) {
+        return By.xpath("//a[text()='" + itemName + "']//ancestor::td[@class='cart_description']//following-sibling::td[@class='cart_total']//p");
     }
 
     // Constructor
@@ -97,20 +101,20 @@ public class CartPage {
     }
 
     @Step("Validate on the price of the products")
-    public CartPage validateOnProductPrices(Integer id, String itemPrice) {
-        driver.verifyThat().element(productPrice(id)).text().isEqualTo(itemPrice).perform();
+    public CartPage validateOnProductPrices(String ItemName, String itemPrice) {
+        driver.verifyThat().element(productPrice(ItemName)).text().isEqualTo(itemPrice).perform();
         return this;
     }
 
     @Step("Validate on the Quantity of the products")
-    public CartPage validateOnProductQuantity(Integer ID, String itemQuantity) {
-        driver.verifyThat().element(productQuantity(ID)).textTrimmed().isEqualTo(itemQuantity).perform();
+    public CartPage validateOnProductQuantity(String ItemName, String itemQuantity) {
+        driver.verifyThat().element(productQuantity(ItemName)).textTrimmed().isEqualTo(itemQuantity).perform();
         return this;
     }
 
     @Step("Validate on the Total Price of the Products")
-    public CartPage validateOnTotalPrice(Integer ID, String itemTotalPrice) {
-        driver.verifyThat().element(productTotalPrice(ID)).textTrimmed().isEqualTo(itemTotalPrice).perform();
+    public CartPage validateOnTotalPrice(String ItemName, String itemTotalPrice) {
+        driver.verifyThat().element(productTotalPrice(ItemName)).textTrimmed().isEqualTo(itemTotalPrice).perform();
         return this;
     }
 
