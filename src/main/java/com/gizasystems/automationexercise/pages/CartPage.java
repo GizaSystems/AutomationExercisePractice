@@ -7,26 +7,50 @@ import org.openqa.selenium.By;
 public class CartPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
+
+    private String url = System.getProperty("baseUrl") + "/view_cart";
+
+
     // Locators
-    private final By ProceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
+    private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
     private final By productName_h4 = By.xpath("//td[@class='cart_description']//h4");
-    private final By viewCart_a = By.cssSelector("#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(3) > a");
+    private final By viewCart_a = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
     private final By subscriptionTxt_h2 = By.tagName("h2");
     private final By subscription_input = By.id("susbscribe_email");
     private final By subscribeBtn_button = By.id("subscribe");
     private final By successAlert_div = By.xpath("//div[@class='alert-success alert']");
 
+    private By productName(String itemName) {
+        return By.xpath("//a[normalize-space()='" + itemName + "']");
+    }
+
+    private By productPrice(String itemName) {
+        return By.xpath("//a[text()='" + itemName + "']//ancestor::td[@class='cart_description']//following-sibling::td[@class='cart_price']//p");
+    }
+
+    private By productQuantity(String itemName) {
+        return By.xpath("//a[text()='" + itemName + "']//ancestor::td[@class='cart_description']//following-sibling::td[@class='cart_quantity']//button[@class='disabled']");
+    }
+
+    private By productTotalPrice(String itemName) {
+        return By.xpath("//a[text()='" + itemName + "']//ancestor::td[@class='cart_description']//following-sibling::td[@class='cart_total']//p");
+    }
+
     // Constructor
-    public CartPage(SHAFT.GUI.WebDriver driver){
+    public CartPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+    public CartPage navigate() {
+        driver.browser().navigateToURL(url);
+        return this;
+    }
 
     //Clicking using JS as fix for pipeline failure on safari (Click isn't happening even with ClickUsingJS Flag)
     @Step("Open Cart Page")
-    public CartPage openCart(){
-        driver.element().click(viewCart_a);
+    public CartPage openCart() {
+        driver.element().clickUsingJavascript(viewCart_a);
         return this;
     }
 
@@ -41,21 +65,22 @@ public class CartPage {
         driver.element().click(subscribeBtn_button);
         return this;
     }
+
     @Step ("Click on Proceed to checkout button ")
     public CartPage proceedToCheckOut () {
-        driver.element().click(ProceedToCheckout_btn);
+        driver.element().click(proceedToCheckout_btn);
         return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Verify Cart Page is Loaded")
-    public CartPage verifyCartPageIsLoaded(){
-        driver.verifyThat().element(ProceedToCheckout_btn).isVisible().perform();
+    public CartPage verifyCartPageIsLoaded() {
+        driver.verifyThat().element(proceedToCheckout_btn).isVisible().perform();
         return this;
     }
 
     @Step("Validate on Product Added To Cart Page")
-    public CartPage verifyProductAddedToCart(String addedProductName){
+    public CartPage verifyProductAddedToCart(String addedProductName) {
         driver.assertThat().element(productName_h4).text().isEqualTo(addedProductName).perform();
         return this;
     }
@@ -71,4 +96,29 @@ public class CartPage {
         driver.verifyThat().element(successAlert_div).text().isEqualTo(expectedText).perform();
         return this;
     }
+
+    @Step("Validate products are added to Cart")
+    public CartPage validateOnItemsAddedInCart(String ItemName) {
+        driver.verifyThat().element(productName(ItemName)).textTrimmed().isEqualTo(ItemName).perform();
+        return this;
+    }
+
+    @Step("Validate on the price of the products")
+    public CartPage validateOnProductPrices(String ItemName, String itemPrice) {
+        driver.verifyThat().element(productPrice(ItemName)).text().isEqualTo(itemPrice).perform();
+        return this;
+    }
+
+    @Step("Validate on the Quantity of the products")
+    public CartPage validateOnProductQuantity(String ItemName, String itemQuantity) {
+        driver.verifyThat().element(productQuantity(ItemName)).textTrimmed().isEqualTo(itemQuantity).perform();
+        return this;
+    }
+
+    @Step("Validate on the Total Price of the Products")
+    public CartPage validateOnTotalPrice(String ItemName, String itemTotalPrice) {
+        driver.verifyThat().element(productTotalPrice(ItemName)).textTrimmed().isEqualTo(itemTotalPrice).perform();
+        return this;
+    }
+
 }
