@@ -38,6 +38,7 @@ public class LogoutUserTest {
         new HomePage(driver).navigate().validateOnVisibilityOfHomePage();
         new NavigationBar(driver).clickOnSignupLoginLink();
         new SignupLoginPage(driver).registeredUserLogin(testData.getTestData("UserEMail"), testData.getTestData("UserPassWD"));
+        new NavigationBar(driver).validateTheLoggedInUser(testData.getTestData("username"));
     }
 
     @AfterMethod
