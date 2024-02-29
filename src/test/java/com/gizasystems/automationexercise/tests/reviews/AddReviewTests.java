@@ -3,7 +3,6 @@ package com.gizasystems.automationexercise.tests.reviews;
 import com.gizasystems.automationexercise.pages.HomePage;
 import com.gizasystems.automationexercise.pages.NavigationBar;
 import com.gizasystems.automationexercise.pages.ProductsPage;
-import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -20,7 +19,7 @@ import org.testng.annotations.Test;
 public class AddReviewTests {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON productTestData;
-    private String timeStamp = String.valueOf(System.currentTimeMillis());
+    private final String timeStamp = String.valueOf(System.currentTimeMillis());
 
     @Test(description = "Add review on product")
     public void addReview() {

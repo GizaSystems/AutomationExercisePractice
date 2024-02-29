@@ -121,4 +121,5 @@ public class ProductsPage {
         driver.verifyThat().element(reviewSuccessAlert).exists().perform();
         return this;
     }
+
 }
