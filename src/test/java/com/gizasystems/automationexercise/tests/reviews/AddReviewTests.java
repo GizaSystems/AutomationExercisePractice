@@ -24,7 +24,7 @@ public class AddReviewTests {
     @Test(description = "Add review on product")
     public void addReview() {
         new NavigationBar(driver).clickOnProductsLink();
-        new ProductsPage(driver).validateOnVisibilityOfProductsPage().clickOnViewProduct().validateVisibilityOfReviewPage().AddReviewOnProduct(productTestData.getTestData("UserName"), productTestData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com", productTestData.getTestData("ReviewText")).validatethatReviewSuccessAlertIsDisplayed();
+        new ProductsPage(driver).validateOnallProductPage().clickOnViewProduct().validateVisibilityOfReviewPage().AddReviewOnProduct(productTestData.getTestData("UserName"), productTestData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com", productTestData.getTestData("ReviewText")).validatethatReviewSuccessAlertIsDisplayed();
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\

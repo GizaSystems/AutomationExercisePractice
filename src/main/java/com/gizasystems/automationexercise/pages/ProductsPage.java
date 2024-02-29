@@ -6,10 +6,21 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class ProductsPage {
-    // Variables
+    //Variables
     private SHAFT.GUI.WebDriver driver;
 
-    // Locators
+    //Locators
+    private final By productsPageTitle_div = By.xpath("//h2[@class='title text-center' and text()='All Products']");
+
+    private By viewProduct_link(String productName) {
+        return By.xpath("(//p[text()='" + productName + "'])[1]//ancestor::div[@class='product-image-wrapper']//child::a[contains(@href,'/product')]");
+    }
+
+    private final By searchTextArea = By.xpath("//input[@id='search_product']");
+    private final By searchedProducts = By.xpath("//h2[text()='Searched Products']");
+    private final By allProducts = By.xpath("//h2[text()='All Products']");
+    private final By searchButton = By.xpath("//button[@id='submit_search']");
+    private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
     private final By searchProduct = By.id("search_product");
     private final By viewProduct = By.xpath("(//i[@class='fa fa-plus-square'])[1]");
     private final By writeReviewSection = By.xpath("//li[@class='active']");
@@ -19,12 +30,26 @@ public class ProductsPage {
     private final By submitBtn = By.id("button-review");
     private final By reviewSuccessAlert = By.xpath("//div[@class='alert-success alert']//span");
 
-    // Constructor
+    //Constructors
     public ProductsPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+    @Step("Pick Product")
+    public ProductsPage pickProduct(String productName) {
+        driver.element().click(viewProduct_link(productName));
+        GoogleAlert.dismissAlert(driver, viewProduct_link(productName));
+        return this;
+    }
+
+    @Step("Enter product name in search input and click search button")
+    public ProductsPage searchForProduct(String SearchedProduct) {
+        driver.element().type(searchTextArea, SearchedProduct);
+        driver.element().click(searchButton);
+        return this;
+    }
+
     @Step("Click on View Product Link")
     public ProductsPage clickOnViewProduct() {
         driver.element().click(viewProduct);
@@ -38,15 +63,32 @@ public class ProductsPage {
                 .type(reviewerEmail_input, reviewerEmail)
                 .type(reviewText_input, reviewText)
                 .click(submitBtn);
-
         return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-    @Step("Validate on Visibility of the Products Page")
-    public ProductsPage validateOnVisibilityOfProductsPage() {
-        GoogleAlert.dismissAlert(driver);
-        driver.verifyThat().element(searchProduct).exists().perform();
+    @Step("Validate on Visibility of the Products Page Title")
+    public ProductsPage VerifyProductPageTitleVisibility() {
+        driver.assertThat().element(productsPageTitle_div).isVisible().perform();
+        return this;
+    }
+
+    @Step("Verify user is navigated to ALL PRODUCTS page successfully")
+    public ProductsPage validateOnallProductPage() {
+        GoogleAlert.dismissAlert(driver, allProducts);
+        driver.assertThat().element(allProducts).isVisible().perform();
+        return this;
+    }
+
+    @Step("Verify 'SEARCHED PRODUCTS' is visible")
+    public ProductsPage validateOnsearchedProducts() {
+        driver.element().assertThat(searchedProducts).isVisible().perform();
+        return this;
+    }
+
+    @Step("Verify all the products related to search are visible")
+    public ProductsPage validateOnProductsRelatedToSearch(String SearchResult) {
+        driver.element().assertThat(searchResult).text().isEqualTo(SearchResult).perform();
         return this;
     }
 
@@ -63,4 +105,3 @@ public class ProductsPage {
     }
 
 }
-
