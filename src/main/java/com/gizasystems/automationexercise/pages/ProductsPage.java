@@ -53,6 +53,15 @@ public class ProductsPage {
 
     }
 
+    private By hoverOnProduct(String itemName) {
+        return By.xpath("//div[@class='productinfo text-center']//child::p[text()='" + itemName + "']");
+    }
+
+    private By ClickOnProduct(String itemName) {
+        return By.xpath("//div[@class='overlay-content']//p[text()='" + itemName + "']//following-sibling::a[text()='Add to cart']");
+
+    }
+
     //Constructors
 =======
     // Variables
@@ -126,6 +135,18 @@ public class ProductsPage {
                 .type(reviewerEmail_input, reviewerEmail)
                 .type(reviewText_input, reviewText)
                 .click(submitBtn);
+        return this;
+    }
+
+    public ProductsPage navigate() {
+        driver.browser().navigateToURL(url);
+        return this;
+    }
+
+    @Step("Add Products to Cart")
+    public ProductsPage addProductsToCart(String ProductName) {
+        driver.element().hover(hoverOnProduct(ProductName));
+        driver.element().click(ClickOnProduct(ProductName));
         return this;
     }
 
