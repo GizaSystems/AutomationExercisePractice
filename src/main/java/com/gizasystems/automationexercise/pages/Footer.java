@@ -6,32 +6,31 @@ import org.openqa.selenium.By;
 
 public class Footer {
     private SHAFT.GUI.WebDriver driver;
-    private final By SubscriptionText = By.xpath("//div[@class='single-widget']/h2");
-    private final By SubscriptionEmail = By.id("susbscribe_email");
-    private final By Subscribe_Btn = By.id("subscribe");
-    private  final By SuccessMsg = By.id("success-subscribe");
+    private final By subscriptionText = By.xpath("//div[@class='single-widget']/h2");
+    private final By subscriptionEmail = By.id("susbscribe_email");
+    private final By subscribeButton = By.id("subscribe");
+    private  final By successMsg = By.id("success-subscribe");
     public Footer(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
-
+    @Step("Verify Subscription Text is Visible")
+    public Footer  VerifySubscriptionText(String Text) {
+        driver.verifyThat().element(subscriptionText).text().equalsIgnoringCaseSensitivity(Text).perform();
+        return this;
+    }
     @Step("Enter Subscription Email")
     public Footer enterSubscriptionEmail(String email) {
-        driver.element().type(SubscriptionEmail,email);
+        driver.element().type(subscriptionEmail,email);
         return this;
     }
     @Step("Click on Subscribe Button")
     public Footer clickOnSubscribeButton() {
-        driver.element().click(Subscribe_Btn);
-        return this;
-    }
-    @Step("Verify Subscription Text is Visible")
-    public Footer verifySubscriptionText(String Text) {
-        driver.verifyThat().element(SubscriptionText).text().equalsIgnoringCaseSensitivity(Text).perform();
+        driver.element().click(subscribeButton);
         return this;
     }
     @Step("Validate on Success Message of Subscription Email")
-    public Footer validateOnSuccessMessageOfSubscriptionEmail(String successMessage) {
-        driver.verifyThat().element(SuccessMsg).text().equalsIgnoringCaseSensitivity(successMessage);
+    public Footer ValidateOnSuccessMessageOfSubscriptionEmail(String successMessage) {
+        driver.verifyThat().element(successMsg).text().equalsIgnoringCaseSensitivity(successMessage);
         return this;
     }
 }
