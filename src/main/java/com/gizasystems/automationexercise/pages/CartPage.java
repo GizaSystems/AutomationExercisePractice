@@ -117,6 +117,4 @@ public class CartPage {
         driver.verifyThat().element(productTotalPrice(ItemName)).textTrimmed().isEqualTo(itemTotalPrice).perform();
         return this;
     }
-
-
 }
