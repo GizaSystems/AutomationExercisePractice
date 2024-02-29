@@ -11,7 +11,7 @@ public class NavigationBar {
     // Locators
     private final By signupLogin_link = By.cssSelector("a[href='/login']");
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
-    private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
+    private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a/b");
     private final By products_link = By.cssSelector("a[href='/products']");
     private final By cartBtn_button = By.xpath("//a[contains(text(),' Cart') ]");
     private final By TestCase_link = By.cssSelector("li > a[href='/test_cases']");
@@ -64,7 +64,7 @@ public class NavigationBar {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate the Logged In User")
     public NavigationBar validateTheLoggedInUser(String expectedUser) {
-        driver.verifyThat().element(loggedInUser_link).textTrimmed().isEqualTo("Logged in as " + expectedUser).perform();
+        driver.verifyThat().element(loggedInUser_link).textTrimmed().isEqualTo( expectedUser).perform();
         return this;
     }
 }

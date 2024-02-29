@@ -1,46 +1,11 @@
 package com.gizasystems.automationexercise.pages;
 
-<<<<<<< HEAD
-=======
 import com.gizasystems.automationexercise.utils.GoogleAlert;
->>>>>>> origin/master
+
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-
 public class ProductsPage {
-<<<<<<< HEAD
-    private SHAFT.GUI.WebDriver driver;
-    private String url = System.getProperty("baseUrl") + "/products";
-    private final By Continue_Btn = By.xpath("(//button[@class=\"btn btn-success close-modal btn-block\"])[1]");
-    private final By ViewCart_Btn = By.xpath("//a[normalize-space()='View Cart']");
-    public ProductsPage(SHAFT.GUI.WebDriver driver) {
-        this.driver = driver;
-    }
-    private By HooverOnProduct(Integer Index) {
-        return By.xpath("(//div[@class=\"single-products\"]//img)[" + Index + "]");
-    }
-    private By ClickOnProduct(Integer Index) {
-        return By.xpath("(//a[@data-product-id=\""+ Index+ "\"])["+ Index + "]");
-
-    }
-    public ProductsPage navigate() {
-        driver.browser().navigateToURL(url);
-        return this;
-    }
-    @Step("Add  Products to Cart")
-    public ProductsPage addProductsToCart(Integer index) {
-        driver.element().hover(HooverOnProduct(index));
-        driver.element().clickUsingJavascript(ClickOnProduct(index));
-        driver.element().click(Continue_Btn);
-        return this;
-    }
-    public  ProductsPage ClickCartButton(){
-        driver.element().click(ViewCart_Btn);
-        return this;
-    }
-}
-=======
     //Variables
     private SHAFT.GUI.WebDriver driver;
 
@@ -50,16 +15,24 @@ public class ProductsPage {
     private By viewProduct_link(String productName) {
         return By.xpath("(//p[text()='" + productName + "'])[1]//ancestor::div[@class='product-image-wrapper']//child::a[contains(@href,'/product')]");
     }
-
+    private String url = System.getProperty("baseUrl") + "/products";
     private final By searchTextArea = By.xpath("//input[@id='search_product']");
     private final By searchedProducts = By.xpath("//h2[text()='Searched Products']");
     private final By allProducts = By.xpath("//h2[text()='All Products']");
     private final By searchButton = By.xpath("//button[@id='submit_search']");
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
-
+    private final By Continue_Btn = By.xpath("(//button[@class=\"btn btn-success close-modal btn-block\"])[1]");
+    private final By ViewCart_Btn = By.xpath("//a[normalize-space()='View Cart']");
     //Constructors
     public ProductsPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
+    }
+    private By HooverOnProduct(Integer Index) {
+        return By.xpath("(//div[@class=\"single-products\"]//img)[" + Index + "]");
+    }
+    private By ClickOnProduct(Integer Index) {
+        return By.xpath("(//a[@data-product-id=\"" + Index + "\"])[" + Index + "]");
+
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
@@ -74,6 +47,23 @@ public class ProductsPage {
     public ProductsPage searchForProduct(String SearchedProduct) {
         driver.element().type(searchTextArea, SearchedProduct);
         driver.element().click(searchButton);
+        return this;
+    }
+    @Step("Navigate To Product Page")
+    public ProductsPage navigate() {
+        driver.browser().navigateToURL(url);
+        return this;
+    }
+    @Step("Add  Products to Cart")
+    public ProductsPage addProductsToCart(Integer index) {
+        driver.element().hover(HooverOnProduct(index));
+        driver.element().clickUsingJavascript(ClickOnProduct(index));
+        driver.element().click(Continue_Btn);
+        return this;
+    }
+    @Step("Click on View Cart Button")
+    public ProductsPage ClickCartButton() {
+        driver.element().click(ViewCart_Btn);
         return this;
     }
 
@@ -103,4 +93,4 @@ public class ProductsPage {
         return this;
     }
 }
->>>>>>> origin/master
+

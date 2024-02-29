@@ -22,8 +22,6 @@ public class PlaceOrder_RegisterBeforeCheckout {
     @BeforeClass
     public void beforeClass() {
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/RegisterUser.json");
-        productData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Product.json");
-        CardData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/CardData.json");
     }
     private  String timeStamp = String.valueOf(System.currentTimeMillis());
     @BeforeMethod
@@ -56,7 +54,7 @@ public class PlaceOrder_RegisterBeforeCheckout {
         new CartPage(driver)
                 .openCart()
                 .verifyCartPageIsLoaded()
-                .verifyProductAddedToCart(productData.getTestData("productName"))
+                .verifyProductAddedToCart(testData.getTestData("Product.productName"))
                 .proceedToCheckOut();
         new CheckOutPage(driver)
                 .navigate()
@@ -64,9 +62,9 @@ public class PlaceOrder_RegisterBeforeCheckout {
                 .enteringDescriptionInCommentArea( "Place Order");
         new PaymentPage(driver)
                 .navigate()
-                .enterPaymentDetails(CardData.getTestData("CardName"),CardData.getTestData("CardNumber") , CardData.getTestData("CVC"), CardData.getTestData("CardExpMonth"),CardData.getTestData("CardExpYear"))
+                .enterPaymentDetails(testData.getTestData("CardData.CardName"),testData.getTestData("CardData.CardNumber") , testData.getTestData("CardData.CVC"), testData.getTestData("CardData.CardExpMonth"),testData.getTestData("CardData.CardExpYear"))
                 .clickOnPayOrder()
-                .VerifySucessMessage(CardData.getTestData("SuccessMessage"))
+                .VerifySucessMessage(testData.getTestData("Messages.SuccessOrderMessage"))
                 .DelteAccount();
         new DeleteAccountPage(driver)
                 .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"));
