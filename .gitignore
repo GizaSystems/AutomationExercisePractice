@@ -44,5 +44,6 @@ build/
 /allure-results/
 /AutomationExercisePractice.iml
 /generate_allure_report.bat
-/generatedReport_20240201-130757.zip
+generatedReport_*.zip
 /allure-report/index.html
+/allure-report/
