@@ -21,7 +21,6 @@ public class ProductsPage {
     private final By allProducts = By.xpath("//h2[text()='All Products']");
     private final By searchButton = By.xpath("//button[@id='submit_search']");
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
-    private final By searchProduct = By.id("search_product");
     private final By viewProduct = By.xpath("(//i[@class='fa fa-plus-square'])[1]");
     private final By writeReviewSection = By.xpath("//li[@class='active']");
     private final By reviewerName_input = By.id("name");
@@ -103,5 +102,4 @@ public class ProductsPage {
         driver.verifyThat().element(reviewSuccessAlert).exists().perform();
         return this;
     }
-
 }
