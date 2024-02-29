@@ -24,7 +24,7 @@ public class LogoutUserTest {
     @Test
     public void SuccessfulLogOut() {
         new LogoutUser(driver).logOut();
-        new SignupLoginPage(driver).validateOnLoginVisibility(testData.getTestData("Messages.Login"));
+        new SignupLoginPage(driver).validateOnLoginVisibility(testData.getTestData("LoginMessage"));
     }
 
     @BeforeClass
