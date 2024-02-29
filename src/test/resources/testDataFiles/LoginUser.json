@@ -10,7 +10,5 @@
     "AccountCreated": "ACCOUNT CREATED!",
     "AccountDeleted": "ACCOUNT DELETED!",
     "Login": "Login to your account"
-  },
-  "UserEMail" : "abdelazizaliabdelaziz@gmail.com",
-  "UserPassWD" : "karimAhmed"
+  }
 }
