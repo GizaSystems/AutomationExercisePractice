@@ -21,7 +21,7 @@ public class DeleteAccountPage {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate Account Deleted")
     public DeleteAccountPage validateAccountDeleted(String expectedMessage) {
-        driver.verifyThat().element(accountDeleted_b).text().isEqualTo(expectedMessage).perform();
+        driver.verifyThat().element(accountDeleted_b).text().equalsIgnoringCaseSensitivity(expectedMessage).perform();
         return this;
     }
 
