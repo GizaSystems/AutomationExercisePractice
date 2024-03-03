@@ -8,9 +8,6 @@ public class CartPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
 
-    private String url = System.getProperty("baseUrl") + "/view_cart";
-
-
     // Locators
     private String url = System.getProperty("baseUrl") + "/view_cart";
     private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
@@ -54,11 +51,6 @@ public class CartPage {
     @Step("Open Cart Page")
     public CartPage openCart() {
         driver.element().clickUsingJavascript(viewCart_a);
-        return this;
-    }
-
-    public CartPage navigate() {
-        driver.browser().navigateToURL(url);
         return this;
     }
 
