@@ -1,4 +1,4 @@
-package com.gizasystems.automationexercise.tests.test;
+package com.gizasystems.automationexercise.tests;
 import com.gizasystems.automationexercise.pages.HomePage;
 import com.gizasystems.automationexercise.pages.NavigationBar;
 import com.gizasystems.automationexercise.pages.TestCasePage;

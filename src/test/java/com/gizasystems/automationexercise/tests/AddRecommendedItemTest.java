@@ -1,4 +1,4 @@
-package com.gizasystems.automationexercise.tests.addRecommendItemToCart;
+package com.gizasystems.automationexercise.tests;
 
 import com.gizasystems.automationexercise.pages.CartPage;
 import com.gizasystems.automationexercise.pages.HomePage;

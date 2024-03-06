@@ -1,4 +1,4 @@
-package com.gizasystems.automationexercise.tests.logoutUser;
+package com.gizasystems.automationexercise.tests;
 import com.gizasystems.automationexercise.pages.HomePage;
 import com.gizasystems.automationexercise.pages.LogoutUser;
 import com.gizasystems.automationexercise.pages.NavigationBar;
