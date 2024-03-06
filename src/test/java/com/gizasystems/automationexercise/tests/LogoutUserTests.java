@@ -1,4 +1,4 @@
-package com.gizasystems.automationexercise.tests.logoutUser;
+package com.gizasystems.automationexercise.tests;
 import com.gizasystems.automationexercise.pages.HomePage;
 import com.gizasystems.automationexercise.pages.LogoutUser;
 import com.gizasystems.automationexercise.pages.NavigationBar;
@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 @Feature("User Management")
 @Story("Logout User")
 
-public class LogoutUserTest {
+public class LogoutUserTests {
 
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
