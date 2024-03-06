@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 @Epic("Automation Exercise")
 @Feature("User Management")
 @Story("Login")
-public class LoginUserApiTests {
+public class LoginUserApisTests {
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
     private String userEmail;
