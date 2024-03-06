@@ -3,10 +3,7 @@ package com.gizasystems.automationexercise.tests.register;
 import com.gizasystems.automationexercise.apis.Apis;
 import com.gizasystems.automationexercise.apis.ApisAccountManagement;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -20,6 +17,7 @@ public class RegisterUserApisTests {
 
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
+    @TmsLink("55512219")
     @Test(description = "Register User Test - API")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully to the system")
     public void registerUserTestApi() {
@@ -31,6 +29,7 @@ public class RegisterUserApisTests {
                 .validateUserNotFound(testData.getTestData("UserMail.Api") + timeStamp + "@gizasystems.com");
     }
 
+    @TmsLink("55512219")
     @Test(description = "Register User Test - API - Time Stamp")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully to the system")
     public void registerUserTestApiTimeStamp() {
