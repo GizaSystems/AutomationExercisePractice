@@ -12,8 +12,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Epic("Automation Exercise")
-@Feature("Add  Items To Cart")
-@Story("Add  The First Two Items To Cart")
+@Feature("Add Items To Cart")
+@Story("Add The First Two Items To Cart")
 public class AddProductInCartTests {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
