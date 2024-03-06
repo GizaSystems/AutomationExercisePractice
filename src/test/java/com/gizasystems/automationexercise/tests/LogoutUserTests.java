@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 @Feature("User Management")
 @Story("Logout User")
 
-public class LogoutUserTest {
+public class LogoutUserTests {
 
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;

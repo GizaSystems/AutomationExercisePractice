@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 @Epic("Automation Exercise")
 @Feature("Products")
 @Story("Verify All Products and Product Details")
-public class VerifyAllProductsAndProductDetailsTest {
+public class VerifyAllProductsAndProductDetailsTests {
 
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;

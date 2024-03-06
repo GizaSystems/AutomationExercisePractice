@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 @Epic("Automation Exercise")
 @Feature("Recommended Items")
 @Story("Add to cart from Recommended items")
-public class AddRecommendedItemTest {
+public class AddRecommendedItemTests {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON jsonData;
 

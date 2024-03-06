@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class SearchedProductsApisTest {
+public class SearchedProductsApisTests {
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
 

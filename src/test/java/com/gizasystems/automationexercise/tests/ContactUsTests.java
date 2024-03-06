@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class ContactUsTest {
+public class ContactUsTests {
 
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
