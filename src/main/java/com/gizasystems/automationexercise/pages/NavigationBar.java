@@ -9,7 +9,7 @@ public class NavigationBar {
     // Variables
     private SHAFT.GUI.WebDriver driver;
     // Locators
-    private final By signupLogin_link = By.xpath("//i[@class='fa fa-lock']");
+    private final By signupLogin_link =  By.xpath("//a[contains(text(),'Signup / Login') ]");
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
     private final By products_link = By.cssSelector("a[href='/products']");

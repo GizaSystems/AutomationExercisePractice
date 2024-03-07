@@ -23,7 +23,7 @@ public class ProductsPage {
     private final By allProducts = By.xpath("//h2[text()='All Products']");
     private final By searchButton = By.xpath("//button[@id='submit_search']");
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
-    private final By viewCartButtonPopUp = By.xpath("//a[@href=\"/view_cart\"]//u");
+    private final By viewCartButtonPopUp = By.xpath("//a[@href='/view_cart']//u");
 
     private By hoverOnProduct(String itemName) {
         return By.xpath("//div[@class='productinfo text-center']//child::p[text()='" + itemName + "']");

@@ -12,14 +12,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Epic("Automation Exercise")
-@Feature("Products Page")
+@Feature("Product Search and Cart Verification After Login")
 @Story("Search Products and Verify Cart After Login")
 public class SearchProductsandVerifyCartAfterLogin {
 
     private SHAFT.GUI.WebDriver driver;
-    private SHAFT.TestData.JSON searchProductTestData;
-    private SHAFT.TestData.JSON productsTestData;
-    private SHAFT.TestData.JSON LoginUserTestData;
+    private SHAFT.TestData.JSON testData;
 
 
     @Test(description = "Search Products and Verify Cart After Login")
@@ -29,35 +27,30 @@ public class SearchProductsandVerifyCartAfterLogin {
                 .clickOnProductsLink();
         new ProductsPage(driver)
                 .validateOnallProductPage()
-                .searchForProduct(searchProductTestData.getTestData("SearchedProduct"))
+                .searchForProduct(testData.getTestData("SearchedProduct"))
                 .validateOnsearchedProducts()
-                .validateOnProductsRelatedToSearch(searchProductTestData.getTestData("SearchResult"))
-                .addProductsToCart(productsTestData.getTestData("SecondProduct.productDescription"))
+                .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"))
+                .addProductsToCart(testData.getTestData("SecondProduct.productDescription"))
                 .ClickOnViewCartpopupLinkButton();
         new CartPage(driver)
                 .verifyCartPageIsLoaded()
-                .verifyProductAddedToCart(productsTestData.getTestData("SecondProduct.productDescription"));
+                .verifyProductAddedToCart(testData.getTestData("SecondProduct.productDescription"));
         new NavigationBar(driver)
                 .clickOnSignupLoginLink();
-
         new SignupLoginPage(driver)
-                .validateOnLoginVisibility(LoginUserTestData.getTestData("Messages.Login"))
-                .registeredUserLogin(LoginUserTestData.getTestData("RegisteredUserEmail"), LoginUserTestData.getTestData("RegisteredUserPassword"));
-
+                .validateOnLoginVisibility(testData.getTestData("Messages.Login"))
+                .registeredUserLogin(testData.getTestData("RegisteredUserEmail"), testData.getTestData("RegisteredUserPassword"));
         new NavigationBar(driver)
-                .validateTheLoggedInUser(LoginUserTestData.getTestData("RegisteredUserUsername"));
+                .validateTheLoggedInUser(testData.getTestData("RegisteredUserUsername"));
         new CartPage(driver)
                 .navigate()
                 .verifyCartPageIsLoaded()
-                .verifyProductAddedToCart(productsTestData.getTestData("SecondProduct.productDescription"));
-
+                .verifyProductAddedToCart(testData.getTestData("SecondProduct.productDescription"));
     }
 
     @BeforeClass
     public void beforeClass() {
-        searchProductTestData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/SearchProduct.json");
-        productsTestData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Products.json");
-        LoginUserTestData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/LoginUser.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/SearchProductsandVerifyCartAfterLogin.json");
     }
 
     @BeforeMethod

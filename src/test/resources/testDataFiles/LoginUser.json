@@ -10,8 +10,5 @@
     "AccountCreated": "ACCOUNT CREATED!",
     "AccountDeleted": "ACCOUNT DELETED!",
     "Login": "Login to your account"
-  },
-  "RegisteredUserUsername": "abdelrahman",
-  "RegisteredUserEmail": "abdelrahman@gmail.com",
-  "RegisteredUserPassword": "123"
+  }
 }

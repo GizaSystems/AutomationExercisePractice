@@ -1,6 +1,7 @@
 package com.gizasystems.automationexercise.tests.SearchProducts;
 
 import com.gizasystems.automationexercise.apis.Apis;
+import com.gizasystems.automationexercise.apis.ApisBrands;
 import com.gizasystems.automationexercise.apis.ApisProducts;
 import com.shaft.driver.SHAFT;
 import jdk.jfr.Description;
@@ -18,6 +19,12 @@ public class SearchedProductsApisTest {
         new ApisProducts(api).searchProductApi(testData.getTestData("searchProductFiled"), testData.getTestData("SearchedProduct"))
                 .validateOnCategory(testData.getTestData("category"));
 
+    }
+
+    @Test(description = "Get All Brands - API")
+    @Description("Get All Brands Using Api")
+    public void getAllBrandApi() {
+        new ApisBrands(api).getAllBrandsList();
     }
 
     @BeforeClass
