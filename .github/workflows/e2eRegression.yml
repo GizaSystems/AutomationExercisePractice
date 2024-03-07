@@ -1,12 +1,15 @@
-name: E2E Tests Custom
+name: E2E Regressoin Testing
 
 on:
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: '00 4 * * *'
   workflow_dispatch:
-    inputs:
-      testsPath:
-        description: 'Path to Tests to be Executed'
-        default: ''
 
+env:
+  TESTING_SCOPE: "%regex[.*Tests.*],com.gizasystems.automationexercise.tests.**.**,com.gizasystems.automationexercise.tests.**"
+  
 jobs:
   E2E_Chrome_Linux_Test:
     runs-on: ubuntu-latest
@@ -26,7 +29,7 @@ jobs:
           maven-version: 3.9.6
       - name: Run Tests
         continue-on-error: true
-        run: mvn test -DtargetBrowserName="chrome" -DexecutionAddress="local" -DtargetOperatingSystem="LINUX" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${{ github.event.inputs.testsPath }}"
+        run: mvn test -DtargetBrowserName="chrome" -DexecutionAddress="local" -DtargetOperatingSystem="LINUX" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${TESTING_SCOPE}"
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -72,7 +75,7 @@ jobs:
           maven-version: 3.9.6
       - name: Run Tests
         continue-on-error: true
-        run: mvn test -DtargetBrowserName="firefox" -DexecutionAddress="local" -DtargetOperatingSystem="LINUX" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${{ github.event.inputs.testsPath }}"
+        run: mvn test -DtargetBrowserName="firefox" -DexecutionAddress="local" -DtargetOperatingSystem="LINUX" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${TESTING_SCOPE}"
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -118,7 +121,7 @@ jobs:
           maven-version: 3.9.6
       - name: Run Tests
         continue-on-error: true
-        run: mvn test -DtargetBrowserName="microsoftedge" -DexecutionAddress="local" -DtargetOperatingSystem="WINDOWS" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${{ github.event.inputs.testsPath }}"
+        run: mvn test -DtargetBrowserName="microsoftedge" -DexecutionAddress="local" -DtargetOperatingSystem="WINDOWS" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${TESTING_SCOPE}"
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -165,7 +168,7 @@ jobs:
           maven-version: 3.9.6
       - name: Run Tests
         continue-on-error: true
-        run: mvn test -DtargetBrowserName="safari" -DexecutionAddress="local" -DtargetOperatingSystem="MAC" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${{ github.event.inputs.testsPath }}"
+        run: mvn test -DtargetBrowserName="safari" -DexecutionAddress="local" -DtargetOperatingSystem="MAC" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${TESTING_SCOPE}"
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v3
         with:

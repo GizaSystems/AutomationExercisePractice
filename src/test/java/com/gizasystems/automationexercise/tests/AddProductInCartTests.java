@@ -1,4 +1,4 @@
-package com.gizasystems.automationexercise.tests.shoppingCart;
+package com.gizasystems.automationexercise.tests;
 
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
@@ -12,9 +12,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Epic("Automation Exercise")
-@Feature("Add  Items To Cart")
-@Story("Add  The First Two Items To Cart")
-public class AddProductInCart {
+@Feature("Add Items To Cart")
+@Story("Add The First Two Items To Cart")
+public class AddProductInCartTests {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
 
