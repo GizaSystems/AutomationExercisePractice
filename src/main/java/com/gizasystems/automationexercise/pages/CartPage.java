@@ -19,8 +19,8 @@ public class CartPage {
     private final By subscribeBtn_button = By.id("subscribe");
     private final By successAlert_div = By.xpath("//div[@class='alert-success alert']");
 
-    private By removeProduct_btn(String productIndex) {
-        return By.xpath("//a[@class='cart_quantity_delete'][" + productIndex + "]");
+    private By removeProduct_btn(String productName) {
+        return By.xpath("//h4[.='" + productName + "']//parent::td//parent::tr//a[@class='cart_quantity_delete']");
     }
 
     private By productName(String itemName) {
@@ -72,8 +72,8 @@ public class CartPage {
     }
 
     @Step("Click X to Remove product from Cart")
-    public CartPage clickToRemoveProduct(String productIndex){
-        driver.element().click(removeProduct_btn(productIndex));
+    public CartPage clickToRemoveProduct(String productName){
+        driver.element().click(removeProduct_btn(productName));
         return this;
     }
 
@@ -128,8 +128,8 @@ public class CartPage {
     }
 
     @Step("Verify that Cart does not contain the removed Product")
-    public CartPage validateOnRemovedProduct(String index){
-        driver.verifyThat().element(removeProduct_btn(index)).doesNotExist().perform();
+    public CartPage validateOnRemovedProduct(String productName){
+        driver.verifyThat().element(removeProduct_btn(productName)).doesNotExist().perform();
         return this;
     }
 }

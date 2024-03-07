@@ -22,12 +22,12 @@ public class RemoveProductTests {
     public void verifyBrandPageDisplayed() {
         new ProductsPage(driver)
                 .navigate()
-                .addProductsToCart(testData.getTestData("productToBeRemoved.productName"));
+                .addProductsToCart(testData.getTestData("productName"));
         new CartPage(driver)
                 .openCart()
                 .verifyCartPageIsLoaded()
-                .clickToRemoveProduct(testData.getTestData("productToBeRemoved.productIndex"))
-                .validateOnRemovedProduct(testData.getTestData("productToBeRemoved.productIndex"));
+                .clickToRemoveProduct(testData.getTestData("productName"))
+                .validateOnRemovedProduct(testData.getTestData("productName"));
     }
 
     @BeforeClass
