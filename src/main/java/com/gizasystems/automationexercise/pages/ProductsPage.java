@@ -87,7 +87,7 @@ public class ProductsPage {
     }
 
     @Step("Verify 'SEARCHED PRODUCTS' is visible")
-    public ProductsPage validateOnsearchedProducts() {
+    public ProductsPage validateOnsearchedProductsPage() {
         driver.element().assertThat(searchedProducts).isVisible().perform();
         return this;
     }

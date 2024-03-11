@@ -28,7 +28,7 @@ public class SearchProductsandVerifyCartAfterLogin {
         new ProductsPage(driver)
                 .validateOnallProductPage()
                 .searchForProduct(testData.getTestData("SearchedProduct"))
-                .validateOnsearchedProducts()
+                .validateOnsearchedProductsPage()
                 .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"))
                 .addProductsToCart(testData.getTestData("SecondProduct.productDescription"))
                 .ClickOnViewCartpopupLinkButton();

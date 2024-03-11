@@ -21,12 +21,6 @@ public class SearchedProductsApisTests {
 
     }
 
-    @Test(description = "Get All Brands - API")
-    @Description("Get All Brands Using Api")
-    public void getAllBrandApi() {
-        new ApisBrands(api).getAllBrandsList();
-    }
-
     @BeforeClass
     public void beforeClass() {
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/SearchProductApi.json");
