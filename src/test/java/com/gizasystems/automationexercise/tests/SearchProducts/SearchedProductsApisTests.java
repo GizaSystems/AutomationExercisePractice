@@ -1,7 +1,6 @@
 package com.gizasystems.automationexercise.tests.SearchProducts;
 
 import com.gizasystems.automationexercise.apis.Apis;
-import com.gizasystems.automationexercise.apis.ApisBrands;
 import com.gizasystems.automationexercise.apis.ApisProducts;
 import com.shaft.driver.SHAFT;
 import jdk.jfr.Description;

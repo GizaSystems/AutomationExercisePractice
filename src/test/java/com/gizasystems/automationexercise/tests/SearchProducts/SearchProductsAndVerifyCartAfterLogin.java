@@ -14,14 +14,14 @@ import org.testng.annotations.Test;
 @Epic("Automation Exercise")
 @Feature("Product Search and Cart Verification After Login")
 @Story("Search Products and Verify Cart After Login")
-public class SearchProductsandVerifyCartAfterLogin {
+public class SearchProductsAndVerifyCartAfterLogin {
 
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
 
 
     @Test(description = "Search Products and Verify Cart After Login")
-    public void SearchProductsandVerifyCart() {
+    public void SearchProductsAndVerifyCart() {
 
         new NavigationBar(driver)
                 .clickOnProductsLink();
@@ -50,7 +50,7 @@ public class SearchProductsandVerifyCartAfterLogin {
 
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/SearchProductsandVerifyCartAfterLogin.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/SearchProductsAndVerifyCartAfterLogin.json");
     }
 
     @BeforeMethod

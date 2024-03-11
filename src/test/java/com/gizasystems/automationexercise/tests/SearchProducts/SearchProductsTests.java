@@ -25,7 +25,7 @@ public class SearchProductsTests {
         new NavigationBar(driver).clickOnProductsLink();
         new ProductsPage(driver).validateOnallProductPage()
                 .searchForProduct(testData.getTestData("SearchedProduct"))
-                .validateOnsearchedProducts()
+                .validateOnsearchedProductsPage()
                 .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"));
     }
 
