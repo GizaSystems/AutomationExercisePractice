@@ -1,0 +1,27 @@
+{
+  "Messages": {
+    "AccountCreated": "ACCOUNT CREATED!",
+    "AccountDeleted": "ACCOUNT DELETED!",
+    "Login": "Login to your account"
+  },
+  "FirstProduct": {
+    "productDescription": "Blue Top",
+    "productPrice": "Rs. 500",
+    "productQuantity": "1",
+    "total": "Rs. 500"
+  },
+  "SecondProduct": {
+    "productDescription": "Men Tshirt",
+    "productPrice": "Rs. 400",
+    "productQuantity": "1",
+    "total": "Rs. 400"
+  },
+  "RegisteredUserUsername": "automation",
+  "RegisteredUserEmail": "automationexercise1@gmail.com",
+  "RegisteredUserPassword": "123",
+  "SearchedProduct": "Men Tshirt",
+  "searchedProductPage": "SEARCHED PRODUCTS",
+  "SearchResult": "Men Tshirt",
+  "allProductsPage": "ALL PRODUCTS",
+  "ProductName": "Men Tshirt"
+}
