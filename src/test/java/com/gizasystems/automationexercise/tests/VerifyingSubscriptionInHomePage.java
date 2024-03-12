@@ -21,8 +21,8 @@ public class VerifyingSubscriptionInHomePage {
     private SHAFT.TestData.JSON testUser;
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
-    @Test(description = "Verify Subscription is on Home Page")
     public void VerifySubscriptionInHomePage() {
+
         new Footer(driver)
                 .verifySubscriptionText(testUser.getTestData("subText"))
                 .enterSubscriptionEmail(testUser.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com")
