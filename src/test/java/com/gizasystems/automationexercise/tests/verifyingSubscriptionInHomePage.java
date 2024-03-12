@@ -15,13 +15,18 @@ import org.testng.annotations.BeforeClass;
 @Story("Verify Subscription in home page")
 
 public class verifyingSubscriptionInHomePage {
+
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testUser;
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
     @Test(description = "Verify Subscription is on Home Page")
     public void VerifySubscriptionInHomePage() {
-        new Footer(driver).verifySubscriptionText(testUser.getTestData("subText")).enterSubscriptionEmail(testUser.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com").clickOnSubscribeButton().validateOnSuccessMessageOfSubscriptionEmail(testUser.getTestData("successSubscriptionMessage"));
+        new Footer(driver)
+                .verifySubscriptionText(testUser.getTestData("subText"))
+                .enterSubscriptionEmail(testUser.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com")
+                .clickOnSubscribeButton()
+                .validateOnSuccessMessageOfSubscriptionEmail(testUser.getTestData("successSubscriptionMessage"));
     }
 
     @BeforeClass
@@ -32,7 +37,9 @@ public class verifyingSubscriptionInHomePage {
     @BeforeMethod
     public void beforeMethod() {
         driver = new SHAFT.GUI.WebDriver();
-        new HomePage(driver).navigate().validateOnVisibilityOfHomePage();
+        new HomePage(driver)
+                .navigate()
+                .validateOnVisibilityOfHomePage();
     }
 
     @AfterMethod
