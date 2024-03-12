@@ -13,7 +13,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginWithCorrectEmailAndPasswordTest {
+@Epic("Automation Exercise")
+@Feature("User Management")
+@Story("Login")
+public class LoginWithCorrectEmailAndPasswordTests {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;

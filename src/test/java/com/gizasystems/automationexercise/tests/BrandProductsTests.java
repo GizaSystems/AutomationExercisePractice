@@ -1,4 +1,4 @@
-package com.gizasystems.automationexercise.tests.test;
+package com.gizasystems.automationexercise.tests;
 
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
@@ -11,26 +11,28 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Epic("Automation Exercise")
-@Feature("Cart Module")
-@Story("Cart Operations")
-public class ProductQuantityTests {
+@Feature("Brand Module")
+@Story("Brand Products")
+public class BrandProductsTests {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
 
-    @Test(description = "Verify Product Exact Quantity Added To Cart")
-    public void verifyProductQuantity() {
-        new ProductQuantityPage(driver)
-                .clickOnViewProduct()
-                .verifyOnProductDetails()
-                .increaseQuantityInCart(testData.getTestData("DisplayedQuantity"))
-                .addProductToCart()
-                .clickOnCart()
-                .verifyExactQuantityAddedToCart(testData.getTestData("DisplayedQuantity"));
+    @Test(description = "Verify that Brand Products are displayed")
+    public void verifyBrandPageDisplayed() {
+        new BrandProductsPage(driver)
+                .clickOnProducts()
+                .verifyBrandsVisible()
+                .clickOnBrandName()
+                .verifyBrandPageVisible(testData.getTestData("firstBrand"))
+                .verifyProductsVisible()
+                .clickOnSecondBrandName()
+                .verifysecondBrandPageVisible(testData.getTestData("secondBrand"))
+                .verifyProductsOfSecondBrandVisible();
     }
 
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/CartQuantity.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/BrandPage.json");
     }
 
     @BeforeMethod

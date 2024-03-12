@@ -8,8 +8,10 @@ public class CartPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
 
-    // Locators
     private String url = System.getProperty("baseUrl") + "/view_cart";
+
+
+    // Locators
     private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
     private final By productName_h4 = By.xpath("//td[@class='cart_description']//h4");
     private final By viewCart_a = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
@@ -17,6 +19,10 @@ public class CartPage {
     private final By subscription_input = By.id("susbscribe_email");
     private final By subscribeBtn_button = By.id("subscribe");
     private final By successAlert_div = By.xpath("//div[@class='alert-success alert']");
+
+    private By removeProduct_btn(String productName) {
+        return By.xpath("//h4[.='" + productName + "']//parent::td//parent::tr//a[@class='cart_quantity_delete']");
+    }
 
     private By productName(String itemName) {
         return By.xpath("//a[normalize-space()='" + itemName + "']");
@@ -63,6 +69,12 @@ public class CartPage {
     @Step("Click on Subscribe Button")
     public CartPage clickOnSubscribeButton() {
         driver.element().click(subscribeBtn_button);
+        return this;
+    }
+
+    @Step("Click X to Remove product from Cart")
+    public CartPage clickToRemoveProduct(String productName){
+        driver.element().click(removeProduct_btn(productName));
         return this;
     }
 
@@ -121,5 +133,9 @@ public class CartPage {
         return this;
     }
 
-
+    @Step("Verify that Cart does not contain the removed Product")
+    public CartPage validateOnRemovedProduct(String productName){
+        driver.verifyThat().element(removeProduct_btn(productName)).doesNotExist().perform();
+        return this;
+    }
 }
