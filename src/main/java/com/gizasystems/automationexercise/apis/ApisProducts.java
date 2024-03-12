@@ -30,11 +30,9 @@ public class ApisProducts {
     }
 
     @Step("API Search For Product")
-    public ApisProducts searchProductApi(String searchProductFiled, String searchedProduct) {
+    public ApisProducts searchProductApi(String searchedProduct) {
         List<List<Object>> formData = Arrays.asList(
-                Arrays.asList(searchProductFiled, searchedProduct)
-
-        );
+                Arrays.asList("search_product", searchedProduct));
         api.post(searchProduct_serviceName)
                 .setParameters(formData, RestActions.ParametersType.FORM)
                 .setContentType(ContentType.URLENC)
@@ -44,15 +42,6 @@ public class ApisProducts {
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-
-    @Step("Validate the last product name is equal to: {productName} ")
-    public ApisProducts validateLastProductName(String productName) {
-        api.assertThatResponse()
-                .extractedJsonValue("$.products[(@.length-1)].name")
-                .isEqualTo(productName)
-                .perform();
-        return this;
-    }
 
     public ApisProducts validateOnCategory(String category) {
         for (int i = 0; i < 10; i++) {

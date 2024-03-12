@@ -15,9 +15,9 @@ public class SearchedProductsApisTests {
     @Test(description = "Search Product Test - API")
     @Description("Search for Product Using Api")
     public void SearchProductApi() {
-        new ApisProducts(api).searchProductApi(testData.getTestData("searchProductFiled"), testData.getTestData("SearchedProduct"))
+        new ApisProducts(api)
+                .searchProductApi(testData.getTestData("SearchedProduct"))
                 .validateOnCategory(testData.getTestData("category"));
-
     }
 
     @BeforeClass
