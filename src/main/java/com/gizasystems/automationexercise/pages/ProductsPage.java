@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 public class ProductsPage {
     //Variables
     private SHAFT.GUI.WebDriver driver;
+    private String url = System.getProperty("baseUrl") + "/products";
+
 
     //Locators
     private final By productsPageTitle_div = By.xpath("//h2[@class='title text-center' and text()='All Products']");
@@ -21,6 +23,16 @@ public class ProductsPage {
     private final By allProducts = By.xpath("//h2[text()='All Products']");
     private final By searchButton = By.xpath("//button[@id='submit_search']");
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
+    private final By viewCartButtonPopUp = By.xpath("//a[@href='/view_cart']//u");
+
+    private By hoverOnProduct(String itemName) {
+        return By.xpath("//div[@class='productinfo text-center']//child::p[text()='" + itemName + "']");
+    }
+
+    private By ClickOnProduct(String itemName) {
+        return By.xpath("//div[@class='overlay-content']//p[text()='" + itemName + "']//following-sibling::a[text()='Add to cart']");
+
+    }
 
     //Constructors
     public ProductsPage(SHAFT.GUI.WebDriver driver) {
@@ -42,6 +54,24 @@ public class ProductsPage {
         return this;
     }
 
+    public ProductsPage navigate() {
+        driver.browser().navigateToURL(url);
+        return this;
+    }
+
+    @Step("Add Products to Cart")
+    public ProductsPage addProductsToCart(String ProductName) {
+        driver.element().hover(hoverOnProduct(ProductName));
+        driver.element().click(ClickOnProduct(ProductName));
+        return this;
+    }
+
+    @Step("Click On View Cart popup Link Button")
+    public ProductsPage ClickOnViewCartpopupLinkButton() {
+        driver.element().click(viewCartButtonPopUp);
+        return this;
+    }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate on Visibility of the Products Page Title")
     public ProductsPage VerifyProductPageTitleVisibility() {
@@ -57,7 +87,7 @@ public class ProductsPage {
     }
 
     @Step("Verify 'SEARCHED PRODUCTS' is visible")
-    public ProductsPage validateOnsearchedProducts() {
+    public ProductsPage validateOnsearchedProductsPage() {
         driver.element().assertThat(searchedProducts).isVisible().perform();
         return this;
     }
