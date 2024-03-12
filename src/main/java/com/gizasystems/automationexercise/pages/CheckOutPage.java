@@ -33,8 +33,8 @@ public class CheckOutPage {
     }
 
     @Step(" Enter description in comment text area and click 'Place Order'")
-    public CheckOutPage enteringDescriptionInCommentArea(String Text) {
-        driver.element().type(commentTextArea, Text);
+    public CheckOutPage enteringDescriptionInCommentArea(String text) {
+        driver.element().type(commentTextArea, text);
         driver.element().click(placeOrderBtn);
         return this;
     }
@@ -42,10 +42,10 @@ public class CheckOutPage {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
 
     @Step("Verifiying address details")
-    public CheckOutPage verifiyingAddressDetails(String FirstName, String Address, String City) {
-        driver.verifyThat().element(addressVerificationFirstName).text().equalsIgnoringCaseSensitivity(FirstName).perform();
-        driver.verifyThat().element(addressVerificationAddress1).text().equalsIgnoringCaseSensitivity(Address).perform();
-        driver.verifyThat().element(addressVerifiycationCity).text().equalsIgnoringCaseSensitivity(City).perform();
+    public CheckOutPage verifiyingAddressDetails(String firstName, String address, String city) {
+        driver.verifyThat().element(addressVerificationFirstName).text().equalsIgnoringCaseSensitivity(firstName).perform();
+        driver.verifyThat().element(addressVerificationAddress1).text().equalsIgnoringCaseSensitivity(address).perform();
+        driver.verifyThat().element(addressVerifiycationCity).text().equalsIgnoringCaseSensitivity(city).perform();
         return this;
     }
 }

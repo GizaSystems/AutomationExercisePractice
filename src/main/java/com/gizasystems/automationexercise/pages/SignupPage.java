@@ -4,7 +4,6 @@ import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
 
 public class SignupPage {
     // Variables
@@ -56,7 +55,7 @@ public class SignupPage {
                 .select(years_select, year)
                 .type(firstName_input, userFirstName)
                 .type(lastName_input, userLastName)
-              .synchronize();
+                .synchronize();
         return this;
     }
 
@@ -69,7 +68,7 @@ public class SignupPage {
                 .type(city_input, city)
                 .type(zipcode_input, zipCode)
                 .type(mobileNumber_input, userMobileNumber)
-              .synchronize();
+                .synchronize();
         driver.element().click(createAccount_button);
         return this;
     }
@@ -77,7 +76,7 @@ public class SignupPage {
     @Step("Click on Continue Button")
     public SignupPage clickOnContinueButton() {
         driver.element().click(continueBtn_link);
-        GoogleAlert.dismissAlert(driver,continueBtn_link);
+        GoogleAlert.dismissAlert(driver, continueBtn_link);
         return this;
     }
 
