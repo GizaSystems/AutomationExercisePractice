@@ -12,18 +12,16 @@ import org.testng.annotations.BeforeClass;
 @Feature("Home page verification")
 @Story("Verify Subscription in home page")
 
-
-public class VerifyingSubscriptionInHomeTests {
+public class VerifyingSubscriptionInHomePageTests {
 
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testUser;
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
-    @Test()
-    @Description("Verify Subscription in The Footer Of The Page")
+    @Test(description = "Verify Subscription is on Home Page")
+    @Description("Verify Subscription is On The Footer Of The Page")
     @TmsLink("55512381")
-
-    public void VerifySubscriptionInHomePage() {
+    public void VerifySubscriptionInHomePageTest() {
         new Footer(driver)
                 .verifySubscriptionText(testUser.getTestData("subText"))
                 .enterSubscriptionEmail(testUser.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com")
