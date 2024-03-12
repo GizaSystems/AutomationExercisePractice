@@ -2,9 +2,8 @@ package com.gizasystems.automationexercise.tests;
 
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
+import jdk.jfr.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,8 +12,10 @@ import org.testng.annotations.BeforeClass;
 @Epic("Automation Exercise")
 @Feature("Home page verification")
 @Story("Verify Subscription in home page")
+@Description("Verify Subscription in The Footer Of The Page")
+@TmsLink("55512381")
 
-public class verifyingSubscriptionInHomePage {
+public class VerifyingSubscriptionInHomePage {
 
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testUser;
