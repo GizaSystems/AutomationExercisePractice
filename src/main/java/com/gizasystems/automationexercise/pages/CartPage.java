@@ -78,6 +78,12 @@ public class CartPage {
         return this;
     }
 
+    @Step("Click on Proceed to checkout button ")
+    public CartPage proceedToCheckOut() {
+        driver.element().click(proceedToCheckout_btn);
+        return this;
+    }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Verify Cart Page is Loaded")
     public CartPage verifyCartPageIsLoaded() {
@@ -103,11 +109,7 @@ public class CartPage {
         return this;
     }
 
-    @Step("Click on Proceed to checkout button ")
-    public CartPage proceedToCheckOut() {
-        driver.element().click(proceedToCheckout_btn);
-        return this;
-    }
+
 
 
     @Step("Validate products are added to Cart")

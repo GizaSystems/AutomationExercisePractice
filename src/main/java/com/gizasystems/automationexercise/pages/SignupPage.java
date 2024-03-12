@@ -1,5 +1,6 @@
 package com.gizasystems.automationexercise.pages;
 
+import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -75,8 +76,8 @@ public class SignupPage {
 
     @Step("Click on Continue Button")
     public SignupPage clickOnContinueButton() {
-        driver.element().clickUsingJavascript(continueBtn_link);
-        new Actions(driver.getDriver()).doubleClick().perform();
+        driver.element().click(continueBtn_link);
+        GoogleAlert.dismissAlert(driver,continueBtn_link);
         return this;
     }
 
