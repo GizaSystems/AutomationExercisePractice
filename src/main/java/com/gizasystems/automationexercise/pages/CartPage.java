@@ -73,7 +73,7 @@ public class CartPage {
     }
 
     @Step("Click X to Remove product from Cart")
-    public CartPage clickToRemoveProduct(String productName){
+    public CartPage clickToRemoveProduct(String productName) {
         driver.element().click(removeProduct_btn(productName));
         return this;
     }
@@ -102,8 +102,9 @@ public class CartPage {
         driver.verifyThat().element(successAlert_div).text().isEqualTo(expectedText).perform();
         return this;
     }
-    @Step ("Click on Proceed to checkout button ")
-    public CartPage proceedToCheckOut () {
+
+    @Step("Click on Proceed to checkout button ")
+    public CartPage proceedToCheckOut() {
         driver.element().click(proceedToCheckout_btn);
         return this;
     }
@@ -134,7 +135,7 @@ public class CartPage {
     }
 
     @Step("Verify that Cart does not contain the removed Product")
-    public CartPage validateOnRemovedProduct(String productName){
+    public CartPage validateOnRemovedProduct(String productName) {
         driver.verifyThat().element(removeProduct_btn(productName)).doesNotExist().perform();
         return this;
     }

@@ -6,9 +6,10 @@ import org.openqa.selenium.By;
 
 public class CheckOutPage {
     private SHAFT.GUI.WebDriver driver;
+    private String url = System.getProperty("baseUrl") + "/checkout";
 
     // Locators
-    private String url = System.getProperty("baseUrl") + "/checkout";
+
     private final By addressVerifiycation_FirstName = By.xpath("//ul[@class = \"address item box\"]//li[@class=\"address_firstname address_lastname\"]");
     private final By addressVerifiycation_address1 = By.xpath("//ul[@class = \"address item box\"]//li[@class=\"address_address1 address_address2\"]");
     private final By addressVerifiycation_city = By.xpath("//ul[@class=\"address item box\"]//li[@class=\"address_country_name\"]");

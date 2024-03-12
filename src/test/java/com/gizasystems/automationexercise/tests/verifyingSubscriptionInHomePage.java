@@ -1,4 +1,4 @@
-package com.gizasystems.automationexercise.tests.test;
+package com.gizasystems.automationexercise.tests;
 
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
