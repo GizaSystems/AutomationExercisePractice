@@ -10,6 +10,7 @@ public class CartPage {
 
     private String url = System.getProperty("baseUrl") + "/view_cart";
 
+
     // Locators
     private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
     private final By productName_h4 = By.xpath("//td[@class='cart_description']//h4");
@@ -72,8 +73,14 @@ public class CartPage {
     }
 
     @Step("Click X to Remove product from Cart")
-    public CartPage clickToRemoveProduct(String productName){
+    public CartPage clickToRemoveProduct(String productName) {
         driver.element().click(removeProduct_btn(productName));
+        return this;
+    }
+
+    @Step("Click on Proceed to checkout button ")
+    public CartPage proceedToCheckOut() {
+        driver.element().click(proceedToCheckout_btn);
         return this;
     }
 
@@ -102,7 +109,6 @@ public class CartPage {
         return this;
     }
 
-
     @Step("Validate products are added to Cart")
     public CartPage validateOnItemsAddedInCart(String ItemName) {
         driver.verifyThat().element(productName(ItemName)).textTrimmed().isEqualTo(ItemName).perform();
@@ -128,7 +134,7 @@ public class CartPage {
     }
 
     @Step("Verify that Cart does not contain the removed Product")
-    public CartPage validateOnRemovedProduct(String productName){
+    public CartPage validateOnRemovedProduct(String productName) {
         driver.verifyThat().element(removeProduct_btn(productName)).doesNotExist().perform();
         return this;
     }
