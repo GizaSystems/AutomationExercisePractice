@@ -10,7 +10,6 @@ public class ProductsPage {
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/products";
 
-
     //Locators
     private final By productsPageTitle_div = By.xpath("//h2[@class='title text-center' and text()='All Products']");
 
@@ -24,15 +23,24 @@ public class ProductsPage {
     private final By searchButton = By.xpath("//button[@id='submit_search']");
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
     private final By viewCartButtonPopUp = By.xpath("//a[@href='/view_cart']//u");
-    private final By Continue_Btn = By.xpath("(//button[@class=\"btn btn-success close-modal btn-block\"])[1]");
-    private final By ViewCart_Btn = By.xpath("//a[normalize-space()='View Cart']");
+    private final By continueBtn = By.xpath("(//button[@class='btn btn-success close-modal btn-block'])[1]");
+    private final By viewCartBtn = By.xpath("//a[normalize-space()='View Cart']");
 
     private By hoverOnProduct(String itemName) {
         return By.xpath("//div[@class='productinfo text-center']//child::p[text()='" + itemName + "']");
     }
 
-    private By ClickOnProduct(String itemName) {
+    private By clickOnProduct(String itemName) {
         return By.xpath("//div[@class='overlay-content']//p[text()='" + itemName + "']//following-sibling::a[text()='Add to cart']");
+
+    }
+
+    private By hooverOnProduct(Integer Index) {
+        return By.xpath("(//div[@class='single-products']//img)[" + Index + "]");
+    }
+
+    private By clickOnProduct(Integer Index) {
+        return By.xpath("(//a[@data-product-id='" + Index + "'])[" + Index + "]");
 
     }
 
@@ -40,17 +48,8 @@ public class ProductsPage {
     public ProductsPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
-    private By HooverOnProduct(Integer Index) {
-        return By.xpath("(//div[@class=\"single-products\"]//img)[" + Index + "]");
-    }
-    private By ClickOnProduct(Integer Index) {
-        return By.xpath("(//a[@data-product-id=\""+ Index+ "\"])["+ Index + "]");
 
-    }
-    public ProductsPage navigate() {
-        driver.browser().navigateToURL(url);
-        return this;
-    }
+    //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
 
     @Step("Pick Product")
     public ProductsPage pickProduct(String productName) {
@@ -72,28 +71,28 @@ public class ProductsPage {
     }
 
     @Step("Add Products to Cart")
-    public ProductsPage addProductsToCart(String ProductName) {
+    public ProductsPage addProductToCart(String ProductName) {
         driver.element().hover(hoverOnProduct(ProductName));
-        driver.element().click(ClickOnProduct(ProductName));
-        return this;
-    }
-
-    @Step("Add  Products to Cart")
-    public ProductsPage addProductsToCart(Integer index) {
-        driver.element().hover(HooverOnProduct(index));
-        driver.element().clickUsingJavascript(ClickOnProduct(index));
-        driver.element().click(Continue_Btn);
-        return this;
-    }
-
-    public  ProductsPage ClickCartButton(){
-        driver.element().click(ViewCart_Btn);
+        driver.element().click(clickOnProduct(ProductName));
         return this;
     }
 
     @Step("Click On View Cart popup Link Button")
     public ProductsPage ClickOnViewCartpopupLinkButton() {
         driver.element().click(viewCartButtonPopUp);
+        return this;
+    }
+
+    @Step("Add  Products to Cart")
+    public ProductsPage addProductsToCart(Integer index) {
+        driver.element().hover(hooverOnProduct(index));
+        driver.element().click(clickOnProduct(index));
+        driver.element().click(continueBtn);
+        return this;
+    }
+
+    public ProductsPage clickCartButton() {
+        driver.element().click(viewCartBtn);
         return this;
     }
 
@@ -122,18 +121,4 @@ public class ProductsPage {
         driver.element().assertThat(searchResult).text().isEqualTo(SearchResult).perform();
         return this;
     }
-
-
-    @Step("Add  Products to Cart")
-    public ProductsPage addProductsToCart(Integer index) {
-        driver.element().hover(HooverOnProduct(index));
-        driver.element().click(ClickOnProduct(index));
-        driver.element().click(continueButton);
-        return this;
-    }
-    public  ProductsPage ClickCartButton(){
-        driver.element().click(viewCartButton);
-        return this;
-    }
-
 }

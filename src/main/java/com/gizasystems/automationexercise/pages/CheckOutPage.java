@@ -14,7 +14,7 @@ public class CheckOutPage {
     // Locators
 
     private final By addressVerificationFirstName = By.xpath("//ul[@class = 'address item box']//li[@class='address_firstname address_lastname']");
-    private final By addressVerificationAddress1 = By.xpath("//ul[@class = 'address item box']//li[@class='address_address1 address_address2']");
+    private final By addressVerificationAddress1 = By.xpath("//ul[@class = 'address item box']//li[@class='address_address1 address_address2'][2]");
     private final By addressVerifiycationCity = By.xpath("//ul[@class='address item box']//li[@class='address_country_name']");
     private final By placeOrderBtn = By.xpath("//div//a[@class='btn btn-default check_out']");
     private final By commentTextArea = By.className("form-control");
@@ -43,9 +43,9 @@ public class CheckOutPage {
 
     @Step("Verifiying address details")
     public CheckOutPage verifiyingAddressDetails(String firstName, String address, String city) {
-        driver.verifyThat().element(addressVerificationFirstName).text().equalsIgnoringCaseSensitivity(firstName).perform();
-        driver.verifyThat().element(addressVerificationAddress1).text().equalsIgnoringCaseSensitivity(address).perform();
-        driver.verifyThat().element(addressVerifiycationCity).text().equalsIgnoringCaseSensitivity(city).perform();
+        driver.verifyThat().element(addressVerificationFirstName).text().equals(firstName);
+        driver.verifyThat().element(addressVerificationAddress1).text().equals(address);
+        driver.verifyThat().element(addressVerifiycationCity).text().equals(city);
         return this;
     }
 }

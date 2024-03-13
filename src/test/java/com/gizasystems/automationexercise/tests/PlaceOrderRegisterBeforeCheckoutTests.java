@@ -1,10 +1,8 @@
-package com.gizasystems.automationexercise.tests.test;
+package com.gizasystems.automationexercise.tests;
 
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,28 +12,17 @@ import org.testng.annotations.BeforeClass;
 @Feature("Placing Order")
 @Story("Place Order : Register Before Checkout")
 
-public class PlaceOrder_RegisterBeforeCheckout {
+public class PlaceOrderRegisterBeforeCheckoutTests {
+
     private SHAFT.TestData.JSON testData;
-    private SHAFT.TestData.JSON productData;
-    private SHAFT.TestData.JSON CardData;
     private SHAFT.GUI.WebDriver driver;
-    @BeforeClass
-    public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/RegisterUser.json");
-        productData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Product.json");
-        CardData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/CardData.json");
-    }
-    private  String timeStamp = String.valueOf(System.currentTimeMillis());
-    @BeforeMethod
-    public void beforeMethod() {
-        driver = new SHAFT.GUI.WebDriver();
-        new HomePage(driver)
-                .navigate()
-                .validateOnVisibilityOfHomePage();
-    }
+    private String timeStamp = String.valueOf(System.currentTimeMillis());
+
     @Test(description = "Place Order: Register before Checkout")
-    public void PlaceOrderRegisterBeforeCheckout ()
-    {
+    @Description("Place Order: Register before Checkout")
+    @TmsLink("55512432")
+
+    public void PlaceOrderRegisterBeforeCheckout() {
         new NavigationBar(driver)
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
@@ -52,25 +39,38 @@ public class PlaceOrder_RegisterBeforeCheckout {
         new ProductsPage(driver)
                 .navigate()
                 .addProductsToCart(1)
-                .ClickCartButton();
+                .clickCartButton();
         new CartPage(driver)
-                .openCart()
                 .verifyCartPageIsLoaded()
-                .verifyProductAddedToCart(productData.getTestData("productName"))
+                .verifyProductAddedToCart(testData.getTestData("productName"))
                 .proceedToCheckOut();
         new CheckOutPage(driver)
                 .navigate()
-                .verififyingAddressDetails("Mr. Automation Bot",testData.getTestData("UserAddress1"),testData.getTestData("UserCountry"))
-                .enteringDescriptionInCommentArea( "Place Order");
+                .verifiyingAddressDetails("Mr. Automation Bot", testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"))
+                .enteringDescriptionInCommentArea("Place Order");
         new PaymentPage(driver)
                 .navigate()
-                .enterPaymentDetails(CardData.getTestData("CardName"),CardData.getTestData("CardNumber") , CardData.getTestData("CVC"), CardData.getTestData("CardExpMonth"),CardData.getTestData("CardExpYear"))
+                .enterPaymentDetails(testData.getTestData("cardName"), testData.getTestData("cardNumber"), testData.getTestData("cvc"), testData.getTestData("cardExpMonth"), testData.getTestData("cardExpYear"))
                 .clickOnPayOrder()
-                .VerifySucessMessage(CardData.getTestData("SuccessMessage"))
-                .DelteAccount();
+                .verifySucessMessage(testData.getTestData("Messages.successMessageOfOrder"))
+                .delteAccount();
         new DeleteAccountPage(driver)
                 .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"));
     }
+
+    @BeforeClass
+    public void beforeClass() {
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/RegisterUser.json");
+    }
+
+    @BeforeMethod
+    public void beforeMethod() {
+        driver = new SHAFT.GUI.WebDriver();
+        new HomePage(driver)
+                .navigate()
+                .validateOnVisibilityOfHomePage();
+    }
+
     @AfterMethod
     public void afterMethod() {
         driver.quit();
