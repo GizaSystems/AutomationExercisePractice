@@ -12,7 +12,6 @@ public class CartPage {
 
 
     // Locators
-    private String url = System.getProperty("baseUrl") + "/view_cart";
     private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
     private final By productName_h4 = By.xpath("//td[@class='cart_description']//h4");
     private final By viewCart_a = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
@@ -20,6 +19,10 @@ public class CartPage {
     private final By subscription_input = By.id("susbscribe_email");
     private final By subscribeBtn_button = By.id("subscribe");
     private final By successAlert_div = By.xpath("//div[@class='alert-success alert']");
+
+    private By removeProduct_btn(String productName) {
+        return By.xpath("//h4[.='" + productName + "']//parent::td//parent::tr//a[@class='cart_quantity_delete']");
+    }
 
     private By productName(String itemName) {
         return By.xpath("//a[normalize-space()='" + itemName + "']");
@@ -38,6 +41,12 @@ public class CartPage {
     }
 
     // Constructor
+
+    public CartPage navigate() {
+        driver.browser().navigateToURL(url);
+        return this;
+    }
+
     public CartPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
@@ -55,11 +64,6 @@ public class CartPage {
         return this;
     }
 
-    public CartPage navigate() {
-        driver.browser().navigateToURL(url);
-        return this;
-    }
-
     @Step("Enter Subscription Email")
     public CartPage enterSubscriptionEmail(String email) {
         driver.element().type(subscription_input, email);
@@ -69,6 +73,18 @@ public class CartPage {
     @Step("Click on Subscribe Button")
     public CartPage clickOnSubscribeButton() {
         driver.element().click(subscribeBtn_button);
+        return this;
+    }
+
+    @Step("Click X to Remove product from Cart")
+    public CartPage clickToRemoveProduct(String productName) {
+        driver.element().click(removeProduct_btn(productName));
+        return this;
+    }
+
+    @Step("Click on Proceed to checkout button ")
+    public CartPage proceedToCheckOut() {
+        driver.element().click(proceedToCheckout_btn);
         return this;
     }
 
@@ -108,6 +124,7 @@ public class CartPage {
         return this;
     }
 
+
     @Step("Validate products are added to Cart")
     public CartPage validateOnItemsAddedInCart(String ItemName) {
         driver.verifyThat().element(productName(ItemName)).textTrimmed().isEqualTo(ItemName).perform();
@@ -132,4 +149,9 @@ public class CartPage {
         return this;
     }
 
+    @Step("Verify that Cart does not contain the removed Product")
+    public CartPage validateOnRemovedProduct(String productName) {
+        driver.verifyThat().element(removeProduct_btn(productName)).doesNotExist().perform();
+        return this;
+    }
 }

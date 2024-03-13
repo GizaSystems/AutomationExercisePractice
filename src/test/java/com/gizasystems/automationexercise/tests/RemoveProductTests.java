@@ -1,4 +1,4 @@
-package com.gizasystems.automationexercise.tests.test;
+package com.gizasystems.automationexercise.tests;
 
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
@@ -11,26 +11,28 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Epic("Automation Exercise")
-@Feature("Cart Module")
-@Story("Cart Operations")
-public class ProductQuantityTests {
+@Feature("Brand Module")
+@Story("Brand Products")
+public class RemoveProductTests {
+
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
 
-    @Test(description = "Verify Product Exact Quantity Added To Cart")
-    public void verifyProductQuantity() {
-        new ProductQuantityPage(driver)
-                .clickOnViewProduct()
-                .verifyOnProductDetails()
-                .increaseQuantityInCart(testData.getTestData("DisplayedQuantity"))
-                .addProductToCart()
-                .clickOnCart()
-                .verifyExactQuantityAddedToCart(testData.getTestData("DisplayedQuantity"));
+    @Test(description = "Verify that Product Removed from Cart Successfully")
+    public void verifyBrandPageDisplayed() {
+        new ProductsPage(driver)
+                .navigate()
+                .addProductsToCart(testData.getTestData("productName"));
+        new CartPage(driver)
+                .openCart()
+                .verifyCartPageIsLoaded()
+                .clickToRemoveProduct(testData.getTestData("productName"))
+                .validateOnRemovedProduct(testData.getTestData("productName"));
     }
 
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/CartQuantity.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/RemoveProductTest.json");
     }
 
     @BeforeMethod
@@ -45,5 +47,4 @@ public class ProductQuantityTests {
     public void afterMethod() {
         driver.quit();
     }
-
 }

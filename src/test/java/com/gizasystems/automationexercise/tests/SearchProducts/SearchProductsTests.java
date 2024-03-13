@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 @Epic("Automation Exercise")
 @Feature("Products Page")
 @Story("Search Product")
-public class SearchProductsTest {
+public class SearchProductsTests {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
 
@@ -25,7 +25,7 @@ public class SearchProductsTest {
         new NavigationBar(driver).clickOnProductsLink();
         new ProductsPage(driver).validateOnallProductPage()
                 .searchForProduct(testData.getTestData("SearchedProduct"))
-                .validateOnsearchedProducts()
+                .validateOnsearchedProductsPage()
                 .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"));
     }
 
