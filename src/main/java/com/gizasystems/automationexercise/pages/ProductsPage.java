@@ -23,6 +23,7 @@ public class ProductsPage {
     private final By allProducts = By.xpath("//h2[text()='All Products']");
     private final By searchButton = By.xpath("//button[@id='submit_search']");
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
+    private final By viewCartButtonPopUp = By.xpath("//a[@href='/view_cart']//u");
     private final By viewProduct = By.xpath("(//i[@class='fa fa-plus-square'])[1]");
     private final By writeReviewSection = By.xpath("//li[@class='active']");
     private final By reviewerName_input = By.id("name");
@@ -88,6 +89,12 @@ public class ProductsPage {
         return this;
     }
 
+    @Step("Click On View Cart popup Link Button")
+    public ProductsPage ClickOnViewCartpopupLinkButton() {
+        driver.element().click(viewCartButtonPopUp);
+        return this;
+    }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate on Visibility of the Products Page Title")
     public ProductsPage VerifyProductPageTitleVisibility() {
@@ -103,7 +110,7 @@ public class ProductsPage {
     }
 
     @Step("Verify 'SEARCHED PRODUCTS' is visible")
-    public ProductsPage validateOnsearchedProducts() {
+    public ProductsPage validateOnsearchedProductsPage() {
         driver.element().assertThat(searchedProducts).isVisible().perform();
         return this;
     }

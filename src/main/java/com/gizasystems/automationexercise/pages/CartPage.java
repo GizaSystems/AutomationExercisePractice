@@ -20,6 +20,10 @@ public class CartPage {
     private final By subscribeBtn_button = By.id("subscribe");
     private final By successAlert_div = By.xpath("//div[@class='alert-success alert']");
 
+    private By removeProduct_btn(String productName) {
+        return By.xpath("//h4[.='" + productName + "']//parent::td//parent::tr//a[@class='cart_quantity_delete']");
+    }
+
     private By productName(String itemName) {
         return By.xpath("//a[normalize-space()='" + itemName + "']");
     }
@@ -68,6 +72,18 @@ public class CartPage {
         return this;
     }
 
+    @Step("Click X to Remove product from Cart")
+    public CartPage clickToRemoveProduct(String productName) {
+        driver.element().click(removeProduct_btn(productName));
+        return this;
+    }
+
+    @Step("Click on Proceed to checkout button ")
+    public CartPage proceedToCheckOut() {
+        driver.element().click(proceedToCheckout_btn);
+        return this;
+    }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Verify Cart Page is Loaded")
     public CartPage verifyCartPageIsLoaded() {
@@ -93,7 +109,6 @@ public class CartPage {
         return this;
     }
 
-
     @Step("Validate products are added to Cart")
     public CartPage validateOnItemsAddedInCart(String ItemName) {
         driver.verifyThat().element(productName(ItemName)).textTrimmed().isEqualTo(ItemName).perform();
@@ -118,5 +133,9 @@ public class CartPage {
         return this;
     }
 
-
+    @Step("Verify that Cart does not contain the removed Product")
+    public CartPage validateOnRemovedProduct(String productName) {
+        driver.verifyThat().element(removeProduct_btn(productName)).doesNotExist().perform();
+        return this;
+    }
 }
