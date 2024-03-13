@@ -45,6 +45,11 @@ jobs:
 #          name: Tests Report Chrome_Linux
 #          path: 'target/surefire-reports/TEST-*.xml'
 #          reporter: java-junit
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "target/surefire-reports/TEST-*.xml"
+        if: always()
       - name: Publish Test Results
         continue-on-error: true
         uses: EnricoMi/publish-unit-test-result-action@v2
@@ -91,6 +96,11 @@ jobs:
 #          name: Tests Report Firefox_Linux
 #          path: 'target/surefire-reports/TEST-*.xml'
 #          reporter: java-junit
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "target/surefire-reports/TEST-*.xml"
+        if: always()
       - name: Publish Test Results
         continue-on-error: true
         uses: EnricoMi/publish-unit-test-result-action@v2
@@ -137,6 +147,11 @@ jobs:
 #          name: Tests Report Edge_Windows
 #          path: 'target/surefire-reports/TEST-*.xml'
 #          reporter: java-junit
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "target/surefire-reports/TEST-*.xml"
+        if: always()
       - name: Publish Test Results
         continue-on-error: true
         uses: EnricoMi/publish-unit-test-result-action/composite@v2
@@ -184,6 +199,11 @@ jobs:
 #          name: Tests Report Safari_MacOS
 #          path: 'target/surefire-reports/TEST-*.xml'
 #          reporter: java-junit
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "target/surefire-reports/TEST-*.xml"
+        if: always()
       - name: Publish Test Results
         continue-on-error: true
         uses: EnricoMi/publish-unit-test-result-action/composite@v2
