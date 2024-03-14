@@ -25,7 +25,7 @@ public class VerifyAllProductsAndProductDetailsTests {
         new NavigationBar(driver)
                 .clickOnProductsLink();
         new ProductsPage(driver)
-                .VerifyProductPageTitleVisibility()
+                .verifyProductPageTitleVisibility()
                 .pickProduct(testData.getTestData("productName"));
         new ProductDetailsPage(driver)
                 .verifyProductDetailsPageVisibility()
