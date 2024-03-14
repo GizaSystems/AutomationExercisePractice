@@ -81,19 +81,24 @@ public class ProductsPage {
 
     @Step("Click on View Product Link")
     public ProductsPage clickOnViewProduct() {
-        driver.element().click(viewProduct);
+        driver.element()
+                .click(viewProduct);
         return this;
     }
 
     @Step("Add Review")
-    public ProductsPage AddReviewOnProduct(String reviewerName, String reviewerEmail, String reviewText) {
-        driver.element().type(reviewerName_input, reviewerName).type(reviewerEmail_input, reviewerEmail).type(reviewText_input, reviewText).click(submitBtn);
+    public ProductsPage addReviewOnProduct(String reviewerName, String reviewerEmail, String reviewText) {
+        driver.element()
+                .type(reviewerName_input, reviewerName)
+                .type(reviewerEmail_input, reviewerEmail)
+                .type(reviewText_input, reviewText)
+                .click(submitBtn);
         return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate on Visibility of the Products Page Title")
-    public ProductsPage VerifyProductPageTitleVisibility() {
+    public ProductsPage verifyProductPageTitleVisibility() {
         driver.assertThat().element(productsPageTitle_div).isVisible().perform();
         return this;
     }
