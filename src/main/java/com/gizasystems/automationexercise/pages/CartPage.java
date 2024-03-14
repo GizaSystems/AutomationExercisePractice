@@ -7,9 +7,7 @@ import org.openqa.selenium.By;
 public class CartPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
-
     private String url = System.getProperty("baseUrl") + "/view_cart";
-
 
     // Locators
     private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
@@ -41,11 +39,6 @@ public class CartPage {
     }
 
     // Constructor
-
-    public CartPage navigate() {
-        driver.browser().navigateToURL(url);
-        return this;
-    }
 
     public CartPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -88,12 +81,6 @@ public class CartPage {
         return this;
     }
 
-    @Step ("Click on Proceed to checkout button ")
-    public CartPage proceedToCheckOut () {
-        driver.element().click(proceedToCheckout_btn);
-        return this;
-    }
-
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Verify Cart Page is Loaded")
     public CartPage verifyCartPageIsLoaded() {
@@ -118,12 +105,6 @@ public class CartPage {
         driver.verifyThat().element(successAlert_div).text().isEqualTo(expectedText).perform();
         return this;
     }
-    @Step ("Click on Proceed to checkout button ")
-    public CartPage proceedToCheckOut () {
-        driver.element().click(proceedToCheckout_btn);
-        return this;
-    }
-
 
     @Step("Validate products are added to Cart")
     public CartPage validateOnItemsAddedInCart(String ItemName) {
