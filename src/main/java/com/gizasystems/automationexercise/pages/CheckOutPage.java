@@ -43,9 +43,9 @@ public class CheckOutPage {
 
     @Step("Verifiying address details")
     public CheckOutPage verifiyingAddressDetails(String firstName, String address, String city) {
-        driver.verifyThat().element(addressVerificationFirstName).text().equals(firstName);
-        driver.verifyThat().element(addressVerificationAddress1).text().equals(address);
-        driver.verifyThat().element(addressVerifiycationCity).text().equals(city);
+        driver.verifyThat().element(addressVerificationFirstName).text().isEqualTo(firstName).perform();
+        driver.verifyThat().element(addressVerificationAddress1).text().isEqualTo(address).perform();
+        driver.verifyThat().element(addressVerifiycationCity).text().isEqualTo(city).perform();
         return this;
     }
 }
