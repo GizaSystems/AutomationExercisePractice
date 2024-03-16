@@ -13,7 +13,7 @@ public class ProductQuantityPage {
     private final By hoverBtn_button = By.id("quantity");
     private final By addToCartbtn_Button = By.xpath("//button [@class= 'btn btn-default cart']");
     private final By viewCartbtn_button = By.xpath("//a[@href='/view_cart']/u");
-    private final By productQuantity_button = By.xpath("//td[@class = 'cart_quantity']/button[@class='disabled']");
+    private final By productQuantity_button = By.cssSelector("button[class='disabled']");
 
     // Constructor
     public ProductQuantityPage(SHAFT.GUI.WebDriver driver) {

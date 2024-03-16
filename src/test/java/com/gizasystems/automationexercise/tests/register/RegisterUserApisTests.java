@@ -8,6 +8,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.UUID;
+
 @Epic("Automation Exercise")
 @Feature("User Management")
 @Story("Register")
@@ -15,12 +17,13 @@ public class RegisterUserApisTests {
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
 
-    private String timeStamp = String.valueOf(System.currentTimeMillis());
+    private String timeStamp ;
 
     @TmsLink("55512219")
     @Test(description = "Register User Test - API")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully to the system")
     public void registerUserTestApi() {
+        timeStamp = String.valueOf(System.nanoTime());
         new ApisAccountManagement(api)
                 .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.Api") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"))
                 .validateUserCreatedRegistered()
@@ -33,6 +36,7 @@ public class RegisterUserApisTests {
     @Test(description = "Register User Test - API - Time Stamp")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully to the system")
     public void registerUserTestApiTimeStamp() {
+        timeStamp = String.valueOf(System.nanoTime());
         new ApisAccountManagement(api)
                 .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"))
                 .validateUserCreatedRegistered();
