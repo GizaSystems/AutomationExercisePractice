@@ -22,11 +22,11 @@ public class RegisterUserApisTests {
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully to the system")
     public void registerUserTestApi() {
         new ApisAccountManagement(api)
-                .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.Api") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"))
+                .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.Api")  + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"))
                 .validateUserCreatedRegistered()
-                .deleteUserAccount(testData.getTestData("UserMail.Api") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"))
+                .deleteUserAccount(testData.getTestData("UserMail.Api") + "@gizasystems.com", testData.getTestData("UserPassword"))
                 .validateDeleteUser()
-                .validateUserNotFound(testData.getTestData("UserMail.Api") + timeStamp + "@gizasystems.com");
+                .validateUserNotFound(testData.getTestData("UserMail.Api")  + "@gizasystems.com");
     }
 
     @TmsLink("55512219")
