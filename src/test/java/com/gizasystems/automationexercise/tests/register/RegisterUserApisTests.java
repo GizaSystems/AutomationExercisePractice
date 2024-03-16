@@ -23,7 +23,6 @@ public class RegisterUserApisTests {
     @Test(description = "Register User Test - API")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully to the system")
     public void registerUserTestApi() {
-        timeStamp = String.valueOf(System.nanoTime());
         new ApisAccountManagement(api)
                 .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.Api") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"))
                 .validateUserCreatedRegistered()
@@ -36,7 +35,6 @@ public class RegisterUserApisTests {
     @Test(description = "Register User Test - API - Time Stamp")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully to the system")
     public void registerUserTestApiTimeStamp() {
-        timeStamp = String.valueOf(System.nanoTime());
         new ApisAccountManagement(api)
                 .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"))
                 .validateUserCreatedRegistered();
@@ -50,7 +48,9 @@ public class RegisterUserApisTests {
 
     @BeforeMethod
     public void beforeMethod() {
+        timeStamp = String.valueOf(System.currentTimeMillis());
         api = new SHAFT.API(Apis.ApisBaseUrl);
+
     }
 
 }
