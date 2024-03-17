@@ -1,0 +1,11 @@
+{
+  "ReviewText": "Automation Review",
+  "UserName": "Automation",
+  "UserMail": {
+    "Gui": "AutoBot_Gui",
+    "GuiTimeStamp": "AutoBot_GuiTimeStamp",
+    "GuiApi": "AutoBot_GuiApi",
+    "Api": "AutoBot_Api",
+    "ApiTimeStamp": "AutoBot_ApiTimeStamp"
+  }
+}

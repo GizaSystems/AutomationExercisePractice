@@ -10,6 +10,7 @@ public class ProductsPage {
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/products";
 
+
     //Locators
     private final By productsPageTitle_div = By.xpath("//h2[@class='title text-center' and text()='All Products']");
 
@@ -23,6 +24,13 @@ public class ProductsPage {
     private final By searchButton = By.xpath("//button[@id='submit_search']");
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
     private final By viewCartButtonPopUp = By.xpath("//a[@href='/view_cart']//u");
+    private final By viewProduct = By.xpath("(//i[@class='fa fa-plus-square'])[1]");
+    private final By writeReviewSection = By.xpath("//li[@class='active']");
+    private final By reviewerName_input = By.id("name");
+    private final By reviewerEmail_input = By.id("email");
+    private final By reviewText_input = By.name("review");
+    private final By submitBtn = By.id("button-review");
+    private final By reviewSuccessAlert = By.xpath("//div[@class='alert-success alert']//span");
     private final By continueBtn = By.xpath("(//button[@class='btn btn-success close-modal btn-block'])[1]");
     private final By viewCartBtn = By.xpath("//a[normalize-space()='View Cart']");
 
@@ -32,15 +40,6 @@ public class ProductsPage {
 
     private By clickOnProduct(String itemName) {
         return By.xpath("//div[@class='overlay-content']//p[text()='" + itemName + "']//following-sibling::a[text()='Add to cart']");
-
-    }
-
-    private By hooverOnProduct(Integer Index) {
-        return By.xpath("(//div[@class='single-products']//img)[" + Index + "]");
-    }
-
-    private By clickOnProduct(Integer Index) {
-        return By.xpath("(//a[@data-product-id='" + Index + "'])[" + Index + "]");
 
     }
 
@@ -71,7 +70,7 @@ public class ProductsPage {
     }
 
     @Step("Add Products to Cart")
-    public ProductsPage addProductToCart(String ProductName) {
+    public ProductsPage addProductsToCart(String ProductName) {
         driver.element().hover(hoverOnProduct(ProductName));
         driver.element().click(clickOnProduct(ProductName));
         return this;
@@ -83,22 +82,26 @@ public class ProductsPage {
         return this;
     }
 
-    @Step("Add  Products to Cart")
-    public ProductsPage addProductsToCart(Integer index) {
-        driver.element().hover(hooverOnProduct(index));
-        driver.element().click(clickOnProduct(index));
-        driver.element().click(continueBtn);
+    @Step("Click on View Product Link")
+    public ProductsPage clickOnViewProduct() {
+        driver.element()
+                .click(viewProduct);
         return this;
     }
 
-    public ProductsPage clickCartButton() {
-        driver.element().click(viewCartBtn);
+    @Step("Add Review")
+    public ProductsPage addReviewOnProduct(String reviewerName, String reviewerEmail, String reviewText) {
+        driver.element()
+                .type(reviewerName_input, reviewerName)
+                .type(reviewerEmail_input, reviewerEmail)
+                .type(reviewText_input, reviewText)
+                .click(submitBtn);
         return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate on Visibility of the Products Page Title")
-    public ProductsPage VerifyProductPageTitleVisibility() {
+    public ProductsPage verifyProductPageTitleVisibility() {
         driver.assertThat().element(productsPageTitle_div).isVisible().perform();
         return this;
     }
@@ -119,6 +122,18 @@ public class ProductsPage {
     @Step("Verify all the products related to search are visible")
     public ProductsPage validateOnProductsRelatedToSearch(String SearchResult) {
         driver.element().assertThat(searchResult).text().isEqualTo(SearchResult).perform();
+        return this;
+    }
+
+    @Step("Validate that Review page is displayed")
+    public ProductsPage validateVisibilityOfReviewPage() {
+        driver.verifyThat().element(writeReviewSection).exists().perform();
+        return this;
+    }
+
+    @Step("Validate that Review success alert is displayed")
+    public ProductsPage validatethatReviewSuccessAlertIsDisplayed() {
+        driver.verifyThat().element(reviewSuccessAlert).exists().perform();
         return this;
     }
 }
