@@ -2,7 +2,6 @@ package com.gizasystems.automationexercise.tests.SearchProducts;
 
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
