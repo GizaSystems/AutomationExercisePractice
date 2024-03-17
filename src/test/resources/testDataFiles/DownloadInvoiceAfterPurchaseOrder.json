@@ -1,0 +1,63 @@
+{
+  "UserName": "Automation",
+  "UserMail": {
+    "Gui": "AutoBot_Gui",
+    "GuiTimeStamp": "AutoBot_GuiTimeStamp",
+    "GuiApi": "AutoBot_GuiApi",
+    "Api": "AutoBot_Api",
+    "ApiTimeStamp": "AutoBot_ApiTimeStamp"
+  },
+  "Gender": "Mr",
+  "UserPassword": "p@ssw0rd",
+  "UserFirstName": "Automation",
+  "UserLastName": "Bot",
+  "UserBirthDay": "4",
+  "UserBirthMonth": "September",
+  "UserBirthYear": "1994",
+  "UserAddress1": "Cairo",
+  "UserCountry": "India",
+  "UserState": "Cairo",
+  "UserCity": "Cairo",
+  "UserZipCode": "10200",
+  "UserMobile": "01111111111",
+  "Messages": {
+    "AccountCreated": "ACCOUNT CREATED!",
+    "AccountDeleted": "ACCOUNT DELETED!",
+    "AccountInfo": "ENTER ACCOUNT INFORMATION",
+    "Login": "Login to your account",
+    "Signup": "New User Signup!",
+    "SuccessMessages":"Your order has been placed successfully!"
+  },
+  "FirstProduct": {
+    "productDescription": "Blue Top",
+    "productPrice": "Rs. 500",
+    "productQuantity": "1",
+    "total": "Rs. 500"
+  },
+  "SecondProduct": {
+    "productDescription": "Men Tshirt",
+    "productPrice": "Rs. 400",
+    "productQuantity": "1",
+    "total": "Rs. 400"
+  },
+  "Card": {
+    "name": "automation exercise",
+    "number": "12222211122",
+    "cvc": "221",
+    "expirymonth":"2",
+    "expiryyear": "2025"},
+  "File": {
+    "path":"target\\downloadedFiles\\",
+    "name":"invoice.txt"
+  },
+  "RegisteredUserUsername": "automation",
+  "RegisteredUserEmail": "automationexercise1@gmail.com",
+  "RegisteredUserPassword": "123",
+  "SearchedProduct": "Men Tshirt",
+  "searchedProductPage": "SEARCHED PRODUCTS",
+  "SearchResult": "Men Tshirt",
+  "allProductsPage": "ALL PRODUCTS",
+  "ProductName": "Men Tshirt",
+  "Comment": {
+    "text": "please leave the product with the security"
+}}

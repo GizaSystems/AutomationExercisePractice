@@ -10,7 +10,6 @@ public class CartPage {
 
     private String url = System.getProperty("baseUrl") + "/view_cart";
 
-
     // Locators
     private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
     private final By productName_h4 = By.xpath("//td[@class='cart_description']//h4");
@@ -19,6 +18,7 @@ public class CartPage {
     private final By subscription_input = By.id("susbscribe_email");
     private final By subscribeBtn_button = By.id("subscribe");
     private final By successAlert_div = By.xpath("//div[@class='alert-success alert']");
+    private final By registerLoginPopupLink = By.cssSelector("p.text-center a[href='/login']");
 
     private By removeProduct_btn(String productName) {
         return By.xpath("//h4[.='" + productName + "']//parent::td//parent::tr//a[@class='cart_quantity_delete']");
@@ -81,6 +81,12 @@ public class CartPage {
     @Step("Click on Proceed to checkout button ")
     public CartPage proceedToCheckOut() {
         driver.element().click(proceedToCheckout_btn);
+        return this;
+    }
+
+    @Step("Click on Register / Login Popup Link ")
+    public CartPage clickOnRegisterLoginPopupLink() {
+        driver.element().click(registerLoginPopupLink);
         return this;
     }
 

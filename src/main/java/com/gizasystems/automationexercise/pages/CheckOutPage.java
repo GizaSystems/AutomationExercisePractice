@@ -10,12 +10,12 @@ public class CheckOutPage {
 
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/checkout";
-
     // Locators
 
     private final By addressVerificationFirstName = By.xpath("//ul[@class = 'address item box']//li[@class='address_firstname address_lastname']");
-    private final By addressVerificationAddress1 = By.xpath("//ul[@class = 'address item box']//li[@class='address_address1 address_address2']");
-    private final By addressVerifiycationCity = By.xpath("//ul[@class='address item box']//li[@class='address_country_name']");
+    private final By addressVerificationAddress1 = By.xpath("//ul[@class = 'address item box']//li[@class='address_address1 address_address2'][2]");
+    private final By addressVerifiycationCountry = By.xpath("//ul[@class='address item box']//li[@class='address_country_name']");
+    private final By addressVerifiycationCity = By.xpath("//ul[@class='address item box']//li[@class='address_city address_state_name address_postcode']");
     private final By placeOrderBtn = By.xpath("//div//a[@class='btn btn-default check_out']");
     private final By commentTextArea = By.className("form-control");
 
@@ -42,10 +42,11 @@ public class CheckOutPage {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
 
     @Step("Verifiying address details")
-    public CheckOutPage verifiyingAddressDetails(String firstName, String address, String city) {
-        driver.verifyThat().element(addressVerificationFirstName).text().equalsIgnoringCaseSensitivity(firstName).perform();
+    public CheckOutPage verifiyingAddressDetails(String firstName, String gender, String lastname, String address, String country, String city) {
+        driver.verifyThat().element(addressVerificationFirstName).text().equalsIgnoringCaseSensitivity(gender + ". " + firstName + " " + lastname).perform();
         driver.verifyThat().element(addressVerificationAddress1).text().equalsIgnoringCaseSensitivity(address).perform();
-        driver.verifyThat().element(addressVerifiycationCity).text().equalsIgnoringCaseSensitivity(city).perform();
+        driver.verifyThat().element(addressVerifiycationCountry).text().equalsIgnoringCaseSensitivity(country).perform();
+        driver.verifyThat().element(addressVerifiycationCity).text().contains(city).perform();
         return this;
     }
 }
