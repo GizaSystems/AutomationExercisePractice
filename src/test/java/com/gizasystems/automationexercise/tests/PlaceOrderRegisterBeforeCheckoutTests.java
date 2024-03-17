@@ -38,7 +38,7 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
                 .validateTheLoggedInUser(testData.getTestData("UserName"));
         new ProductsPage(driver)
                 .navigate()
-                .addProductToCart("Blue Top")
+                .addProductToCart(testData.getTestData("Blue Top"))
                 .clickOnContinueButton()
                 .clickCartButton();
         new CartPage(driver)

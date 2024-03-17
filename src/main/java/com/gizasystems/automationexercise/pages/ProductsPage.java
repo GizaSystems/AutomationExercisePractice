@@ -14,9 +14,11 @@ public class ProductsPage {
     //Locators
 
     private final By productsPageTitle_div = By.xpath("//h2[@class='title text-center' and text()='All Products']");
+
     private By viewProduct_link(String productName) {
         return By.xpath("(//p[text()='" + productName + "'])[1]//ancestor::div[@class='product-image-wrapper']//child::a[contains(@href,'/product')]");
     }
+
     private final By searchTextArea = By.xpath("//input[@id='search_product']");
     private final By searchedProducts = By.xpath("//h2[text()='Searched Products']");
     private final By allProducts = By.xpath("//h2[text()='All Products']");
