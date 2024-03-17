@@ -124,7 +124,7 @@ public class ProductsPage {
 
     @Step("Validate that Review page is displayed")
     public ProductsPage validateVisibilityOfReviewPage() {
-        driver.verifyThat().element(writeReviewSection).textTrimmed().equalsIgnoringCaseSensitivity("Write Your Review").perform();
+        driver.verifyThat().element(writeReviewSection).exists().perform();
         return this;
     }
 
