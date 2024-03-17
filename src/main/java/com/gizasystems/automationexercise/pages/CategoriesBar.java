@@ -1,5 +1,6 @@
 package com.gizasystems.automationexercise.pages;
 
+import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -26,12 +27,14 @@ public class CategoriesBar {
     @Step("click on Category Link")
     public CategoriesBar clickOnCategoryLink(String categoryType) {
         driver.element().click(getCategoryLinkLocator(categoryType));
+        GoogleAlert.dismissAlert(driver,getCategoryLinkLocator(categoryType));
         return this;
     }
 
     @Step("click on SubCategory Link")
     public CategoriesBar clickOnSubCategoryLink(String categoryType, String subCategoryType) {
         driver.element().click(getSubCategoryLinkLocator(categoryType, subCategoryType));
+        GoogleAlert.dismissAlert(driver,getSubCategoryLinkLocator(categoryType, subCategoryType));
         return this;
     }
 

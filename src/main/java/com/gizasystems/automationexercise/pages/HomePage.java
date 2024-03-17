@@ -38,7 +38,8 @@ public class HomePage {
 
     @Step("Validate on Visibility of the Category Title")
     public HomePage validateOnVisibilityOfCategoryTitle(String categoryTitle) {
-        driver.verifyThat().element(getCategoryTitleLocator(categoryTitle)).exists().perform();
+
+        driver.verifyThat().element(getCategoryTitleLocator(categoryTitle)).text().equalsIgnoringCaseSensitivity(categoryTitle).perform();
         return this;
     }
 
