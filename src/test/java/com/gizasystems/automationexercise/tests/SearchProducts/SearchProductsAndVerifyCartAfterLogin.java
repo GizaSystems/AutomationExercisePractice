@@ -30,8 +30,8 @@ public class SearchProductsAndVerifyCartAfterLogin {
                 .searchForProduct(testData.getTestData("SearchedProduct"))
                 .validateOnsearchedProductsPage()
                 .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"))
-                .addProductsToCart(testData.getTestData("SecondProduct.productDescription"))
-                .ClickOnViewCartpopupLinkButton();
+                .addProductToCart(testData.getTestData("SecondProduct.productDescription"))
+                .clickOnViewCartpopupLinkButton();
         new CartPage(driver)
                 .verifyCartPageIsLoaded()
                 .verifyProductAddedToCart(testData.getTestData("SecondProduct.productDescription"));

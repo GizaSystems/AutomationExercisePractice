@@ -22,7 +22,7 @@ public class RemoveProductTests {
     public void verifyBrandPageDisplayed() {
         new ProductsPage(driver)
                 .navigate()
-                .addProductsToCart(testData.getTestData("productName"));
+                .addProductToCart(testData.getTestData("productName"));
         new CartPage(driver)
                 .openCart()
                 .verifyCartPageIsLoaded()

@@ -1,8 +1,0 @@
-{
-  "CardName": "Automation Bot",
-  "CardNumber": "0111",
-  "CVC": "311",
-  "CardExpMonth": "2",
-  "CardExpYear": "2025",
-  "SuccessMessage" : "Congratulations! Your order has been confirmed!"
-}

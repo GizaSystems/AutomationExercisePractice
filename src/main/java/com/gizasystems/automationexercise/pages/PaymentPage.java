@@ -5,8 +5,12 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class PaymentPage {
+
+    //Variables
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/payment";
+
+    // Locators
     private final By cardNameInput = By.xpath("//div//input[@class='form-control']");
     private final By cardNumberInput = By.xpath("//div//input[@class='form-control card-number']");
     private final By cvcInput = By.xpath("//div//input[@class='form-control card-cvc']");
@@ -16,9 +20,11 @@ public class PaymentPage {
     private final By orderPlacedSucessMessage = By.xpath("//p[@style='font-size: 20px; font-family: garamond;']");
     private final By deleteBtn = By.cssSelector("a[href='/delete_account']");
 
+    // Constructors
     public PaymentPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
+
 
     public PaymentPage navigate() {
         driver.browser().navigateToURL(url);
@@ -48,8 +54,8 @@ public class PaymentPage {
     }
 
     @Step("Verify success message 'Your order has been placed successfully!'")
-    public PaymentPage verifySucessMessage(String Message) {
-        driver.verifyThat().element(orderPlacedSucessMessage).text().isEqualTo(Message).perform();
+    public PaymentPage verifySucessMessage(String message) {
+        driver.verifyThat().element(orderPlacedSucessMessage).text().isEqualTo(message).perform();
         return this;
     }
 }

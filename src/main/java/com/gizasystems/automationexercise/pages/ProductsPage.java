@@ -7,17 +7,16 @@ import org.openqa.selenium.By;
 
 public class ProductsPage {
     //Variables
+
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/products";
 
-
     //Locators
-    private final By productsPageTitle_div = By.xpath("//h2[@class='title text-center' and text()='All Products']");
 
+    private final By productsPageTitle_div = By.xpath("//h2[@class='title text-center' and text()='All Products']");
     private By viewProduct_link(String productName) {
         return By.xpath("(//p[text()='" + productName + "'])[1]//ancestor::div[@class='product-image-wrapper']//child::a[contains(@href,'/product')]");
     }
-
     private final By searchTextArea = By.xpath("//input[@id='search_product']");
     private final By searchedProducts = By.xpath("//h2[text()='Searched Products']");
     private final By allProducts = By.xpath("//h2[text()='All Products']");
@@ -44,6 +43,7 @@ public class ProductsPage {
     }
 
     //Constructors
+
     public ProductsPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
@@ -70,22 +70,27 @@ public class ProductsPage {
     }
 
     @Step("Add Products to Cart")
-    public ProductsPage addProductsToCart(String ProductName) {
-        driver.element().hover(hoverOnProduct(ProductName));
-        driver.element().click(clickOnProduct(ProductName));
+    public ProductsPage addProductToCart(String productName) {
+        driver.element().hover(hoverOnProduct(productName));
+        driver.element().click(clickOnProduct(productName));
         return this;
     }
 
     @Step("Click On View Cart popup Link Button")
-    public ProductsPage ClickOnViewCartpopupLinkButton() {
+    public ProductsPage clickOnViewCartpopupLinkButton() {
         driver.element().click(viewCartButtonPopUp);
         return this;
     }
 
     @Step("Click on View Product Link")
     public ProductsPage clickOnViewProduct() {
-        driver.element()
-                .click(viewProduct);
+        driver.element().click(viewProduct);
+        return this;
+    }
+
+    @Step("Click On Continue Button")
+    public ProductsPage clickOnContinueButton() {
+        driver.element().click(continueBtn);
         return this;
     }
 
@@ -99,7 +104,14 @@ public class ProductsPage {
         return this;
     }
 
+    @Step("Click On Cart Button")
+    public ProductsPage clickCartButton() {
+        driver.element().click(viewCartBtn);
+        return this;
+    }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+
     @Step("Validate on Visibility of the Products Page Title")
     public ProductsPage verifyProductPageTitleVisibility() {
         driver.assertThat().element(productsPageTitle_div).isVisible().perform();

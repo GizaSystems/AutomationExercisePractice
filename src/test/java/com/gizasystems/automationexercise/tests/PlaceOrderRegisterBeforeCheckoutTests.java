@@ -38,7 +38,8 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
                 .validateTheLoggedInUser(testData.getTestData("UserName"));
         new ProductsPage(driver)
                 .navigate()
-                .addProductsToCart(1)
+                .addProductToCart("Blue Top")
+                .clickOnContinueButton()
                 .clickCartButton();
         new CartPage(driver)
                 .verifyCartPageIsLoaded()
@@ -46,7 +47,7 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
                 .proceedToCheckOut();
         new CheckOutPage(driver)
                 .navigate()
-                .verifiyingAddressDetails("Mr. Automation Bot", testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"))
+                .verifyingAddressDetails("Mr. Automation Bot", testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"))
                 .enteringDescriptionInCommentArea("Place Order");
         new PaymentPage(driver)
                 .navigate()
@@ -60,7 +61,7 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
 
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/RegisterUser.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/PlaceOrderTestData.json");
     }
 
     @BeforeMethod

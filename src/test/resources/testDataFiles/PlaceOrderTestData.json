@@ -24,6 +24,14 @@
     "Signup": "New User Signup!",
     "AccountInfo": "ENTER ACCOUNT INFORMATION",
     "AccountCreated": "ACCOUNT CREATED!",
-    "AccountDeleted": "ACCOUNT DELETED!"
-  }
+    "AccountDeleted": "ACCOUNT DELETED!",
+    "successMessageOfOrder" : "Congratulations! Your order has been confirmed!",
+    "ProductAddedMessage" : "Added!"
+  },
+  "cardName": "Automation Bot",
+  "cardNumber": "0111",
+  "cvc": "311",
+  "cardExpMonth": "2",
+  "cardExpYear": "2025",
+  "productName" : "Blue Top"
 }
