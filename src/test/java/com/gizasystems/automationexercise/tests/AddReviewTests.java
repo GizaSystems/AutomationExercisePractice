@@ -29,7 +29,7 @@ public class AddReviewTests {
                 .verifyProductPageTitleVisibility()
                 .clickOnViewProduct()
                 .validateVisibilityOfReviewPage()
-                .addReviewOnProduct(productTestData.getTestData("UserName"), productTestData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com", productTestData.getTestData("ReviewText"))
+                .addReviewOnProduct(productTestData.getTestData("UserName"), productTestData.getTestData("UserMail") + timeStamp + "@gizasystems.com", productTestData.getTestData("ReviewText"))
                 .validatethatReviewSuccessAlertIsDisplayed();
     }
 
