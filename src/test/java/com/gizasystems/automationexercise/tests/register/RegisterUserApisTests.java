@@ -15,7 +15,7 @@ public class RegisterUserApisTests {
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
 
-    private String timeStamp = String.valueOf(System.currentTimeMillis());
+    private String timeStamp;
 
     @TmsLink("55512219")
     @Test(description = "Register User Test - API")
@@ -46,6 +46,7 @@ public class RegisterUserApisTests {
 
     @BeforeMethod
     public void beforeMethod() {
+        timeStamp = String.valueOf(System.currentTimeMillis());
         api = new SHAFT.API(Apis.ApisBaseUrl);
     }
 

@@ -25,7 +25,7 @@ public class ProductsPage {
     private final By searchResult = By.xpath("//div[@class='productinfo text-center']//p");
     private final By viewCartButtonPopUp = By.xpath("//a[@href='/view_cart']//u");
     private final By viewProduct = By.xpath("(//i[@class='fa fa-plus-square'])[1]");
-    private final By writeReviewSection = By.xpath("//li[@class='active']");
+    private final By writeReviewSection = By.xpath("//ul[@class='nav nav-tabs']");
     private final By reviewerName_input = By.id("name");
     private final By reviewerEmail_input = By.id("email");
     private final By reviewText_input = By.name("review");
