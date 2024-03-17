@@ -5,7 +5,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class PaymentPage {
-
     //Variables
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/payment";
