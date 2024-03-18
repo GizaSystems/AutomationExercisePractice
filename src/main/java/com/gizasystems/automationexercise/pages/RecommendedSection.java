@@ -23,9 +23,7 @@ public class RecommendedSection {
     //Workaround not to throw moveTargetOutOfBound Exception
     @Step("Navigate Recommended Section Tab")
     public RecommendedSection openRecommendedSection(){
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver.getDriver();
-        WebElement webElement = driver.getDriver().findElement(recommendedItems_div);
-        javascriptExecutor.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'})",webElement);
+        driver.element().hover(recommendedItems_div);
         return this;
     }
 
