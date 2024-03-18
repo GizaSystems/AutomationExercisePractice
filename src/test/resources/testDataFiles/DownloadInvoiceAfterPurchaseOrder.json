@@ -47,8 +47,7 @@
     "expirymonth":"2",
     "expiryyear": "2025"},
   "File": {
-    "path":"target\\downloadedFiles\\",
-    "name":"invoice.txt"
+    "name":"/invoice.txt"
   },
   "RegisteredUserUsername": "automation",
   "RegisteredUserEmail": "automationexercise1@gmail.com",

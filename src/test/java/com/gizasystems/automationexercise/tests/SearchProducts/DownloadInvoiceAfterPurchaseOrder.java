@@ -5,6 +5,7 @@ import com.shaft.driver.SHAFT;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -18,7 +19,9 @@ public class DownloadInvoiceAfterPurchaseOrder {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
     private String timeStamp = String.valueOf(System.currentTimeMillis());
+
     // Test Cases
+    @TmsLink("55512515")
     @Test(description = "Download Invoice after purchase order")
     public void downloadInvoiceAfterPurchaseOrder() {
 
@@ -59,8 +62,8 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .validateOnPaymentSuccessValidationMessage(testData.getTestData("Messages.SuccessMessages"))
                 .clickPayAndConfirmOrderButton()
                 .downloadInvoice()
-                .validateInviceDownloaded(testData.getTestData("File.path"), testData.getTestData("File.name"))
-                .deleteInvoice(testData.getTestData("File.path"),testData.getTestData("File.name"))
+                .validateInviceDownloaded(testData.getTestData("File.name"))
+               // .deleteInvoice(testData.getTestData("File.path"),testData.getTestData("File.name"))
                 .clickContinueButton();
         new NavigationBar(driver)
                 .clickOnDeleteAccountLink();
