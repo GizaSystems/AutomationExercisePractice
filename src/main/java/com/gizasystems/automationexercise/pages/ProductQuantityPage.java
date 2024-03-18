@@ -12,7 +12,7 @@ public class ProductQuantityPage {
     private final By viewProductbtn_button = By.xpath("(//div[@class='choose']//a)[2]");
     private final By productDetails = By.xpath("//span/Label");
     private final By hoverBtn_button = By.id("quantity");
-    private final By addToCartbtn_Button = By.cssSelector("button[class='btn btn-default cart']");
+    private final By addToCartbtn_Button = By.xpath("//button[@class='btn btn-default cart']");
     private final By viewCartbtn_button = By.xpath("//p[@class='text-center']/a[@href='/view_cart']/u");
     private final By productQuantity_button = By.xpath("//td[@class ='cart_quantity']/button[@class='disabled']");
 
