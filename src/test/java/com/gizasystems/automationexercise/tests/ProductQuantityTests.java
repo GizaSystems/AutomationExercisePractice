@@ -25,6 +25,7 @@ public class ProductQuantityTests {
                 .increaseQuantityInCart(testData.getTestData("DisplayedQuantity"))
                 .addProductToCart()
                 .clickOnCart()
+                .refreshCartPage()
                 .verifyExactQuantityAddedToCart(testData.getTestData("DisplayedQuantity"));
     }
 
