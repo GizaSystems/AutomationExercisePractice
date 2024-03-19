@@ -63,7 +63,6 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .clickPayAndConfirmOrderButton()
                 .downloadInvoice()
                 .validateInviceDownloaded(testData.getTestData("File.name"))
-               // .deleteInvoice(testData.getTestData("File.path"),testData.getTestData("File.name"))
                 .clickContinueButton();
         new NavigationBar(driver)
                 .clickOnDeleteAccountLink();

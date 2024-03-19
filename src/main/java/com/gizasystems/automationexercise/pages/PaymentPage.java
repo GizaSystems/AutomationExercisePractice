@@ -1,11 +1,9 @@
 package com.gizasystems.automationexercise.pages;
 
-import com.shaft.cli.FileActions;
 import com.shaft.driver.SHAFT;
 import com.shaft.validation.Validations;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import static org.codehaus.plexus.util.FileUtils.fileExists;
 
 
 public class PaymentPage {
@@ -71,17 +69,10 @@ public class PaymentPage {
     }
 
     @Step(" Validate Invoice  Is downloaded  ")
-    public PaymentPage validateInviceDownloaded( String filename) {
-       // Validations.assertThat().file(filePath, filename).exists().perform();
-        Validations.assertThat().file(SHAFT.Properties.paths.downloads(),filename).exists().perform();
+    public PaymentPage validateInviceDownloaded(String filename) {
+        // Validations.assertThat().file(filePath, filename).exists().perform();
+        Validations.assertThat().file(SHAFT.Properties.paths.downloads(), filename).exists().perform();
         return this;
     }
-    @Step(" Delete invoice ")
-    public PaymentPage deleteInvoice(String filePath, String filename) {
-        FileActions fileActions = FileActions.getInstance();
-        fileActions.deleteFolder(filePath + filename);
-        return this;
-    }
-
 
 }

@@ -76,6 +76,7 @@ public class ProductsPage {
     @Step("Click On View Cart popup Link Button")
     public ProductsPage ClickOnViewCartpopupLinkButton() {
         driver.element().click(viewCartButtonPopUp);
+        driver.browser().refreshCurrentPage();
         return this;
     }
 

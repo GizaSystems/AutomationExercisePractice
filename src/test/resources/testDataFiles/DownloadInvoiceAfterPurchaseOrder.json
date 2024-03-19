@@ -1,25 +1,25 @@
 {
-  "UserName": "Automation",
+  "UserName": "userTest",
   "UserMail": {
-    "Gui": "AutoBot_Gui",
-    "GuiTimeStamp": "AutoBot_GuiTimeStamp",
-    "GuiApi": "AutoBot_GuiApi",
-    "Api": "AutoBot_Api",
-    "ApiTimeStamp": "AutoBot_ApiTimeStamp"
+    "Gui": "userTest_Gui",
+    "GuiTimeStamp": "userTest_GuiTimeStamp",
+    "GuiApi": "userTest_GuiApi",
+    "Api": "userTest_Api",
+    "ApiTimeStamp": "userTest_ApiTimeStamp"
   },
   "Gender": "Mr",
-  "UserPassword": "p@ssw0rd",
-  "UserFirstName": "Automation",
-  "UserLastName": "Bot",
-  "UserBirthDay": "4",
-  "UserBirthMonth": "September",
-  "UserBirthYear": "1994",
-  "UserAddress1": "Cairo",
-  "UserCountry": "India",
-  "UserState": "Cairo",
-  "UserCity": "Cairo",
-  "UserZipCode": "10200",
-  "UserMobile": "01111111111",
+  "UserPassword": "p@ssw0rd@Test",
+  "UserFirstName": "user",
+  "UserLastName": "Test",
+  "UserBirthDay": "3",
+  "UserBirthMonth": "July",
+  "UserBirthYear": "1997",
+  "UserAddress1": "Jenkins Road",
+  "UserCountry": "Canada",
+  "UserState": "British Columbia",
+  "UserCity": "British Columbia",
+  "UserZipCode": "122100",
+  "UserMobile": "01221111111",
   "Messages": {
     "AccountCreated": "ACCOUNT CREATED!",
     "AccountDeleted": "ACCOUNT DELETED!",
@@ -29,10 +29,10 @@
     "SuccessMessages":"Your order has been placed successfully!"
   },
   "FirstProduct": {
-    "productDescription": "Blue Top",
-    "productPrice": "Rs. 500",
+    "productDescription": "Winter Top",
+    "productPrice": "Rs. 600",
     "productQuantity": "1",
-    "total": "Rs. 500"
+    "total": "Rs. 600"
   },
   "SecondProduct": {
     "productDescription": "Men Tshirt",
@@ -41,7 +41,7 @@
     "total": "Rs. 400"
   },
   "Card": {
-    "name": "automation exercise",
+    "name": "userTest",
     "number": "12222211122",
     "cvc": "221",
     "expirymonth":"2",
