@@ -65,7 +65,16 @@ public class RegisterWhileCheckoutTests {
                 .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"))
                 .clickOnContinueButton();
         new NavigationBar(driver)
-                .validateTheLoggedInUser(testData.getTestData("RegisterData.UserName"));
+                .validateTheLoggedInUser(testData.getTestData("RegisterData.UserName"))
+                .navigateToCartPage();
+        new CartPage(driver)
+                .verifyCartPageIsLoaded()
+                .proceedToCheckOut();
+        new RegisterWhileCheckoutPage(driver)
+                .verifyCheckoutFullAddressDetails(testData.getTestData("RegisterData.UserAddress1"),testData.getTestData("RegisterData.UserState"),testData.getTestData("RegisterData.UserZipCode"))
+                .verifyUserPhoneNumber(testData.getTestData("RegisterData.UserMobile"))
+                .scrollToReviewOrderSection()
+                .reviewCartProducts(testData.getTestData("ProductDetails.productName"));
     }
 
     //////////////////// Configurations \\\\\\\\\\
