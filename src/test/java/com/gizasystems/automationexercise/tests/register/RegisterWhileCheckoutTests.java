@@ -1,10 +1,7 @@
 package com.gizasystems.automationexercise.tests.register;
 
 import com.gizasystems.automationexercise.apis.Apis;
-import com.gizasystems.automationexercise.pages.CartPage;
-import com.gizasystems.automationexercise.pages.HomePage;
-import com.gizasystems.automationexercise.pages.RecommendedSection;
-import com.gizasystems.automationexercise.pages.RegisterWhileCheckoutPage;
+import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
@@ -58,6 +55,17 @@ public class RegisterWhileCheckoutTests {
         new RegisterWhileCheckoutPage(driver)
                 .verifyCheckoutPopUpDisplayed(testData.getTestData("Messages.CheckoutBodyMessage"))
                 .clickOnRegisterLoginBtn();
+        new SignupLoginPage(driver)
+                .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
+                .newUserSignup(testData.getTestData("RegisterData.UserName"), testData.getTestData("RegisterData.UserMail") + timeStamp + "@gizasystems.com");
+        new SignupPage(driver)
+                .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
+                .enterAccountInformation(testData.getTestData("RegisterData.Gender"), testData.getTestData("RegisterData.UserPassword"), testData.getTestData("RegisterData.UserFirstName"), testData.getTestData("RegisterData.UserLastName"), testData.getTestData("RegisterData.UserBirthDay"), testData.getTestData("RegisterData.UserBirthMonth"), testData.getTestData("RegisterData.UserBirthYear"))
+                .enterAddressInformation(testData.getTestData("RegisterData.UserAddress1"), testData.getTestData("RegisterData.UserCountry"), testData.getTestData("RegisterData.UserState"), testData.getTestData("RegisterData.UserCity"), testData.getTestData("RegisterData.UserZipCode"), testData.getTestData("RegisterData.UserMobile"))
+                .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"))
+                .clickOnContinueButton();
+        new NavigationBar(driver)
+                .validateTheLoggedInUser(testData.getTestData("RegisterData.UserName"));
     }
 
     //////////////////// Configurations \\\\\\\\\\
@@ -78,6 +86,6 @@ public class RegisterWhileCheckoutTests {
 
     @AfterMethod
     public void afterMethod() {
-        driver.quit();
+        //driver.quit();
     }
 }
