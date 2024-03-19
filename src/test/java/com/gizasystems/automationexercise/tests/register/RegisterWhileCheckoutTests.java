@@ -52,7 +52,8 @@ public class RegisterWhileCheckoutTests {
         new CartPage(driver)
                 .openCart()
                 .verifyCartPageIsLoaded()
-                .verifyProductAddedToCart(testData.getTestData("ProductDetails.productName"));
+                .verifyProductAddedToCart(testData.getTestData("ProductDetails.productName"))
+                .proceedToCheckOut();
     }
     //////////////////// Configurations \\\\\\\\\\
     @BeforeClass
