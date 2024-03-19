@@ -15,6 +15,11 @@ private final By registerLoginLink_div=By.xpath("//p[@class='text-center']/a[@hr
         this.driver=driver;
     }
     //////////////////// Actions \\\\\\\\\\
+    @Step("Click on Register/Login button")
+    public RegisterWhileCheckoutPage clickOnRegisterLoginBtn(){
+        driver.element().click(registerLoginLink_div);
+        return this;
+    }
 
     //////////////////// Validations \\\\\\\\\\
     @Step("Verify the checkout pop up is displayed")

@@ -56,7 +56,8 @@ public class RegisterWhileCheckoutTests {
                 .verifyProductAddedToCart(testData.getTestData("ProductDetails.productName"))
                 .proceedToCheckOut();
         new RegisterWhileCheckoutPage(driver)
-                .verifyCheckoutPopUpDisplayed(testData.getTestData("Messages.CheckoutBodyMessage"));
+                .verifyCheckoutPopUpDisplayed(testData.getTestData("Messages.CheckoutBodyMessage"))
+                .clickOnRegisterLoginBtn();
     }
 
     //////////////////// Configurations \\\\\\\\\\
