@@ -3,6 +3,7 @@
     "productName" : "Blue Top"
   },
   "Messages": {
-    "ProductAddedMessage" : "Added!"
+    "ProductAddedMessage" : "Added!",
+    "CheckoutBodyMessage": "Checkout"
   }
 }

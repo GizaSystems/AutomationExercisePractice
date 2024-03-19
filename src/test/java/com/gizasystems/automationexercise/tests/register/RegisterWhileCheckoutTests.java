@@ -4,6 +4,7 @@ import com.gizasystems.automationexercise.apis.Apis;
 import com.gizasystems.automationexercise.pages.CartPage;
 import com.gizasystems.automationexercise.pages.HomePage;
 import com.gizasystems.automationexercise.pages.RecommendedSection;
+import com.gizasystems.automationexercise.pages.RegisterWhileCheckoutPage;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
@@ -43,7 +44,7 @@ public class RegisterWhileCheckoutTests {
             " And I Click 'Delete Account' button," +
             " And I Verify 'ACCOUNT DELETED!' " +
             "And click 'Continue' button")
-    public void registerWhileCheckoutTest(){
+    public void registerWhileCheckoutTest() {
         new RecommendedSection(driver)
                 .openRecommendedSection()
                 .verifyRecommendedSectionVisibility()
@@ -54,7 +55,10 @@ public class RegisterWhileCheckoutTests {
                 .verifyCartPageIsLoaded()
                 .verifyProductAddedToCart(testData.getTestData("ProductDetails.productName"))
                 .proceedToCheckOut();
+        new RegisterWhileCheckoutPage(driver)
+                .verifyCheckoutPopUpDisplayed(testData.getTestData("Messages.CheckoutBodyMessage"));
     }
+
     //////////////////// Configurations \\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
