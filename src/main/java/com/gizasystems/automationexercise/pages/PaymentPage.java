@@ -70,7 +70,6 @@ public class PaymentPage {
 
     @Step(" Validate Invoice  Is downloaded  ")
     public PaymentPage validateInviceDownloaded(String filename) {
-        // Validations.assertThat().file(filePath, filename).exists().perform();
         Validations.assertThat().file(SHAFT.Properties.paths.downloads(), filename).exists().perform();
         return this;
     }
