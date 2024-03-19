@@ -20,17 +20,14 @@ public class ProductQuantityPage {
         this.driver = driver;
     }
 
+    //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
     @Step("Click on View Product")
     public ProductQuantityPage clickOnViewProduct() {
         driver.element().click(viewProductbtn_button);
         GoogleAlert.dismissAlert(driver, viewProductbtn_button);
         return this;
     }
-    @Step("Verify that Product details is opened")
-    public ProductQuantityPage verifyOnProductDetails() {
-        driver.element().assertThat(productDetails).exists().perform();
-        return this;
-    }
+
     @Step("Increase Quantity in Cart")
     public ProductQuantityPage increaseQuantityInCart(String quantity) {
         driver.element()
@@ -49,10 +46,20 @@ public class ProductQuantityPage {
     @Step("Click on view Cart button")
     public ProductQuantityPage clickOnCart() {
         driver.element().click(viewCartbtn_button);
+        return this;
+    }
+    @Step("Refresh Cart Page")
+    public ProductQuantityPage refreshCartPage(){
         driver.browser().refreshCurrentPage();
         return this;
     }
 
+    //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+    @Step("Verify that Product details is opened")
+    public ProductQuantityPage verifyOnProductDetails() {
+        driver.element().assertThat(productDetails).exists().perform();
+        return this;
+    }
     @Step("Verify Product Added to Cart with exact quantity")
     public ProductQuantityPage verifyExactQuantityAddedToCart(String quantity) {
         driver.element().assertThat(productQuantity_button).text().isEqualTo(quantity).perform();
