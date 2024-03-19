@@ -1,0 +1,8 @@
+{
+  "ProductDetails": {
+    "productName" : "Blue Top"
+  },
+  "Messages": {
+    "ProductAddedMessage" : "Added!"
+  }
+}
