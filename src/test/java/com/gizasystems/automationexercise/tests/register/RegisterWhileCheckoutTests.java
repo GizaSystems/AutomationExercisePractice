@@ -1,7 +1,9 @@
 package com.gizasystems.automationexercise.tests.register;
 
 import com.gizasystems.automationexercise.apis.Apis;
+import com.gizasystems.automationexercise.pages.CartPage;
 import com.gizasystems.automationexercise.pages.HomePage;
+import com.gizasystems.automationexercise.pages.RecommendedSection;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
@@ -41,6 +43,17 @@ public class RegisterWhileCheckoutTests {
             " And I Click 'Delete Account' button," +
             " And I Verify 'ACCOUNT DELETED!' " +
             "And click 'Continue' button")
+    public void registerWhileCheckoutTest(){
+        new RecommendedSection(driver)
+                .openRecommendedSection()
+                .verifyRecommendedSectionVisibility()
+                .addToCart(testData.getTestData("ProductDetails.productName"))
+                .verifyProductAddedToCart(testData.getTestData("Messages.ProductAddedMessage"));
+        new CartPage(driver)
+                .openCart()
+                .verifyCartPageIsLoaded()
+                .verifyProductAddedToCart(testData.getTestData("ProductDetails.productName"));
+    }
     //////////////////// Configurations \\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
