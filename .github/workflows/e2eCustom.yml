@@ -118,7 +118,7 @@ jobs:
           maven-version: 3.9.6
       - name: Run Tests
         continue-on-error: true
-        run: mvn test -DtargetBrowserName="microsoftedge" -DexecutionAddress="local" -DtargetOperatingSystem="WINDOWS" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${{ github.event.inputs.testsPath }}"
+        run: mvn test -DtargetBrowserName="microsoftedge" -DexecutionAddress="local" -DtargetOperatingSystem="WINDOWS" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${{ github.event.inputs.testsPath }}"
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v3
         with:
