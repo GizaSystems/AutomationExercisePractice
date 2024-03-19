@@ -9,7 +9,7 @@ public class DeleteAccountPage {
     private SHAFT.GUI.WebDriver driver;
 
     // Locators
-    private final By accountDeleted_b = By.cssSelector("h2[data-qa='account-deleted'] > b");
+    private final By accountDeleted_b = By.xpath("//h2[@data-qa='account-deleted']");
 
     // Constructor
     public DeleteAccountPage(SHAFT.GUI.WebDriver driver) {
