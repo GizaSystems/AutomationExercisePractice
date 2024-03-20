@@ -1,6 +1,5 @@
 package com.gizasystems.automationexercise.tests.register;
 
-import com.gizasystems.automationexercise.apis.Apis;
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.*;
@@ -9,18 +8,17 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-@TmsLink("")
 @Epic("")
 @Feature("")
 @Story("")
 public class RegisterWhileCheckoutTests {
     // Variables
     private SHAFT.GUI.WebDriver driver;
-    private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
     private String timeStamp;
 
     // Test Cases
+    @TmsLink("")
     @Test(description = "Place order : Register user While Checkout")
     @Description("Given I open Automation Exercise home," +
             " When I navigate to Recommended Products," +
@@ -37,7 +35,7 @@ public class RegisterWhileCheckoutTests {
             " And I Enter description in comment text area and click 'Place Order' ," +
             " And I Enter payment details: Name on Card, Card Number, CVC, Expiration date," +
             " And I Click 'Pay and Confirm Order' button," +
-            " And I Verify success message 'Your order has been placed successfully!' ," +
+            " And I Verify success message 'Order Placed!' " +
             " And I Click 'Delete Account' button," +
             " And I Verify 'ACCOUNT DELETED!' " +
             "And click 'Continue' button")
@@ -71,7 +69,7 @@ public class RegisterWhileCheckoutTests {
                 .verifyCartPageIsLoaded()
                 .proceedToCheckOut();
         new RegisterWhileCheckoutPage(driver)
-                .verifyCheckoutFullAddressDetails(testData.getTestData("RegisterData.UserAddress1"),testData.getTestData("RegisterData.UserState"),testData.getTestData("RegisterData.UserZipCode"))
+                .verifyCheckoutFullAddressDetails(testData.getTestData("RegisterData.UserAddress1"), testData.getTestData("RegisterData.UserState"), testData.getTestData("RegisterData.UserZipCode"))
                 .verifyUserPhoneNumber(testData.getTestData("RegisterData.UserMobile"))
                 .scrollToReviewOrderSection()
                 .reviewCartProducts(testData.getTestData("ProductDetails.productName"))
@@ -83,7 +81,13 @@ public class RegisterWhileCheckoutTests {
                 .typeCardCvc(testData.getTestData("PaymentData.CVC"))
                 .typeExpiryMonth(testData.getTestData("PaymentData.ExpiryMonth"))
                 .typeExpiryYear(testData.getTestData("PaymentData.ExpiryYear"))
-                .clickOnPayAndConfirmBtn();
+                .clickOnPayAndConfirmBtn()
+                .verifySuccessMessage(testData.getTestData("Messages.OrderConfirmed"));
+        new NavigationBar(driver)
+                .clickOnDeleteAccountLink();
+        new DeleteAccountPage(driver)
+                .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"))
+                .clickOnContinueBtn();
     }
 
     //////////////////// Configurations \\\\\\\\\\
@@ -94,7 +98,6 @@ public class RegisterWhileCheckoutTests {
 
     @BeforeMethod
     public void beforeMethod() {
-        api = new SHAFT.API(Apis.ApisBaseUrl);
         driver = new SHAFT.GUI.WebDriver();
         new HomePage(driver)
                 .navigate()

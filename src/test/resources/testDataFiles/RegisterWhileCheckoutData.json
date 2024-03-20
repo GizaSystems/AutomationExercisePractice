@@ -8,6 +8,7 @@
     "Signup": "New User Signup!",
     "AccountInfo": "ENTER ACCOUNT INFORMATION",
     "AccountCreated": "ACCOUNT CREATED!",
+    "OrderConfirmed" : "ORDER PLACED!",
     "AccountDeleted": "ACCOUNT DELETED!"
   },
   "RegisterData": {
