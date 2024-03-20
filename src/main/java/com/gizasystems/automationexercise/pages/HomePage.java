@@ -12,15 +12,7 @@ public class HomePage {
     // Locators
     private final By featuredItems_div = By.cssSelector("div.features_items");
     private final By recommendedItems_div = By.cssSelector("div.recommended_items");
-
-    public By getCategoryTitleLocator(String categoryTitle) {
-        return By.xpath("//h2[text()='" + categoryTitle + "']");
-    }
-
-    private final By subscriptionText = By.className("single-widget");
-    private final By subscriptionEmail = By.id("susbscribe_email");
-    private final By subscribeButton = By.id("subscribe");
-    private final By successMsg = By.id("success-subscribe");
+    private final By categoryTitle_div= By.xpath("//h2[@class='title text-center']");
 
     // Constructor
     public HomePage(SHAFT.GUI.WebDriver driver) {
@@ -34,7 +26,6 @@ public class HomePage {
         return this;
     }
 
-
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate on Visibility of the Home Page")
     public HomePage validateOnVisibilityOfHomePage() {
@@ -45,7 +36,7 @@ public class HomePage {
 
     @Step("Validate on Visibility of the Category Title")
     public HomePage validateOnVisibilityOfCategoryTitle(String categoryTitle) {
-        driver.verifyThat().element(getCategoryTitleLocator(categoryTitle)).exists().perform();
+        driver.verifyThat().element(categoryTitle_div).text().equalsIgnoringCaseSensitivity(categoryTitle).perform();
         return this;
     }
 
