@@ -74,7 +74,7 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .clickOnContinueButton();
     }
 
-
+    @TmsLink("55512515")
     @Test(description = "Download Invoice after purchase order Using API and GUI")
     public void downloadInvoiceAfterPurchaseOrderWithApi() {
         new NavigationBar(driver)
