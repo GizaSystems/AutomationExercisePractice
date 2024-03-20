@@ -47,11 +47,7 @@
     "expirymonth":"2",
     "expiryyear": "2025"},
   "File": {
-    "name":"/invoice.txt"
-  },
-  "RegisteredUserUsername": "automation",
-  "RegisteredUserEmail": "automationexercise1@gmail.com",
-  "RegisteredUserPassword": "123",
+    "name":"/invoice.txt"},
   "SearchedProduct": "Men Tshirt",
   "searchedProductPage": "SEARCHED PRODUCTS",
   "SearchResult": "Men Tshirt",

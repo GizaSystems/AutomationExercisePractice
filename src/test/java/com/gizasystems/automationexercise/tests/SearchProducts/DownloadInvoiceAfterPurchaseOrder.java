@@ -1,5 +1,7 @@
 package com.gizasystems.automationexercise.tests.SearchProducts;
 
+import com.gizasystems.automationexercise.apis.Apis;
+import com.gizasystems.automationexercise.apis.ApisAccountManagement;
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Epic;
@@ -18,6 +20,7 @@ public class DownloadInvoiceAfterPurchaseOrder {
     // Variables
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
+    private SHAFT.API api;
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
     // Test Cases
@@ -70,6 +73,53 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"))
                 .clickOnContinueButton();
     }
+
+
+    @Test(description = "Download Invoice after purchase order Using API and GUI")
+    public void downloadInvoiceAfterPurchaseOrderWithApi() {
+        new NavigationBar(driver)
+                .clickOnProductsLink();
+        new ProductsPage(driver)
+                .validateOnallProductPage()
+                .searchForProduct(testData.getTestData("SearchedProduct"))
+                .validateOnsearchedProductsPage()
+                .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"))
+                .addProductsToCart(testData.getTestData("SecondProduct.productDescription"))
+                .ClickOnViewCartpopupLinkButton();
+        new CartPage(driver)
+                .verifyCartPageIsLoaded()
+                .verifyProductAddedToCart(testData.getTestData("SecondProduct.productDescription"))
+                .proceedToCheckOut();
+        new ApisAccountManagement(api)
+                .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"))
+                .validateUserCreatedRegistered();
+        new NavigationBar(driver)
+                .clickOnSignupLoginLink();
+        new SignupLoginPage(driver)
+                .validateOnLoginVisibility(testData.getTestData("Messages.Login"))
+                .registeredUserLogin(testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"));
+        new NavigationBar(driver)
+                .validateTheLoggedInUser(testData.getTestData("UserName"));
+        new CartPage(driver)
+                .openCart()
+                .verifyCartPageIsLoaded()
+                .proceedToCheckOut();
+        new CheckOutPage(driver)
+                .enteringDescriptionInCommentArea(testData.getTestData("Comment.text"));
+        new PaymentPage(driver)
+                .cardDetailsEntryForPayment(testData.getTestData("Card.name"), testData.getTestData("Card.number"), testData.getTestData("Card.cvc"), testData.getTestData("Card.expirymonth"), testData.getTestData("Card.expiryyear"))
+                .validateOnPaymentSuccessValidationMessage(testData.getTestData("Messages.SuccessMessages"))
+                .clickPayAndConfirmOrderButton()
+                .downloadInvoice()
+                .validateInviceDownloaded(testData.getTestData("File.name"))
+                .clickContinueButton();
+        new ApisAccountManagement(api)
+                .deleteUserAccount(testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"))
+                .validateDeleteUser()
+                .validateUserNotFound(testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com");
+
+    }
+
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
@@ -78,6 +128,7 @@ public class DownloadInvoiceAfterPurchaseOrder {
 
     @BeforeMethod
     public void beforeMethod() {
+        api = new SHAFT.API(Apis.ApisBaseUrl);
         driver = new SHAFT.GUI.WebDriver();
         new HomePage(driver)
                 .navigate()
