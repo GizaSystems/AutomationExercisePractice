@@ -117,7 +117,6 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .deleteUserAccount(testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"))
                 .validateDeleteUser()
                 .validateUserNotFound(testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com");
-
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
