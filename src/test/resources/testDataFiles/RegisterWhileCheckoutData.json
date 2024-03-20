@@ -31,7 +31,7 @@
   "PaymentData": {
     "NameOnCard": "AUTOMATION BOT",
     "CardNumber": "4871049999999910",
-    "CVV": "737",
+    "CVC": "737",
     "ExpiryMonth": "03",
     "ExpiryYear": "2030"
   }
