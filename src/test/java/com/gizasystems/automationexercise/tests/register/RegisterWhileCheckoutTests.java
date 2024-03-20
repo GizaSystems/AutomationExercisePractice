@@ -8,9 +8,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-@Epic("")
-@Feature("")
-@Story("")
+@Epic("Automation")
+@Feature("Place Order")
+@Story("Register while checkout")
 public class RegisterWhileCheckoutTests {
     // Variables
     private SHAFT.GUI.WebDriver driver;
@@ -18,7 +18,7 @@ public class RegisterWhileCheckoutTests {
     private String timeStamp;
 
     // Test Cases
-    @TmsLink("")
+    @TmsLink("55512419")
     @Test(description = "Place order : Register user While Checkout")
     @Description("Given I open Automation Exercise home," +
             " When I navigate to Recommended Products," +
