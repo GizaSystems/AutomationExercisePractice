@@ -1,5 +1,6 @@
 package com.gizasystems.automationexercise.pages;
 
+import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -40,6 +41,7 @@ private final By placeOrderBtn_div=By.xpath("//a[@href='/payment']");
     @Step("Click on Place order Button")
     public RegisterWhileCheckoutPage clickOnPlaceOrderBtn(){
         driver.element().click(placeOrderBtn_div);
+        GoogleAlert.dismissAlert(driver,placeOrderBtn_div);
         return this;
     }
 

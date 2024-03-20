@@ -27,5 +27,12 @@
     "UserZipCode": "10200",
     "UserMobile": "01111111111"
   },
-  "OrderComment": "Please package it as a gift and remove price!"
+  "OrderComment": "Please package it as a gift and remove price!",
+  "PaymentData": {
+    "NameOnCard": "AUTOMATION BOT",
+    "CardNumber": "4871049999999910",
+    "CVV": "737",
+    "ExpiryMonth": "03",
+    "ExpiryYear": "2030"
+  }
 }
