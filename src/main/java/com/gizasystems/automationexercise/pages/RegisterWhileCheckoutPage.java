@@ -14,6 +14,8 @@ private final By checkoutFullAddress_div=By.xpath("//ul[@class='address item box
 private final By deliveryAddresUserPhoneNumber_div=By.xpath("//ul[@class='address item box']//li[@class='address_phone']");
 private final By productDetails_div=By.cssSelector("td.cart_description > h4 > a");
 private final By productDescription_div=By.xpath("//tr[@class='cart_menu']//td[@class='description']");
+private final By commentSectionTextBox_div=By.xpath("//textarea[@class='form-control']");
+private final By placeOrderBtn_div=By.xpath("//a[@href='/payment']");
     // Constructor
     public RegisterWhileCheckoutPage(SHAFT.GUI.WebDriver driver){
         this.driver=driver;
@@ -27,6 +29,17 @@ private final By productDescription_div=By.xpath("//tr[@class='cart_menu']//td[@
     @Step("Navigate to Review your order section")
     public RegisterWhileCheckoutPage scrollToReviewOrderSection(){
         driver.element().hover(productDescription_div);
+        return this;
+    }
+    @Step("Type order comments")
+    public RegisterWhileCheckoutPage typeOrderComments(String comment){
+        driver.element().hover(commentSectionTextBox_div);
+        driver.element().type(commentSectionTextBox_div,comment);
+        return this;
+    }
+    @Step("Click on Place order Button")
+    public RegisterWhileCheckoutPage clickOnPlaceOrderBtn(){
+        driver.element().click(placeOrderBtn_div);
         return this;
     }
 

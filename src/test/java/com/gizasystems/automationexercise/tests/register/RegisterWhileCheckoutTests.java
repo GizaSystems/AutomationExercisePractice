@@ -74,7 +74,9 @@ public class RegisterWhileCheckoutTests {
                 .verifyCheckoutFullAddressDetails(testData.getTestData("RegisterData.UserAddress1"),testData.getTestData("RegisterData.UserState"),testData.getTestData("RegisterData.UserZipCode"))
                 .verifyUserPhoneNumber(testData.getTestData("RegisterData.UserMobile"))
                 .scrollToReviewOrderSection()
-                .reviewCartProducts(testData.getTestData("ProductDetails.productName"));
+                .reviewCartProducts(testData.getTestData("ProductDetails.productName"))
+                .typeOrderComments(testData.getTestData("OrderComment"))
+                .clickOnPlaceOrderBtn();
     }
 
     //////////////////// Configurations \\\\\\\\\\

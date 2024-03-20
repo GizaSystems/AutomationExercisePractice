@@ -26,5 +26,6 @@
     "UserCity": "Cairo",
     "UserZipCode": "10200",
     "UserMobile": "01111111111"
-  }
+  },
+  "OrderComment": "Please package it as a gift and remove price!"
 }
