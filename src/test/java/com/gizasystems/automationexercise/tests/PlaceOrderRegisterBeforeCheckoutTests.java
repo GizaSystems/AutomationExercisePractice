@@ -16,22 +16,24 @@ import org.testng.annotations.Test;
 public class PlaceOrderRegisterBeforeCheckoutTests {
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
-    private String timeStamp = String.valueOf(System.currentTimeMillis());
+    private String timeStamp;
     private SHAFT.GUI.WebDriver driver;
 
     @Test(description = "Place Order: Register before Checkout")
     @Description("Place Order: Register before Checkout")
     @TmsLink("55512432")
-    public void PlaceOrderRegisterBeforeCheckout() {
-        String email = testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com";
-
-        new ApisAccountManagement(api)
-                .createRegisterUserAccount(testData.getTestData("UserName"), email, testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"));
+    public void PlaceOrderRegisterBeforeCheckoutGUI(){
         new NavigationBar(driver)
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .registeredUserLogin(email, testData.getTestData("UserPassword"));
+                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.Gui") + timeStamp + "@gizasystems.com");
+        new SignupPage(driver)
+                .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
+                .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))
+                .enterAddressInformation(testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserState"), testData.getTestData("UserCity"), testData.getTestData("UserZipCode"), testData.getTestData("UserMobile"))
+                .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"))
+                .clickOnContinueButton();
         new ProductsPage(driver)
                 .navigate()
                 .addProductToCart(testData.getTestData("productName"))
@@ -47,11 +49,54 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
                 .enteringDescriptionInCommentArea("Place Order");
         new PaymentPage(driver)
                 .navigate()
-                .enterPaymentDetails(testData.getTestData("cardName"), testData.getTestData("cardNumber"), testData.getTestData("cvc"), testData.getTestData("cardExpMonth"), testData.getTestData("cardExpYear"))
-                .clickOnPayOrder()
-                .verifyOrderPlacementSuccessMessage(testData.getTestData("Messages.successMessageOfOrder"));
+                .typeUserCardName(testData.getTestData("cardName"))
+                .typeCardNumber(testData.getTestData("cardNumber"))
+                .typeCardCvc( testData.getTestData("cvc"))
+                .typeExpiryMonth(testData.getTestData("cardExpMonth"))
+                .typeExpiryYear(testData.getTestData("cardExpYear"))
+                .clickOnPayAndConfirmBtn()
+                .verifySuccessMessage(testData.getTestData("Messages.successMessageOfOrder"));
+        new NavigationBar(driver)
+                .validateTheLoggedInUser(testData.getTestData("UserName"))
+                .clickOnDeleteAccountLink();
+        new DeleteAccountPage(driver)
+                .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"));
+    }
+
+    @Test(description = "Place Order: Register Using APIs before Checkout ")
+    public void PlaceOrderRegisterBeforeCheckoutAPI() {
+
         new ApisAccountManagement(api)
-                .deleteUserAccount(email, testData.getTestData("UserPassword"))
+                .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"));
+        new NavigationBar(driver)
+                .clickOnSignupLoginLink();
+        new SignupLoginPage(driver)
+                .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
+                .registeredUserLogin(testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"));
+        new ProductsPage(driver)
+                .navigate()
+                .addProductToCart(testData.getTestData("productName"))
+                .clickOnContinueButton()
+                .clickCartButton();
+        new CartPage(driver)
+                .verifyCartPageIsLoaded()
+                .verifyProductAddedToCart(testData.getTestData("productName"))
+                .proceedToCheckOut();
+        new CheckOutPage(driver)
+                .navigate()
+                .verifyingAddressDetails(testData.getTestData("UserDetailsNameAPI"), testData.getTestData("UserAddressAPI"), testData.getTestData("UserCountry"))
+                .enteringDescriptionInCommentArea("Place Order");
+        new PaymentPage(driver)
+                .navigate()
+                .typeUserCardName(testData.getTestData("cardName"))
+                .typeCardNumber(testData.getTestData("cardNumber"))
+                .typeCardCvc( testData.getTestData("cvc"))
+                .typeExpiryMonth(testData.getTestData("cardExpMonth"))
+                .typeExpiryYear(testData.getTestData("cardExpYear"))
+                .clickOnPayAndConfirmBtn()
+                .verifySuccessMessage(testData.getTestData("Messages.successMessageOfOrder"));
+        new ApisAccountManagement(api)
+                .deleteUserAccount(testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"))
                 .validateDeleteUser();
     }
 
