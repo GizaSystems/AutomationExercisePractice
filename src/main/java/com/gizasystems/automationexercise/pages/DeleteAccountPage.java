@@ -10,7 +10,7 @@ public class DeleteAccountPage {
 
     // Locators
     private final By accountDeleted_b = By.cssSelector("h2[data-qa='account-deleted'] > b");
-    private final By continueButton =By.cssSelector(".btn.btn-primary");
+    private final By continueBtn_div=By.cssSelector("a[data-qa='continue-button']");
 
     // Constructor
     public DeleteAccountPage(SHAFT.GUI.WebDriver driver) {
@@ -18,11 +18,12 @@ public class DeleteAccountPage {
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
-    @Step("Click On Continue Button")
-    public DeleteAccountPage clickOnContinueButton() {
-        driver.element().click(continueButton);
+    @Step("Click on Continue Button")
+    public DeleteAccountPage clickOnContinueBtn(){
+        driver.element().click(continueBtn_div);
         return this;
     }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate Account Deleted")
     public DeleteAccountPage validateAccountDeleted(String expectedMessage) {

@@ -33,6 +33,7 @@ public class NavigationBar {
     @Step("Click on Delete Account Link")
     public NavigationBar clickOnDeleteAccountLink() {
         driver.element().click(delete_link);
+        GoogleAlert.dismissAlert(driver,delete_link);
         return this;
     }
 
