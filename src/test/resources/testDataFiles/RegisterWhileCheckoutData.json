@@ -1,0 +1,39 @@
+{
+  "ProductDetails": {
+    "productName" : "Blue Top"
+  },
+  "Messages": {
+    "ProductAddedMessage" : "Added!",
+    "CheckoutBodyMessage": "Checkout",
+    "Signup": "New User Signup!",
+    "AccountInfo": "ENTER ACCOUNT INFORMATION",
+    "AccountCreated": "ACCOUNT CREATED!",
+    "OrderConfirmed" : "ORDER PLACED!",
+    "AccountDeleted": "ACCOUNT DELETED!"
+  },
+  "RegisterData": {
+    "UserName": "Automation",
+    "UserMail": "AutoBot_Gui",
+    "Gender": "Mrs",
+    "UserPassword": "p@ssw0rd",
+    "UserFirstName": "Automation",
+    "UserLastName": "Bot",
+    "UserBirthDay": "25",
+    "UserBirthMonth": "September",
+    "UserBirthYear": "1994",
+    "UserAddress1": "Cairo",
+    "UserCountry": "India",
+    "UserState": "Cairo",
+    "UserCity": "Cairo",
+    "UserZipCode": "10200",
+    "UserMobile": "01111111111"
+  },
+  "OrderComment": "Please package it as a gift and remove price!",
+  "PaymentData": {
+    "NameOnCard": "AUTOMATION BOT",
+    "CardNumber": "4871049999999910",
+    "CVC": "737",
+    "ExpiryMonth": "03",
+    "ExpiryYear": "2030"
+  }
+}
