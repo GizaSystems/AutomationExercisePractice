@@ -5,52 +5,65 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class PaymentPage {
-    //Variables
+    // Variables
     private SHAFT.GUI.WebDriver driver;
-    private String url = System.getProperty("baseUrl") + "/payment";
+    //Locators
+    private final By nameOnCardTxtInput_div = By.xpath("//input[@data-qa='name-on-card']");
+    private final By cardNumberTxtInput_div = By.xpath("//input[@data-qa='card-number']");
+    private final By CvcTxtInput_div = By.xpath("//input[@data-qa='cvc']");
+    private final By expiryMonthTxtInput_div = By.xpath("//input[@data-qa='expiry-month']");
+    private final By expiryYearTxtInput_div = By.xpath("//input[@data-qa='expiry-year']");
+    private final By payAndConfirmOrderBtn_div = By.xpath("//button[@data-qa='pay-button']");
+    private final By orderConfirmed_div = By.xpath("//h2[@data-qa='order-placed']");
 
-    // Locators
-    private final By cardNameInput = By.xpath("//div//input[@class='form-control']");
-    private final By cardNumberInput = By.xpath("//div//input[@class='form-control card-number']");
-    private final By cvcInput = By.xpath("//div//input[@class='form-control card-cvc']");
-    private final By cardExpMonthInput = By.xpath("//div//input[@class='form-control card-expiry-month']");
-    private final By cardExpYearInput = By.xpath("//div//input[@class='form-control card-expiry-year']");
-    private final By payOrderBtn = By.xpath("//button[@class='form-control btn btn-primary submit-button']");
-    private final By orderPlacedSuccessMessage = By.xpath("//p[@style='font-size: 20px; font-family: garamond;']");
-
-    // Constructors
+    // Constructor
     public PaymentPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
-    //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+    //////////////////// Actions \\\\\\\\\\
 
-    public PaymentPage navigate() {
-        driver.browser().navigateToURL(url);
+    @Step("Type user name on card")
+    public PaymentPage typeUserCardName(String userName) {
+        driver.element().type(nameOnCardTxtInput_div, userName);
         return this;
     }
 
-    @Step("Enter payment details: Name on Card, Card Number, CVC, Expiration date")
-    public PaymentPage enterPaymentDetails(String user, String number, String cvc, String expMonth, String expYear) {
-        driver.element().type(cardNameInput, user);
-        driver.element().type(cardNumberInput, number);
-        driver.element().type(cvcInput, cvc);
-        driver.element().type(cardExpMonthInput, expMonth);
-        driver.element().type(cardExpYearInput, expYear);
+    @Step("Type User Card number")
+    public PaymentPage typeCardNumber(String cardNumber) {
+        driver.element().type(cardNumberTxtInput_div, cardNumber);
         return this;
     }
 
-    @Step("Click 'Pay and Confirm Order' button")
-    public PaymentPage clickOnPayOrder() {
-        driver.element().click(payOrderBtn);
+    @Step("Type User Card CVC")
+    public PaymentPage typeCardCvc(String cvc) {
+        driver.element().type(CvcTxtInput_div, cvc);
         return this;
     }
 
-    //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+    @Step("Type User card Expiry Month")
+    public PaymentPage typeExpiryMonth(String expiryMonth) {
+        driver.element().type(expiryMonthTxtInput_div, expiryMonth);
+        return this;
+    }
 
-    @Step("Verify Order Placement Success Message")
-    public PaymentPage verifyOrderPlacementSuccessMessage(String message) {
-        driver.verifyThat().element(orderPlacedSuccessMessage).text().isEqualTo(message).perform();
+    @Step("Type User card Expiry Year ")
+    public PaymentPage typeExpiryYear(String expiryYear) {
+        driver.element().type(expiryYearTxtInput_div, expiryYear);
+        return this;
+    }
+
+    @Step("Click on Pay and Confirm Order")
+    public PaymentPage clickOnPayAndConfirmBtn() {
+        driver.element().hover(payAndConfirmOrderBtn_div);
+        driver.element().click(payAndConfirmOrderBtn_div);
+        return this;
+    }
+
+    //////////////////// Validations \\\\\\\\\\
+    @Step("Verify the success message after order placed !")
+    public PaymentPage verifySuccessMessage(String message) {
+        driver.element().assertThat(orderConfirmed_div).text().isEqualTo(message);
         return this;
     }
 }
