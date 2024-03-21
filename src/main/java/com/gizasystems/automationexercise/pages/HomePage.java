@@ -12,7 +12,7 @@ public class HomePage {
     // Locators
     private final By featuredItems_div = By.cssSelector("div.features_items");
     private final By recommendedItems_div = By.cssSelector("div.recommended_items");
-    private final By categoryTitle_div= By.xpath("//h2[@class='title text-center']");
+    private final By categoryTitle_div = By.xpath("//h2[@class='title text-center']");
 
     // Constructor
     public HomePage(SHAFT.GUI.WebDriver driver) {

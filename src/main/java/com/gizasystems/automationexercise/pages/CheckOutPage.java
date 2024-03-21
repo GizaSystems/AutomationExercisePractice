@@ -6,12 +6,10 @@ import org.openqa.selenium.By;
 
 public class CheckOutPage {
     // Variables
-
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/checkout";
 
     // Locators
-
     private final By addressVerificationFirstName = By.xpath("//ul[@class = 'address item box']//li[@class='address_firstname address_lastname']");
     private final By addressVerificationAddress1 = By.xpath("//ul[@class = 'address item box']//li[@class='address_address1 address_address2'][2]");
     private final By addressVerifiycationCity = By.xpath("//ul[@class='address item box']//li[@class='address_country_name']");
@@ -19,7 +17,6 @@ public class CheckOutPage {
     private final By commentTextArea = By.className("form-control");
 
     // Constructor
-
     public CheckOutPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }

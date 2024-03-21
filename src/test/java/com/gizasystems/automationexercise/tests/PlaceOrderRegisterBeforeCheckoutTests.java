@@ -1,41 +1,37 @@
 package com.gizasystems.automationexercise.tests;
 
+import com.gizasystems.automationexercise.apis.Apis;
+import com.gizasystems.automationexercise.apis.ApisAccountManagement;
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
 
 @Epic("Automation Exercise")
 @Feature("Placing Order")
 @Story("Place Order : Register Before Checkout")
-
 public class PlaceOrderRegisterBeforeCheckoutTests {
-
+    private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
-    private SHAFT.GUI.WebDriver driver;
     private String timeStamp = String.valueOf(System.currentTimeMillis());
+    private SHAFT.GUI.WebDriver driver;
 
     @Test(description = "Place Order: Register before Checkout")
     @Description("Place Order: Register before Checkout")
     @TmsLink("55512432")
-
     public void PlaceOrderRegisterBeforeCheckout() {
+        String email = testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com";
+
+        new ApisAccountManagement(api)
+                .createRegisterUserAccount(testData.getTestData("UserName"), email, testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"));
         new NavigationBar(driver)
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
-                .newUserSignup(testData.getTestData("UserName"), testData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com");
-        new SignupPage(driver)
-                .validateOnAccountInfoPage(testData.getTestData("Messages.AccountInfo"))
-                .enterAccountInformation(testData.getTestData("Gender"), testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"), testData.getTestData("UserBirthDay"), testData.getTestData("UserBirthMonth"), testData.getTestData("UserBirthYear"))
-                .enterAddressInformation(testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserState"), testData.getTestData("UserCity"), testData.getTestData("UserZipCode"), testData.getTestData("UserMobile"))
-                .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"))
-                .clickOnContinueButton();
-        new NavigationBar(driver)
-                .validateTheLoggedInUser(testData.getTestData("UserName"));
+                .registeredUserLogin(email, testData.getTestData("UserPassword"));
         new ProductsPage(driver)
                 .navigate()
                 .addProductToCart(testData.getTestData("productName"))
@@ -47,17 +43,19 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
                 .proceedToCheckOut();
         new CheckOutPage(driver)
                 .navigate()
-                .verifyingAddressDetails("Mr. Automation Bot", testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"))
+                .verifyingAddressDetails(testData.getTestData("UserDetailsName"), testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"))
                 .enteringDescriptionInCommentArea("Place Order");
         new PaymentPage(driver)
                 .navigate()
                 .enterPaymentDetails(testData.getTestData("cardName"), testData.getTestData("cardNumber"), testData.getTestData("cvc"), testData.getTestData("cardExpMonth"), testData.getTestData("cardExpYear"))
                 .clickOnPayOrder()
-                .verifySucessMessage(testData.getTestData("Messages.successMessageOfOrder"))
-                .delteAccount();
-        new DeleteAccountPage(driver)
-                .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"));
+                .verifyOrderPlacementSuccessMessage(testData.getTestData("Messages.successMessageOfOrder"));
+        new ApisAccountManagement(api)
+                .deleteUserAccount(email, testData.getTestData("UserPassword"))
+                .validateDeleteUser();
     }
+
+    //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
 
     @BeforeClass
     public void beforeClass() {
@@ -66,6 +64,8 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
 
     @BeforeMethod
     public void beforeMethod() {
+        timeStamp = String.valueOf(System.currentTimeMillis());
+        api = new SHAFT.API(Apis.ApisBaseUrl);
         driver = new SHAFT.GUI.WebDriver();
         new HomePage(driver)
                 .navigate()
@@ -77,4 +77,3 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
         driver.quit();
     }
 }
-

@@ -16,14 +16,14 @@ public class PaymentPage {
     private final By cardExpMonthInput = By.xpath("//div//input[@class='form-control card-expiry-month']");
     private final By cardExpYearInput = By.xpath("//div//input[@class='form-control card-expiry-year']");
     private final By payOrderBtn = By.xpath("//button[@class='form-control btn btn-primary submit-button']");
-    private final By orderPlacedSucessMessage = By.xpath("//p[@style='font-size: 20px; font-family: garamond;']");
-    private final By deleteBtn = By.cssSelector("a[href='/delete_account']");
+    private final By orderPlacedSuccessMessage = By.xpath("//p[@style='font-size: 20px; font-family: garamond;']");
 
     // Constructors
     public PaymentPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
+    //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
 
     public PaymentPage navigate() {
         driver.browser().navigateToURL(url);
@@ -46,15 +46,11 @@ public class PaymentPage {
         return this;
     }
 
-    @Step("Click 'Delete Account' button")
-    public PaymentPage delteAccount() {
-        driver.element().click(deleteBtn);
-        return this;
-    }
+    //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
 
-    @Step("Verify success message 'Your order has been placed successfully!'")
-    public PaymentPage verifySucessMessage(String message) {
-        driver.verifyThat().element(orderPlacedSucessMessage).text().isEqualTo(message).perform();
+    @Step("Verify Order Placement Success Message")
+    public PaymentPage verifyOrderPlacementSuccessMessage(String message) {
+        driver.verifyThat().element(orderPlacedSuccessMessage).text().isEqualTo(message).perform();
         return this;
     }
 }

@@ -7,16 +7,16 @@ import org.openqa.selenium.By;
 
 public class ProductsPage {
     //Variables
-
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/products";
 
     //Locators
-
     private final By productsPageTitle_div = By.xpath("//h2[@class='title text-center' and text()='All Products']");
+
     private By viewProduct_link(String productName) {
         return By.xpath("(//p[text()='" + productName + "'])[1]//ancestor::div[@class='product-image-wrapper']//child::a[contains(@href,'/product')]");
     }
+
     private final By searchTextArea = By.xpath("//input[@id='search_product']");
     private final By searchedProducts = By.xpath("//h2[text()='Searched Products']");
     private final By allProducts = By.xpath("//h2[text()='All Products']");
@@ -32,15 +32,16 @@ public class ProductsPage {
     private final By reviewSuccessAlert = By.xpath("//div[@class='alert-success alert']//span");
     private final By continueBtn = By.xpath("(//button[@class='btn btn-success close-modal btn-block'])[1]");
     private final By viewCartBtn = By.xpath("//a[normalize-space()='View Cart']");
+
     private By hoverOnProduct(String itemName) {
         return By.xpath("//div[@class='productinfo text-center']//child::p[text()='" + itemName + "']");
     }
+
     private By clickOnProduct(String itemName) {
         return By.xpath("//div[@class='overlay-content']//p[text()='" + itemName + "']//following-sibling::a[text()='Add to cart']");
     }
 
     //Constructors
-
     public ProductsPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
