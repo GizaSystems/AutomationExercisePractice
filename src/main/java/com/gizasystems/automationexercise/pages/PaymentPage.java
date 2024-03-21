@@ -5,24 +5,6 @@ import com.shaft.validation.Validations;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-
-public class PaymentPage {
-    // Variables
-    private SHAFT.GUI.WebDriver driver;
-    private String url = System.getProperty("baseUrl") + "/payment";
-    // Locators
-    private final By nameOnCard = By.xpath("//input[@class='form-control']");
-    private final By cardNumber = By.xpath("//input[contains(@class, 'card-number')]");
-    private final By cvc = By.xpath("//input[contains(@class, 'card-cvc')]");
-    private final By cardExpirationMonth = By.xpath("//input[contains(@class, 'card-expiry-month')]");
-    private final By cardExpirationYear = By.xpath("//input[contains(@class, 'card-expiry-year')]");
-    private final By payAndConfirmOrderButton = By.xpath("//button[@id='submit']");
-    private final By successPaymentMessage = By.id("success_message");
-    private final By downloadInvoiceButton = By.cssSelector(".btn.btn-default.check_out");
-    private final By continueButton = By.cssSelector(".btn.btn-primary");
-import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-
 public class PaymentPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
@@ -34,6 +16,11 @@ public class PaymentPage {
     private final By expiryYearTxtInput_div = By.xpath("//input[@data-qa='expiry-year']");
     private final By payAndConfirmOrderBtn_div = By.xpath("//button[@data-qa='pay-button']");
     private final By orderConfirmed_div = By.xpath("//h2[@data-qa='order-placed']");
+    private final By successPaymentMessage = By.id("success_message");
+    private final By downloadInvoiceButton = By.cssSelector(".btn.btn-default.check_out");
+    private final By continueButton = By.cssSelector(".btn.btn-primary");
+
+    private String url = System.getProperty("baseUrl") + "/payment";
 
     // Constructor
     public PaymentPage(SHAFT.GUI.WebDriver driver) {
@@ -44,16 +31,6 @@ public class PaymentPage {
     @Step(" Navigate to Payment Page")
     public PaymentPage navigate() {
         driver.browser().navigateToURL(url);
-        return this;
-    }
-
-    @Step(" Enter Card Information Details for Payment")
-    public PaymentPage cardDetailsEntryForPayment(String expectedCardName, String expectedCardNumber, String CardCvc, String expirationMonth, String expirationYear) {
-        driver.element().type(nameOnCard, expectedCardName);
-        driver.element().type(cardNumber, expectedCardNumber);
-        driver.element().type(cvc, CardCvc);
-        driver.element().type(cardExpirationMonth, expirationMonth);
-        driver.element().type(cardExpirationYear, expirationYear);
         return this;
     }
 
@@ -71,24 +48,9 @@ public class PaymentPage {
 
     @Step(" Click On Pay And Confirm Order Button")
     public PaymentPage clickPayAndConfirmOrderButton() {
-        driver.element().click(payAndConfirmOrderButton);
+        driver.element().click(payAndConfirmOrderBtn_div);
         return this;
     }
-
-    //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-    @Step(" Validate on Payment Success Validation Message ")
-    public PaymentPage validateOnPaymentSuccessValidationMessage(String message) {
-        driver.verifyThat().element(successPaymentMessage).text().contains(message).perform();
-        return this;
-    }
-
-    @Step(" Validate Invoice  Is downloaded  ")
-    public PaymentPage validateInviceDownloaded(String filename) {
-        Validations.assertThat().file(SHAFT.Properties.paths.downloads(), filename).exists().perform();
-        return this;
-    }
-
-    //////////////////// Actions \\\\\\\\\\
 
     @Step("Type user name on card")
     public PaymentPage typeUserCardName(String userName) {
@@ -127,7 +89,19 @@ public class PaymentPage {
         return this;
     }
 
-    //////////////////// Validations \\\\\\\\\\
+    //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+    @Step(" Validate on Payment Success Validation Message ")
+    public PaymentPage validateOnPaymentSuccessValidationMessage(String message) {
+        driver.verifyThat().element(successPaymentMessage).text().contains(message).perform();
+        return this;
+    }
+
+    @Step(" Validate Invoice  Is downloaded  ")
+    public PaymentPage validateInviceDownloaded(String filename) {
+        Validations.assertThat().file(SHAFT.Properties.paths.downloads(), filename).exists().perform();
+        return this;
+    }
+
     @Step("Verify the success message after order placed !")
     public PaymentPage verifySuccessMessage(String message) {
         driver.element().assertThat(orderConfirmed_div).text().isEqualTo(message);

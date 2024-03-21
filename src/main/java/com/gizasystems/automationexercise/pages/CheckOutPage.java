@@ -17,7 +17,7 @@ public class CheckOutPage {
     private final By addressVerifiycationCountry = By.xpath("//ul[@class='address item box']//li[@class='address_country_name']");
     private final By addressVerifiycationCity = By.xpath("//ul[@class='address item box']//li[@class='address_city address_state_name address_postcode']");
     private final By placeOrderBtn = By.xpath("//div//a[@class='btn btn-default check_out']");
-    private final By commentTextArea = By.className("form-control");
+    private final By commentTextArea = By.xpath("//textarea[@class='form-control']");
 
     // Constructor
 

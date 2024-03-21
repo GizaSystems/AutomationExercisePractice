@@ -61,7 +61,11 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .verifiyingAddressDetails(testData.getTestData("UserFirstName"), testData.getTestData("Gender"), testData.getTestData("UserLastName"), testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserCity"))
                 .enteringDescriptionInCommentArea(testData.getTestData("Comment.text"));
         new PaymentPage(driver)
-                .cardDetailsEntryForPayment(testData.getTestData("Card.name"), testData.getTestData("Card.number"), testData.getTestData("Card.cvc"), testData.getTestData("Card.expirymonth"), testData.getTestData("Card.expiryyear"))
+                .typeUserCardName(testData.getTestData("Card.name"))
+                .typeCardNumber(testData.getTestData("Card.number"))
+                .typeCardCvc(testData.getTestData("Card.cvc"))
+                .typeExpiryMonth(testData.getTestData("Card.expirymonth"))
+                .typeExpiryYear(testData.getTestData("Card.expiryyear"))
                 .validateOnPaymentSuccessValidationMessage(testData.getTestData("Messages.SuccessMessages"))
                 .clickPayAndConfirmOrderButton()
                 .downloadInvoice()
@@ -71,7 +75,7 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .clickOnDeleteAccountLink();
         new DeleteAccountPage(driver)
                 .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"))
-                .clickOnContinueButton();
+                .clickOnContinueBtn();
     }
 
     @TmsLink("55512515")
@@ -107,7 +111,11 @@ public class DownloadInvoiceAfterPurchaseOrder {
         new CheckOutPage(driver)
                 .enteringDescriptionInCommentArea(testData.getTestData("Comment.text"));
         new PaymentPage(driver)
-                .cardDetailsEntryForPayment(testData.getTestData("Card.name"), testData.getTestData("Card.number"), testData.getTestData("Card.cvc"), testData.getTestData("Card.expirymonth"), testData.getTestData("Card.expiryyear"))
+                .typeUserCardName(testData.getTestData("Card.name"))
+                .typeCardNumber(testData.getTestData("Card.number"))
+                .typeCardCvc(testData.getTestData("Card.cvc"))
+                .typeExpiryMonth(testData.getTestData("Card.expirymonth"))
+                .typeExpiryYear(testData.getTestData("Card.expiryyear"))
                 .validateOnPaymentSuccessValidationMessage(testData.getTestData("Messages.SuccessMessages"))
                 .clickPayAndConfirmOrderButton()
                 .downloadInvoice()
