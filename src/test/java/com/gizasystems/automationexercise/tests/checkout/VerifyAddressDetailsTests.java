@@ -34,6 +34,8 @@ public class VerifyAddressDetailsTests {
             "And Account should be deleted successfully")
     @Test(description = "Verify address details in checkout page")
     public void verifyAddressDetailsInCheckoutPage() {
+        new NavigationBar(driver)
+                .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
                 .newUserSignup(testData.getTestData("RegisterData.UserName"), testData.getTestData("RegisterData.UserMail") + timeStamp + "@gizasystems.com");
@@ -45,17 +47,23 @@ public class VerifyAddressDetailsTests {
                 .clickOnContinueButton();
         new NavigationBar(driver)
                 .validateTheLoggedInUser(testData.getTestData("RegisterData.UserName"));
-new RecommendedSection(driver)
-        .openRecommendedSection()
-        .verifyRecommendedSectionVisibility()
-        .addToCart("ProductDetails.productName")
-        .verifyProductAddedToCart("Messages.ProductAddedMessage");
+        new RecommendedSection(driver)
+                .openRecommendedSection()
+                .verifyRecommendedSectionVisibility()
+                .addToCart("ProductDetails.productName")
+                .verifyProductAddedToCart("Messages.ProductAddedMessage");
+        new CartPage(driver)
+                .openCart()
+                .verifyCartPageIsLoaded()
+                .verifyProductAddedToCart(testData.getTestData("ProductDetails.productName"))
+                .proceedToCheckOut();
+
     }
 
     //////////////////// Configurations \\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("VerifyAddressDetails.json");
+        testData = new SHAFT.TestData.JSON("AddressDetails.json");
     }
 
     @BeforeMethod
@@ -69,7 +77,7 @@ new RecommendedSection(driver)
 
     @AfterMethod
     public void afterMethod() {
-        driver.quit();
+        //driver.quit();
     }
 }
 

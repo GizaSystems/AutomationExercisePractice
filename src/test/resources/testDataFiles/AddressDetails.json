@@ -22,7 +22,8 @@
   "Messages": {
     "AccountCreated": "ACCOUNT CREATED!",
     "AccountDeleted": "ACCOUNT DELETED!",
-    "Login": "Login to your account",
+    "Signup": "New User Signup!",
+    "AccountInfo": "ENTER ACCOUNT INFORMATION",
     "ProductAddedMessage" : "Added!"
   }
 }
