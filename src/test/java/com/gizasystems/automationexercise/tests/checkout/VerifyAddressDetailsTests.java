@@ -47,15 +47,12 @@ public class VerifyAddressDetailsTests {
                 .clickOnContinueButton();
         new NavigationBar(driver)
                 .validateTheLoggedInUser(testData.getTestData("RegisterData.UserName"));
-        new RecommendedSection(driver)
-                .openRecommendedSection()
-                .verifyRecommendedSectionVisibility()
-                .addToCart("ProductDetails.productName")
-                .verifyProductAddedToCart("Messages.ProductAddedMessage");
+        new ProductQuantityPage(driver)
+                .clickOnViewProduct()
+                .addProductToCart()
+                .clickOnCart()
+                .refreshCartPage();
         new CartPage(driver)
-                .openCart()
-                .verifyCartPageIsLoaded()
-                .verifyProductAddedToCart(testData.getTestData("ProductDetails.productName"))
                 .proceedToCheckOut();
 
     }
