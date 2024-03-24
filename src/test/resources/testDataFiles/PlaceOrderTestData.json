@@ -1,0 +1,37 @@
+{
+  "UserName": "UserPlaceOrder",
+  "UserMail": {
+    "Gui": "UserPlaceOrder_Gui",
+    "Api": "UserPlaceOrder_Api",
+    "ApiTimeStamp": "UserPlaceOrder_ApiTimeStamp"
+  },
+  "Gender": "Mr",
+  "UserPassword": "p@ssw0rd",
+  "UserFirstName": "UserPlaceOrder",
+  "UserLastName": "Bot",
+  "UserBirthDay": "4",
+  "UserBirthMonth": "September",
+  "UserBirthYear": "1994",
+  "UserAddress1": "Cairo",
+  "UserCountry": "India",
+  "UserState": "Cairo",
+  "UserCity": "Cairo",
+  "UserZipCode": "10200",
+  "UserMobile": "01111111111",
+  "Messages": {
+    "Signup": "New User Signup!",
+    "AccountInfo": "ENTER ACCOUNT INFORMATION",
+    "AccountCreated": "ACCOUNT CREATED!",
+    "AccountDeleted": "ACCOUNT DELETED!",
+    "successMessageOfOrder": "ORDER PLACED!"
+  },
+  "UserDetailsName": "Mr. UserPlaceOrder Bot",
+  "UserDetailsNameAPI": "Mr.. UserPlaceOrder Bot",
+  "UserAddressAPI": "address1",
+  "cardName": "UserPlaceOrder Bot",
+  "cardNumber": "0111",
+  "cvc": "311",
+  "cardExpMonth": "2",
+  "cardExpYear": "2025",
+  "productName" : "Blue Top"
+}

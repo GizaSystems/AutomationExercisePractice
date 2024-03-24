@@ -10,7 +10,6 @@ public class ProductsPage {
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/products";
 
-
     //Locators
     private final By productsPageTitle_div = By.xpath("//h2[@class='title text-center' and text()='All Products']");
 
@@ -31,14 +30,15 @@ public class ProductsPage {
     private final By reviewText_input = By.name("review");
     private final By submitBtn = By.id("button-review");
     private final By reviewSuccessAlert = By.xpath("//div[@class='alert-success alert']//span");
+    private final By continueBtn = By.xpath("(//button[@class='btn btn-success close-modal btn-block'])[1]");
+    private final By viewCartBtn = By.xpath("//a[normalize-space()='View Cart']");
 
     private By hoverOnProduct(String itemName) {
         return By.xpath("//div[@class='productinfo text-center']//child::p[text()='" + itemName + "']");
     }
 
-    private By ClickOnProduct(String itemName) {
+    private By clickOnProduct(String itemName) {
         return By.xpath("//div[@class='overlay-content']//p[text()='" + itemName + "']//following-sibling::a[text()='Add to cart']");
-
     }
 
     //Constructors
@@ -47,6 +47,7 @@ public class ProductsPage {
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+
     @Step("Pick Product")
     public ProductsPage pickProduct(String productName) {
         driver.element().click(viewProduct_link(productName));
@@ -67,22 +68,27 @@ public class ProductsPage {
     }
 
     @Step("Add Products to Cart")
-    public ProductsPage addProductsToCart(String ProductName) {
-        driver.element().hover(hoverOnProduct(ProductName));
-        driver.element().click(ClickOnProduct(ProductName));
+    public ProductsPage addProductToCart(String productName) {
+        driver.element().hover(hoverOnProduct(productName));
+        driver.element().click(clickOnProduct(productName));
         return this;
     }
 
     @Step("Click On View Cart popup Link Button")
-    public ProductsPage ClickOnViewCartpopupLinkButton() {
+    public ProductsPage clickOnViewCartpopupLinkButton() {
         driver.element().click(viewCartButtonPopUp);
         return this;
     }
 
     @Step("Click on View Product Link")
     public ProductsPage clickOnViewProduct() {
-        driver.element()
-                .click(viewProduct);
+        driver.element().click(viewProduct);
+        return this;
+    }
+
+    @Step("Click On Continue Button")
+    public ProductsPage clickOnContinueButton() {
+        driver.element().click(continueBtn);
         return this;
     }
 
@@ -96,7 +102,14 @@ public class ProductsPage {
         return this;
     }
 
+    @Step("Click On Cart Button")
+    public ProductsPage clickCartButton() {
+        driver.element().click(viewCartBtn);
+        return this;
+    }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+
     @Step("Validate on Visibility of the Products Page Title")
     public ProductsPage verifyProductPageTitleVisibility() {
         driver.assertThat().element(productsPageTitle_div).isVisible().perform();

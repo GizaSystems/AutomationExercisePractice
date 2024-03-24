@@ -7,9 +7,7 @@ import org.openqa.selenium.By;
 public class CartPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
-
     private String url = System.getProperty("baseUrl") + "/view_cart";
-
 
     // Locators
     private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
@@ -42,16 +40,15 @@ public class CartPage {
 
     // Constructor
 
-    public CartPage navigate() {
-        driver.browser().navigateToURL(url);
-        return this;
-    }
-
     public CartPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+    public CartPage navigate() {
+        driver.browser().navigateToURL(url);
+        return this;
+    }
 
     //Clicking using JS as fix for pipeline failure on safari (Click isn't happening even with ClickUsingJS Flag)
     @Step("Open Cart Page")
