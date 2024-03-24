@@ -65,7 +65,6 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
 
     @Test(description = "Place Order: Register Using APIs before Checkout ")
     public void PlaceOrderRegisterBeforeCheckoutAPI() {
-
         new ApisAccountManagement(api)
                 .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"));
         new NavigationBar(driver)
@@ -101,7 +100,6 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
-
     @BeforeClass
     public void beforeClass() {
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/PlaceOrderTestData.json");
