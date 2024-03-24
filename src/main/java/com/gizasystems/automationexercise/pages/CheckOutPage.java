@@ -10,14 +10,17 @@ public class CheckOutPage {
 
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/checkout";
+
     // Locators
 
     private final By addressVerificationFirstName = By.xpath("//ul[@class = 'address item box']//li[@class='address_firstname address_lastname']");
     private final By addressVerificationAddress1 = By.xpath("//ul[@class = 'address item box']//li[@class='address_address1 address_address2'][2]");
+    private final By addressVerifiycationCity = By.xpath("//ul[@class='address item box']//li[@class='address_country_name']");
+    private final By addressVerificationAddress1 = By.xpath("//ul[@class = 'address item box']//li[@class='address_address1 address_address2'][2]");
     private final By addressVerifiycationCountry = By.xpath("//ul[@class='address item box']//li[@class='address_country_name']");
     private final By addressVerifiycationCity = By.xpath("//ul[@class='address item box']//li[@class='address_city address_state_name address_postcode']");
     private final By placeOrderBtn = By.xpath("//div//a[@class='btn btn-default check_out']");
-    private final By commentTextArea = By.xpath("//textarea[@class='form-control']");
+    private final By commentTextArea = By.className("form-control");
 
     // Constructor
 
@@ -42,6 +45,10 @@ public class CheckOutPage {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
 
     @Step("Verifiying address details")
+    public CheckOutPage verifyingAddressDetails(String firstName, String address, String city) {
+        driver.verifyThat().element(addressVerificationFirstName).text().isEqualTo(firstName).perform();
+        driver.verifyThat().element(addressVerificationAddress1).text().isEqualTo(address).perform();
+        driver.verifyThat().element(addressVerifiycationCity).text().isEqualTo(city).perform();
     public CheckOutPage verifiyingAddressDetails(String firstName, String gender, String lastname, String address, String country, String city) {
         driver.verifyThat().element(addressVerificationFirstName).text().equalsIgnoringCaseSensitivity(gender + ". " + firstName + " " + lastname).perform();
         driver.verifyThat().element(addressVerificationAddress1).text().equalsIgnoringCaseSensitivity(address).perform();

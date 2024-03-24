@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 public class PaymentPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
+    private String url = System.getProperty("baseUrl") + "/payment";
     //Locators
     private final By nameOnCardTxtInput_div = By.xpath("//input[@data-qa='name-on-card']");
     private final By cardNumberTxtInput_div = By.xpath("//input[@data-qa='card-number']");
@@ -49,6 +50,11 @@ public class PaymentPage {
     @Step(" Click On Pay And Confirm Order Button")
     public PaymentPage clickPayAndConfirmOrderButton() {
         driver.element().click(payAndConfirmOrderBtn_div);
+        return this;
+    }
+
+    public PaymentPage navigate() {
+        driver.browser().navigateToURL(url);
         return this;
     }
 
