@@ -20,6 +20,7 @@ public class PaymentPage {
     private final By successPaymentMessage = By.id("success_message");
     private final By downloadInvoiceButton = By.cssSelector(".btn.btn-default.check_out");
     private final By continueButton = By.cssSelector(".btn.btn-primary");
+
     // Constructor
     public PaymentPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
@@ -86,7 +87,6 @@ public class PaymentPage {
         driver.element().click(downloadInvoiceButton);
         return this;
     }
-
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step(" Validate on Payment Success Validation Message ")
