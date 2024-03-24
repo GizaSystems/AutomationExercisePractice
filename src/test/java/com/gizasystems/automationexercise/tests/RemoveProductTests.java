@@ -19,7 +19,7 @@ public class RemoveProductTests {
     private SHAFT.TestData.JSON testData;
 
     @Test(description = "Verify that Product Removed from Cart Successfully")
-    public void verifyBrandPageDisplayed() {
+    public void verifyProductRemovedFromCart() {
         new ProductsPage(driver)
                 .navigate()
                 .addProductToCart(testData.getTestData("productName"));
