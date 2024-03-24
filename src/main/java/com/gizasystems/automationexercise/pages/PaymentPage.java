@@ -20,27 +20,12 @@ public class PaymentPage {
     private final By successPaymentMessage = By.id("success_message");
     private final By downloadInvoiceButton = By.cssSelector(".btn.btn-default.check_out");
     private final By continueButton = By.cssSelector(".btn.btn-primary");
-
-    private String url = System.getProperty("baseUrl") + "/payment";
-
     // Constructor
     public PaymentPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
-    @Step(" Navigate to Payment Page")
-    public PaymentPage navigate() {
-        driver.browser().navigateToURL(url);
-        return this;
-    }
-
-    @Step("DownLoading Invoice ")
-    public PaymentPage downloadInvoice() {
-        driver.element().click(downloadInvoiceButton);
-        return this;
-    }
-
     @Step(" Click On Continue Button")
     public PaymentPage clickContinueButton() {
         driver.element().click(continueButton);
@@ -94,6 +79,14 @@ public class PaymentPage {
         driver.element().click(payAndConfirmOrderBtn_div);
         return this;
     }
+
+    @Step("Click on Download Invoice Button")
+    public PaymentPage clickOnDownloadInvoiceButton() {
+        driver.element().hover(downloadInvoiceButton);
+        driver.element().click(downloadInvoiceButton);
+        return this;
+    }
+
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step(" Validate on Payment Success Validation Message ")

@@ -35,8 +35,8 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .searchForProduct(testData.getTestData("SearchedProduct"))
                 .validateOnsearchedProductsPage()
                 .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"))
-                .addProductsToCart(testData.getTestData("SecondProduct.productDescription"))
-                .ClickOnViewCartpopupLinkButton();
+                .addProductToCart(testData.getTestData("SecondProduct.productDescription"))
+                .clickOnViewCartpopupLinkButton();
         new CartPage(driver)
                 .verifyCartPageIsLoaded()
                 .verifyProductAddedToCart(testData.getTestData("SecondProduct.productDescription"))
@@ -58,7 +58,7 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .verifyCartPageIsLoaded()
                 .proceedToCheckOut();
         new CheckOutPage(driver)
-                .verifiyingAddressDetails(testData.getTestData("UserFirstName"), testData.getTestData("Gender"), testData.getTestData("UserLastName"), testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserCity"))
+                .verifyingAddressDetails(testData.getTestData("UserFirstName"), testData.getTestData("Gender"), testData.getTestData("UserLastName"), testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserCity"))
                 .enteringDescriptionInCommentArea(testData.getTestData("Comment.text"));
         new PaymentPage(driver)
                 .typeUserCardName(testData.getTestData("Card.name"))
@@ -68,7 +68,7 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .typeExpiryYear(testData.getTestData("Card.expiryyear"))
                 .validateOnPaymentSuccessValidationMessage(testData.getTestData("Messages.SuccessMessages"))
                 .clickPayAndConfirmOrderButton()
-                .downloadInvoice()
+                .clickOnDownloadInvoiceButton()
                 .validateInviceDownloaded(testData.getTestData("File.name"))
                 .clickContinueButton();
         new NavigationBar(driver)
@@ -88,8 +88,8 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .searchForProduct(testData.getTestData("SearchedProduct"))
                 .validateOnsearchedProductsPage()
                 .validateOnProductsRelatedToSearch(testData.getTestData("SearchResult"))
-                .addProductsToCart(testData.getTestData("SecondProduct.productDescription"))
-                .ClickOnViewCartpopupLinkButton();
+                .addProductToCart(testData.getTestData("SecondProduct.productDescription"))
+                .clickOnViewCartpopupLinkButton();
         new CartPage(driver)
                 .verifyCartPageIsLoaded()
                 .verifyProductAddedToCart(testData.getTestData("SecondProduct.productDescription"))
@@ -118,7 +118,7 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .typeExpiryYear(testData.getTestData("Card.expiryyear"))
                 .validateOnPaymentSuccessValidationMessage(testData.getTestData("Messages.SuccessMessages"))
                 .clickPayAndConfirmOrderButton()
-                .downloadInvoice()
+                .clickOnDownloadInvoiceButton()
                 .validateInviceDownloaded(testData.getTestData("File.name"))
                 .clickContinueButton();
         new ApisAccountManagement(api)
