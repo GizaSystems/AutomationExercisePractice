@@ -45,7 +45,7 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
                 .proceedToCheckOut();
         new CheckOutPage(driver)
                 .navigate()
-                .verifyingAddressDetails(testData.getTestData("UserDetailsName"), testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"))
+                .verifyingAddressDetails(testData.getTestData("UserFirstName"), testData.getTestData("Gender"), testData.getTestData("UserLastName"), testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserCity"))
                 .enteringDescriptionInCommentArea("Place Order");
         new PaymentPage(driver)
                 .navigate()
@@ -84,7 +84,7 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
                 .proceedToCheckOut();
         new CheckOutPage(driver)
                 .navigate()
-                .verifyingAddressDetails(testData.getTestData("UserDetailsNameAPI"), testData.getTestData("UserAddressAPI"), testData.getTestData("UserCountry"))
+                .verifyingAddressDetails(testData.getTestData("UserFirstName"), testData.getTestData("GenderAPI"), testData.getTestData("UserLastName"), testData.getTestData("UserAddressAPI"), testData.getTestData("UserCountry"), testData.getTestData("UserCityAPI"))
                 .enteringDescriptionInCommentArea("Place Order");
         new PaymentPage(driver)
                 .navigate()

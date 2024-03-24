@@ -26,12 +26,13 @@
     "successMessageOfOrder": "ORDER PLACED!"
   },
   "UserDetailsName": "Mr. UserPlaceOrder Bot",
-  "UserDetailsNameAPI": "Mr.. UserPlaceOrder Bot",
   "UserAddressAPI": "address1",
   "cardName": "UserPlaceOrder Bot",
   "cardNumber": "0111",
   "cvc": "311",
   "cardExpMonth": "2",
   "cardExpYear": "2025",
-  "productName" : "Blue Top"
+  "productName" : "Blue Top",
+  "GenderAPI": "Mr.",
+  "UserCityAPI": "city"
 }
