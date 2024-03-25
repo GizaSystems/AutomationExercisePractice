@@ -1,7 +1,4 @@
 {
-  "ProductDetails": {
-    "productName" : "Stylish Dress"
-  },
   "RegisterData": {
     "UserName": "Automation",
     "UserMail": "AutoBot_Gui",
@@ -24,6 +21,6 @@
     "AccountDeleted": "ACCOUNT DELETED!",
     "Signup": "New User Signup!",
     "AccountInfo": "ENTER ACCOUNT INFORMATION",
-    "ProductAddedMessage" : "Added!"
+    "ProductAddedMessage": "Added!"
   }
 }
