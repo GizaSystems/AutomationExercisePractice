@@ -16,6 +16,7 @@ public class VerifyingScrollUpUsingArrowButtonAndScrollDownTests {
     // Variables
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testUser;
+
     // Test Cases
     @Test(description = "Verify scrolling functionality on the homepage with the arrow button")
     @Description("Given I open Automation Exercise home, When I scroll down the page to the bottom, Then I verify that 'SUBSCRIPTION' is visible on the screen, When I click on the arrow at the bottom right side to move upward, Then I verify that the page is scrolled up, And I verify that 'Full-Fledged practice website for Automation Engineers' text is visible on the screen")
@@ -28,6 +29,7 @@ public class VerifyingScrollUpUsingArrowButtonAndScrollDownTests {
                 .clickOnScrollUpArrow()
                 .validateOnVisibilityOfCarouselSlideText(testUser.getTestData("slideHeadingText"));
     }
+
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
