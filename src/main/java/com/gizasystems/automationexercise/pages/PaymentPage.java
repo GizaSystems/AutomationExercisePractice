@@ -10,7 +10,7 @@ public class PaymentPage {
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/payment";
     //Locators
-    private final By nameOnCardTxtInput_div = By.xpath("//input[@class='form-control']");
+    private final By nameOnCardTxtInput_div = By.xpath("//input[@data-qa='name-on-card']");
     private final By cardNumberTxtInput_div = By.xpath("//input[@data-qa='card-number']");
     private final By CvcTxtInput_div = By.xpath("//input[@data-qa='cvc']");
     private final By expiryMonthTxtInput_div = By.xpath("//input[@data-qa='expiry-month']");
