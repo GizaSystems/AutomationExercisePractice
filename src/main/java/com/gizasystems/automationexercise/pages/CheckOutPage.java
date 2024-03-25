@@ -12,7 +12,9 @@ public class CheckOutPage {
     // Locators
     private final By addressVerificationFirstName = By.xpath("//ul[@class = 'address item box']//li[@class='address_firstname address_lastname']");
     private final By addressVerificationAddress1 = By.xpath("//ul[@class = 'address item box']//li[@class='address_address1 address_address2'][2]");
-    private final By addressVerifiycationCity = By.xpath("//ul[@class='address item box']//li[@class='address_country_name']");
+    private final By addressVerificationCity = By.xpath("//ul[@class='address item box']//li[@class='address_country_name']");
+    private final By deliveryFullAddress_div = By.xpath("//ul[@class='address item box']//li[@class='address_city address_state_name address_postcode']");
+    private final By billingFullAddress_div = By.xpath("//ul[@class='address alternate_item box']//li[@class='address_city address_state_name address_postcode']");
     private final By placeOrderBtn = By.xpath("//div//a[@class='btn btn-default check_out']");
     private final By commentTextArea = By.className("form-control");
 
@@ -37,11 +39,23 @@ public class CheckOutPage {
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
 
-    @Step("Verifiying address details")
+    @Step("Verifying address details")
     public CheckOutPage verifyingAddressDetails(String firstName, String address, String city) {
         driver.verifyThat().element(addressVerificationFirstName).text().isEqualTo(firstName).perform();
         driver.verifyThat().element(addressVerificationAddress1).text().isEqualTo(address).perform();
-        driver.verifyThat().element(addressVerifiycationCity).text().isEqualTo(city).perform();
+        driver.verifyThat().element(addressVerificationCity).text().isEqualTo(city).perform();
+        return this;
+    }
+
+    @Step("Verify the delivery address")
+    public CheckOutPage verifyDeliveryAddressDetails(String city, String state, String zipCode) {
+        driver.assertThat().element(deliveryFullAddress_div).text().isEqualTo(city + " " + state + " " + zipCode).perform();
+        return this;
+    }
+
+    @Step("Verify the billing address Details")
+    public CheckOutPage verifyBillingAddressDetails(String city, String state, String zipCode) {
+        driver.assertThat().element(billingFullAddress_div).text().isEqualTo(city + " " + state + " " + zipCode).perform();
         return this;
     }
 }

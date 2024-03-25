@@ -54,7 +54,13 @@ public class VerifyAddressDetailsTests {
                 .refreshCartPage();
         new CartPage(driver)
                 .proceedToCheckOut();
-
+        new CheckOutPage(driver)
+                .verifyDeliveryAddressDetails(testData.getTestData("RegisterData.UserState"), testData.getTestData("RegisterData.UserCity"), testData.getTestData("RegisterData.UserZipCode"))
+                .verifyBillingAddressDetails(testData.getTestData("RegisterData.UserState"), testData.getTestData("RegisterData.UserCity"), testData.getTestData("RegisterData.UserZipCode"));
+        new NavigationBar(driver)
+                .clickOnDeleteAccountLink();
+        new DeleteAccountPage(driver)
+                .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"));
     }
 
     //////////////////// Configurations \\\\\\\\\\
@@ -74,7 +80,7 @@ public class VerifyAddressDetailsTests {
 
     @AfterMethod
     public void afterMethod() {
-        //driver.quit();
+        driver.quit();
     }
 }
 
