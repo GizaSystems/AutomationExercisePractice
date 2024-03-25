@@ -25,8 +25,8 @@ public class AddProductInCartTests {
                 clickOnProductsLink();
         new ProductsPage(driver)
                 .navigate()
-                .addProductsToCart(testData.getTestData("FirstProduct.productDescription"))
-                .addProductsToCart(testData.getTestData("SecondProduct.productDescription"));
+                .addProductToCart(testData.getTestData("FirstProduct.productDescription"))
+                .addProductToCart(testData.getTestData("SecondProduct.productDescription"));
 
 
         new CartPage(driver)
