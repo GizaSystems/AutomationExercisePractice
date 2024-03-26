@@ -1,6 +1,7 @@
 package com.gizasystems.automationexercise.pages;
 
 import com.shaft.driver.SHAFT;
+import com.shaft.validation.Validations;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -16,16 +17,40 @@ public class PaymentPage {
     private final By expiryYearTxtInput_div = By.xpath("//input[@data-qa='expiry-year']");
     private final By payAndConfirmOrderBtn_div = By.xpath("//button[@data-qa='pay-button']");
     private final By orderConfirmed_div = By.xpath("//h2[@data-qa='order-placed']");
+    private final By successPaymentMessage = By.id("success_message");
+    private final By downloadInvoiceButton = By.cssSelector(".btn.btn-default.check_out");
+    private final By continueButton = By.cssSelector(".btn.btn-primary");
 
     // Constructor
     public PaymentPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
-    //////////////////// Actions \\\\\\\\\\
+    //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+    @Step(" Click On Continue Button")
+    public PaymentPage clickContinueButton() {
+        driver.element().click(continueButton);
+        return this;
+    }
+
+    @Step(" Click On Pay And Confirm Order Button")
+    public PaymentPage clickPayAndConfirmOrderButton() {
+        driver.element().click(payAndConfirmOrderBtn_div);
+        return this;
+    }
 
     public PaymentPage navigate() {
         driver.browser().navigateToURL(url);
+        return this;
+    }
+
+    @Step("Fill in Payment Information")
+    public PaymentPage fillPaymentInformation(String userName, String cardNumber, String cvc, String expiryMonth, String expiryYear) {
+        typeUserCardName(userName);
+        typeCardNumber(cardNumber);
+        typeCardCvc(cvc);
+        typeExpiryMonth(expiryMonth);
+        typeExpiryYear(expiryYear);
         return this;
     }
 
@@ -66,7 +91,26 @@ public class PaymentPage {
         return this;
     }
 
-    //////////////////// Validations \\\\\\\\\\
+    @Step("Click on Download Invoice Button")
+    public PaymentPage clickOnDownloadInvoiceButton() {
+        driver.element().hover(downloadInvoiceButton);
+        driver.element().click(downloadInvoiceButton);
+        return this;
+    }
+
+    //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
+    @Step(" Validate on Payment Success Validation Message ")
+    public PaymentPage validateOnPaymentSuccessValidationMessage(String message) {
+        driver.verifyThat().element(successPaymentMessage).text().contains(message).perform();
+        return this;
+    }
+
+    @Step(" Validate Invoice  Is downloaded  ")
+    public PaymentPage validateInviceDownloaded(String filename) {
+        Validations.assertThat().file(SHAFT.Properties.paths.downloads(), filename).exists().perform();
+        return this;
+    }
+
     @Step("Verify the success message after order placed !")
     public PaymentPage verifySuccessMessage(String message) {
         driver.element().assertThat(orderConfirmed_div).text().isEqualTo(message);

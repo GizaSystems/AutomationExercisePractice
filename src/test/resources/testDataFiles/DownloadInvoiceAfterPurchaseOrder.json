@@ -1,0 +1,61 @@
+{
+  "UserName": "DownloadInvoice",
+  "UserMail": {
+    "Gui": "DownloadInvoice_Gui",
+    "GuiTimeStamp": "DownloadInvoice_GuiTimeStamp",
+    "GuiApi": "DownloadInvoice_GuiApi",
+    "Api": "DownloadInvoice_Api",
+    "ApiTimeStamp": "DownloadInvoice_ApiTimeStamp"
+  },
+  "Gender": "Mr",
+  "UserPassword": "p@ssw0rd@Test",
+  "UserFirstName": "Download",
+  "UserLastName": "Invoice",
+  "UserBirthDay": "3",
+  "UserBirthMonth": "July",
+  "UserBirthYear": "1997",
+  "UserAddress1": "Jenkins Road",
+  "UserCountry": "Canada",
+  "UserState": "British Columbia",
+  "UserCity": "British Columbia",
+  "UserZipCode": "122100",
+  "UserMobile": "01221111111",
+  "Messages": {
+    "AccountCreated": "ACCOUNT CREATED!",
+    "AccountDeleted": "ACCOUNT DELETED!",
+    "AccountInfo": "ENTER ACCOUNT INFORMATION",
+    "Login": "Login to your account",
+    "Signup": "New User Signup!",
+    "SuccessMessages": "Your order has been placed successfully!"
+  },
+  "FirstProduct": {
+    "productDescription": "Winter Top",
+    "productPrice": "Rs. 600",
+    "productQuantity": "1",
+    "total": "Rs. 600"
+  },
+  "SecondProduct": {
+    "productDescription": "Men Tshirt",
+    "productPrice": "Rs. 400",
+    "productQuantity": "1",
+    "total": "Rs. 400"
+  },
+  "Card": {
+    "name": "userTest",
+    "number": "12222211122",
+    "cvc": "221",
+    "expirymonth": "2",
+    "expiryyear": "2025"
+  },
+  "File": {
+    "name": "/invoice.txt"
+  },
+  "SearchedProduct": "Men Tshirt",
+  "searchedProductPage": "SEARCHED PRODUCTS",
+  "SearchResult": "Men Tshirt",
+  "allProductsPage": "ALL PRODUCTS",
+  "ProductName": "Men Tshirt",
+  "Comment": {
+    "text": "please leave the product with the security"
+  }
+}
