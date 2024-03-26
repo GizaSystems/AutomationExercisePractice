@@ -19,11 +19,11 @@ public class SearchProductsAndVerifyCartAfterLogin {
     // Variables
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
+
     //Testcases
     @TmsLink("55512478")
     @Test(description = "Search Products and Verify Cart After Login")
     public void SearchProductsAndVerifyCart() {
-
         new NavigationBar(driver)
                 .clickOnProductsLink();
         new ProductsPage(driver)
@@ -48,6 +48,7 @@ public class SearchProductsAndVerifyCartAfterLogin {
                 .verifyCartPageIsLoaded()
                 .verifyProductAddedToCart(testData.getTestData("SecondProduct.productDescription"));
     }
+
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {

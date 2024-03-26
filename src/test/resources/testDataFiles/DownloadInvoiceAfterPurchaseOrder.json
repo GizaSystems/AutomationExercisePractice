@@ -1,16 +1,16 @@
 {
-  "UserName": "userTest",
+  "UserName": "DownloadInvoice",
   "UserMail": {
-    "Gui": "userTest_Gui",
-    "GuiTimeStamp": "userTest_GuiTimeStamp",
-    "GuiApi": "userTest_GuiApi",
-    "Api": "userTest_Api",
-    "ApiTimeStamp": "userTest_ApiTimeStamp"
+    "Gui": "DownloadInvoice_Gui",
+    "GuiTimeStamp": "DownloadInvoice_GuiTimeStamp",
+    "GuiApi": "DownloadInvoice_GuiApi",
+    "Api": "DownloadInvoice_Api",
+    "ApiTimeStamp": "DownloadInvoice_ApiTimeStamp"
   },
   "Gender": "Mr",
   "UserPassword": "p@ssw0rd@Test",
-  "UserFirstName": "user",
-  "UserLastName": "Test",
+  "UserFirstName": "Download",
+  "UserLastName": "Invoice",
   "UserBirthDay": "3",
   "UserBirthMonth": "July",
   "UserBirthYear": "1997",
