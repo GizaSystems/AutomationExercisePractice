@@ -48,7 +48,7 @@ public class SearchProductsAndVerifyCartAfterLogin {
                 .verifyCartPageIsLoaded()
                 .verifyProductAddedToCart(testData.getTestData("SecondProduct.productDescription"));
     }
-
+    //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/SearchProductsAndVerifyCartAfterLogin.json");
@@ -56,7 +56,6 @@ public class SearchProductsAndVerifyCartAfterLogin {
 
     @BeforeMethod
     public void beforeMethod() {
-
         driver = new SHAFT.GUI.WebDriver();
         new HomePage(driver)
                 .navigate()
