@@ -1,5 +1,7 @@
 package com.gizasystems.automationexercise.tests.checkout;
 
+import com.gizasystems.automationexercise.apis.Apis;
+import com.gizasystems.automationexercise.apis.ApisAccountManagement;
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Description;
@@ -12,6 +14,7 @@ import org.testng.annotations.Test;
 public class VerifyAddressDetailsTests {
     // Variables
     private SHAFT.GUI.WebDriver driver;
+    private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
     private String timeStamp;
 
@@ -63,6 +66,34 @@ public class VerifyAddressDetailsTests {
                 .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"));
     }
 
+    @TmsLink("55512505")
+    @Test(description = "Verify address details in checkout page - APIs")
+    public void verifyAddressDetailsInCheckoutPageApis() {
+        new ApisAccountManagement(api)
+                .createRegisterUserAccount(testData.getTestData("RegisterData.UserName"), testData.getTestData("RegisterData.UserMailApi") + timeStamp + "@gizasystems.com", testData.getTestData("RegisterData.UserPassword"), testData.getTestData("RegisterData.UserFirstName"), testData.getTestData("RegisterData.UserLastName"), testData.getTestData("RegisterData.UserZipCode"), testData.getTestData("RegisterData.UserState"), testData.getTestData("RegisterData.UserCity"))
+                .validateUserCreatedRegistered();
+        new NavigationBar(driver)
+                .clickOnSignupLoginLink();
+        new SignupLoginPage(driver)
+                .registeredUserLogin(testData.getTestData("RegisterData.UserMailApi") + timeStamp + "@gizasystems.com", testData.getTestData("RegisterData.UserPassword"));
+        new NavigationBar(driver)
+                .validateTheLoggedInUser(testData.getTestData("RegisterData.UserName"));
+        new ProductQuantityPage(driver)
+                .clickOnViewProduct()
+                .addProductToCart()
+                .clickOnCart()
+                .refreshCartPage();
+        new CartPage(driver)
+                .proceedToCheckOut();
+        new CheckOutPage(driver)
+                .verifyDeliveryAddressDetails(testData.getTestData("RegisterData.UserState"), testData.getTestData("RegisterData.UserCity"), testData.getTestData("RegisterData.UserZipCode"))
+                .verifyBillingAddressDetails(testData.getTestData("RegisterData.UserState"), testData.getTestData("RegisterData.UserCity"), testData.getTestData("RegisterData.UserZipCode"));
+        new ApisAccountManagement(api)
+                .deleteUserAccount(testData.getTestData("RegisterData.UserMailApi") + timeStamp + "@gizasystems.com", testData.getTestData("RegisterData.UserPassword"))
+                .validateDeleteUser()
+                .validateUserNotFound(testData.getTestData("RegisterData.UserMailApi") + timeStamp + "@gizasystems.com");
+    }
+
     //////////////////// Configurations \\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
@@ -71,6 +102,7 @@ public class VerifyAddressDetailsTests {
 
     @BeforeMethod
     public void beforeMethod() {
+        api = new SHAFT.API(Apis.ApisBaseUrl);
         driver = new SHAFT.GUI.WebDriver();
         new HomePage(driver)
                 .navigate()

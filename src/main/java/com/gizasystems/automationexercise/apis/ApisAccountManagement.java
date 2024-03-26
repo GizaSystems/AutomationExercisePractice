@@ -24,7 +24,7 @@ public class ApisAccountManagement {
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
     @Step("API Create/Register User Account")
-    public ApisAccountManagement createRegisterUserAccount(String username, String email, String pass, String firstName, String lastName) {
+    public ApisAccountManagement createRegisterUserAccount(String username, String email, String pass, String firstName, String lastName, String zipCode, String state, String city) {
         List<List<Object>> formData = Arrays.asList(
                 Arrays.asList("name", username),
                 Arrays.asList("email", email),
@@ -39,9 +39,9 @@ public class ApisAccountManagement {
                 Arrays.asList("address1", "address1"),
                 Arrays.asList("address2", "address2"),
                 Arrays.asList("country", "India"),
-                Arrays.asList("zipcode", "0000"),
-                Arrays.asList("state", "state"),
-                Arrays.asList("city", "city"),
+                Arrays.asList("zipcode", zipCode),
+                Arrays.asList("state", state),
+                Arrays.asList("city", city),
                 Arrays.asList("mobile_number", "01111111")
         );
 
@@ -51,6 +51,11 @@ public class ApisAccountManagement {
                 .setTargetStatusCode(Apis.SUCCESS)
                 .perform();
 
+        return this;
+    }
+
+    public ApisAccountManagement createRegisterUserAccount(String username, String email, String pass, String firstName, String lastName) {
+        createRegisterUserAccount(username,  email,  pass,  firstName,  lastName, "zipCode", "state", "city");
         return this;
     }
 
