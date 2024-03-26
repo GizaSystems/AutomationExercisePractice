@@ -5,7 +5,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class Footer {
-
     //Variables
     private SHAFT.GUI.WebDriver driver;
 
@@ -16,13 +15,11 @@ public class Footer {
     private final By successMsg = By.id("success-subscribe");
 
     // Constructor
-
     public Footer(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
-
     @Step("Enter Subscription Email")
     public Footer enterSubscriptionEmail(String email) {
         driver.element().type(subscriptionEmail, email);
@@ -32,6 +29,12 @@ public class Footer {
     @Step("Click on Subscribe Button")
     public Footer clickOnSubscribeButton() {
         driver.element().click(subscribeBtn);
+        return this;
+    }
+
+    @Step("Scroll to bottom page")
+    public Footer scrollToBottomPage() {
+        driver.element().scrollToElement(subscriptionText);
         return this;
     }
 
