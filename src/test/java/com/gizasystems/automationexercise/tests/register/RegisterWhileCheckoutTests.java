@@ -76,11 +76,7 @@ public class RegisterWhileCheckoutTests {
                 .typeOrderComments(testData.getTestData("OrderComment"))
                 .clickOnPlaceOrderBtn();
         new PaymentPage(driver)
-                .typeUserCardName(testData.getTestData("PaymentData.NameOnCard"))
-                .typeCardNumber(testData.getTestData("PaymentData.CardNumber"))
-                .typeCardCvc(testData.getTestData("PaymentData.CVC"))
-                .typeExpiryMonth(testData.getTestData("PaymentData.ExpiryMonth"))
-                .typeExpiryYear(testData.getTestData("PaymentData.ExpiryYear"))
+                .fillPaymentInformation(testData.getTestData("PaymentData.NameOnCard"),testData.getTestData("PaymentData.CardNumber"),testData.getTestData("PaymentData.CVC"),testData.getTestData("PaymentData.ExpiryMonth"),testData.getTestData("PaymentData.ExpiryYear"))
                 .clickOnPayAndConfirmBtn()
                 .verifySuccessMessage(testData.getTestData("Messages.OrderConfirmed"));
         new NavigationBar(driver)

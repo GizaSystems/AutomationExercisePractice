@@ -22,7 +22,7 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
     @Test(description = "Place Order: Register before Checkout")
     @Description("Place Order: Register before Checkout")
     @TmsLink("55512432")
-    public void PlaceOrderRegisterBeforeCheckoutGUI(){
+    public void PlaceOrderRegisterBeforeCheckoutGUI() {
         new NavigationBar(driver)
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
@@ -49,11 +49,7 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
                 .enteringDescriptionInCommentArea("Place Order");
         new PaymentPage(driver)
                 .navigate()
-                .typeUserCardName(testData.getTestData("cardName"))
-                .typeCardNumber(testData.getTestData("cardNumber"))
-                .typeCardCvc( testData.getTestData("cvc"))
-                .typeExpiryMonth(testData.getTestData("cardExpMonth"))
-                .typeExpiryYear(testData.getTestData("cardExpYear"))
+                .fillPaymentInformation(testData.getTestData("cardName"),testData.getTestData("cardNumber"),testData.getTestData("cvc"),testData.getTestData("cardExpMonth"),testData.getTestData("cardExpYear"))
                 .clickOnPayAndConfirmBtn()
                 .verifySuccessMessage(testData.getTestData("Messages.successMessageOfOrder"));
         new NavigationBar(driver)
@@ -87,11 +83,7 @@ public class PlaceOrderRegisterBeforeCheckoutTests {
                 .enteringDescriptionInCommentArea("Place Order");
         new PaymentPage(driver)
                 .navigate()
-                .typeUserCardName(testData.getTestData("cardName"))
-                .typeCardNumber(testData.getTestData("cardNumber"))
-                .typeCardCvc( testData.getTestData("cvc"))
-                .typeExpiryMonth(testData.getTestData("cardExpMonth"))
-                .typeExpiryYear(testData.getTestData("cardExpYear"))
+                .fillPaymentInformation(testData.getTestData("cardName"),testData.getTestData("cardNumber"),testData.getTestData("cvc"),testData.getTestData("cardExpMonth"),testData.getTestData("cardExpYear"))
                 .clickOnPayAndConfirmBtn()
                 .verifySuccessMessage(testData.getTestData("Messages.successMessageOfOrder"));
         new ApisAccountManagement(api)
