@@ -26,7 +26,7 @@
     "AccountInfo": "ENTER ACCOUNT INFORMATION",
     "Login": "Login to your account",
     "Signup": "New User Signup!",
-    "SuccessMessages":"Your order has been placed successfully!"
+    "SuccessMessages": "Your order has been placed successfully!"
   },
   "FirstProduct": {
     "productDescription": "Winter Top",
@@ -44,10 +44,12 @@
     "name": "userTest",
     "number": "12222211122",
     "cvc": "221",
-    "expirymonth":"2",
-    "expiryyear": "2025"},
+    "expirymonth": "2",
+    "expiryyear": "2025"
+  },
   "File": {
-    "name":"/invoice.txt"},
+    "name": "/invoice.txt"
+  },
   "SearchedProduct": "Men Tshirt",
   "searchedProductPage": "SEARCHED PRODUCTS",
   "SearchResult": "Men Tshirt",
@@ -55,4 +57,5 @@
   "ProductName": "Men Tshirt",
   "Comment": {
     "text": "please leave the product with the security"
-}}
+  }
+}

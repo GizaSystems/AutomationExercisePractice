@@ -27,7 +27,6 @@ public class DownloadInvoiceAfterPurchaseOrder {
     @TmsLink("55512515")
     @Test(description = "Download Invoice after purchase order")
     public void downloadInvoiceAfterPurchaseOrder() {
-
         new NavigationBar(driver)
                 .clickOnProductsLink();
         new ProductsPage(driver)
