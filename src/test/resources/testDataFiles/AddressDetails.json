@@ -1,0 +1,27 @@
+{
+  "RegisterData": {
+    "UserName": "AddressDetailsName",
+    "UserMail": "AddressDetails_GuiMail",
+    "UserMailApi": "AddressDetails_ApiMail",
+    "Gender": "Mrs",
+    "UserPassword": "p@ssw0rd",
+    "UserFirstName": "AddressDetailsFirstName",
+    "UserLastName": "AddressDetailsLastName",
+    "UserBirthDay": "25",
+    "UserBirthMonth": "September",
+    "UserBirthYear": "1994",
+    "UserAddress1": "Cairo",
+    "UserCountry": "India",
+    "UserState": "Cairo",
+    "UserCity": "Cairo",
+    "UserZipCode": "10200",
+    "UserMobile": "01111111111"
+  },
+  "Messages": {
+    "AccountCreated": "ACCOUNT CREATED!",
+    "AccountDeleted": "ACCOUNT DELETED!",
+    "Signup": "New User Signup!",
+    "AccountInfo": "ENTER ACCOUNT INFORMATION",
+    "ProductAddedMessage": "Added!"
+  }
+}
