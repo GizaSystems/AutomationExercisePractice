@@ -4,10 +4,7 @@ import com.gizasystems.automationexercise.apis.Apis;
 import com.gizasystems.automationexercise.apis.ApisAccountManagement;
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -17,11 +14,14 @@ import org.testng.annotations.Test;
 @Feature("User Management")
 @Story("Login")
 public class LoginWithCorrectEmailAndPasswordTests {
+    // Variables
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
-    private String timeStamp = String.valueOf(System.currentTimeMillis());
+    private String timeStamp;
 
+    // Test Cases
+    @TmsLink("55512292")
     @Test(description = "Login With Correct Email and Password Test - Register and Delete user with APIs ")
     @Description("Given that I am a registered user, When I enter correct email, And Correct Password , And I Clicked on Login button And I clicked on delete user, Then I should be Logged in successfully to the system, And user be deleted from the system")
     public void LoginWithCorrectEmailAndPassword() {
@@ -32,23 +32,24 @@ public class LoginWithCorrectEmailAndPasswordTests {
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnLoginVisibility(testData.getTestData("Messages.Login"))
-                .registeredUserLogin(testData.getTestData("UserMail.ApiTimeStamp")+ timeStamp + "@gizasystems.com",testData.getTestData("UserPassword"));
+                .registeredUserLogin(testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"));
         new NavigationBar(driver)
                 .validateTheLoggedInUser(testData.getTestData("UserName"));
         new ApisAccountManagement(api)
-                .deleteUserAccount(testData.getTestData("UserMail.ApiTimeStamp")+ timeStamp + "@gizasystems.com",testData.getTestData("UserPassword"))
+                .deleteUserAccount(testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"))
                 .validateDeleteUser()
-                .validateUserNotFound(testData.getTestData("UserMail.ApiTimeStamp")+ timeStamp + "@gizasystems.com");
+                .validateUserNotFound(testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com");
     }
 
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/LoginUser.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/LoginUserTestData.json");
     }
 
     @BeforeMethod
     public void beforeMethod() {
+        timeStamp = String.valueOf(System.currentTimeMillis());
         api = new SHAFT.API(Apis.ApisBaseUrl);
         driver = new SHAFT.GUI.WebDriver();
         new HomePage(driver)
