@@ -1,5 +1,6 @@
 package com.gizasystems.automationexercise.pages;
 
+import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import com.shaft.validation.Validations;
 import io.qameta.allure.Step;
@@ -46,6 +47,7 @@ public class PaymentPage {
 
     @Step("Fill in Payment Information")
     public PaymentPage fillPaymentInformation(String userName, String cardNumber, String cvc, String expiryMonth, String expiryYear) {
+        GoogleAlert.dismissAlert(driver, nameOnCardTxtInput_div);
         typeUserCardName(userName);
         typeCardNumber(cardNumber);
         typeCardCvc(cvc);

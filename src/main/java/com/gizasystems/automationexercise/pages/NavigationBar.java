@@ -16,6 +16,7 @@ public class NavigationBar {
     private final By cartBtn_button = By.xpath("//a[contains(text(),' Cart') ]");
     private final By TestCase_link = By.cssSelector("li > a[href='/test_cases']");
     private final By contactUs_link = By.cssSelector("a[href='/contact_us']");
+    private final By Logout_link = By.cssSelector("div.shop-menu a[href='/logout']");
 
 
     // Constructor
@@ -27,6 +28,11 @@ public class NavigationBar {
     @Step("click on Signup Login Link")
     public NavigationBar clickOnSignupLoginLink() {
         driver.element().click(signupLogin_link);
+        return this;
+    }
+    @Step("click on LogOut Link")
+    public NavigationBar clickOnLogoutLink() {
+        driver.element().click(Logout_link);
         return this;
     }
 

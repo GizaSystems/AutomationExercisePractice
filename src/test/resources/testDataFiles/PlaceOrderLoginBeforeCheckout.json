@@ -1,0 +1,49 @@
+{
+  "UserName": "UserPlaceOrder",
+  "UserMail": {
+    "Gui": "UserPlaceOrder_Gui",
+    "GuiTimeStamp": "UserPlaceOrder_GuiTimeStamp",
+    "GuiApi": "UserPlaceOrder_GuiApi",
+    "Api": "UserPlaceOrder_Api",
+    "ApiTimeStamp": "UserPlaceOrder_ApiTimeStamp"
+  },
+  "Gender": "Mr",
+  "UserName": "PlaceOrder User",
+  "UserPassword": "p@ssw0rd",
+  "UserFirstName": "PlaceOrder",
+  "UserLastName": "User",
+  "UserBirthDay": "4",
+  "UserBirthMonth": "September",
+  "UserBirthYear": "1994",
+  "UserAddress1": "dokki",
+  "UserCountry": "Canada",
+  "UserState": "dokki",
+  "UserCity": "giza",
+  "UserZipCode": "12211",
+  "UserMobile": "122211122221",
+  "Messages": {
+    "Signup": "New User Signup!",
+    "Login": "Login to your account",
+    "AccountInfo": "ENTER ACCOUNT INFORMATION",
+    "AccountCreated": "ACCOUNT CREATED!",
+    "AccountDeleted": "ACCOUNT DELETED!",
+    "SuccessMessages": "Your order has been placed successfully!"
+  },
+  "UserDetailsName": "Mr. UserPlaceOrder Bot",
+  "UserDetailsNameAPI": "Mr.. UserPlaceOrder Bot",
+  "UserAddressAPI": "address1",
+  "productName": "Blue Top",
+  "Comment": {
+    "text": "please leave the product with the security"
+  },
+  "Card": {
+    "name": "userTest",
+    "number": "12222211122",
+    "cvc": "221",
+    "expirymonth": "2",
+    "expiryyear": "2025"
+  },
+  "File": {
+    "name": "/invoice.txt"
+  }
+}
