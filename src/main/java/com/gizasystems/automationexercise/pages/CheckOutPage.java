@@ -37,9 +37,7 @@ public class CheckOutPage {
 
     @Step(" Enter description in comment text area and click 'Place Order'")
     public CheckOutPage enteringDescriptionInCommentArea(String text) {
-        GoogleAlert.dismissAlert(driver, commentTextArea);
         driver.element().type(commentTextArea, text);
-        GoogleAlert.dismissAlert(driver, placeOrderBtn);
         driver.element().click(placeOrderBtn);
         return this;
     }

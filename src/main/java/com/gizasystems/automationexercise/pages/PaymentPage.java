@@ -47,7 +47,6 @@ public class PaymentPage {
 
     @Step("Fill in Payment Information")
     public PaymentPage fillPaymentInformation(String userName, String cardNumber, String cvc, String expiryMonth, String expiryYear) {
-        GoogleAlert.dismissAlert(driver, nameOnCardTxtInput_div);
         typeUserCardName(userName);
         typeCardNumber(cardNumber);
         typeCardCvc(cvc);
