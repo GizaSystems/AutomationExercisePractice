@@ -44,7 +44,7 @@ public class LoginWithCorrectEmailAndPasswordTests {
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/LoginUser.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/LoginUserTestData.json");
     }
 
     @BeforeMethod
