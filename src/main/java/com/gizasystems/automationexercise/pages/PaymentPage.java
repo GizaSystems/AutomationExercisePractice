@@ -1,5 +1,6 @@
 package com.gizasystems.automationexercise.pages;
 
+import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import com.shaft.validation.Validations;
 import io.qameta.allure.Step;

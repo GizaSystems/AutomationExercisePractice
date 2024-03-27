@@ -8,15 +8,16 @@ import org.openqa.selenium.By;
 public class NavigationBar {
     // Variables
     private SHAFT.GUI.WebDriver driver;
+
     // Locators
     private final By signupLogin_link = By.cssSelector("div.shop-menu a[href='/login']");
     private final By delete_link = By.cssSelector("a[href='/delete_account']");
     private final By loggedInUser_link = By.xpath("//i[@class = 'fa fa-user']/parent::a");
     private final By products_link = By.cssSelector("a[href='/products']");
     private final By cartBtn_button = By.xpath("//a[contains(text(),' Cart') ]");
-    private final By TestCase_link = By.cssSelector("li > a[href='/test_cases']");
+    private final By testCase_link = By.cssSelector("li > a[href='/test_cases']");
     private final By contactUs_link = By.cssSelector("a[href='/contact_us']");
-
+    private final By logout_link = By.cssSelector("div.shop-menu a[href='/logout']");
 
     // Constructor
     public NavigationBar(SHAFT.GUI.WebDriver driver) {
@@ -27,6 +28,12 @@ public class NavigationBar {
     @Step("click on Signup Login Link")
     public NavigationBar clickOnSignupLoginLink() {
         driver.element().click(signupLogin_link);
+        return this;
+    }
+
+    @Step("click on LogOut Link")
+    public NavigationBar clickOnLogoutLink() {
+        driver.element().click(logout_link);
         return this;
     }
 
@@ -58,8 +65,8 @@ public class NavigationBar {
 
     @Step("Click on test Case")
     public NavigationBar ClickOnTestCase() {
-        driver.element().click(TestCase_link);
-        GoogleAlert.dismissAlert(driver, TestCase_link);
+        driver.element().click(testCase_link);
+        GoogleAlert.dismissAlert(driver, testCase_link);
         return this;
     }
 
