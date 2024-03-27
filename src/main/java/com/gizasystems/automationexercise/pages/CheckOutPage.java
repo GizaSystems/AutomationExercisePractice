@@ -39,6 +39,7 @@ public class CheckOutPage {
     public CheckOutPage enteringDescriptionInCommentArea(String text) {
         driver.element().type(commentTextArea, text);
         driver.element().click(placeOrderBtn);
+        GoogleAlert.dismissAlert(driver, placeOrderBtn);
         return this;
     }
 
