@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class PlaceOrderLoginBeforeCheckout {
+public class PlaceOrderLoginBeforeCheckoutTests {
     //variables
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
