@@ -1,5 +1,6 @@
 package com.gizasystems.automationexercise.pages;
 
+import com.gizasystems.automationexercise.utils.GoogleAlert;
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -36,6 +37,7 @@ public class CheckOutPage {
     public CheckOutPage enteringDescriptionInCommentArea(String text) {
         driver.element().type(commentTextArea, text);
         driver.element().click(placeOrderBtn);
+        GoogleAlert.dismissAlert(driver, placeOrderBtn);
         return this;
     }
 
