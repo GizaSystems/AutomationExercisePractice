@@ -11,8 +11,8 @@ import org.testng.annotations.Test;
 
 @Epic("Automation Exercise")
 @Feature("Home page navigation")
-@Story("Verify Scroll Up using 'Arrow' button and Scroll Down functionality")
-public class VerifyingScrollUpUsingArrowButtonAndScrollDownTests {
+@Story("Verify Scroll Up and Scroll Down functionality")
+public class VerifyingScrollUpAndScrollDownTests {
     // Variables
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testUser;
@@ -30,11 +30,24 @@ public class VerifyingScrollUpUsingArrowButtonAndScrollDownTests {
                 .validateOnVisibilityOfCarouselSlideText(testUser.getTestData("slideHeadingText"));
     }
 
+    @Test(description = "Verify scrolling functionality on the homepage without the arrow button")
+    @Description("Given I open Automation Exercise home, When I scroll down the page to the bottom, Then I verify that 'SUBSCRIPTION' is visible on the screen, When I scroll up the page to the top, Then I verify that the page is scrolled up, And I verify that 'Full-Fledged practice website for Automation Engineers' text is visible on the screen")
+    @TmsLink("55512533")
+    public void verifyScrollingUpWithoutArrowButtonInHomePage() {
+        new Footer(driver)
+                .scrollToBottomPage()
+                .verifySubscriptionText(testUser.getTestData("subText"));
+        new HomePage(driver)
+                .scrollToTopPage()
+                .validateOnVisibilityOfCarouselSlideText(testUser.getTestData("slideHeadingText"));
+    }
+
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
         testUser = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/ScrollingTestData.json");
     }
+
     @BeforeMethod
     public void beforeMethod() {
         driver = new SHAFT.GUI.WebDriver();
@@ -42,6 +55,7 @@ public class VerifyingScrollUpUsingArrowButtonAndScrollDownTests {
                 .navigate()
                 .validateOnVisibilityOfHomePage();
     }
+
     @AfterMethod
     public void afterMethod() {
         driver.quit();
