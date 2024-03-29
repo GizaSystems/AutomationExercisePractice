@@ -34,6 +34,12 @@ public class HomePage {
         return this;
     }
 
+    @Step("Scroll to top page")
+    public HomePage scrollToTopPage() {
+        driver.element().scrollToElement(slideHeading_div);
+        return this;
+    }
+
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate on Visibility of the Home Page")
     public HomePage validateOnVisibilityOfHomePage() {
