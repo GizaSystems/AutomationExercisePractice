@@ -10,32 +10,31 @@ public class CartPage {
     private String url = System.getProperty("baseUrl") + "/view_cart";
 
     // Locators
-    private final By proceedToCheckout_btn = By.cssSelector(".btn.btn-default.check_out");
+    private final By proceedToCheckout_button = By.cssSelector(".btn.btn-default.check_out");
     private final By productName_h4 = By.xpath("//td[@class='cart_description']//h4");
-    private final By viewCart_a = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
+    private final By viewCart_div = By.xpath("//div[contains(@class,'confirm')]//a[@href='/view_cart']");
     private final By subscriptionTxt_h2 = By.tagName("h2");
-    private final By subscription_input = By.id("susbscribe_email");
+    private final By subscriptionEmail_input = By.id("susbscribe_email");
     private final By subscribeBtn_button = By.id("subscribe");
     private final By successAlert_div = By.xpath("//div[@class='alert-success alert']");
-    private final By registerLoginPopupLink = By.cssSelector("p.text-center a[href='/login']");
-
-    private By removeProduct_btn(String productName) {
+    private final By registerLoginPopup_link = By.cssSelector("p.text-center a[href='/login']");
+    private By removeProduct_button(String productName) {
         return By.xpath("//h4[.='" + productName + "']//parent::td//parent::tr//a[@class='cart_quantity_delete']");
     }
 
-    private By productName(String itemName) {
+    private By productName_link(String itemName) {
         return By.xpath("//a[normalize-space()='" + itemName + "']");
     }
 
-    private By productPrice(String itemName) {
+    private By productPrice_link(String itemName) {
         return By.xpath("//a[text()='" + itemName + "']//ancestor::td[@class='cart_description']//following-sibling::td[@class='cart_price']//p");
     }
 
-    private By productQuantity(String itemName) {
+    private By productQuantity_link(String itemName) {
         return By.xpath("//a[text()='" + itemName + "']//ancestor::td[@class='cart_description']//following-sibling::td[@class='cart_quantity']//button[@class='disabled']");
     }
 
-    private By productTotalPrice(String itemName) {
+    private By productTotalPrice_link(String itemName) {
         return By.xpath("//a[text()='" + itemName + "']//ancestor::td[@class='cart_description']//following-sibling::td[@class='cart_total']//p");
     }
 
@@ -46,6 +45,7 @@ public class CartPage {
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+    @Step("Navigate To Cart Page")
     public CartPage navigate() {
         driver.browser().navigateToURL(url);
         return this;
@@ -54,92 +54,92 @@ public class CartPage {
     //Clicking using JS as fix for pipeline failure on safari (Click isn't happening even with ClickUsingJS Flag)
     @Step("Open Cart Page")
     public CartPage openCart() {
-        driver.element().clickUsingJavascript(viewCart_a);
+        driver.element().clickUsingJavascript(viewCart_div);
         return this;
     }
 
     @Step("Enter Subscription Email")
     public CartPage enterSubscriptionEmail(String email) {
-        driver.element().type(subscription_input, email);
+        driver.element().type(subscriptionEmail_input, email);
         return this;
     }
 
-    @Step("Click on Subscribe Button")
+    @Step("Click On Subscribe Button")
     public CartPage clickOnSubscribeButton() {
         driver.element().click(subscribeBtn_button);
         return this;
     }
 
-    @Step("Click X to Remove product from Cart")
+    @Step("Click X To Remove Product From Cart")
     public CartPage clickToRemoveProduct(String productName) {
-        driver.element().click(removeProduct_btn(productName));
+        driver.element().click(removeProduct_button(productName));
         return this;
     }
 
-    @Step("Click on Proceed to checkout button ")
+    @Step("Click On Proceed To Checkout Button")
     public CartPage proceedToCheckOut() {
-        driver.element().click(proceedToCheckout_btn);
+        driver.element().click(proceedToCheckout_button);
         return this;
     }
 
     @Step("Click on Register / Login Popup Link ")
     public CartPage clickOnRegisterLoginPopupLink() {
-        driver.element().click(registerLoginPopupLink);
+        driver.element().click(registerLoginPopup_link);
         return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-    @Step("Verify Cart Page is Loaded")
+    @Step("Verify Cart Page Is Loaded")
     public CartPage verifyCartPageIsLoaded() {
-        driver.verifyThat().element(proceedToCheckout_btn).isVisible().perform();
+        driver.verifyThat().element(proceedToCheckout_button).isVisible().perform();
         return this;
     }
 
-    @Step("Validate on Product Added To Cart Page")
+    @Step("Validate On Product Added To Cart Page")
     public CartPage verifyProductAddedToCart(String addedProductName) {
-        driver.assertThat().element(productName_h4).text().isEqualTo(addedProductName).perform();
+        driver.verifyThat().element(productName_h4).text().isEqualTo(addedProductName).perform();
         return this;
     }
 
-    @Step("Validate on Visibility of the subscription Text")
+    @Step("Validate On Visibility Of The Subscription Text")
     public CartPage validateOnVisibilityOfSubscriptionText() {
         driver.verifyThat().element(subscriptionTxt_h2).text().isEqualTo("SUBSCRIPTION").perform();
         return this;
     }
 
-    @Step("Validate on Success Message of Subscription Email")
+    @Step("Validate On Success Message Of Subscription Email")
     public CartPage validateOnSuccessMessageOfSubscriptionEmail(String expectedText) {
         driver.verifyThat().element(successAlert_div).text().isEqualTo(expectedText).perform();
         return this;
     }
 
-    @Step("Validate products are added to Cart")
+    @Step("Validate Products Are Added To Cart")
     public CartPage validateOnItemsAddedInCart(String ItemName) {
-        driver.verifyThat().element(productName(ItemName)).textTrimmed().isEqualTo(ItemName).perform();
+        driver.verifyThat().element(productName_link(ItemName)).textTrimmed().isEqualTo(ItemName).perform();
         return this;
     }
 
-    @Step("Validate on the price of the products")
+    @Step("Validate On The Price Of The Products")
     public CartPage validateOnProductPrices(String ItemName, String itemPrice) {
-        driver.verifyThat().element(productPrice(ItemName)).text().isEqualTo(itemPrice).perform();
+        driver.verifyThat().element(productPrice_link(ItemName)).text().isEqualTo(itemPrice).perform();
         return this;
     }
 
-    @Step("Validate on the Quantity of the products")
+    @Step("Validate On The Quantity Of The Products")
     public CartPage validateOnProductQuantity(String ItemName, String itemQuantity) {
-        driver.verifyThat().element(productQuantity(ItemName)).textTrimmed().isEqualTo(itemQuantity).perform();
+        driver.verifyThat().element(productQuantity_link(ItemName)).textTrimmed().isEqualTo(itemQuantity).perform();
         return this;
     }
 
-    @Step("Validate on the Total Price of the Products")
+    @Step("Validate On The Total Price Of The Products")
     public CartPage validateOnTotalPrice(String ItemName, String itemTotalPrice) {
-        driver.verifyThat().element(productTotalPrice(ItemName)).textTrimmed().isEqualTo(itemTotalPrice).perform();
+        driver.verifyThat().element(productTotalPrice_link(ItemName)).textTrimmed().isEqualTo(itemTotalPrice).perform();
         return this;
     }
 
-    @Step("Verify that Cart does not contain the removed Product")
+    @Step("Verify That Cart Does Not Contain The Removed Product")
     public CartPage validateOnRemovedProduct(String productName) {
-        driver.verifyThat().element(removeProduct_btn(productName)).doesNotExist().perform();
+        driver.verifyThat().element(removeProduct_button(productName)).doesNotExist().perform();
         return this;
     }
 }

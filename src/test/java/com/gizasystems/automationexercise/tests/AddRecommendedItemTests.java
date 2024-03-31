@@ -2,12 +2,9 @@ package com.gizasystems.automationexercise.tests;
 
 import com.gizasystems.automationexercise.pages.CartPage;
 import com.gizasystems.automationexercise.pages.HomePage;
-import com.gizasystems.automationexercise.pages.RecommendedSection;
+import com.gizasystems.automationexercise.pages.RecommendedSectionPage;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -17,27 +14,30 @@ import org.testng.annotations.Test;
 @Feature("Recommended Items")
 @Story("Add to cart from Recommended items")
 public class AddRecommendedItemTests {
+    // Variables
     private SHAFT.GUI.WebDriver driver;
-    private SHAFT.TestData.JSON jsonData;
+    private SHAFT.TestData.JSON testData;
 
+    // Test Cases
+    @TmsLink("55512495")
     @Test(description = "Add RecommendedProducts To Card ")
     @Description("Given I open Automation Exercise home, When I navigate to Recommended Products, And I add Product to Cart, Then I am able to see the Product added to Cart")
     public void addToCartFromRecommendedItems(){
-       new RecommendedSection(driver)
+       new RecommendedSectionPage(driver)
                 .openRecommendedSection()
                 .verifyRecommendedSectionVisibility()
-                .addToCart(jsonData.getTestData("productName"))
-                .verifyProductAddedToCart(jsonData.getTestData("ProductAddedMessage"));
+                .addToCart(testData.getTestData("productName"))
+                .verifyProductAddedToCart(testData.getTestData("ProductAddedMessage"));
        new CartPage(driver)
                 .openCart()
                 .verifyCartPageIsLoaded()
-                .verifyProductAddedToCart(jsonData.getTestData("productName"));
+                .verifyProductAddedToCart(testData.getTestData("productName"));
     }
 
+    //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void setUpConfigurations(){
-        jsonData = new SHAFT.TestData.JSON("Product.json");
-
+        testData = new SHAFT.TestData.JSON("AddRecommendedItemTestsTestData.json");
     }
 
     @BeforeMethod

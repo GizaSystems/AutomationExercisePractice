@@ -12,11 +12,6 @@ public class SignupPage {
 
     // Locators
     private final By accountInfo_h1 = By.xpath("//div[@class='login-form']/h2[@class='title text-center']/b");
-
-    private By gender_input(String gender) {
-        return By.xpath("//input[@value='" + gender + "']");
-    }
-
     private final By password_input = By.id("password");
     private final By days_select = By.id("days");
     private final By months_select = By.id("months");
@@ -29,10 +24,12 @@ public class SignupPage {
     private final By city_input = By.id("city");
     private final By zipcode_input = By.id("zipcode");
     private final By mobileNumber_input = By.id("mobile_number");
-    private final By createAccount_button = By.xpath("//button[@data-qa='create-account']");
-    private final By createAccount_h2 = By.xpath("//h2[@data-qa='account-created']//b");
-    private final By continueBtn_link = By.xpath("//a[@data-qa='continue-button']");
-
+    private final By creatingAccountBtn_button = By.xpath("//button[@data-qa='create-account']");
+    private final By creatingAccount_h2 = By.xpath("//h2[@data-qa='account-created']//b");
+    private final By continueBtn_button = By.xpath("//a[@data-qa='continue-button']");
+    private By gender_input(String gender) {
+        return By.xpath("//input[@value='" + gender + "']");
+    }
 
     // Constructor
     public SignupPage(SHAFT.GUI.WebDriver driver) {
@@ -40,6 +37,7 @@ public class SignupPage {
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+    @Step("Navigate To Signup Page")
     public SignupPage navigate() {
         driver.browser().navigateToURL(url);
         return this;
@@ -69,19 +67,19 @@ public class SignupPage {
                 .type(zipcode_input, zipCode)
                 .type(mobileNumber_input, userMobileNumber)
                 .synchronize();
-        driver.element().click(createAccount_button);
+        driver.element().click(creatingAccountBtn_button);
         return this;
     }
 
-    @Step("Click on Continue Button")
+    @Step("Click On Continue Button")
     public SignupPage clickOnContinueButton() {
-        driver.element().click(continueBtn_link);
-        GoogleAlert.dismissAlert(driver, continueBtn_link);
+        driver.element().click(continueBtn_button);
+        GoogleAlert.dismissAlert(driver, continueBtn_button);
         return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-    @Step("Validate on Account Info Page")
+    @Step("Validate On Account Info Page")
     public SignupPage validateOnAccountInfoPage(String expectedText) {
         driver.verifyThat().element(accountInfo_h1).text().equalsIgnoringCaseSensitivity(expectedText).perform();
         return this;
@@ -89,7 +87,7 @@ public class SignupPage {
 
     @Step("Validate On Account Created")
     public SignupPage validateOnAccountCreated(String expectedResult) {
-        driver.verifyThat().element(createAccount_h2).text().equalsIgnoringCaseSensitivity(expectedResult).perform();
+        driver.verifyThat().element(creatingAccount_h2).text().equalsIgnoringCaseSensitivity(expectedResult).perform();
         return this;
     }
 }

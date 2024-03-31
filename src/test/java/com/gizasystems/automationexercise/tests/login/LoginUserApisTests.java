@@ -35,13 +35,12 @@ public class LoginUserApisTests {
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/LoginUserTestData.json");
+        testData = new SHAFT.TestData.JSON("LoginUserApisTestsTestData.json");
     }
 
     @BeforeMethod
     public void beforeMethod() {
         timeStamp = String.valueOf(System.currentTimeMillis());
-        api = new SHAFT.API(Apis.ApisBaseUrl);
+        api = new SHAFT.API(Apis.apisBaseUrl);
     }
-
 }

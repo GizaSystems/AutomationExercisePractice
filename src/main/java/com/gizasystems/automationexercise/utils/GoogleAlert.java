@@ -24,5 +24,4 @@ public class GoogleAlert {
         }
         return new GoogleAlert();
     }
-
 }

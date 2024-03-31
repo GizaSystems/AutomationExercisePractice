@@ -11,27 +11,28 @@ import org.testng.annotations.BeforeClass;
 @Epic("Automation Exercise")
 @Feature("Home page verification")
 @Story("Verify Subscription in home page")
-
 public class VerifyingSubscriptionInHomePageTests {
-
+    // Variables
     private SHAFT.GUI.WebDriver driver;
-    private SHAFT.TestData.JSON testUser;
+    private SHAFT.TestData.JSON testData;
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
-    @Test(description = "Verify Subscription is on Home Page")
-    @Description("Verify Subscription is On The Footer Of The Page")
+    // Test Cases
     @TmsLink("55512381")
-    public void VerifySubscriptionInHomePageTest() {
-        new Footer(driver)
-                .verifySubscriptionText(testUser.getTestData("subText"))
-                .enterSubscriptionEmail(testUser.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com")
+    @Test(description = "Verify subscription functionality on the homepage")
+    @Description("Given I open Automation Exercise home, When I scroll down to the footer, Then I verify that 'SUBSCRIPTION' text is visible, And When I enter an email address and click the arrow button, Then I verify the success message 'You have been successfully subscribed!' is visible on the screen")
+    public void verifySubscriptionInHomePageTest() {
+        new FooterPage(driver)
+                .verifySubscriptionText(testData.getTestData("subText"))
+                .enterSubscriptionEmail(testData.getTestData("UserMail.GuiTimeStamp") + timeStamp + "@gizasystems.com")
                 .clickOnSubscribeButton()
-                .validateOnSuccessMessageOfSubscriptionEmail(testUser.getTestData("successSubscriptionMessage"));
+                .validateOnSuccessMessageOfSubscriptionEmail(testData.getTestData("successSubscriptionMessage"));
     }
 
+    //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testUser = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Footer.json");
+        testData = new SHAFT.TestData.JSON("VerifyingSubscriptionInHomePageTestsTestData.json");
     }
 
     @BeforeMethod

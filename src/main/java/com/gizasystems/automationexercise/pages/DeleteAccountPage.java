@@ -9,8 +9,8 @@ public class DeleteAccountPage {
     private SHAFT.GUI.WebDriver driver;
 
     // Locators
-    private final By accountDeleted_b = By.cssSelector("h2[data-qa='account-deleted'] > b");
-    private final By continueBtn_div=By.cssSelector("a[data-qa='continue-button']");
+    private final By accountDeleted_h2 = By.cssSelector("h2[data-qa='account-deleted'] > b");
+    private final By continueBtn_button=By.cssSelector("a[data-qa='continue-button']");
 
     // Constructor
     public DeleteAccountPage(SHAFT.GUI.WebDriver driver) {
@@ -18,17 +18,16 @@ public class DeleteAccountPage {
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
-    @Step("Click on Continue Button")
+    @Step("Click On Continue Button")
     public DeleteAccountPage clickOnContinueBtn(){
-        driver.element().click(continueBtn_div);
+        driver.element().click(continueBtn_button);
         return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Validate Account Deleted")
     public DeleteAccountPage validateAccountDeleted(String expectedMessage) {
-        driver.verifyThat().element(accountDeleted_b).text().equalsIgnoringCaseSensitivity(expectedMessage).perform();
+        driver.verifyThat().element(accountDeleted_h2).text().equalsIgnoringCaseSensitivity(expectedMessage).perform();
         return this;
     }
-
 }

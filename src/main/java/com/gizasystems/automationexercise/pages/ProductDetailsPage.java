@@ -5,11 +5,10 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class ProductDetailsPage {
-
-    //Variables
+    // Variables
     private SHAFT.GUI.WebDriver driver;
 
-    //Locators
+    // Locators
     private final By productDetails_div = By.className("product-details");
     private final By productName_h2 = By.xpath("//div[@class='product-information']//h2");
     private final By productCategory_p = By.xpath("//div[@class='col-sm-7']//p[1]");
@@ -18,7 +17,7 @@ public class ProductDetailsPage {
     private final By productBrand_p = By.xpath("//div[@class='col-sm-7']//p[4]");
     private final By productPrice_span = By.xpath("//div[@class='col-sm-7']//span//span");
 
-    //Constructor
+    // Constructor
     public ProductDetailsPage(SHAFT.GUI.WebDriver driver){
         this.driver = driver;
     }
@@ -28,20 +27,19 @@ public class ProductDetailsPage {
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
     @Step("Verify Product Details Page Visibility")
     public ProductDetailsPage verifyProductDetailsPageVisibility(){
-        driver.assertThat().element(productDetails_div).isVisible().perform();
+        driver.verifyThat().element(productDetails_div).isVisible().perform();
         return this;
     }
 
     @Step("Verify Product Details")
     public ProductDetailsPage verifyProductDetails(String productName, String productCategory, String productPrice, String productAvailability
             , String productionCondition, String productBrand ){
-        driver.assertThat().element(productName_h2).text().isEqualTo(productName).perform();
-        driver.assertThat().element(productCategory_p).text().contains(productCategory).perform();
-        driver.assertThat().element(productPrice_span).text().isEqualTo(productPrice).perform();
-        driver.assertThat().element(productAvailability_p).textTrimmed().contains(productAvailability).perform();
-        driver.assertThat().element(productCondition_p).textTrimmed().contains(productionCondition).perform();
-        driver.assertThat().element(productBrand_p).textTrimmed().contains(productBrand).perform();
+        driver.verifyThat().element(productName_h2).text().isEqualTo(productName).perform();
+        driver.verifyThat().element(productCategory_p).text().contains(productCategory).perform();
+        driver.verifyThat().element(productPrice_span).text().isEqualTo(productPrice).perform();
+        driver.verifyThat().element(productAvailability_p).textTrimmed().contains(productAvailability).perform();
+        driver.verifyThat().element(productCondition_p).textTrimmed().contains(productionCondition).perform();
+        driver.verifyThat().element(productBrand_p).textTrimmed().contains(productBrand).perform();
         return this;
     }
-
 }

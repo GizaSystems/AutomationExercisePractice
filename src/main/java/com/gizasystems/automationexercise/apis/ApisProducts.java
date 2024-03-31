@@ -9,8 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ApisProducts {
+    // Variables
     private SHAFT.API api;
 
+    // Constructor
     public ApisProducts(SHAFT.API api) {
         this.api = api;
     }
@@ -42,14 +44,12 @@ public class ApisProducts {
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-
+    @Step("Validate That The Category Matches The Provided Value For Each Product.")
     public ApisProducts validateOnCategory(String category) {
         for (int i = 0; i < 10; i++) {
-            api.assertThatResponse().extractedJsonValue("products[" + i + "].category.category").contains(category)
+            api.verifyThatResponse().extractedJsonValue("products[" + i + "].category.category").contains(category)
                     .perform();
         }
         return this;
     }
-
-
 }

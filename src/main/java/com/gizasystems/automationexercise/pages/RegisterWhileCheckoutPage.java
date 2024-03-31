@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 public class RegisterWhileCheckoutPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
+
     //Locators
     private final By checkoutBodyMessage_div = By.cssSelector("div.modal-content > div > h4");
     private final By registerLoginLink_div = By.xpath("//p[@class='text-center']/a[@href='/login']/u");
@@ -23,27 +24,27 @@ public class RegisterWhileCheckoutPage {
         this.driver = driver;
     }
 
-    //////////////////// Actions \\\\\\\\\\
-    @Step("Click on Register/Login button")
+    //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
+    @Step("Click On Register/Login Button")
     public RegisterWhileCheckoutPage clickOnRegisterLoginBtn() {
         driver.element().click(registerLoginLink_div);
         return this;
     }
 
-    @Step("Navigate to Review your order section")
+    @Step("Navigate To Review Your Order Section")
     public RegisterWhileCheckoutPage scrollToReviewOrderSection() {
         driver.element().hover(productDescription_div);
         return this;
     }
 
-    @Step("Type order comments")
+    @Step("Type Order Comments")
     public RegisterWhileCheckoutPage typeOrderComments(String comment) {
         driver.element().hover(commentSectionTextBox_div);
         driver.element().type(commentSectionTextBox_div, comment);
         return this;
     }
 
-    @Step("Click on Place order Button")
+    @Step("Click On Place Order Button")
     public RegisterWhileCheckoutPage clickOnPlaceOrderBtn() {
         driver.element().click(placeOrderBtn_div);
         GoogleAlert.dismissAlert(driver, placeOrderBtn_div);
@@ -51,27 +52,27 @@ public class RegisterWhileCheckoutPage {
     }
 
     //////////////////// Validations \\\\\\\\\\
-    @Step("Verify the checkout pop up is displayed")
+    @Step("Verify The Checkout Pop Up Is Displayed")
     public RegisterWhileCheckoutPage verifyCheckoutPopUpDisplayed(String expectedMessage) {
-        driver.element().assertThat(checkoutBodyMessage_div).text().contains(expectedMessage).perform();
+        driver.element().verifyThat(checkoutBodyMessage_div).text().contains(expectedMessage).perform();
         return this;
     }
 
-    @Step("Verify the checkout full address at delivery address details")
+    @Step("Verify The Checkout Full Address At Delivery Address Details")
     public RegisterWhileCheckoutPage verifyCheckoutFullAddressDetails(String address, String state, String zipCode) {
-        driver.element().assertThat(checkoutFullAddress_div).text().equalsIgnoringCaseSensitivity(address + " " + state + " " + zipCode).perform();
+        driver.element().verifyThat(checkoutFullAddress_div).text().equalsIgnoringCaseSensitivity(address + " " + state + " " + zipCode).perform();
         return this;
     }
 
-    @Step("Verify the user Phone number at delivery address details")
+    @Step("Verify The User Phone Number At Delivery Address Details")
     public RegisterWhileCheckoutPage verifyUserPhoneNumber(String phoneNumber) {
-        driver.element().assertThat(deliveryAddressUserPhoneNumber_div).text().isEqualTo(phoneNumber).perform();
+        driver.element().verifyThat(deliveryAddressUserPhoneNumber_div).text().isEqualTo(phoneNumber).perform();
         return this;
     }
 
-    @Step("Review and validate the added products")
+    @Step("Review And Validate The Added Products")
     public RegisterWhileCheckoutPage reviewCartProducts(String productName) {
-        driver.element().assertThat(productDetails_div).text().isEqualTo(productName);
+        driver.element().verifyThat(productDetails_div).text().isEqualTo(productName);
         return this;
     }
 }

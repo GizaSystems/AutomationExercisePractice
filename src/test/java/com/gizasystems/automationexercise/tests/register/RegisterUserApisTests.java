@@ -12,11 +12,12 @@ import org.testng.annotations.Test;
 @Feature("User Management")
 @Story("Register")
 public class RegisterUserApisTests {
+    // Variables
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
-
     private String timeStamp;
 
+    // Test Cases
     @TmsLink("55512219")
     @Test(description = "Register User Test - API")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered successfully to the system")
@@ -41,13 +42,12 @@ public class RegisterUserApisTests {
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/RegisterUser.json");
+        testData = new SHAFT.TestData.JSON("RegisterUserApisTestsTestData.json");
     }
 
     @BeforeMethod
     public void beforeMethod() {
         timeStamp = String.valueOf(System.currentTimeMillis());
-        api = new SHAFT.API(Apis.ApisBaseUrl);
+        api = new SHAFT.API(Apis.apisBaseUrl);
     }
-
 }
