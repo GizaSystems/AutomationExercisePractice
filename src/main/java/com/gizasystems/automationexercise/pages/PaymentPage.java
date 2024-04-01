@@ -10,17 +10,18 @@ public class PaymentPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
     private String url = System.getProperty("baseUrl") + "/payment";
-    //Locators
-    private final By nameOnCardTxtInput_div = By.xpath("//input[@data-qa='name-on-card']");
-    private final By cardNumberTxtInput_div = By.xpath("//input[@data-qa='card-number']");
-    private final By CvcTxtInput_div = By.xpath("//input[@data-qa='cvc']");
-    private final By expiryMonthTxtInput_div = By.xpath("//input[@data-qa='expiry-month']");
-    private final By expiryYearTxtInput_div = By.xpath("//input[@data-qa='expiry-year']");
-    private final By payAndConfirmOrderBtn_div = By.xpath("//button[@data-qa='pay-button']");
-    private final By orderConfirmed_div = By.xpath("//h2[@data-qa='order-placed']");
-    private final By successPaymentMessage = By.id("success_message");
-    private final By downloadInvoiceButton = By.cssSelector(".btn.btn-default.check_out");
-    private final By continueButton = By.cssSelector(".btn.btn-primary");
+
+    // Locators
+    private final By nameOnCardTxtInput_input = By.xpath("//input[@data-qa='name-on-card']");
+    private final By cardNumberTxtInput_input = By.xpath("//input[@data-qa='card-number']");
+    private final By cvcTxtInput_input = By.xpath("//input[@data-qa='cvc']");
+    private final By expiryMonthTxtInput_input = By.xpath("//input[@data-qa='expiry-month']");
+    private final By expiryYearTxtInput_input = By.xpath("//input[@data-qa='expiry-year']");
+    private final By payAndConfirmOrder_button = By.xpath("//button[@data-qa='pay-button']");
+    private final By orderConfirmed_h2 = By.xpath("//h2[@data-qa='order-placed']");
+    private final By successPaymentMessage_text = By.id("success_message");
+    private final By downloadInvoiceBtn_button = By.cssSelector(".btn.btn-default.check_out");
+    private final By continueBtn_button = By.cssSelector(".btn.btn-primary");
 
     // Constructor
     public PaymentPage(SHAFT.GUI.WebDriver driver) {
@@ -30,22 +31,23 @@ public class PaymentPage {
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
     @Step(" Click On Continue Button")
     public PaymentPage clickContinueButton() {
-        driver.element().click(continueButton);
+        driver.element().click(continueBtn_button);
         return this;
     }
 
-    @Step(" Click On Pay And Confirm Order Button")
+    @Step("Click On Pay And Confirm Order Button")
     public PaymentPage clickPayAndConfirmOrderButton() {
-        driver.element().click(payAndConfirmOrderBtn_div);
+        driver.element().click(payAndConfirmOrder_button);
         return this;
     }
 
+    @Step("Navigate To Payment Page")
     public PaymentPage navigate() {
         driver.browser().navigateToURL(url);
         return this;
     }
 
-    @Step("Fill in Payment Information")
+    @Step("Fill In Payment Information")
     public PaymentPage fillPaymentInformation(String userName, String cardNumber, String cvc, String expiryMonth, String expiryYear) {
         typeUserCardName(userName);
         typeCardNumber(cardNumber);
@@ -55,66 +57,66 @@ public class PaymentPage {
         return this;
     }
 
-    @Step("Type user name on card")
+    @Step("Type Username On Card")
     public PaymentPage typeUserCardName(String userName) {
-        driver.element().type(nameOnCardTxtInput_div, userName);
+        driver.element().type(nameOnCardTxtInput_input, userName);
         return this;
     }
 
-    @Step("Type User Card number")
+    @Step("Type User Card Number")
     public PaymentPage typeCardNumber(String cardNumber) {
-        driver.element().type(cardNumberTxtInput_div, cardNumber);
+        driver.element().type(cardNumberTxtInput_input, cardNumber);
         return this;
     }
 
     @Step("Type User Card CVC")
     public PaymentPage typeCardCvc(String cvc) {
-        driver.element().type(CvcTxtInput_div, cvc);
+        driver.element().type(cvcTxtInput_input, cvc);
         return this;
     }
 
-    @Step("Type User card Expiry Month")
+    @Step("Type User Card Expiry Month")
     public PaymentPage typeExpiryMonth(String expiryMonth) {
-        driver.element().type(expiryMonthTxtInput_div, expiryMonth);
+        driver.element().type(expiryMonthTxtInput_input, expiryMonth);
         return this;
     }
 
-    @Step("Type User card Expiry Year ")
+    @Step("Type User Card Expiry Year ")
     public PaymentPage typeExpiryYear(String expiryYear) {
-        driver.element().type(expiryYearTxtInput_div, expiryYear);
+        driver.element().type(expiryYearTxtInput_input, expiryYear);
         return this;
     }
 
-    @Step("Click on Pay and Confirm Order")
+    @Step("Click On Pay And Confirm Order")
     public PaymentPage clickOnPayAndConfirmBtn() {
-        driver.element().hover(payAndConfirmOrderBtn_div);
-        driver.element().click(payAndConfirmOrderBtn_div);
+        driver.element().hover(payAndConfirmOrder_button);
+        driver.element().click(payAndConfirmOrder_button);
         return this;
     }
 
-    @Step("Click on Download Invoice Button")
+    @Step("Click On Download Invoice Button")
     public PaymentPage clickOnDownloadInvoiceButton() {
-        driver.element().hover(downloadInvoiceButton);
-        driver.element().click(downloadInvoiceButton);
+        driver.element().hover(downloadInvoiceBtn_button);
+        driver.element().click(downloadInvoiceBtn_button);
         return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-    @Step(" Validate on Payment Success Validation Message ")
+    @Step(" Validate On Payment Success Validation Message ")
     public PaymentPage validateOnPaymentSuccessValidationMessage(String message) {
-        driver.verifyThat().element(successPaymentMessage).text().contains(message).perform();
+        driver.verifyThat().element(successPaymentMessage_text).text().contains(message).perform();
         return this;
     }
 
     @Step(" Validate Invoice  Is downloaded  ")
     public PaymentPage validateInviceDownloaded(String filename) {
-        Validations.assertThat().file(SHAFT.Properties.paths.downloads(), filename).exists().perform();
+        Validations.verifyThat().file(SHAFT.Properties.paths.downloads(), filename).exists().perform();
         return this;
     }
 
-    @Step("Verify the success message after order placed !")
+    @Step("Verify The Success Message After Order Placed!")
     public PaymentPage verifySuccessMessage(String message) {
-        driver.element().assertThat(orderConfirmed_div).text().isEqualTo(message);
+        driver.element().verifyThat(orderConfirmed_h2).text().isEqualTo(message);
         return this;
     }
 }

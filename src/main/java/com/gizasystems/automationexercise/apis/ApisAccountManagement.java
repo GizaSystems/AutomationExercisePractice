@@ -9,8 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ApisAccountManagement {
+    // Variables
     private SHAFT.API api;
 
+    // Constructor
     public ApisAccountManagement(SHAFT.API api) {
         this.api = api;
     }
@@ -20,7 +22,6 @@ public class ApisAccountManagement {
     private static final String loginToAccount_serviceName= "/verifyLogin";
     private static final String deleteAccount_serviceName = "/deleteAccount";
     private static final String getUserDetailByEmail_serviceName = "/getUserDetailByEmail";
-
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
     @Step("API Create/Register User Account")
@@ -42,18 +43,16 @@ public class ApisAccountManagement {
                 Arrays.asList("zipcode", zipCode),
                 Arrays.asList("state", state),
                 Arrays.asList("city", city),
-                Arrays.asList("mobile_number", "01111111")
-        );
-
+                Arrays.asList("mobile_number", "01111111"));
         api.post(createAccount_serviceName)
                 .setParameters(formData, RestActions.ParametersType.FORM)
                 .setContentType(ContentType.URLENC)
                 .setTargetStatusCode(Apis.SUCCESS)
                 .perform();
-
         return this;
     }
 
+    @Step("Registering A New User Account With The Provided Credentials.")
     public ApisAccountManagement createRegisterUserAccount(String username, String email, String pass, String firstName, String lastName) {
         createRegisterUserAccount(username,  email,  pass,  firstName,  lastName, "zipCode", "state", "city");
         return this;
@@ -70,8 +69,8 @@ public class ApisAccountManagement {
                 .setTargetStatusCode(Apis.SUCCESS)
                 .perform();
         return this;
-
     }
+
     @Step("API Delete User Account")
     public ApisAccountManagement deleteUserAccount(String email, String pass) {
         List<List<Object>> formData = Arrays.asList(
@@ -85,7 +84,7 @@ public class ApisAccountManagement {
         return this;
     }
 
-    @Step("API Get UserDetailByEmail")
+    @Step("API Get User Detail By Email")
     public ApisAccountManagement getUserDetailByEmail(String email) {
         List<List<Object>> queryParam = Arrays.asList(
                 Arrays.asList("email", email));
@@ -104,22 +103,22 @@ public class ApisAccountManagement {
         return this;
     }
 
-@Step("Validate User Login")
-public ApisAccountManagement validateUserLoggedIn() {
+    @Step("Validate User Login")
+    public ApisAccountManagement validateUserLoggedIn() {
     api.verifyThatResponse().extractedJsonValue("message").isEqualTo("User exists!").perform();
         return this;
-}
+    }
+
     @Step("Validate Account Deleted")
     public ApisAccountManagement validateDeleteUser() {
         api.verifyThatResponse().extractedJsonValue("message").isEqualTo("Account deleted!").perform();
         return this;
     }
 
-    @Step("Validate User Not Found in the System")
+    @Step("Validate User Not Found In The System")
     public ApisAccountManagement validateUserNotFound(String email) {
         getUserDetailByEmail(email);
         api.verifyThatResponse().extractedJsonValue("message").isEqualTo("Account not found with this email, try another email!").perform();
         return this;
     }
-
 }

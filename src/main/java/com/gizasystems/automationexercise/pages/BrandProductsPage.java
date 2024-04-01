@@ -5,70 +5,72 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class BrandProductsPage {
+    // Variables
     private final SHAFT.GUI.WebDriver driver;
-    private final By productsbtn_button = By.xpath("//a[@href='/products']");
-    private final By brandsBody = By.xpath("//div[@class='brands_products']");
-    private final By brandNameBtn_button = By.xpath("//a[@href='/brand_products/Polo']");
-    private final By productsOfBrand = By.xpath("//a[@href='/product_details/1']");
-    private final By secondBrandName_button = By.xpath("//a[@href='/brand_products/H&M']");
-    private final By productsOfsecondBrand = By.xpath("//img[@src='/get_product_picture/2']");
 
-    private By brandName(String brand) {
+    // Locators
+    private final By productsBtn_button = By.xpath("//a[@href='/products']");
+    private final By brandsBody_div = By.xpath("//div[@class='brands_products']");
+    private final By brandNameBtn_button = By.xpath("//a[@href='/brand_products/Polo']");
+    private final By productsOfBrand_link = By.xpath("//a[@href='/product_details/1']");
+    private final By secondBrandName_button = By.xpath("//a[@href='/brand_products/H&M']");
+    private final By productsOfsecondBrand_img = By.xpath("//img[@src='/get_product_picture/2']");
+    private By brandName_h2(String brand) {
         return By.xpath("//div/h2[@class='title text-center']['" + brand + "']");
     }
 
-    //Constructor
-    public BrandProductsPage(SHAFT.GUI.WebDriver driver) { this.driver = driver; }
+    // Constructor
+    public BrandProductsPage(SHAFT.GUI.WebDriver driver) {
+        this.driver = driver;
+    }
 
     ///////////////////// Actions /////////////////////////////
-
     @Step("Click on View Product")
     public BrandProductsPage clickOnProducts() {
-        driver.element().click(productsbtn_button);
+        driver.element().click(productsBtn_button);
         return this;
     }
 
-    @Step("Click on Brand name")
+    @Step("Click On Brand Name")
     public  BrandProductsPage clickOnBrandName(){
         driver.element().click(brandNameBtn_button);
         return this;
     }
 
-    @Step("Verify that other Brand Page are visible")
+    @Step("Verify That Other Brand Pages Are Visible")
     public  BrandProductsPage clickOnSecondBrandName(){
         driver.element().click(secondBrandName_button);
         return this;
     }
 
     ///////////////////// Validations /////////////////////////////
-
-    @Step("Verify that Brands are visible")
+    @Step("Verify That Brands Are Visible")
     public BrandProductsPage verifyBrandsVisible(){
-        driver.element().assertThat(brandsBody).exists().perform();
+        driver.element().verifyThat(brandsBody_div).exists().perform();
         return this;
     }
 
-    @Step("Verify that Brand Page are visible")
+    @Step("Verify That Brand Pages Are Visible")
     public  BrandProductsPage verifyBrandPageVisible(String brand){
-        driver.element().assertThat(brandName(brand)).exists().perform();
+        driver.element().verifyThat(brandName_h2(brand)).exists().perform();
         return this;
     }
 
-    @Step("Verify that Products are visible")
+    @Step("Verify That Products Are Visible")
     public  BrandProductsPage verifyProductsVisible(){
-        driver.element().assertThat(productsOfBrand).exists().perform();
+        driver.element().verifyThat(productsOfBrand_link).exists().perform();
         return this;
     }
 
-    @Step("Verify that second Brand Page are visible")
-    public  BrandProductsPage verifysecondBrandPageVisible(String brand){
-        driver.element().assertThat(brandName(brand)).exists().perform();
+    @Step("Verify That Second Brand Page Are Visible")
+    public  BrandProductsPage verifySecondBrandPageVisible(String brand){
+        driver.element().verifyThat(brandName_h2(brand)).exists().perform();
         return this;
     }
 
-    @Step("Verify that Products of second Brand are visible")
+    @Step("Verify That Products Of Second Brand Are Visible")
     public  BrandProductsPage verifyProductsOfSecondBrandVisible(){
-        driver.element().assertThat(productsOfsecondBrand).exists().perform();
+        driver.element().verifyThat(productsOfsecondBrand_img).exists().perform();
         return this;
     }
 }

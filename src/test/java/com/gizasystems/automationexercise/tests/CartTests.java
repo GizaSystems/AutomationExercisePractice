@@ -2,10 +2,7 @@ package com.gizasystems.automationexercise.tests;
 
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -15,23 +12,29 @@ import org.testng.annotations.Test;
 @Feature("Cart Module")
 @Story("Cart Operations")
 public class CartTests {
+    // Variables
     private SHAFT.GUI.WebDriver driver;
-    private SHAFT.TestData.JSON testCartData;
+    private SHAFT.TestData.JSON testData;
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
+    // Test Cases
+    @TmsLink("55512390")
     @Test(description = "Subscription By email")
     @Description("Given that I Want to subscribe, When I enter valid Email, Then I should be Subscribed ")
     public void subscriptionCartPage() {
-        new NavigationBar(driver).navigateToCartPage();
-        new CartPage(driver).validateOnVisibilityOfSubscriptionText()
-                .enterSubscriptionEmail(testCartData.getTestData("EmailGuiTimeStamp") + timeStamp + "@gizasystems.com")
+        new NavigationBarPage(driver)
+                .navigateToCartPage();
+        new CartPage(driver)
+                .validateOnVisibilityOfSubscriptionText()
+                .enterSubscriptionEmail(testData.getTestData("EmailGuiTimeStamp") + timeStamp + "@gizasystems.com")
                 .clickOnSubscribeButton()
-                .validateOnSuccessMessageOfSubscriptionEmail(testCartData.getTestData("successSubscriptionMessage"));
+                .validateOnSuccessMessageOfSubscriptionEmail(testData.getTestData("successSubscriptionMessage"));
     }
 
+    //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testCartData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/Cart.json");
+        testData = new SHAFT.TestData.JSON("CartTestsTestData.json");
     }
 
     @BeforeMethod
@@ -46,5 +49,4 @@ public class CartTests {
     public void afterMethod() {
         driver.quit();
     }
-
 }

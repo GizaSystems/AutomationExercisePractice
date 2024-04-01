@@ -1,0 +1,10 @@
+{
+  "UserName": "Automation",
+  "UserMail": {
+    "Api": "AutoBot_Api",
+    "ApiTimeStamp": "AutoBot_ApiTimeStamp"
+  },
+  "UserPassword": "p@ssw0rd",
+  "UserFirstName": "Automation",
+  "UserLastName": "Bot"
+}

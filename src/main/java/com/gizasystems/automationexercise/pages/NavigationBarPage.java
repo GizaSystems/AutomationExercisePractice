@@ -5,7 +5,7 @@ import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-public class NavigationBar {
+public class NavigationBarPage {
     // Variables
     private SHAFT.GUI.WebDriver driver;
 
@@ -20,59 +20,59 @@ public class NavigationBar {
     private final By logout_link = By.cssSelector("div.shop-menu a[href='/logout']");
 
     // Constructor
-    public NavigationBar(SHAFT.GUI.WebDriver driver) {
+    public NavigationBarPage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
 
     //////////////////// Actions \\\\\\\\\\\\\\\\\\\\
-    @Step("click on Signup Login Link")
-    public NavigationBar clickOnSignupLoginLink() {
+    @Step("click On Signup Login Link")
+    public NavigationBarPage clickOnSignupLoginLink() {
         driver.element().click(signupLogin_link);
         return this;
     }
 
-    @Step("click on LogOut Link")
-    public NavigationBar clickOnLogoutLink() {
+    @Step("click On LogOut Link")
+    public NavigationBarPage clickOnLogoutLink() {
         driver.element().click(logout_link);
         return this;
     }
 
-    @Step("Click on Delete Account Link")
-    public NavigationBar clickOnDeleteAccountLink() {
+    @Step("Click On Delete Account Link")
+    public NavigationBarPage clickOnDeleteAccountLink() {
         driver.element().click(delete_link);
         GoogleAlert.dismissAlert(driver,delete_link);
         return this;
     }
 
-    @Step("Click on Products Page Link")
-    public NavigationBar clickOnProductsLink() {
+    @Step("Click On Products Page Link")
+    public NavigationBarPage clickOnProductsLink() {
         driver.element().click(products_link);
         GoogleAlert.dismissAlert(driver, products_link);
         return this;
     }
 
-    @Step("Click on ContactUs Account Link")
-    public NavigationBar clickOnContactUsLink() {
+    @Step("Click On ContactUs Account Link")
+    public NavigationBarPage clickOnContactUsLink() {
         driver.element().clickUsingJavascript(contactUs_link);
         return this;
     }
 
-    @Step("Navigate to Cart Page")
-    public NavigationBar navigateToCartPage() {
+    @Step("Navigate To Cart Page")
+    public NavigationBarPage navigateToCartPage() {
         driver.element().click(cartBtn_button);
         return this;
     }
 
-    @Step("Click on test Case")
-    public NavigationBar ClickOnTestCase() {
+    @Step("Click On Test Case")
+    public NavigationBarPage clickOnTestCase() {
         driver.element().click(testCase_link);
         GoogleAlert.dismissAlert(driver, testCase_link);
         return this;
     }
 
     //////////////////// Validations \\\\\\\\\\\\\\\\\\\\
-    @Step("Validate the Logged In User")
-    public NavigationBar validateTheLoggedInUser(String expectedUser) {
+    @Step("Validate The Logged In User")
+    public NavigationBarPage validateTheLoggedInUser(String expectedUser) {
         driver.verifyThat().element(loggedInUser_link).textTrimmed().isEqualTo("Logged in as " + expectedUser).perform();
         return this;
     }

@@ -24,16 +24,16 @@ public class LoginWithCorrectEmailAndPasswordTests {
     @TmsLink("55512292")
     @Test(description = "Login With Correct Email and Password Test - Register and Delete user with APIs ")
     @Description("Given that I am a registered user, When I enter correct email, And Correct Password , And I Clicked on Login button And I clicked on delete user, Then I should be Logged in successfully to the system, And user be deleted from the system")
-    public void LoginWithCorrectEmailAndPassword() {
+    public void loginWithCorrectEmailAndPassword() {
         new ApisAccountManagement(api)
                 .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"))
                 .validateUserCreatedRegistered();
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnLoginVisibility(testData.getTestData("Messages.Login"))
                 .registeredUserLogin(testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"));
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .validateTheLoggedInUser(testData.getTestData("UserName"));
         new ApisAccountManagement(api)
                 .deleteUserAccount(testData.getTestData("UserMail.ApiTimeStamp") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"))
@@ -44,13 +44,13 @@ public class LoginWithCorrectEmailAndPasswordTests {
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/LoginUserTestData.json");
+        testData = new SHAFT.TestData.JSON("LoginWithCorrectEmailAndPasswordTestsTestData.json");
     }
 
     @BeforeMethod
     public void beforeMethod() {
         timeStamp = String.valueOf(System.currentTimeMillis());
-        api = new SHAFT.API(Apis.ApisBaseUrl);
+        api = new SHAFT.API(Apis.apisBaseUrl);
         driver = new SHAFT.GUI.WebDriver();
         new HomePage(driver)
                 .navigate()
@@ -61,5 +61,4 @@ public class LoginWithCorrectEmailAndPasswordTests {
     public void afterMethod() {
         driver.quit();
     }
-
 }

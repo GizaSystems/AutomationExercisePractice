@@ -4,10 +4,7 @@ import com.gizasystems.automationexercise.apis.Apis;
 import com.gizasystems.automationexercise.apis.ApisAccountManagement;
 import com.gizasystems.automationexercise.pages.*;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
-import io.qameta.allure.TmsLink;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -15,8 +12,8 @@ import org.testng.annotations.Test;
 
 @Epic("Automation Exercise")
 @Feature("Download Invoice")
-@Story("Download Invoice After Purchase Order ")
-public class DownloadInvoiceAfterPurchaseOrder {
+@Story("Download Invoice After Purchase Order")
+public class DownloadInvoiceAfterPurchaseOrderTests {
     // Variables
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
@@ -26,8 +23,9 @@ public class DownloadInvoiceAfterPurchaseOrder {
     // Test Cases
     @TmsLink("55512515")
     @Test(description = "Download Invoice after purchase order")
+    @Description("Given I open Automation Exercise home, When I add products to the cart and proceed to checkout, Then I register or login, fill in all required details, and place the order, And verify that the order is successfully placed, When I click the 'Download Invoice' button, Then I verify that the invoice is downloaded successfully, And I continue with the deletion of the account, ensuring the account is deleted successfully.")
     public void downloadInvoiceAfterPurchaseOrder() {
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .clickOnProductsLink();
         new ProductsPage(driver)
                 .validateOnallProductPage()
@@ -50,7 +48,7 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .enterAddressInformation(testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserState"), testData.getTestData("UserCity"), testData.getTestData("UserZipCode"), testData.getTestData("UserMobile"))
                 .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"))
                 .clickOnContinueButton();
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .validateTheLoggedInUser(testData.getTestData("UserName"))
                 .navigateToCartPage();
         new CartPage(driver)
@@ -60,13 +58,13 @@ public class DownloadInvoiceAfterPurchaseOrder {
                 .verifyingAddressDetails(testData.getTestData("UserFirstName"), testData.getTestData("Gender"), testData.getTestData("UserLastName"), testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserCity"))
                 .enteringDescriptionInCommentArea(testData.getTestData("Comment.text"));
         new PaymentPage(driver)
-                .fillPaymentInformation(testData.getTestData("Card.name"),testData.getTestData("Card.number"),testData.getTestData("Card.cvc"),testData.getTestData("Card.expirymonth"),testData.getTestData("Card.expiryyear"))
+                .fillPaymentInformation(testData.getTestData("Card.name"), testData.getTestData("Card.number"), testData.getTestData("Card.cvc"), testData.getTestData("Card.expirymonth"), testData.getTestData("Card.expiryyear"))
                 .validateOnPaymentSuccessValidationMessage(testData.getTestData("Messages.SuccessMessages"))
                 .clickPayAndConfirmOrderButton()
                 .clickOnDownloadInvoiceButton()
                 .validateInviceDownloaded(testData.getTestData("File.name"))
                 .clickContinueButton();
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .clickOnDeleteAccountLink();
         new DeleteAccountPage(driver)
                 .validateAccountDeleted(testData.getTestData("Messages.AccountDeleted"))
@@ -75,8 +73,9 @@ public class DownloadInvoiceAfterPurchaseOrder {
 
     @TmsLink("55512515")
     @Test(description = "Download Invoice after purchase order Using API and GUI")
+    @Description("Given I navigate to the Products page and validate its presence, When I search for a product and validate the search results, Then I add a second product to the cart and view the cart through the popup link. Given a new user account is created and verified via API, When I login with the newly registered credentials and proceed through the cart to checkout, Then I enter a description in the comment area and fill in the payment information. After validating the payment success message and confirming the order, I download the invoice and verify its download. Finally, I delete the user account via API, ensuring the account deletion is validated and the user is no longer found.")
     public void downloadInvoiceAfterPurchaseOrderWithApi() {
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .clickOnProductsLink();
         new ProductsPage(driver)
                 .validateOnallProductPage()
@@ -92,12 +91,12 @@ public class DownloadInvoiceAfterPurchaseOrder {
         new ApisAccountManagement(api)
                 .createRegisterUserAccount(testData.getTestData("UserName"), testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"), testData.getTestData("UserFirstName"), testData.getTestData("UserLastName"))
                 .validateUserCreatedRegistered();
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnLoginVisibility(testData.getTestData("Messages.Login"))
                 .registeredUserLogin(testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"));
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .validateTheLoggedInUser(testData.getTestData("UserName"));
         new CartPage(driver)
                 .openCart()
@@ -106,7 +105,7 @@ public class DownloadInvoiceAfterPurchaseOrder {
         new CheckOutPage(driver)
                 .enteringDescriptionInCommentArea(testData.getTestData("Comment.text"));
         new PaymentPage(driver)
-                .fillPaymentInformation(testData.getTestData("Card.name"),testData.getTestData("Card.number"),testData.getTestData("Card.cvc"),testData.getTestData("Card.expirymonth"),testData.getTestData("Card.expiryyear"))
+                .fillPaymentInformation(testData.getTestData("Card.name"), testData.getTestData("Card.number"), testData.getTestData("Card.cvc"), testData.getTestData("Card.expirymonth"), testData.getTestData("Card.expiryyear"))
                 .validateOnPaymentSuccessValidationMessage(testData.getTestData("Messages.SuccessMessages"))
                 .clickPayAndConfirmOrderButton()
                 .clickOnDownloadInvoiceButton()
@@ -121,12 +120,12 @@ public class DownloadInvoiceAfterPurchaseOrder {
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/DownloadInvoiceAfterPurchaseOrder.json");
+        testData = new SHAFT.TestData.JSON("DownloadInvoiceAfterPurchaseOrderTestsTestData.json");
     }
 
     @BeforeMethod
     public void beforeMethod() {
-        api = new SHAFT.API(Apis.ApisBaseUrl);
+        api = new SHAFT.API(Apis.apisBaseUrl);
         driver = new SHAFT.GUI.WebDriver();
         new HomePage(driver)
                 .navigate()

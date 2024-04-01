@@ -2,24 +2,28 @@ package com.gizasystems.automationexercise.tests;
 
 import com.gizasystems.automationexercise.pages.ContactUsPage;
 import com.gizasystems.automationexercise.pages.HomePage;
-import com.gizasystems.automationexercise.pages.NavigationBar;
+import com.gizasystems.automationexercise.pages.NavigationBarPage;
 import com.shaft.driver.SHAFT;
-import io.qameta.allure.Description;
+import io.qameta.allure.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Epic("Automation Exercise")
+@Feature("Contact Us Functionality")
+@Story("Submit Contact Us Form")
 public class ContactUsTests {
-
+    // Variables
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
 
-
-    @Test(description = "Contact Us")
+    // Test Cases
+    @TmsLink("55512348")
+    @Test(description = "Verify the functionality of the Contact Us form")
     @Description("Given that I click on contact Us Link, When I enter valid data, And press Submit , Then The message submitted")
     public void contactUs() {
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .clickOnContactUsLink();
         new ContactUsPage(driver)
                 .validateOnContactUsPage()
@@ -28,6 +32,7 @@ public class ContactUsTests {
                 .validateOnContactInfoSubmitted(testData.getTestData("Messages.SubmittedMsg"));
     }
 
+    //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeMethod
     public void beforeMethod() {
         driver = new SHAFT.GUI.WebDriver();
@@ -38,8 +43,9 @@ public class ContactUsTests {
 
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/ContactUs.json");
+        testData = new SHAFT.TestData.JSON("ContactUsTestsTestData.json");
     }
+
     @AfterMethod
     public void afterMethod() {
         driver.quit();

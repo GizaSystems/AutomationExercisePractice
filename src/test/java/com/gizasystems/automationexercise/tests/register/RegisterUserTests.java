@@ -14,18 +14,19 @@ import org.testng.annotations.Test;
 @Feature("User Management")
 @Story("Register")
 public class RegisterUserTests {
+    // Variables
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.API api;
     private SHAFT.TestData.JSON testData;
-
     private String timeStamp = String.valueOf(System.currentTimeMillis());
 
-//    @Issue("16")
+    // Test Cases
+    // @Issue("16")
     @TmsLink("55512219")
     @Test(description = "Register User Test - GUI")
     @Description("Given that I register with new user, When I enter valid data, Then I should be registered and logged in the the system")
     public void registerUserTestGui() {
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
@@ -36,7 +37,7 @@ public class RegisterUserTests {
                 .enterAddressInformation(testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserState"), testData.getTestData("UserCity"), testData.getTestData("UserZipCode"), testData.getTestData("UserMobile"))
                 .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"))
                 .clickOnContinueButton();
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .validateTheLoggedInUser(testData.getTestData("UserName"))
                 .clickOnDeleteAccountLink();
         new DeleteAccountPage(driver)
@@ -47,7 +48,7 @@ public class RegisterUserTests {
     @Test(description = "Register User Test - GUI - Time Stamp")
     @Description("Given that I register with new user, When I enter valid data, And a Time Stamp in the Email, Then I should be registered and logged in the the system, And I don't have to delete the account")
     public void registerUserTestGuiTimeStamp() {
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
@@ -58,7 +59,7 @@ public class RegisterUserTests {
                 .enterAddressInformation(testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserState"), testData.getTestData("UserCity"), testData.getTestData("UserZipCode"), testData.getTestData("UserMobile"))
                 .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"))
                 .clickOnContinueButton();
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .validateTheLoggedInUser(testData.getTestData("UserName"));
     }
 
@@ -66,7 +67,7 @@ public class RegisterUserTests {
     @Test(description = "Register User Test - Seams (Delete with APIs)")
     @Description("Given that I register with new user, When I enter valid data, And delete the user, Then I should be registered successfully to the system, And then be deleted from the system")
     public void registerUserTestApi() {
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .clickOnSignupLoginLink();
         new SignupLoginPage(driver)
                 .validateOnSignUpVisibility(testData.getTestData("Messages.Signup"))
@@ -77,7 +78,7 @@ public class RegisterUserTests {
                 .enterAddressInformation(testData.getTestData("UserAddress1"), testData.getTestData("UserCountry"), testData.getTestData("UserState"), testData.getTestData("UserCity"), testData.getTestData("UserZipCode"), testData.getTestData("UserMobile"))
                 .validateOnAccountCreated(testData.getTestData("Messages.AccountCreated"))
                 .clickOnContinueButton();
-        new NavigationBar(driver)
+        new NavigationBarPage(driver)
                 .validateTheLoggedInUser(testData.getTestData("UserName"));
         new ApisAccountManagement(api)
                 .deleteUserAccount(testData.getTestData("UserMail.GuiApi") + timeStamp + "@gizasystems.com", testData.getTestData("UserPassword"));
@@ -86,12 +87,12 @@ public class RegisterUserTests {
     //////////////////// Configurations \\\\\\\\\\\\\\\\\\\\
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/RegisterUser.json");
+        testData = new SHAFT.TestData.JSON("RegisterUserTestsTestData.json");
     }
 
     @BeforeMethod
     public void beforeMethod() {
-        api = new SHAFT.API(Apis.ApisBaseUrl);
+        api = new SHAFT.API(Apis.apisBaseUrl);
         driver = new SHAFT.GUI.WebDriver();
         new HomePage(driver)
                 .navigate()
@@ -102,5 +103,4 @@ public class RegisterUserTests {
     public void afterMethod() {
         driver.quit();
     }
-
 }
