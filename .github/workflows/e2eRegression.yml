@@ -293,7 +293,7 @@ jobs:
             target/surefire-reports/TEST-*.xml
 
   E2E_Edge_Grid_Test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
       checks: write
     steps:
