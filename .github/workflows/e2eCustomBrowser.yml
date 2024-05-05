@@ -1,0 +1,92 @@
+name: E2E Tests Custom Browser
+
+on:
+  workflow_dispatch:
+    inputs:
+      targetBrowser:
+        description: 'Target Browser'
+        default: 'firefox'
+        type: choice
+        options:
+          - firefox
+          - chrome
+          - edge
+      testsPath:
+        description: 'Path to Tests to be Executed'
+        default: ''
+
+jobs:
+  E2E_Custom_Browser_Test:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Log Tests Path
+        run: echo ${{ github.event.inputs.testsPath }}
+
+      - name: Set up Native Selenium Grid
+        run: |
+          if [ '${{ github.event.inputs.targetBrowser }}' == 'firefox' ]; then
+            docker-compose -f src/main/resources/docker-compose/selenium4.yml up --scale chrome=0 --scale edge=0 --scale firefox=4 -d
+          elif [ '${{ github.event.inputs.targetBrowser }}' == 'chrome' ]; then
+            docker-compose -f src/main/resources/docker-compose/selenium4.yml up --scale chrome=4 --scale edge=0 --scale firefox=0 -d
+          elif [ '${{ github.event.inputs.targetBrowser }}' == 'edge' ]; then
+            docker-compose -f src/main/resources/docker-compose/selenium4.yml up --scale chrome=0 --scale edge=4 --scale firefox=0 -d
+          else
+            echo "Browser not supported"
+          fi
+      - name: Check running containers
+        run: docker ps
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.6
+
+      - name: Run Tests
+        continue-on-error: true
+        run: |
+          if [ '${{ github.event.inputs.targetBrowser }}' == 'firefox' ]; then
+            mvn test -DtargetBrowserName="firefox" -DexecutionAddress="localhost:4444" -DtargetOperatingSystem="LINUX" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${{ github.event.inputs.testsPath }}"
+          elif [ '${{ github.event.inputs.targetBrowser }}' == 'chrome' ]; then
+            mvn test -DtargetBrowserName="chrome" -DexecutionAddress="localhost:4444" -DtargetOperatingSystem="LINUX" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${{ github.event.inputs.testsPath }}"
+          elif [ '${{ github.event.inputs.targetBrowser }}' == 'edge' ]; then
+            mvn test -DtargetBrowserName="microsoftedge" -DexecutionAddress="localhost:4444" -DtargetOperatingSystem="LINUX" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${{ github.event.inputs.testsPath }}"
+          else
+            echo "Browser not supported"
+          fi
+
+      - name: Upload Allure Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Custom_Browser_${{ github.event.inputs.targetBrowser }}_Allure
+          path: "allure-report/*_AllureReport.html"
+      - name: Upload Execution Summary Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Custom_Browser_${{ github.event.inputs.targetBrowser }}_Summary
+          path: "execution-summary/ExecutionSummaryReport_*.html"
+#      - name: Publish Report
+#        continue-on-error: true
+#        uses: dorny/test-reporter@v1
+#        if: success() || failure()
+#        with:
+#          name: Tests Report Custom_Browser_${{ github.event.inputs.targetBrowser }}
+#          path: 'target/surefire-reports/TEST-*.xml'
+#          reporter: java-junit
+      - name: Publish Test Results
+        continue-on-error: true
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          check_name: "Tests Results Custom_Browser_${{ github.event.inputs.targetBrowser }}"
+          files: |
+            target/surefire-reports/TEST-*.xml

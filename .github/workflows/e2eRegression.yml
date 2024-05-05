@@ -1,4 +1,4 @@
-name: E2E Regressoin Testing
+name: E2E Regression Testing
 
 on:
   pull_request:
@@ -24,7 +24,7 @@ jobs:
           distribution: 'zulu'
           java-version: '21'
       - name: Set up Maven
-        uses: stCarolas/setup-maven@v4.5
+        uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.6
       - name: Run Tests
@@ -70,7 +70,7 @@ jobs:
           distribution: 'zulu'
           java-version: '21'
       - name: Set up Maven
-        uses: stCarolas/setup-maven@v4.5
+        uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.6
       - name: Run Tests
@@ -116,12 +116,12 @@ jobs:
           distribution: 'zulu'
           java-version: '21'
       - name: Set up Maven
-        uses: stCarolas/setup-maven@v4.5
+        uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.6
       - name: Run Tests
         continue-on-error: true
-        run: mvn test -DtargetBrowserName="microsoftedge" -DexecutionAddress="local" -DtargetOperatingSystem="WINDOWS" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${TESTING_SCOPE}"
+        run: mvn test -DtargetBrowserName="microsoftedge" -DexecutionAddress="local" -DtargetOperatingSystem="WINDOWS" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${TESTING_SCOPE}"
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -163,7 +163,7 @@ jobs:
           distribution: 'zulu'
           java-version: '21'
       - name: Set up Maven
-        uses: stCarolas/setup-maven@v4.5
+        uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.6
       - name: Run Tests
@@ -193,5 +193,149 @@ jobs:
         if: always()
         with:
           check_name: "Tests Results Safari_MacOS"
+          files: |
+            target/surefire-reports/TEST-*.xml
+
+  E2E_Chrome_Grid_Test:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Set up Native Selenium Grid
+        run: docker-compose -f src/main/resources/docker-compose/selenium4.yml up --scale chrome=4 --scale edge=0 --scale firefox=0 -d
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.6
+      - name: Run Tests
+        continue-on-error: true
+        run: mvn test -DtargetBrowserName="chrome" -DexecutionAddress="localhost:4444" -DtargetOperatingSystem="LINUX" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${TESTING_SCOPE}"
+      - name: Upload Allure Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Chrome_Grid_Allure
+          path: "allure-report/*_AllureReport.html"
+      - name: Upload Execution Summary Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Chrome_Grid_Summary
+          path: "execution-summary/ExecutionSummaryReport_*.html"
+      #      - name: Publish Report
+      #        continue-on-error: true
+      #        uses: dorny/test-reporter@v1
+      #        if: success() || failure()
+      #        with:
+      #          name: Tests Report Chrome_Grid
+      #          path: 'target/surefire-reports/TEST-*.xml'
+      #          reporter: java-junit
+      - name: Publish Test Results
+        continue-on-error: true
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          check_name: "Tests Results Chrome_Grid"
+          files: |
+            target/surefire-reports/TEST-*.xml
+
+  E2E_Firefox_Grid_Test:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Set up Native Selenium Grid
+        run: docker-compose -f src/main/resources/docker-compose/selenium4.yml up --scale chrome=0 --scale edge=0 --scale firefox=4 -d
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.6
+      - name: Run Tests
+        continue-on-error: true
+        run: mvn test -DtargetBrowserName="firefox" -DexecutionAddress="localhost:4444" -DtargetOperatingSystem="LINUX" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${TESTING_SCOPE}"
+      - name: Upload Allure Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Firefox_Grid_Allure
+          path: "allure-report/*_AllureReport.html"
+      - name: Upload Execution Summary Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Firefox_Grid_Summary
+          path: "execution-summary/ExecutionSummaryReport_*.html"
+      #      - name: Publish Report
+      #        continue-on-error: true
+      #        uses: dorny/test-reporter@v1
+      #        if: success() || failure()
+      #        with:
+      #          name: Tests Report Firefox_Grid
+      #          path: 'target/surefire-reports/TEST-*.xml'
+      #          reporter: java-junit
+      - name: Publish Test Results
+        continue-on-error: true
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          check_name: "Tests Results Firefox_Grid"
+          files: |
+            target/surefire-reports/TEST-*.xml
+
+  E2E_Edge_Grid_Test:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Set up Native Selenium Grid
+        run: docker-compose -f src/main/resources/docker-compose/selenium4.yml up --scale chrome=0 --scale edge=4 --scale firefox=0 -d
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.6
+      - name: Run Tests
+        continue-on-error: true
+        run: mvn test -DtargetBrowserName="microsoftedge" -DexecutionAddress="localhost:4444" -DtargetOperatingSystem="LINUX" -DheadlessExecution="true" -DwhenToTakePageSourceSnapshot="FailuresOnly" -DscreenshotParams_whenToTakeAScreenshot="FailuresOnly" -Dtest="${TESTING_SCOPE}"
+      - name: Upload Allure Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Edge_Grid_Allure
+          path: "allure-report/*_AllureReport.html"
+      - name: Upload Execution Summary Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Edge_Grid_Summary
+          path: "execution-summary/ExecutionSummaryReport_*.html"
+      #      - name: Publish Report
+      #        continue-on-error: true
+      #        uses: dorny/test-reporter@v1
+      #        if: success() || failure()
+      #        with:
+      #          name: Tests Report Edge_Grid
+      #          path: 'target/surefire-reports/TEST-*.xml'
+      #          reporter: java-junit
+      - name: Publish Test Results
+        continue-on-error: true
+        uses: EnricoMi/publish-unit-test-result-action/composite@v2
+        if: always()
+        with:
+          check_name: "Tests Results Edge_Grid"
           files: |
             target/surefire-reports/TEST-*.xml
